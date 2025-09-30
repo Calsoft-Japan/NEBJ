@@ -27,6 +27,9 @@ reportextension 51305 "Sales Ord Confirmation Ext" extends "Standard Sales - Ord
             column(CompanyFaxNo; CompanyInfo2."Fax No.")
             {
             }
+            column(DirectShippingCode; Header."Direct Shipping Code")
+            {
+            }
         }
 
         modify(Header)
@@ -40,13 +43,25 @@ reportextension 51305 "Sales Ord Confirmation Ext" extends "Standard Sales - Ord
 
         // Use this section to add fields from Sales Line.
 
-        // add(Line)
-        // {
-        //     column(LineDiscountAmount; "Line Discount Amount")
-        //     {
-        //     }
-        // }
-
+        add(Line)
+        {
+            // column(LineDiscountAmount; "Line Discount Amount")
+            // {
+            // }
+            column(StorageTemp; "StorageTemprature")
+            {
+            }
+            column(EU_Description; "EU Description")
+            { }
+            column(EU_Division_1; "EU Division 1")
+            { }
+            column(Description_Bikou_; "Description(Bikou)")
+            { }
+            column(Description_Bikou2_; "Description(Bikou2)")
+            { }
+            column(ExternaDocumentNo_; "ExternaDocumentNo.")
+            { }
+        }
     }
 
     var

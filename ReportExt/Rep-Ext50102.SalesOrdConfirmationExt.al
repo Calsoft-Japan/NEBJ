@@ -30,6 +30,9 @@ reportextension 51305 "Sales Ord Confirmation Ext" extends "Standard Sales - Ord
             column(DirectShippingCode; Header."Direct Shipping Code")
             {
             }
+            column(Currency_Code; "Currency Code")
+            {
+            }
         }
 
         modify(Header)

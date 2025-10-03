@@ -11,7 +11,7 @@
       <am:Name>MSRB</am:Name>
       <am:Version>15.1.30001.02</am:Version>
     </am:UpdatedBy>
-    <am:LastModifiedTimestamp>2025-09-30T05:41:16.3631927Z</am:LastModifiedTimestamp>
+    <am:LastModifiedTimestamp>2025-10-03T10:16:37.8911576Z</am:LastModifiedTimestamp>
   </am:AuthoringMetadata>
   <AutoRefresh>0</AutoRefresh>
   <DataSources>
@@ -32,7 +32,7 @@
             <TablixBody>
               <TablixColumns>
                 <TablixColumn>
-                  <Width>37.39003cm</Width>
+                  <Width>27.39003cm</Width>
                 </TablixColumn>
               </TablixColumns>
               <TablixRows>
@@ -41,7 +41,6 @@
                   <TablixCells>
                     <TablixCell>
                       <CellContents>
-                        <rd:Selected>true</rd:Selected>
                         <Rectangle Name="Rectangle1">
                           <ReportItems>
                             <Tablix Name="LinesTable">
@@ -51,31 +50,31 @@
                                     <Width>1.62588cm</Width>
                                   </TablixColumn>
                                   <TablixColumn>
-                                    <Width>4.72352cm</Width>
+                                    <Width>6.08655cm</Width>
                                   </TablixColumn>
                                   <TablixColumn>
                                     <Width>1.42018cm</Width>
                                   </TablixColumn>
                                   <TablixColumn>
-                                    <Width>2.15629cm</Width>
+                                    <Width>2.92157cm</Width>
                                   </TablixColumn>
                                   <TablixColumn>
-                                    <Width>2.07591cm</Width>
+                                    <Width>1.58072cm</Width>
                                   </TablixColumn>
                                   <TablixColumn>
                                     <Width>2.78449cm</Width>
                                   </TablixColumn>
                                   <TablixColumn>
-                                    <Width>3.63254cm</Width>
+                                    <Width>2.40162cm</Width>
                                   </TablixColumn>
                                   <TablixColumn>
-                                    <Width>2.0405cm</Width>
+                                    <Width>2.56866cm</Width>
                                   </TablixColumn>
                                   <TablixColumn>
-                                    <Width>3.33167cm</Width>
+                                    <Width>2.59084cm</Width>
                                   </TablixColumn>
                                   <TablixColumn>
-                                    <Width>3.00733cm</Width>
+                                    <Width>2.81783cm</Width>
                                   </TablixColumn>
                                 </TablixColumns>
                                 <TablixRows>
@@ -259,6 +258,7 @@
                                                       <FontFamily>Yu Gothic UI</FontFamily>
                                                       <FontSize>8pt</FontSize>
                                                       <FontWeight>Bold</FontWeight>
+                                                      <Format>#,0</Format>
                                                     </Style>
                                                   </TextRun>
                                                 </TextRuns>
@@ -271,26 +271,6 @@
                                               <Border>
                                                 <Style>Solid</Style>
                                               </Border>
-                                              <TopBorder>
-                                                <Color>Black</Color>
-                                                <Style>Solid</Style>
-                                                <Width>1pt</Width>
-                                              </TopBorder>
-                                              <BottomBorder>
-                                                <Color>Black</Color>
-                                                <Style>Solid</Style>
-                                                <Width>1pt</Width>
-                                              </BottomBorder>
-                                              <LeftBorder>
-                                                <Color>Black</Color>
-                                                <Style>Solid</Style>
-                                                <Width>1pt</Width>
-                                              </LeftBorder>
-                                              <RightBorder>
-                                                <Color>Black</Color>
-                                                <Style>Solid</Style>
-                                                <Width>1pt</Width>
-                                              </RightBorder>
                                               <VerticalAlign>Middle</VerticalAlign>
                                               <PaddingLeft>5pt</PaddingLeft>
                                               <PaddingRight>5pt</PaddingRight>
@@ -707,7 +687,7 @@
                                                   </TextRun>
                                                 </TextRuns>
                                                 <Style>
-                                                  <TextAlign>Left</TextAlign>
+                                                  <TextAlign>Right</TextAlign>
                                                 </Style>
                                               </Paragraph>
                                             </Paragraphs>
@@ -736,10 +716,13 @@
                                                     <Style>
                                                       <FontFamily>Segoe UI</FontFamily>
                                                       <FontSize>8pt</FontSize>
+                                                      <Format>#,0</Format>
                                                     </Style>
                                                   </TextRun>
                                                 </TextRuns>
-                                                <Style />
+                                                <Style>
+                                                  <TextAlign>Right</TextAlign>
+                                                </Style>
                                               </Paragraph>
                                             </Paragraphs>
                                             <Style>
@@ -767,11 +750,12 @@
                                                     <Style>
                                                       <FontFamily>Segoe UI</FontFamily>
                                                       <FontSize>8pt</FontSize>
+                                                      <Format>#,0</Format>
                                                     </Style>
                                                   </TextRun>
                                                 </TextRuns>
                                                 <Style>
-                                                  <TextAlign>Left</TextAlign>
+                                                  <TextAlign>Right</TextAlign>
                                                 </Style>
                                               </Paragraph>
                                             </Paragraphs>
@@ -800,11 +784,12 @@
                                                     <Style>
                                                       <FontFamily>Segoe UI</FontFamily>
                                                       <FontSize>8pt</FontSize>
+                                                      <Format>#,0</Format>
                                                     </Style>
                                                   </TextRun>
                                                 </TextRuns>
                                                 <Style>
-                                                  <TextAlign>Center</TextAlign>
+                                                  <TextAlign>Right</TextAlign>
                                                 </Style>
                                               </Paragraph>
                                             </Paragraphs>
@@ -833,11 +818,12 @@
                                                     <Style>
                                                       <FontFamily>Segoe UI</FontFamily>
                                                       <FontSize>8pt</FontSize>
+                                                      <Format>#,0</Format>
                                                     </Style>
                                                   </TextRun>
                                                 </TextRuns>
                                                 <Style>
-                                                  <TextAlign>Center</TextAlign>
+                                                  <TextAlign>Right</TextAlign>
                                                 </Style>
                                               </Paragraph>
                                             </Paragraphs>
@@ -870,7 +856,7 @@
                                                   </TextRun>
                                                 </TextRuns>
                                                 <Style>
-                                                  <TextAlign>Center</TextAlign>
+                                                  <TextAlign>Right</TextAlign>
                                                 </Style>
                                               </Paragraph>
                                             </Paragraphs>
@@ -903,7 +889,7 @@
                                                   </TextRun>
                                                 </TextRuns>
                                                 <Style>
-                                                  <TextAlign>Center</TextAlign>
+                                                  <TextAlign>Right</TextAlign>
                                                 </Style>
                                               </Paragraph>
                                             </Paragraphs>
@@ -936,7 +922,7 @@
                                                   </TextRun>
                                                 </TextRuns>
                                                 <Style>
-                                                  <TextAlign>Center</TextAlign>
+                                                  <TextAlign>Right</TextAlign>
                                                 </Style>
                                               </Paragraph>
                                             </Paragraphs>
@@ -1015,7 +1001,7 @@
                               <Top>6.44144cm</Top>
                               <Left>0.18953cm</Left>
                               <Height>1.5939cm</Height>
-                              <Width>26.79833cm</Width>
+                              <Width>26.79834cm</Width>
                               <Style>
                                 <Border>
                                   <Style>None</Style>
@@ -1441,7 +1427,7 @@
                                       <Value>="受注番号: " &amp; First(Fields!DocumentNo.Value,"DataSet_Result")</Value>
                                       <Style>
                                         <FontStyle>Normal</FontStyle>
-                                        <FontFamily>ＭＳ 明朝</FontFamily>
+                                        <FontFamily>Yu Gothic UI</FontFamily>
                                         <FontWeight>Normal</FontWeight>
                                         <TextDecoration>None</TextDecoration>
                                         <Color>#000000</Color>
@@ -1622,16 +1608,18 @@
                                   <TextRuns>
                                     <TextRun>
                                       <Value>消費税抜合計</Value>
-                                      <Style />
+                                      <Style>
+                                        <FontFamily>Yu Gothic UI</FontFamily>
+                                      </Style>
                                     </TextRun>
                                   </TextRuns>
                                   <Style />
                                 </Paragraph>
                               </Paragraphs>
                               <Top>9.96179cm</Top>
-                              <Left>10.97202cm</Left>
+                              <Left>12.2047cm</Left>
                               <Height>0.64233cm</Height>
-                              <Width>3.08182cm</Width>
+                              <Width>2.31982cm</Width>
                               <ZIndex>16</ZIndex>
                               <Style>
                                 <Border>
@@ -1651,7 +1639,7 @@
                                 <Paragraph>
                                   <TextRuns>
                                     <TextRun>
-                                      <Value>=Fields!CurrencyCode.Value</Value>
+                                      <Value>=Fields!Currency_Code.Value</Value>
                                       <Style />
                                     </TextRun>
                                   </TextRuns>
@@ -1661,7 +1649,7 @@
                                 </Paragraph>
                               </Paragraphs>
                               <Top>9.96179cm</Top>
-                              <Left>14.08912cm</Left>
+                              <Left>14.52452cm</Left>
                               <Height>0.64233cm</Height>
                               <Width>1.75106cm</Width>
                               <ZIndex>17</ZIndex>
@@ -1684,7 +1672,9 @@
                                   <TextRuns>
                                     <TextRun>
                                       <Value>="直送情報: " &amp; First(Fields!DirectShippingCode.Value,"DataSet_Result")</Value>
-                                      <Style />
+                                      <Style>
+                                        <FontFamily>Yu Gothic UI</FontFamily>
+                                      </Style>
                                     </TextRun>
                                   </TextRuns>
                                   <Style />
@@ -1714,14 +1704,16 @@
                                   <TextRuns>
                                     <TextRun>
                                       <Value>=Last(Fields!TotalSubTotal.Value)</Value>
-                                      <Style />
+                                      <Style>
+                                        <Format>#,0</Format>
+                                      </Style>
                                     </TextRun>
                                   </TextRuns>
                                   <Style />
                                 </Paragraph>
                               </Paragraphs>
-                              <Top>9.96179cm</Top>
-                              <Left>15.91073cm</Left>
+                              <Top>9.99707cm</Top>
+                              <Left>16.31086cm</Left>
                               <Height>0.60705cm</Height>
                               <Width>2.05377cm</Width>
                               <ZIndex>19</ZIndex>
@@ -1736,9 +1728,6 @@
                               </Style>
                             </Textbox>
                           </ReportItems>
-                          <PageBreak>
-                            <BreakLocation>End</BreakLocation>
-                          </PageBreak>
                           <KeepTogether>true</KeepTogether>
                           <OmitBorderOnPageBreak>true</OmitBorderOnPageBreak>
                           <Style>
@@ -1781,7 +1770,7 @@
             <DataSetName>DataSet_Result</DataSetName>
             <Top>0.21167cm</Top>
             <Height>11.39425cm</Height>
-            <Width>37.39003cm</Width>
+            <Width>27.39003cm</Width>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -1790,9 +1779,13 @@
           </Tablix>
         </ReportItems>
         <Height>14.31069cm</Height>
-        <Style />
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+        </Style>
       </Body>
-      <Width>37.39003cm</Width>
+      <Width>27.39003cm</Width>
       <Page>
         <PageHeader>
           <Height>2.04317cm</Height>
@@ -1826,7 +1819,7 @@
                   </Style>
                 </Paragraph>
               </Paragraphs>
-              <Top>1.09772cm</Top>
+              <Top>1.06244cm</Top>
               <Left>22.49003cm</Left>
               <Height>11pt</Height>
               <Width>4.9cm</Width>
@@ -1895,7 +1888,7 @@
                   </Style>
                 </Paragraph>
               </Paragraphs>
-              <Top>1.54928cm</Top>
+              <Top>1.514cm</Top>
               <Left>18.64923cm</Left>
               <Height>0.38806cm</Height>
               <Width>8.7408cm</Width>
@@ -2713,6 +2706,9 @@ End Function
         </Field>
         <Field Name="DirectShippingCode">
           <DataField>DirectShippingCode</DataField>
+        </Field>
+        <Field Name="Currency_Code">
+          <DataField>Currency_Code</DataField>
         </Field>
         <Field Name="StorageTemp">
           <DataField>StorageTemp</DataField>

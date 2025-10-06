@@ -1,6 +1,6 @@
 reportextension 51305 "Sales Ord Confirmation Ext" extends "Standard Sales - Order Conf."
 {
-    RDLCLayout = '.\ReportLayout\SalesOrderConfirmation_NEBJ.rdlc';
+    //RDLCLayout = '.\ReportLayout\SalesOrderConfirmation_NEBJ.rdlc';
 
     dataset
     {
@@ -30,7 +30,10 @@ reportextension 51305 "Sales Ord Confirmation Ext" extends "Standard Sales - Ord
             column(DirectShippingCode; Header."Direct Shipping Code")
             {
             }
-            column(Currency_Code; "Currency Code")
+            column(DirectShippingName; Customer2.Name)
+            {
+            }
+            column(DirectShippingAddress; Customer2.Address)
             {
             }
         }
@@ -40,6 +43,11 @@ reportextension 51305 "Sales Ord Confirmation Ext" extends "Standard Sales - Ord
             trigger OnAfterPreDataItem()
             begin
                 CompanyInfo2.Get();
+            end;
+
+            trigger OnAfterAfterGetRecord()
+            begin
+                Customer2.get(Header."Direct Shipping Code");
             end;
 
         }
@@ -69,4 +77,5 @@ reportextension 51305 "Sales Ord Confirmation Ext" extends "Standard Sales - Ord
 
     var
         CompanyInfo2: Record "Company Information";
+        Customer2: Record Customer;
 }

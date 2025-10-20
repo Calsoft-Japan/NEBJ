@@ -9,7 +9,7 @@ tableextension 50111 "Sales Shipment Line Ext" extends "Sales Shipment Line"
         field(50010; "ExternaDocumentNo."; Text[20]) { }
         field(50011; "LotInformation"; Code[20]) { }
         field(50012; "EU Description"; Text[50]) { }
-        field(50013; "BOM Flag"; Boolean) { }
+        field(50013; "BOM Flag"; Boolean) { }  // This is flow field 
         field(50016; "EU Division 1"; Text[100]) { }
         field(50017; "EU Division 2"; Text[100]) { }
         field(50018; "EU Division 3"; Text[100]) { }

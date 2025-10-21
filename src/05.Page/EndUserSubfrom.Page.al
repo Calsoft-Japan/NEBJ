@@ -10,7 +10,7 @@ page 50000 "End User Subfrom"
         {
             field(EndUserName; EndUserName)
             {
-                Caption = 'End User Name';
+                Caption = 'End Username';
                 QuickEntry = false;
             }
             field(Division1; Division1)
@@ -38,7 +38,6 @@ page 50000 "End User Subfrom"
                 Caption = 'Block Option';
                 QuickEntry = false;
             }
-
             repeater(Group)
             {
                 field("No."; Rec."No.") { QuickEntry = true; }
@@ -92,7 +91,7 @@ page 50000 "End User Subfrom"
         CustGroup: Text[20];
         BlockOption: Enum "Block Option";
 
-    procedure GetCurrentRecNo() SetCustNo: Code[10]
+    procedure GetCurrentRecNo() SetCustNo: Code[20]
     begin
         SetCustNo := Rec."No.";
     end;

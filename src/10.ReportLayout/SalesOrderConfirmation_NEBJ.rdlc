@@ -865,7 +865,7 @@
                                                   <TextRun>
                                                     <Value EvaluationMode="Constant">品番</Value>
                                                     <Style>
-                                                      <FontFamily>Meiryo UI</FontFamily>
+                                                      <FontFamily>MS UI Gothic</FontFamily>
                                                       <FontSize>8pt</FontSize>
                                                       <FontWeight>Bold</FontWeight>
                                                     </Style>
@@ -919,7 +919,7 @@
                                                   <TextRun>
                                                     <Value>品名</Value>
                                                     <Style>
-                                                      <FontFamily>Meiryo UI</FontFamily>
+                                                      <FontFamily>MS UI Gothic</FontFamily>
                                                       <FontSize>8pt</FontSize>
                                                       <FontWeight>Bold</FontWeight>
                                                     </Style>
@@ -973,7 +973,7 @@
                                                   <TextRun>
                                                     <Value>数量</Value>
                                                     <Style>
-                                                      <FontFamily>Meiryo UI</FontFamily>
+                                                      <FontFamily>MS UI Gothic</FontFamily>
                                                       <FontSize>8pt</FontSize>
                                                       <FontWeight>Bold</FontWeight>
                                                     </Style>
@@ -1027,7 +1027,7 @@
                                                   <TextRun>
                                                     <Value>定価</Value>
                                                     <Style>
-                                                      <FontFamily>Meiryo UI</FontFamily>
+                                                      <FontFamily>MS UI Gothic</FontFamily>
                                                       <FontSize>8pt</FontSize>
                                                       <FontWeight>Bold</FontWeight>
                                                       <Format>#,0</Format>
@@ -1061,7 +1061,7 @@
                                                   <TextRun>
                                                     <Value>割引率</Value>
                                                     <Style>
-                                                      <FontFamily>Meiryo UI</FontFamily>
+                                                      <FontFamily>MS UI Gothic</FontFamily>
                                                       <FontSize>8pt</FontSize>
                                                       <FontWeight>Bold</FontWeight>
                                                     </Style>
@@ -1114,7 +1114,7 @@
                                                   <TextRun>
                                                     <Value EvaluationMode="Constant">単価</Value>
                                                     <Style>
-                                                      <FontFamily>Meiryo UI</FontFamily>
+                                                      <FontFamily>MS UI Gothic</FontFamily>
                                                       <FontSize>8pt</FontSize>
                                                       <FontWeight>Bold</FontWeight>
                                                     </Style>
@@ -1168,7 +1168,7 @@
                                                   <TextRun>
                                                     <Value EvaluationMode="Constant">金額(税抜き)</Value>
                                                     <Style>
-                                                      <FontFamily>Meiryo UI</FontFamily>
+                                                      <FontFamily>MS UI Gothic</FontFamily>
                                                       <FontSize>8pt</FontSize>
                                                       <FontWeight>Bold</FontWeight>
                                                     </Style>
@@ -1222,7 +1222,7 @@
                                                   <TextRun>
                                                     <Value EvaluationMode="Constant">出荷予定日</Value>
                                                     <Style>
-                                                      <FontFamily>Meiryo UI</FontFamily>
+                                                      <FontFamily>MS UI Gothic</FontFamily>
                                                       <FontSize>8pt</FontSize>
                                                       <FontWeight>Bold</FontWeight>
                                                     </Style>
@@ -1276,7 +1276,7 @@
                                                   <TextRun>
                                                     <Value EvaluationMode="Constant">納品予定日</Value>
                                                     <Style>
-                                                      <FontFamily>Meiryo UI</FontFamily>
+                                                      <FontFamily>MS UI Gothic</FontFamily>
                                                       <FontSize>8pt</FontSize>
                                                       <FontWeight>Bold</FontWeight>
                                                     </Style>
@@ -1330,7 +1330,7 @@
                                                   <TextRun>
                                                     <Value EvaluationMode="Constant">販売店注文番号</Value>
                                                     <Style>
-                                                      <FontFamily>Meiryo UI</FontFamily>
+                                                      <FontFamily>MS UI Gothic</FontFamily>
                                                       <FontSize>8pt</FontSize>
                                                       <FontWeight>Bold</FontWeight>
                                                     </Style>
@@ -1389,7 +1389,7 @@
                                                   <TextRun>
                                                     <Value />
                                                     <Style>
-                                                      <FontFamily>Meiryo UI</FontFamily>
+                                                      <FontFamily>MS UI Gothic</FontFamily>
                                                       <FontSize>8pt</FontSize>
                                                     </Style>
                                                   </TextRun>
@@ -1420,7 +1420,7 @@
                                                   <TextRun>
                                                     <Value>=Fields!Description_Line.Value</Value>
                                                     <Style>
-                                                      <FontFamily>Meiryo UI</FontFamily>
+                                                      <FontFamily>MS UI Gothic</FontFamily>
                                                       <FontSize>8pt</FontSize>
                                                     </Style>
                                                   </TextRun>
@@ -1454,7 +1454,7 @@
                                                   <TextRun>
                                                     <Value />
                                                     <Style>
-                                                      <FontFamily>Meiryo UI</FontFamily>
+                                                      <FontFamily>MS UI Gothic</FontFamily>
                                                       <FontSize>8pt</FontSize>
                                                     </Style>
                                                   </TextRun>
@@ -1485,7 +1485,7 @@
                                                   <TextRun>
                                                     <Value />
                                                     <Style>
-                                                      <FontFamily>Meiryo UI</FontFamily>
+                                                      <FontFamily>MS UI Gothic</FontFamily>
                                                       <FontSize>8pt</FontSize>
                                                     </Style>
                                                   </TextRun>
@@ -1516,7 +1516,7 @@
                                                   <TextRun>
                                                     <Value />
                                                     <Style>
-                                                      <FontFamily>Meiryo UI</FontFamily>
+                                                      <FontFamily>MS UI Gothic</FontFamily>
                                                       <FontSize>8pt</FontSize>
                                                     </Style>
                                                   </TextRun>
@@ -1549,7 +1549,7 @@
                                                   <TextRun>
                                                     <Value />
                                                     <Style>
-                                                      <FontFamily>Meiryo UI</FontFamily>
+                                                      <FontFamily>MS UI Gothic</FontFamily>
                                                       <FontSize>8pt</FontSize>
                                                     </Style>
                                                   </TextRun>
@@ -1582,7 +1582,7 @@
                                                   <TextRun>
                                                     <Value />
                                                     <Style>
-                                                      <FontFamily>Meiryo UI</FontFamily>
+                                                      <FontFamily>MS UI Gothic</FontFamily>
                                                       <FontSize>8pt</FontSize>
                                                     </Style>
                                                   </TextRun>
@@ -1615,7 +1615,7 @@
                                                   <TextRun>
                                                     <Value />
                                                     <Style>
-                                                      <FontFamily>Meiryo UI</FontFamily>
+                                                      <FontFamily>MS UI Gothic</FontFamily>
                                                       <FontSize>8pt</FontSize>
                                                     </Style>
                                                   </TextRun>
@@ -1653,7 +1653,7 @@
                                                   <TextRun>
                                                     <Value>=Fields!ItemNo_Line.Value</Value>
                                                     <Style>
-                                                      <FontFamily>Meiryo UI</FontFamily>
+                                                      <FontFamily>MS UI Gothic</FontFamily>
                                                       <FontSize>8pt</FontSize>
                                                     </Style>
                                                   </TextRun>
@@ -1684,7 +1684,7 @@
                                                   <TextRun>
                                                     <Value>=Fields!Description_Line.Value</Value>
                                                     <Style>
-                                                      <FontFamily>Meiryo UI</FontFamily>
+                                                      <FontFamily>MS UI Gothic</FontFamily>
                                                       <FontSize>8pt</FontSize>
                                                     </Style>
                                                   </TextRun>
@@ -1715,7 +1715,7 @@
                                                   <TextRun>
                                                     <Value />
                                                     <Style>
-                                                      <FontFamily>Meiryo UI</FontFamily>
+                                                      <FontFamily>MS UI Gothic</FontFamily>
                                                       <FontSize>8pt</FontSize>
                                                     </Style>
                                                   </TextRun>
@@ -1748,7 +1748,7 @@
                                                   <TextRun>
                                                     <Value />
                                                     <Style>
-                                                      <FontFamily>Meiryo UI</FontFamily>
+                                                      <FontFamily>MS UI Gothic</FontFamily>
                                                       <FontSize>8pt</FontSize>
                                                     </Style>
                                                   </TextRun>
@@ -1781,7 +1781,7 @@
                                                   <TextRun>
                                                     <Value />
                                                     <Style>
-                                                      <FontFamily>Meiryo UI</FontFamily>
+                                                      <FontFamily>MS UI Gothic</FontFamily>
                                                       <FontSize>8pt</FontSize>
                                                     </Style>
                                                   </TextRun>
@@ -1814,7 +1814,7 @@
                                                   <TextRun>
                                                     <Value />
                                                     <Style>
-                                                      <FontFamily>Meiryo UI</FontFamily>
+                                                      <FontFamily>MS UI Gothic</FontFamily>
                                                       <FontSize>8pt</FontSize>
                                                     </Style>
                                                   </TextRun>
@@ -1847,7 +1847,7 @@
                                                   <TextRun>
                                                     <Value />
                                                     <Style>
-                                                      <FontFamily>Meiryo UI</FontFamily>
+                                                      <FontFamily>MS UI Gothic</FontFamily>
                                                       <FontSize>8pt</FontSize>
                                                     </Style>
                                                   </TextRun>
@@ -1880,7 +1880,7 @@
                                                   <TextRun>
                                                     <Value />
                                                     <Style>
-                                                      <FontFamily>Meiryo UI</FontFamily>
+                                                      <FontFamily>MS UI Gothic</FontFamily>
                                                       <FontSize>8pt</FontSize>
                                                     </Style>
                                                   </TextRun>
@@ -1913,7 +1913,7 @@
                                                   <TextRun>
                                                     <Value />
                                                     <Style>
-                                                      <FontFamily>Meiryo UI</FontFamily>
+                                                      <FontFamily>MS UI Gothic</FontFamily>
                                                       <FontSize>8pt</FontSize>
                                                     </Style>
                                                   </TextRun>
@@ -1946,7 +1946,7 @@
                                                   <TextRun>
                                                     <Value />
                                                     <Style>
-                                                      <FontFamily>Meiryo UI</FontFamily>
+                                                      <FontFamily>MS UI Gothic</FontFamily>
                                                       <FontSize>8pt</FontSize>
                                                     </Style>
                                                   </TextRun>
@@ -1984,7 +1984,7 @@
                                                   <TextRun>
                                                     <Value />
                                                     <Style>
-                                                      <FontFamily>Meiryo UI</FontFamily>
+                                                      <FontFamily>MS UI Gothic</FontFamily>
                                                       <FontSize>8pt</FontSize>
                                                     </Style>
                                                   </TextRun>
@@ -2015,7 +2015,7 @@
                                                   <TextRun>
                                                     <Value>="保管温度：" + Fields!StorageTemp.Value</Value>
                                                     <Style>
-                                                      <FontFamily>Meiryo UI</FontFamily>
+                                                      <FontFamily>MS UI Gothic</FontFamily>
                                                       <FontSize>8pt</FontSize>
                                                     </Style>
                                                   </TextRun>
@@ -2046,7 +2046,7 @@
                                                   <TextRun>
                                                     <Value>=Fields!Quantity_Line.Value</Value>
                                                     <Style>
-                                                      <FontFamily>Meiryo UI</FontFamily>
+                                                      <FontFamily>MS UI Gothic</FontFamily>
                                                       <FontSize>8pt</FontSize>
                                                     </Style>
                                                   </TextRun>
@@ -2079,7 +2079,7 @@
                                                   <TextRun>
                                                     <Value>=FormatNumber(Fields!UnitPrice.Value,0)</Value>
                                                     <Style>
-                                                      <FontFamily>Meiryo UI</FontFamily>
+                                                      <FontFamily>MS UI Gothic</FontFamily>
                                                       <FontSize>8pt</FontSize>
                                                       <Format>#,0</Format>
                                                     </Style>
@@ -2113,7 +2113,7 @@
                                                   <TextRun>
                                                     <Value>=Fields!LineDiscountPercent_Line.Value</Value>
                                                     <Style>
-                                                      <FontFamily>Meiryo UI</FontFamily>
+                                                      <FontFamily>MS UI Gothic</FontFamily>
                                                       <FontSize>8pt</FontSize>
                                                       <Format>#,0.0</Format>
                                                     </Style>
@@ -2147,7 +2147,7 @@
                                                   <TextRun>
                                                     <Value>=IIF(Fields!Quantity_Line.Value = 0, 0, Fields!AmountExcludingVAT_Line.Value / Fields!Quantity_Line.Value)</Value>
                                                     <Style>
-                                                      <FontFamily>Meiryo UI</FontFamily>
+                                                      <FontFamily>MS UI Gothic</FontFamily>
                                                       <FontSize>8pt</FontSize>
                                                       <Format>#,0</Format>
                                                     </Style>
@@ -2180,7 +2180,7 @@
                                                   <TextRun>
                                                     <Value>=Fields!AmountExcludingVAT_Line.Value</Value>
                                                     <Style>
-                                                      <FontFamily>Meiryo UI</FontFamily>
+                                                      <FontFamily>MS UI Gothic</FontFamily>
                                                       <FontSize>8pt</FontSize>
                                                       <Format>#,0</Format>
                                                     </Style>
@@ -2214,7 +2214,7 @@
                                                   <TextRun>
                                                     <Value>=Fields!PlannedShipmentDate_Line.Value</Value>
                                                     <Style>
-                                                      <FontFamily>Meiryo UI</FontFamily>
+                                                      <FontFamily>MS UI Gothic</FontFamily>
                                                       <FontSize>8pt</FontSize>
                                                     </Style>
                                                   </TextRun>
@@ -2247,7 +2247,7 @@
                                                   <TextRun>
                                                     <Value>=Fields!PlannedShipmentDate_Line.Value</Value>
                                                     <Style>
-                                                      <FontFamily>Meiryo UI</FontFamily>
+                                                      <FontFamily>MS UI Gothic</FontFamily>
                                                       <FontSize>8pt</FontSize>
                                                     </Style>
                                                   </TextRun>
@@ -2280,7 +2280,7 @@
                                                   <TextRun>
                                                     <Value>=Fields!ExternaDocumentNo_.Value</Value>
                                                     <Style>
-                                                      <FontFamily>Meiryo UI</FontFamily>
+                                                      <FontFamily>MS UI Gothic</FontFamily>
                                                       <FontSize>8pt</FontSize>
                                                     </Style>
                                                   </TextRun>
@@ -2318,7 +2318,7 @@
                                                   <TextRun>
                                                     <Value />
                                                     <Style>
-                                                      <FontFamily>Meiryo UI</FontFamily>
+                                                      <FontFamily>MS UI Gothic</FontFamily>
                                                       <FontSize>8pt</FontSize>
                                                     </Style>
                                                   </TextRun>
@@ -2349,7 +2349,7 @@
                                                   <TextRun>
                                                     <Value>=Fields!EU_Description.Value &amp; " " &amp; Fields!EU_Division_1.Value</Value>
                                                     <Style>
-                                                      <FontFamily>Meiryo UI</FontFamily>
+                                                      <FontFamily>MS UI Gothic</FontFamily>
                                                       <FontSize>8pt</FontSize>
                                                     </Style>
                                                   </TextRun>
@@ -2383,7 +2383,7 @@
                                                   <TextRun>
                                                     <Value />
                                                     <Style>
-                                                      <FontFamily>Meiryo UI</FontFamily>
+                                                      <FontFamily>MS UI Gothic</FontFamily>
                                                       <FontSize>8pt</FontSize>
                                                     </Style>
                                                   </TextRun>
@@ -2414,7 +2414,7 @@
                                                   <TextRun>
                                                     <Value />
                                                     <Style>
-                                                      <FontFamily>Meiryo UI</FontFamily>
+                                                      <FontFamily>MS UI Gothic</FontFamily>
                                                       <FontSize>8pt</FontSize>
                                                     </Style>
                                                   </TextRun>
@@ -2447,7 +2447,7 @@
                                                   <TextRun>
                                                     <Value />
                                                     <Style>
-                                                      <FontFamily>Meiryo UI</FontFamily>
+                                                      <FontFamily>MS UI Gothic</FontFamily>
                                                       <FontSize>8pt</FontSize>
                                                     </Style>
                                                   </TextRun>
@@ -2480,7 +2480,7 @@
                                                   <TextRun>
                                                     <Value />
                                                     <Style>
-                                                      <FontFamily>Meiryo UI</FontFamily>
+                                                      <FontFamily>MS UI Gothic</FontFamily>
                                                       <FontSize>8pt</FontSize>
                                                     </Style>
                                                   </TextRun>
@@ -2513,7 +2513,7 @@
                                                   <TextRun>
                                                     <Value />
                                                     <Style>
-                                                      <FontFamily>Meiryo UI</FontFamily>
+                                                      <FontFamily>MS UI Gothic</FontFamily>
                                                       <FontSize>8pt</FontSize>
                                                     </Style>
                                                   </TextRun>
@@ -2546,7 +2546,7 @@
                                                   <TextRun>
                                                     <Value />
                                                     <Style>
-                                                      <FontFamily>Meiryo UI</FontFamily>
+                                                      <FontFamily>MS UI Gothic</FontFamily>
                                                       <FontSize>8pt</FontSize>
                                                     </Style>
                                                   </TextRun>
@@ -2584,7 +2584,7 @@
                                                   <TextRun>
                                                     <Value />
                                                     <Style>
-                                                      <FontFamily>Meiryo UI</FontFamily>
+                                                      <FontFamily>MS UI Gothic</FontFamily>
                                                       <FontSize>8pt</FontSize>
                                                     </Style>
                                                   </TextRun>
@@ -2615,7 +2615,7 @@
                                                   <TextRun>
                                                     <Value>=Fields!Description_Bikou_.Value</Value>
                                                     <Style>
-                                                      <FontFamily>Meiryo UI</FontFamily>
+                                                      <FontFamily>MS UI Gothic</FontFamily>
                                                       <FontSize>8pt</FontSize>
                                                     </Style>
                                                   </TextRun>
@@ -2649,7 +2649,7 @@
                                                   <TextRun>
                                                     <Value />
                                                     <Style>
-                                                      <FontFamily>Meiryo UI</FontFamily>
+                                                      <FontFamily>MS UI Gothic</FontFamily>
                                                       <FontSize>8pt</FontSize>
                                                     </Style>
                                                   </TextRun>
@@ -2680,7 +2680,7 @@
                                                   <TextRun>
                                                     <Value />
                                                     <Style>
-                                                      <FontFamily>Meiryo UI</FontFamily>
+                                                      <FontFamily>MS UI Gothic</FontFamily>
                                                       <FontSize>8pt</FontSize>
                                                     </Style>
                                                   </TextRun>
@@ -2713,7 +2713,7 @@
                                                   <TextRun>
                                                     <Value />
                                                     <Style>
-                                                      <FontFamily>Meiryo UI</FontFamily>
+                                                      <FontFamily>MS UI Gothic</FontFamily>
                                                       <FontSize>8pt</FontSize>
                                                     </Style>
                                                   </TextRun>
@@ -2746,7 +2746,7 @@
                                                   <TextRun>
                                                     <Value />
                                                     <Style>
-                                                      <FontFamily>Meiryo UI</FontFamily>
+                                                      <FontFamily>MS UI Gothic</FontFamily>
                                                       <FontSize>8pt</FontSize>
                                                     </Style>
                                                   </TextRun>
@@ -2779,7 +2779,7 @@
                                                   <TextRun>
                                                     <Value />
                                                     <Style>
-                                                      <FontFamily>Meiryo UI</FontFamily>
+                                                      <FontFamily>MS UI Gothic</FontFamily>
                                                       <FontSize>8pt</FontSize>
                                                     </Style>
                                                   </TextRun>
@@ -2812,7 +2812,7 @@
                                                   <TextRun>
                                                     <Value />
                                                     <Style>
-                                                      <FontFamily>Meiryo UI</FontFamily>
+                                                      <FontFamily>MS UI Gothic</FontFamily>
                                                       <FontSize>8pt</FontSize>
                                                     </Style>
                                                   </TextRun>
@@ -2850,7 +2850,7 @@
                                                   <TextRun>
                                                     <Value />
                                                     <Style>
-                                                      <FontFamily>Meiryo UI</FontFamily>
+                                                      <FontFamily>MS UI Gothic</FontFamily>
                                                       <FontSize>8pt</FontSize>
                                                     </Style>
                                                   </TextRun>
@@ -2886,7 +2886,7 @@
                                                   <TextRun>
                                                     <Value>=Fields!Description_Bikou2_.Value</Value>
                                                     <Style>
-                                                      <FontFamily>Meiryo UI</FontFamily>
+                                                      <FontFamily>MS UI Gothic</FontFamily>
                                                       <FontSize>8pt</FontSize>
                                                     </Style>
                                                   </TextRun>
@@ -2925,7 +2925,7 @@
                                                   <TextRun>
                                                     <Value />
                                                     <Style>
-                                                      <FontFamily>Meiryo UI</FontFamily>
+                                                      <FontFamily>MS UI Gothic</FontFamily>
                                                       <FontSize>8pt</FontSize>
                                                     </Style>
                                                   </TextRun>
@@ -2961,7 +2961,7 @@
                                                   <TextRun>
                                                     <Value />
                                                     <Style>
-                                                      <FontFamily>Meiryo UI</FontFamily>
+                                                      <FontFamily>MS UI Gothic</FontFamily>
                                                       <FontSize>8pt</FontSize>
                                                     </Style>
                                                   </TextRun>
@@ -2999,7 +2999,7 @@
                                                   <TextRun>
                                                     <Value />
                                                     <Style>
-                                                      <FontFamily>Meiryo UI</FontFamily>
+                                                      <FontFamily>MS UI Gothic</FontFamily>
                                                       <FontSize>8pt</FontSize>
                                                     </Style>
                                                   </TextRun>
@@ -3037,7 +3037,7 @@
                                                   <TextRun>
                                                     <Value />
                                                     <Style>
-                                                      <FontFamily>Meiryo UI</FontFamily>
+                                                      <FontFamily>MS UI Gothic</FontFamily>
                                                       <FontSize>8pt</FontSize>
                                                     </Style>
                                                   </TextRun>
@@ -3075,7 +3075,7 @@
                                                   <TextRun>
                                                     <Value />
                                                     <Style>
-                                                      <FontFamily>Meiryo UI</FontFamily>
+                                                      <FontFamily>MS UI Gothic</FontFamily>
                                                       <FontSize>8pt</FontSize>
                                                     </Style>
                                                   </TextRun>
@@ -3113,7 +3113,7 @@
                                                   <TextRun>
                                                     <Value />
                                                     <Style>
-                                                      <FontFamily>Meiryo UI</FontFamily>
+                                                      <FontFamily>MS UI Gothic</FontFamily>
                                                       <FontSize>8pt</FontSize>
                                                     </Style>
                                                   </TextRun>
@@ -3228,7 +3228,7 @@
                                     <TextRun>
                                       <Value>=Fields!SellToName.Value + "　" + Fields!SellToName2.Value + "　御中"</Value>
                                       <Style>
-                                        <FontFamily>Meiryo UI</FontFamily>
+                                        <FontFamily>MS UI Gothic</FontFamily>
                                         <FontSize>14pt</FontSize>
                                         <FontWeight>Bold</FontWeight>
                                         <TextDecoration>None</TextDecoration>
@@ -3265,7 +3265,7 @@
                                     <TextRun>
                                       <Value>="〒 " + Fields!SellToPostCode.Value</Value>
                                       <Style>
-                                        <FontFamily>Meiryo UI</FontFamily>
+                                        <FontFamily>MS UI Gothic</FontFamily>
                                         <FontSize>9pt</FontSize>
                                       </Style>
                                     </TextRun>
@@ -3295,7 +3295,7 @@
                                     <TextRun>
                                       <Value>=Fields!SellToAddress.Value</Value>
                                       <Style>
-                                        <FontFamily>Meiryo UI</FontFamily>
+                                        <FontFamily>MS UI Gothic</FontFamily>
                                         <FontSize>9pt</FontSize>
                                       </Style>
                                     </TextRun>
@@ -3326,7 +3326,7 @@
                                     <TextRun>
                                       <Value>この度は、ご注文頂きまして誠にありがとうございます。</Value>
                                       <Style>
-                                        <FontFamily>Meiryo UI</FontFamily>
+                                        <FontFamily>MS UI Gothic</FontFamily>
                                         <FontSize>9pt</FontSize>
                                       </Style>
                                     </TextRun>
@@ -3338,7 +3338,7 @@
                                     <TextRun>
                                       <Value>下記の通りご注文承りました。ご確認のほどお願い申し上げます。</Value>
                                       <Style>
-                                        <FontFamily>Meiryo UI</FontFamily>
+                                        <FontFamily>MS UI Gothic</FontFamily>
                                         <FontSize>9pt</FontSize>
                                       </Style>
                                     </TextRun>
@@ -3369,7 +3369,7 @@
                                     <TextRun>
                                       <Value>=Fields!SellToAddress2.Value</Value>
                                       <Style>
-                                        <FontFamily>Meiryo UI</FontFamily>
+                                        <FontFamily>MS UI Gothic</FontFamily>
                                         <FontSize>9pt</FontSize>
                                       </Style>
                                     </TextRun>
@@ -3399,7 +3399,7 @@
                                     <TextRun>
                                       <Value>="(" + Fields!SelltoCustomerNo.Value + ")"</Value>
                                       <Style>
-                                        <FontFamily>Meiryo UI</FontFamily>
+                                        <FontFamily>MS UI Gothic</FontFamily>
                                         <FontSize>9pt</FontSize>
                                       </Style>
                                     </TextRun>
@@ -3433,7 +3433,7 @@
                                     <TextRun>
                                       <Value>="〒 " + Fields!CompanyAddress2.Value</Value>
                                       <Style>
-                                        <FontFamily>Meiryo UI</FontFamily>
+                                        <FontFamily>MS UI Gothic</FontFamily>
                                         <FontSize>9pt</FontSize>
                                       </Style>
                                     </TextRun>
@@ -3466,7 +3466,7 @@
                                     <TextRun>
                                       <Value>=Fields!CompanyAddress3.Value</Value>
                                       <Style>
-                                        <FontFamily>Meiryo UI</FontFamily>
+                                        <FontFamily>MS UI Gothic</FontFamily>
                                         <FontSize>9pt</FontSize>
                                       </Style>
                                     </TextRun>
@@ -3499,7 +3499,7 @@
                                     <TextRun>
                                       <Value>=Fields!CompanyAddress4.Value</Value>
                                       <Style>
-                                        <FontFamily>Meiryo UI</FontFamily>
+                                        <FontFamily>MS UI Gothic</FontFamily>
                                         <FontSize>9pt</FontSize>
                                       </Style>
                                     </TextRun>
@@ -3533,7 +3533,7 @@
                                     <TextRun>
                                       <Value>="TEL : " + Fields!CompanyPhoneNo.Value</Value>
                                       <Style>
-                                        <FontFamily>Meiryo UI</FontFamily>
+                                        <FontFamily>MS UI Gothic</FontFamily>
                                         <FontSize>9pt</FontSize>
                                       </Style>
                                     </TextRun>
@@ -3567,7 +3567,7 @@
                                     <TextRun>
                                       <Value>="FAX : " + Fields!CompanyFaxNo.Value</Value>
                                       <Style>
-                                        <FontFamily>Meiryo UI</FontFamily>
+                                        <FontFamily>MS UI Gothic</FontFamily>
                                         <FontSize>9pt</FontSize>
                                       </Style>
                                     </TextRun>
@@ -3601,7 +3601,7 @@
                                     <TextRun>
                                       <Value>=Fields!CompanyName.Value</Value>
                                       <Style>
-                                        <FontFamily>Meiryo UI</FontFamily>
+                                        <FontFamily>MS UI Gothic</FontFamily>
                                         <FontSize>11pt</FontSize>
                                         <TextDecoration>Underline</TextDecoration>
                                       </Style>
@@ -3637,7 +3637,7 @@
                                       <Value>="受注番号: " &amp; First(Fields!DocumentNo.Value,"DataSet_Result")</Value>
                                       <Style>
                                         <FontStyle>Normal</FontStyle>
-                                        <FontFamily>Meiryo UI</FontFamily>
+                                        <FontFamily>MS UI Gothic</FontFamily>
                                         <FontSize>9pt</FontSize>
                                         <FontWeight>Normal</FontWeight>
                                         <TextDecoration>None</TextDecoration>
@@ -3673,7 +3673,7 @@
                                     <TextRun>
                                       <Value>="直送情報: " &amp; First(Fields!DirectShippingCode.Value,"DataSet_Result") &amp; " " &amp; First(Fields!DirectShippingName.Value, "DataSet_Result") &amp; " " &amp; First(Fields!DirectShippingAddress.Value, "DataSet_Result")</Value>
                                       <Style>
-                                        <FontFamily>Meiryo UI</FontFamily>
+                                        <FontFamily>MS UI Gothic</FontFamily>
                                         <FontSize>9pt</FontSize>
                                       </Style>
                                     </TextRun>
@@ -3706,7 +3706,7 @@
                                     <TextRun>
                                       <Value>=Last(Fields!TotalSubTotal.Value)</Value>
                                       <Style>
-                                        <FontFamily>Meiryo UI</FontFamily>
+                                        <FontFamily>MS UI Gothic</FontFamily>
                                         <Format>#,0</Format>
                                       </Style>
                                     </TextRun>
@@ -3741,7 +3741,7 @@
                                     <TextRun>
                                       <Value>=Last(Fields!TotalExcludingVATText.Value)</Value>
                                       <Style>
-                                        <FontFamily>Meiryo UI</FontFamily>
+                                        <FontFamily>MS UI Gothic</FontFamily>
                                       </Style>
                                     </TextRun>
                                   </TextRuns>
@@ -3840,14 +3840,14 @@
                     <TextRun>
                       <Value>ページ    </Value>
                       <Style>
-                        <FontFamily>Meiryo UI</FontFamily>
+                        <FontFamily>MS UI Gothic</FontFamily>
                         <FontSize>8pt</FontSize>
                       </Style>
                     </TextRun>
                     <TextRun>
                       <Value>=Globals!PageNumber</Value>
                       <Style>
-                        <FontFamily>Meiryo UI</FontFamily>
+                        <FontFamily>MS UI Gothic</FontFamily>
                         <FontSize>8pt</FontSize>
                       </Style>
                     </TextRun>
@@ -3879,7 +3879,7 @@
                     <TextRun>
                       <Value>受注確認書</Value>
                       <Style>
-                        <FontFamily>Meiryo UI</FontFamily>
+                        <FontFamily>MS UI Gothic</FontFamily>
                         <FontSize>18pt</FontSize>
                         <FontWeight>Bold</FontWeight>
                       </Style>
@@ -3915,7 +3915,7 @@
                     <TextRun>
                       <Value>="受注日：  "+Fields!DocumentDate.Value</Value>
                       <Style>
-                        <FontFamily>Meiryo UI</FontFamily>
+                        <FontFamily>MS UI Gothic</FontFamily>
                         <FontSize>9pt</FontSize>
                         <FontWeight>Bold</FontWeight>
                       </Style>

@@ -1,4 +1,4 @@
-pageextension 50102 pageextension70000002 extends "Posted Sales Shipment"
+pageextension 50130 pageextension70000002 extends "Posted Sales Shipment"
 {
     layout
     {

@@ -1,4 +1,4 @@
-pageextension 50107 pageextension70000007 extends "Posted Sales Cr. Memo Subform"
+pageextension 50046 pageextension70000007 extends "Posted Sales Cr. Memo Subform"
 {
     layout
     {

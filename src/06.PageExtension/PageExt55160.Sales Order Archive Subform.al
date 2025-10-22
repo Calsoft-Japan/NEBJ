@@ -1,4 +1,4 @@
-pageextension 50136 pageextension70000038 extends "Sales Order Archive Subform"
+pageextension 55160 pageextension70000038 extends "Sales Order Archive Subform"
 {
     layout
     {

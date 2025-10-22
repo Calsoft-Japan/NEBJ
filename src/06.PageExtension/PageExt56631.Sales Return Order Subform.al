@@ -1,4 +1,4 @@
-pageextension 50146 pageextension70000050 extends "Sales Return Order Subform"
+pageextension 56631 pageextension70000050 extends "Sales Return Order Subform"
 {
     layout
     {
@@ -6,7 +6,7 @@ pageextension 50146 pageextension70000050 extends "Sales Return Order Subform"
         {
             field("EndUser"; "EndUser")
             {
-                CaptionML = ENU = 'EndUser', JPN = 'エンドユーザー';
+                CaptionML = 'エンドユーザー';
             }
             field("EU Description"; "EU Description")
             {

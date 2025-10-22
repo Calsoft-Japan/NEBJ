@@ -1,4 +1,4 @@
-pageextension 50270 pageextension70000172 extends "Sales Order List"
+pageextension 59305 pageextension70000172 extends "Sales Order List"
 {
     layout
     {
@@ -6,7 +6,7 @@ pageextension 50270 pageextension70000172 extends "Sales Order List"
         {
             field("Bill-to Name 2"; "Bill-to Name 2")
             {
-                CaptionML = JPN = '請求先名2';
+                Caption = '請求先名2';
             }
         }
     }

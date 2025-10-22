@@ -4,32 +4,32 @@ pageextension 50096 pageextension70000052 extends "Sales Cr. Memo Subform"
     {
         addafter("ShortcutDimCode7")
         {
-            field("EndUser"; EndUser)
+            field("EndUser"; Rec.EndUser)
             {
-                CaptionML = ENU = 'EndUser', JPN = 'エンドユーザー';
+                Caption = 'エンドユーザー';
             }
 
-            field("EU Description"; "EU Description")
+            field("EU Description"; Rec."EU Description")
             {
             }
-            field("EU Division 1"; "EU Division 1")
+            field("EU Division 1"; Rec."EU Division 1")
             {
             }
-            field("EU Division 2"; "EU Division 2")
+            field("EU Division 2"; Rec."EU Division 2")
             {
             }
-            field("EU Division 3"; "EU Division 3")
+            field("EU Division 3"; Rec."EU Division 3")
             {
             }
-            field("Description(Bikou)"; "Description(Bikou)")
+            field("Description(Bikou)"; Rec."Description(Bikou)")
             {
                 Caption = '備考';
             }
-            field("Description(Bikou2)"; "Description(Bikou2)")
+            field("Description(Bikou2)"; Rec."Description(Bikou2)")
             {
                 Caption = '備考2';
             }
-            field("ExternaDocumentNo."; "ExternaDocumentNo.")
+            field("ExternaDocumentNo."; Rec."ExternaDocumentNo.")
             {
                 Caption = '外部文書番号';
             }

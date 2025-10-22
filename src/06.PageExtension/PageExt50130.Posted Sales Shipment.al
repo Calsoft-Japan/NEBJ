@@ -4,7 +4,7 @@ pageextension 50130 pageextension70000002 extends "Posted Sales Shipment"
     {
         addafter("Responsibility Center")
         {
-            field("Direct Shipping Code"; "Direct Shipping Code")
+            field("Direct Shipping Code"; Rec."Direct Shipping Code")
             {
                 Caption = '直送コード';
             }

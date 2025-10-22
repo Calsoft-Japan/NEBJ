@@ -4,7 +4,7 @@ pageextension 59305 pageextension70000172 extends "Sales Order List"
     {
         addafter("Sell-to Customer Name")
         {
-            field("Bill-to Name 2"; "Bill-to Name 2")
+            field("Bill-to Name 2"; Rec."Bill-to Name 2")
             {
                 Caption = '請求先名2';
             }

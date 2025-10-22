@@ -8,9 +8,19 @@ page 50000 "End User Subfrom"
     {
         area(content)
         {
-            field(EndUserName; EndUserName)
+            field(CustName; CustName)
             {
-                Caption = 'End Username';
+                Caption = 'Customer Name';
+                QuickEntry = false;
+            }
+            field(CustGroup; CustGroup)
+            {
+                Caption = 'Customer Group';
+                QuickEntry = false;
+            }
+            field(BlockOption; BlockOption)
+            {
+                Caption = 'Blocked';
                 QuickEntry = false;
             }
             field(Division1; Division1)
@@ -26,16 +36,6 @@ page 50000 "End User Subfrom"
             field(Division3; Division3)
             {
                 Caption = 'Division 3';
-                QuickEntry = false;
-            }
-            field(CustGroup; CustGroup)
-            {
-                Caption = 'Customer Group';
-                QuickEntry = false;
-            }
-            field(BlockOption; BlockOption)
-            {
-                Caption = 'Block Option';
                 QuickEntry = false;
             }
             repeater(Group)
@@ -63,7 +63,7 @@ page 50000 "End User Subfrom"
                 ShortcutKey = 'F3';
                 trigger OnAction()
                 begin
-                    Rec.SetFilter(Name, '*' + EndUserName + '*');
+                    Rec.SetFilter(Name, '*' + CustName + '*');
                     Rec.SetFilter("Division 1", '*' + Division1 + '*');
                     Rec.SetFilter("Division 2", '*' + Division2 + '*');
                     Rec.SetFilter("Division 3", '*' + Division3 + '*');
@@ -84,11 +84,11 @@ page 50000 "End User Subfrom"
     end;
 
     var
-        EndUserName: Text[50];
+        CustName: Text[100];
+        CustGroup: Text[20];
         Division1: Text[100];
         Division2: Text[100];
         Division3: Text[100];
-        CustGroup: Text[20];
         BlockOption: Enum "Block Option";
 
     procedure GetCurrentRecNo() SetCustNo: Code[20]
@@ -97,8 +97,6 @@ page 50000 "End User Subfrom"
     end;
 
     local procedure SelectBlock(BlockValue: Enum "Block Option") SetValue: Text
-    var
-        Int: Integer;
     begin
         case BlockValue of
             BlockValue::ExclBlock:

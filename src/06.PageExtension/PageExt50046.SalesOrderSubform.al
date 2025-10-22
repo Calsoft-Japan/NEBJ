@@ -1,4 +1,4 @@
-pageextension 50129 pageextension70000031 extends "Sales Order Subform"
+pageextension 50046 pageextension70000031 extends "Sales Order Subform"
 {
     layout
     {
@@ -24,10 +24,23 @@ pageextension 50129 pageextension70000031 extends "Sales Order Subform"
             field("EU Division 1"; Rec."EU Division 1") { }
             field("EU Division 2"; Rec."EU Division 2") { }
             field("EU Division 3"; Rec."EU Division 3") { }
-            field("Description(Bikou)"; Rec."Description(Bikou)") { }
-            field("Description(Bikou2)"; Rec."Description(Bikou2)") { }
-            field(StorageTemprature; Rec.StorageTemprature) { }
-            field("ExternaDocumentNo."; Rec."ExternaDocumentNo.") { }
+            field("Description(Bikou)"; Rec."Description(Bikou)")
+            {
+                Caption = '備考2';
+            }
+            field("Description(Bikou2)"; Rec."Description(Bikou2)")
+            {
+                Caption = '備考';
+            }
+            field(StorageTemprature; Rec.StorageTemprature)
+            {
+                Caption = '保管温度';
+            }
+            field("ExternaDocumentNo."; Rec."ExternaDocumentNo.")
+            {
+                Caption = '外部文書番号';
+            }
+
         }
     }
 }

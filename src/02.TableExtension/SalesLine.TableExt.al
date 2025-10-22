@@ -2,6 +2,7 @@ tableextension 50037 "Sales Line Ext" extends "Sales Line"
 {
     fields
     {
+        field(50002; "EndUser"; Code[10]) { }
         field(50007; "EU"; Code[20])
         {
             trigger OnValidate()

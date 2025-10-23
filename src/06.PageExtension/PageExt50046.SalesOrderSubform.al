@@ -25,10 +25,26 @@ pageextension 50046 pageextension70000031 extends "Sales Order Subform"
             field("EU Division 1"; Rec."EU Division 1") { ApplicationArea = All; }
             field("EU Division 2"; Rec."EU Division 2") { ApplicationArea = All; }
             field("EU Division 3"; Rec."EU Division 3") { ApplicationArea = All; }
-            field("Description(Bikou)"; Rec."Description(Bikou)") { ApplicationArea = All; }
-            field("Description(Bikou2)"; Rec."Description(Bikou2)") { ApplicationArea = All; }
-            field(StorageTemprature; Rec.StorageTemprature) { ApplicationArea = All; }
-            field("ExternaDocumentNo."; Rec."ExternaDocumentNo.") { ApplicationArea = All; }
+            field("Description(Bikou)"; Rec."Description(Bikou)")
+            {
+                ApplicationArea = All;
+                Caption = '備考';
+            }
+            field("Description(Bikou2)"; Rec."Description(Bikou2)")
+            {
+                ApplicationArea = All;
+                Caption = '備考2';
+            }
+            field(StorageTemprature; Rec.StorageTemprature)
+            {
+                ApplicationArea = All;
+                Caption = '保管温度';
+            }
+            field("ExternaDocumentNo."; Rec."ExternaDocumentNo.")
+            {
+                ApplicationArea = All;
+                Caption = '外部文書番号';
+            }
         }
     }
 }

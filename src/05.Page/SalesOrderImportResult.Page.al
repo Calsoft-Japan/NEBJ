@@ -11,7 +11,7 @@ page 50100 "Sales Order Import Result"
     {
         area(Content)
         {
-            repeater(GroupName)
+            repeater(General)
             {
                 field("Batch No."; Rec."Batch No.") { ApplicationArea = All; }
                 field("Entry No."; Rec."Entry No.") { ApplicationArea = All; }

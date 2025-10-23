@@ -1,7 +1,7 @@
 table 50022 "Sales Order Import Result"
 {
     Caption = 'Sales Orer Import Result';
-    DataClassification = ToBeClassified;
+    DataClassification = CustomerContent;
 
     fields
     {

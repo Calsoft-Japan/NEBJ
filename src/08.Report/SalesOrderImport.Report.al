@@ -14,7 +14,7 @@ report 50000 "Sales Order Import"
             {
                 group(Options)
                 {
-                    Caption = 'Option';
+                    Caption = 'Options';
                     field(FileName; FileName)
                     {
                         ApplicationArea = All;
@@ -24,14 +24,26 @@ report 50000 "Sales Order Import"
                         trigger OnAssistEdit()
                         var
                             FileMgt: Codeunit "File Management";
+                            FromFile: Text[100];
+                            FileContent: Text;
+                            ContentOutStream: OutStream;
+                            ContentInStream: InStream;
                         begin
-                            FileName := FileMgt.BLOBImportWithFilter(TempBlob, ImpFileLbl, FileName, StrSubstNo(DialogTxt, FilterTxt), FilterTxt);
-                            FileExt := FileMgt.GetExtension(FileName);
-                            if (FileName = '') or (not TempBlob.HasValue()) or not (FileExt in ['csv']) then begin
-                                FileName := '';
+                            UploadIntoStream(DialogTxt, '', FilterTxt, FileName, FileInStream);
+                            if FileName = '' then
                                 Error(BlankFileErr);
-                            end;
-                            TempBlob.CreateInStream(FileInStream, TextEncoding::UTF8);
+
+                            Clear(TempBlob);
+                            Encoding.Encoding(932);
+                            StreamReader.StreamReader(FileInStream, Encoding);
+                            FileContent := StreamReader.ReadToEnd();
+                            TempBlob.CreateOutStream(ContentOutStream, TextEncoding::UTF8);
+                            ContentOutStream.WriteText(FileContent);
+                            TempBlob.CreateInStream(ContentInStream);
+
+                            TempCSVBuffer.Reset();
+                            TempCSVBuffer.DeleteAll();
+                            TempCSVBuffer.LoadDataFromStream(ContentInStream, ',');
                         end;
                     }
                 }
@@ -40,205 +52,110 @@ report 50000 "Sales Order Import"
     }
 
     trigger OnPreReport()
+    var
+        RowNo: Integer;
+        TotRows: Integer;
     begin
-        Delimiter := '"';
-        Separator := ',';
+        TotRows := TempCSVBuffer.GetNumberOfLines();
+        Window.Open(StrSubstNo(Text011, Text015) + Text012 + Text013 + Text014);
+        Window.Update(1, FileName);
+        if SOImportResult.FindLast() then begin
+            BatchNo := SOImportResult."Batch No." + 1;
+            EntryNo := SOImportResult."Entry No.";
+        end else begin
+            BatchNo := 1;
+            EntryNo := 0;
+        end;
+        ImportLineCnt := 0;
 
-        while (not FileInStream.EOS) do begin
-            FileInStream.ReadText(RecString);
-            RecLen := StrLen(RecString);
-            RecTotal := RecLen;
-            RecCount := 0;
+        for RowNo := 1 to TotRows do begin
+            Clear(SOImportResult);
+            Clear(TempSOImpResult);
 
-            Window.Open(StrSubstNo(Text011, Text015) + Text012 + Text013 + Text014);
-            Window.Update(1, FileName);
+            TempSOImpResult.Init();
+            TempSOImpResult."Entry No." := EntryNo;
+            TempSOImpResult.Insert();
 
-            if SalesOrderImportResult.FindLast() then begin
-                BatchNum := SalesOrderImportResult."Batch No." + 1;
-                EntryNum := SalesOrderImportResult."Entry No.";
+            TempSOImpResult."Batch No." := BatchNo;
+            TempSOImpResult."Import Line Count" := ImportLineCnt;
+
+            //Order Source Code : Column 2
+            OrderSourceCode := GetCellValue(RowNo, 2).TrimStart('"').TrimEnd('"');
+            TempSOImpResult."Order Source Code" := OrderSourceCode;
+            if ImportLineCnt = 0 then
+                if OrderSourceCode <> Text022 then
+                    LabelError();
+
+            //Order Source Order No. Column 10
+            OrdSrcOrderNo := GetCellValue(RowNo, 10).TrimStart('"').TrimEnd('"');
+            TempSOImpResult."Order Source Order No." := OrdSrcOrderNo;
+            OrdSrcOrdNoCheck := DelChr(OrdSrcOrderNo, '=', '　');
+            OrdSrcOrdNoCheck := DelChr(OrdSrcOrdNoCheck, '=', ' ');
+
+            if ImportLineCnt = 0 then
+                if OrdSrcOrderNo <> Text023 then
+                    LabelError();
+
+            //Item Code Column 13
+            ItemCode := GetCellValue(RowNo, 13).TrimStart('"').TrimEnd('"');
+            TempSOImpResult."Item Code" := ItemCode;
+            if ImportLineCnt = 0 then
+                if ItemCode <> Text024 then
+                    LabelError();
+
+            //Quantity Column 16
+            QtyCode := GetCellValue(RowNo, 16).TrimStart('"').TrimEnd('"');
+            TempSOImpResult.Quantity := QtyCode;
+            if QtyCode = '' then
+                QtyCode := '0';
+
+            if ImportLineCnt = 0 then begin
+                if QtyCode <> Text025 then
+                    LabelError();
             end else begin
-                BatchNum := 1;
-                EntryNum := 0;
+                if Evaluate(SubNum, QtyCode) then
+                    LineQty := SubNum
+                else
+                    LineQty := -1;
             end;
-            ImportLineCount := 0;
 
-            while RecLen <> 0 do begin
-                Window.Update(2, CopyStr(RecString, 1, 30));
-                RecCount += RecLen;
-                Window.Update(3, Round(RecCount / RecTotal * 10000, 1));
+            //Stataus
+            TempSOImpResult.Status := SOImportResult.Status::Skip;
 
-                InitSubString(RecString, Delimiter, Separator);
+            //Proccessing Date
+            TempSOImpResult."Proccessing Date" := CurrentDateTime;
 
-                Clear(SalesOrderImportResult);
-                Clear(TempSalesOrderImportResult);
+            //User ID
+            TempSOImpResult."User ID" := UserId;
 
-                TempSalesOrderImportResult.Init();
-                TempSalesOrderImportResult."Entry No." := EntryNum;
-                TempSalesOrderImportResult.Insert();
-
-                TempSalesOrderImportResult."Batch No." := BatchNum;
-                TempSalesOrderImportResult."Import Line Count" := ImportLineCount;
-
-                //Order Source Corporation Code_1
-                SubString := GetSubString(RecString);
-
-                //Order Source Code_2
-                SubString := GetSubString(RecString);
-                TempSalesOrderImportResult."Order Source Code" := SubString;
-                OrderSourceCode := SubString;
-                OrderSourceCodeText := SubString;
-
-                if ImportLineCount = 0 then
-                    if OrderSourceCodeText <> Text022 then
-                        LabelError();
-
-                //3
-                SubString := GetSubString(RecString);
-
-                //4
-                SubString := GetSubString(RecString);
-
-                //5
-                SubString := GetSubString(RecString);
-
-                //Item Code_6
-                SubString := GetSubString(RecString);
-                TempSalesOrderImportResult."Item Code" := SubString;
-                ItemCode := SubString;
-                ItemCodeText := SubString;
-
-                if ImportLineCount = 0 then begin
-                    if ItemCodeText <> Text024 then
-                        LabelError();
-                end;
-
-                //7
-                SubString := GetSubString(RecString);
-
-                //8
-                SubString := GetSubString(RecString);
-
-                //9
-                SubString := GetSubString(RecString);
-
-                //10
-                SubString := GetSubString(RecString);
-
-                //Quantity_11
-                SubString := GetSubString(RecString);
-                TempSalesOrderImportResult.Quantity := SubString;
-                QuantityText := SubString;
-                Evaluate(QuantityCode, QuantityText);
-                if QuantityCode = '' then
-                    QuantityCode := '0';
-
-                if ImportLineCount = 0 then begin
-                    if QuantityText <> Text025 then
-                        LabelError();
-                end else begin
-                    if Evaluate(SubNum, QuantityCode) then
-                        Quantity := SubNum
-                    else
-                        Quantity := -1;
-                end;
-
-
-                SubString := GetSubString(RecString);
-
-                SubString := GetSubString(RecString);
-                TempSalesOrderImportResult."Order Source Order No." := SubString;
-                OrderSourceOrderNum := SubString;
-                OrderSourceOrderNumCheck := DelChr(OrderSourceOrderNum, '=', '　');
-                OrderSourceOrderNumCheck := DelChr(OrderSourceOrderNumCheck, '=', ' ');
-
-                if ImportLineCount = 0 then
-                    if OrderSourceOrderNum <> Text023 then
-                        LabelError();
-                // 14
-                SubString := GetSubString(RecString);
-
-                //  15
-                SubString := GetSubString(RecString);
-
-                //   16
-                SubString := GetSubString(RecString);
-
-                //Stataus
-                TempSalesOrderImportResult.Status := SalesOrderImportResult.Status::Skip;
-
-                //Proccessing Date
-                TempSalesOrderImportResult."Proccessing Date" := CurrentDateTime;
-
-                //User ID
-                TempSalesOrderImportResult."User ID" := UserId;
-
-                if ImportLineCount <> 0 then begin
-                    if OrderSourceCode <> '' then begin
-                        if OrderSourceOrderNumCheck <> '' then begin
-                            if ItemCode <> '' then begin
-                                if Quantity <> 0 then begin
-                                    if Quantity <> -1 then
-                                        SpecifiedTableProcessing()
-                                    else
-                                        TempSalesOrderImportResult."Error Comment" := Text027;
-                                end else
-                                    TempSalesOrderImportResult."Error Comment" := Text025 + Text026;
+            if ImportLineCnt <> 0 then begin
+                if OrderSourceCode <> '' then begin
+                    if OrdSrcOrdNoCheck <> '' then begin
+                        if ItemCode <> '' then begin
+                            if LineQty <> 0 then begin
+                                if LineQty <> -1 then
+                                    SpecifiedTableProcessing()
+                                else
+                                    TempSOImpResult."Error Comment" := Text027;
                             end else
-                                TempSalesOrderImportResult."Error Comment" := Text024 + Text026;
+                                TempSOImpResult."Error Comment" := Text025 + Text026;
                         end else
-                            TempSalesOrderImportResult."Error Comment" := Text023 + Text026;
+                            TempSOImpResult."Error Comment" := Text024 + Text026;
                     end else
-                        TempSalesOrderImportResult."Error Comment" := Text022 + Text026;
-                    if TempSalesOrderImportResult.Status <> TempSalesOrderImportResult.Status::Success then begin
-                        TempSalesOrderImportResult.Validate(Status, TempSalesOrderImportResult.Status::Skip);
-                        TempSalesOrderImportResult.Validate("Line No.", 0);
-                    end;
-                    TempSalesOrderImportResult.Modify();
-                    SalesOrderImportResult.Init();
-                    SalesOrderImportResult.Copy(TempSalesOrderImportResult);
-                    SalesOrderImportResult.Insert();
-                    if (TempSalesOrderImportResult.Status = TempSalesOrderImportResult.Status::Success) then begin
-                        if (TempSalesOrderImportResult_A.Quantity <> '') then begin
-                            TempSalesOrderImportResultHold_A.Init();
-                            TempSalesOrderImportResultHold_A.Copy(TempSalesOrderImportResult);
-                            TempSalesOrderImportResultHold_A."Document No." := TempSalesOrderImportResult_A."Document No.";
-                            TempSalesOrderImportResultHold_A."Line No." := TempSalesOrderImportResult_A."Line No.";
-                            TempSalesOrderImportResultHold_A.Quantity := TempSalesOrderImportResult_A.Quantity;
-                            TempSalesOrderImportResultHold_A.Insert();
-                            TempSalesOrderImportResult_A.Quantity := '';
-                        end;
-                        TempSalesOrderImportResultHold.Init();
-                        TempSalesOrderImportResultHold.Copy(TempSalesOrderImportResult);
-                        TempSalesOrderImportResultHold.Insert();
-                    end;
+                        TempSOImpResult."Error Comment" := Text023 + Text026;
+                end else
+                    TempSOImpResult."Error Comment" := Text022 + Text026;
+                if TempSOImpResult.Status <> TempSOImpResult.Status::Success then begin
+                    TempSOImpResult.Validate(Status, TempSOImpResult.Status::Skip);
+                    TempSOImpResult.Validate("Line No.", 0);
                 end;
-                EntryNum := EntryNum + 1;
-                ImportLineCount := ImportLineCount - 1;
-                RecLen := StrLen(RecString);
+                TempSOImpResult.Modify();
+                SOImportResult.Init();
+                SOImportResult.Copy(TempSOImpResult);
+                SOImportResult.Insert();
             end;
-
-            if TempSalesOrderImportResultHold_A.FindFirst then begin
-                repeat
-                    SalesOrderImportResult.Init();
-                    SalesOrderImportResult.Copy(TempSalesOrderImportResultHold_A);
-                    SalesOrderImportResult."Entry No." := EntryNum;
-                    SalesOrderImportResult.Insert();
-                    EntryNum := EntryNum + 1;
-                until TempSalesOrderImportResultHold_A.Next() = 0
-            end;
-            if TempSalesOrderImportResultHold.FindFirst() then begin
-                repeat
-                    if SalesHeader.Get(SalesHeader."Document Type"::Order, TempSalesOrderImportResultHold."Document No.") then begin
-                        Clear(SalesLine);
-                        SalesLine.SetRange("Document Type", SalesLine."Document Type"::Order);
-                        SalesLine.SetFilter("Document No.", TempSalesOrderImportResultHold."Document No.");
-                        if not SalesLine.FindLast() then begin
-                            SalesHeader.Delete();
-                        end;
-
-                    end;
-                until TempSalesOrderImportResultHold.Next() = 0;
-            end;
+            EntryNo := EntryNo + 1;
+            ImportLineCnt := ImportLineCnt - 1;
         end;
         Window.Close();
         Message(Text016);
@@ -249,57 +166,38 @@ report 50000 "Sales Order Import"
         Customer: Record "Customer";
         SalesHeader: Record "Sales Header";
         SalesLine: Record "Sales Line";
-        SalesOrderImportResult: Record "Sales Order Import Result";
-        TempSalesOrderImportResult: Record "Sales Order Import Result" temporary;
-        TempSalesOrderImportResult_A: Record "Sales Order Import Result" temporary;
-        TempSalesOrderImportResultHold_A: Record "Sales Order Import Result" temporary;
-        TempSalesOrderImportResultHold: Record "Sales Order Import Result" temporary;
-        ItemTrackingManagement: Codeunit "Item Tracking Management";
+        TempCSVBuffer: Record "CSV Buffer" temporary;
+        SOImportResult: Record "Sales Order Import Result";
+        TempSOImpResult: Record "Sales Order Import Result" temporary;
         TempBlob: Codeunit "Temp Blob";
-        FileExt: Text;
+        Encoding: Codeunit DotNet_Encoding;
+        StreamReader: Codeunit DotNet_StreamReader;
+        FileInStream: InStream;
         FileName: Text[250];
-        ServerFileName: Text[1024];
-        f: File;
-        RecTotal: Integer;
-        RecCount: Integer;
-        RecString: Text[1024];
-        SubString: Text[250];
-        RecLen: Integer;
-        Delimiter: Text[5];
-        Separator: Text[5];
-        Window: Dialog;
-        CustomerNum: Text[20];
-        OrderSourceOrderNum: Text[20];
-        OrderSourceOrderNumCheck: Text[30];
-        QuantityText: Text[30];
-        OrderSourceCodeText: Text[30];
-        ItemCodeText: Text[30];
+        DocNo: Code[20];
+        CustNo: Text[20];
+        OrdSrcOrderNo: Text[20];
         OrderSourceCode: Code[20];
+        OrdSrcOrdNoCheck: Text[30];
         ItemCode: Code[20];
-        DocumentNum: Code[20];
-        QuantityCode: Code[30];
-        Quantity: Integer;
-        LineNum: Integer;
-        EntryNum: Integer;
+        QtyCode: Code[30];
+        LineQty: Integer;
+        LineNo: Integer;
+        EntryNo: Integer;
         SubNum: Decimal;
-        BatchNum: Integer;
-        ImportLineCount: Integer;
-        c: Integer;
+        BatchNo: Integer;
+        ImportLineCnt: Integer;
+        Window: Dialog;
+        /* 
         gs_is: Integer;
         gs_imax: Integer;
         gs_del: Text[10];
         gs_sep: Text[10];
-        StringPatch: Boolean;
-        FileInStream: InStream;
-        ImpFileLbl: Label 'Import from Zengin File';
+        StringPatch: Boolean; 
+        */
+        DialogTxt: Label 'Import from zengin file';
         BlankFileErr: Label 'File not found or incorrect.';
-        DialogTxt: Label 'Text Files (%1)|%1';
-        FilterTxt: Label '(*.csv)|*.csv|All Files (*.*)|*.*';
-        Text001: Label 'Import from Zengin File';
-        Text002: Label 'Text Files (*.csv)|*.csv|All Files (*.*)|*.*';
-        Text003: Label 'Please input import file path.';
-        Text004: Label 'File not found or incoorect.';
-        Text005: Label 'File could not be opened !';
+        FilterTxt: Label 'Text Files (*.csv)|*.csv|All Files (*.*)|*.*';
         Text011: Label '%1ing ...\';
         Text012: Label 'File Name  #1##############################\';
         Text013: Label 'Record     #2##############################\\';
@@ -309,7 +207,7 @@ report 50000 "Sales Order Import"
         Text017: Label 'Does not exist Customer master corresponding to the "Order Source Code".';
         Text018: Label 'Does not exist Item master corresponding to the  "Item Code".';
         Text019: Label 'Entry No.';
-        Text020: Label ': combination of "Item Code" and "Order Source Order No." is the same to this Entry Number.';
+        Text020: Label ': Combination of "Item Code" and "Order Source Order No." is the same to this Entry Number.';
         Text021: Label 'The first line of the import data can not be recognized as a label.\Please check whether there is an error in the item name of the label line.\"%1","%2","%3","%4"';
         Text022: Label 'Order Source Code';
         Text023: Label 'Order Source Order No.';
@@ -321,25 +219,23 @@ report 50000 "Sales Order Import"
     procedure SpecifiedTableProcessing()
     var
         SalesHeader_temp: Record "Sales Header" temporary;
-        Quantity_A: integer;
-        OverCheck: Boolean;
     begin
-        Customer.SetFilter("No.", OrderSourceCode);//customer
-        if Customer.FindFirst() then begin
-            CustomerNum := Customer."No.";
+        Customer.Reset();
+        Customer.SetFilter("Order Source", OrderSourceCode);
+        IF Customer.FindFirst() then begin
+            CustNo := Customer."No.";
             Item.SetFilter("No.", ItemCode);
-            if Item.FindFirst() then begin
+            IF Item.FindFirst() then begin
                 Clear(SalesLine);
                 SalesLine.SetRange("Document Type", SalesLine."Document Type"::Order);
-                SalesLine.SetRange("Sell-to Customer No.", CustomerNum);
+                SalesLine.SetRange("Sell-to Customer No.", CustNo);
                 SalesLine.SetRange("No.", ItemCode);
-                SalesLine.SetRange("ExternaDocumentNo.", OrderSourceOrderNum);
+                SalesLine.SetRange("ExternaDocumentNo.", OrdSrcOrderNo);
                 if not SalesLine.FindFirst() then begin
-                    SalesOrderImportResult.SetRange("Batch No.", BatchNum);
-                    SalesOrderImportResult.SetRange(Status, SalesOrderImportResult.Status::Success);
-                    SalesOrderImportResult.SetFilter("Order Source Code", OrderSourceCode);
-                    if not SalesOrderImportResult.FindFirst() then begin
-                        Inventrycheck(Quantity, Quantity_A, OverCheck);
+                    SOImportResult.SetRange("Batch No.", BatchNo);
+                    SOImportResult.SetRange(Status, SOImportResult.Status::Success);
+                    SOImportResult.SetFilter("Order Source Code", OrderSourceCode);
+                    if not SOImportResult.FindFirst() then begin
                         SalesHeader := SalesHeader_temp;
                         SalesHeader."Document Type" := SalesHeader."Document Type"::Order;
                         Clear(SalesHeader."No.");
@@ -347,173 +243,57 @@ report 50000 "Sales Order Import"
                         Clear(SalesHeader."Bill-to Customer No.");
                         SalesHeader.Insert(true);
                         SalesHeader.InitRecord;
-                        SalesHeader.Validate("Sell-to Customer No.", CustomerNum);
+                        SalesHeader.Validate("Sell-to Customer No.", CustNo);
                         SalesHeader.Validate("External Document No.", SalesHeader."No.");
                         SalesHeader.Modify();
-                        DocumentNum := SalesHeader."No.";
-                        LineNum := 10000;
-                        // SalesLineInsert;
-                        // SalesLineModify;
-                        if Quantity <> 0 then begin
-                            SalesLineInsert(Quantity);
-                            SalesLineModify(Quantity);
-                        end else Begin
-                            TempSalesOrderImportResult.Validate(Status, SalesOrderImportResult.Status::Success);
-                            TempSalesOrderImportResult.Validate("Document No.", DocumentNum);
-                            TempSalesOrderImportResult.Validate(Quantity, Format(Quantity));
-                        End;
-                        if OverCheck then begin
-                            SalesHeader := SalesHeader_temp;
-                            SalesHeader."Document Type" := SalesHeader."Document Type"::Order;
-                            Clear(SalesHeader."No.");
-                            Clear(SalesHeader."Sell-to Customer No.");
-                            Clear(SalesHeader."Bill-to Customer No.");
-                            SalesHeader.Insert(true);
-                            SalesHeader.InitRecord();
-
-                            SalesHeader.Validate("Sell-to Customer No.", CustomerNum);
-                            SalesHeader.Validate("External Document No.", SalesHeader."No.");
-                            SalesHeader.Modify();
-                            DocumentNum := SalesHeader."No.";
-                            LineNum := 10000;
-                            SalesLineInsert_A(Quantity_A);
-                            SalesLineModify_A(Quantity_A);
-                        end;
+                        DocNo := SalesHeader."No.";
+                        LineNo := 10000;
+                        InsertSalesLine();
+                        ModifySalesLine();
                     end else begin
-                        Inventrycheck(Quantity, Quantity_A, OverCheck);
-                        DocumentNum := SalesOrderImportResult."Document No.";
-                        if Quantity <> 0 then begin
-                            Clear(SalesLine);
-                            SalesLine.SetFilter(SalesLine."Document No.", DocumentNum);
-                            if SalesLine.FindFirst() then begin
-                                if SalesLine.FindLast() then
-                                    LineNum := SalesLine."Line No." + 10000;
-                            end;
-                            SalesLineInsert(Quantity);
-                            SalesLineModify(Quantity);
-                        end else Begin
-                            TempSalesOrderImportResult.Validate(Status, SalesOrderImportResult.Status::Success);
-                            TempSalesOrderImportResult.Validate("Document No.", DocumentNum);
-                            TempSalesOrderImportResult.Validate(Quantity, Format(Quantity));
-                        End;
-
-                        if OverCheck then begin
-                            SalesHeader.SetRange("Document Type", SalesHeader."Document Type"::Order);
-                            SalesHeader.SetRange("No.", TempSalesOrderImportResultHold_A."Document No.");
-                            if ((not SalesHeader.FindFirst()) AND ((DocumentNum < TempSalesOrderImportResultHold_A."Document No.") or (TempSalesOrderImportResultHold_A."Document No." = ''))) then begin
-                                SalesHeader := SalesHeader_temp;
-                                SalesHeader."Document Type" := SalesHeader."Document Type"::Order;
-                                Clear(SalesHeader."No.");
-                                Clear(SalesHeader."Sell-to Customer No.");
-                                Clear(SalesHeader."Bill-to Customer No.");
-                                SalesHeader.Insert(true);
-                                SalesHeader.InitRecord();
-
-                                SalesHeader.Validate("Sell-to Customer No.", CustomerNum);
-                                SalesHeader.Validate("External Document No.", SalesHeader."No.");
-                                SalesHeader.Modify();
-                                DocumentNum := SalesHeader."No.";
-                                LineNum := 10000;
-                            end else begin
-                                Clear(SalesLine);
-                                DocumentNum := TempSalesOrderImportResultHold_A."Document No.";
-                                SalesLine.SetFilter(SalesLine."Document No.", DocumentNum);
-                                if SalesLine.FindFirst() then begin
-                                    if SalesLine.FindLast() then
-                                        LineNum := SalesLine."Line No." + 10000;
-                                end;
-                            end;
-                            SalesLineInsert_A(Quantity_A);
-                            SalesLineModify_A(Quantity_A);
+                        DocNo := SOImportResult."Document No.";
+                        Clear(SalesLine);
+                        SalesLine.SetFilter(SalesLine."Document No.", DocNo);
+                        IF SalesLine.FindFirst() then begin
+                            IF SalesLine.FindLast() then
+                                LineNo := SalesLine."Line No." + 10000;
                         end;
+                        InsertSalesLine();
+                        ModifySalesLine();
                     end;
                 end else begin
-                    DocumentNum := SalesLine."Document No.";
-                    TempSalesOrderImportResult."Error Comment" := Text019 + DocumentNum + Text020;
+                    DocNo := SalesLine."Document No.";
+                    TempSOImpResult."Error Comment" := Text019 + DocNo + Text020;
                 end;
             end else
-                TempSalesOrderImportResult."Error Comment" := Text018;
+                TempSOImpResult."Error Comment" := Text018;
         end else
-            TempSalesOrderImportResult."Error Comment" := Text017;
+            TempSOImpResult."Error Comment" := Text017;
     end;
 
-    procedure SalesLineInsert(var QuantityOrigin: integer)
+    procedure InsertSalesLine()
     begin
         SalesLine."Document Type" := SalesLine."Document Type"::Order;
-        SalesLine."Document No." := DocumentNum;
-        SalesLine."Line No." := LineNum;
+        SalesLine."Document No." := DocNo;
+        SalesLine."Line No." := LineNo;
         SalesLine.Type := SalesLine.Type::Item;
-        SalesLine."Quantity (Base)" := QuantityOrigin;
+        SalesLine."Quantity (Base)" := LineQty;
         SalesLine.Insert(true);
     end;
 
-    procedure SalesLineModify(var QuantityOrigin: integer)
+    procedure ModifySalesLine()
     var
-        ItemTrackMgmt: Codeunit ItemTrackingMgmt;
+        ItemTrackingMgt: Codeunit ItemTrackingMgtNEBJ;
     begin
         SalesLine.Validate("No.", ItemCode);
-        SalesLine.Validate(Quantity, QuantityOrigin);
-        SalesLine.Validate("ExternaDocumentNo.", OrderSourceOrderNum);
+        SalesLine.Validate(Quantity, LineQty);
+        SalesLine.Validate("ExternaDocumentNo.", OrdSrcOrderNo);
         SalesLine.Modify();
-        ItemTrackMgmt.ImportProcessingFlag;
-        ItemTrackMgmt.AssistEditLotSerialNo(SalesLine, SalesLine.Quantity - SalesLine."Quantity Shipped");
-        TempSalesOrderImportResult.Validate(Status, SalesOrderImportResult.Status::Success);
-        TempSalesOrderImportResult.Validate("Document No.", DocumentNum);
-        TempSalesOrderImportResult.Validate("Line No.", SalesLine."Line No.");
-        TempSalesOrderImportResult.Validate(Quantity, Format(QuantityOrigin));
-    end;
-
-    procedure SalesLineInsert_A(var Quantity_A: integer)
-    begin
-        SalesLine."Document Type" := SalesLine."Document Type"::Order;
-        SalesLine."Document No." := DocumentNum;
-        SalesLine."Line No." := LineNum;
-        SalesLine.Type := SalesLine.Type::Item;
-        SalesLine."Quantity (Base)" := Quantity_A;
-        SalesLine.Insert(true);
-    end;
-
-    procedure SalesLineModify_A(var Quantity_A: integer)
-    begin
-        SalesLine.Validate("No.", ItemCode);
-        SalesLine.Validate(Quantity, Quantity_A);
-        SalesLine.Validate("ExternaDocumentNo.", OrderSourceOrderNum);
-        SalesLine.Modify();
-        TempSalesOrderImportResult_A.Init();
-        TempSalesOrderImportResult_A.Copy(TempSalesOrderImportResult);
-        TempSalesOrderImportResult_A.Validate(Status, SalesOrderImportResult.Status::Success);
-        TempSalesOrderImportResult_A.Validate("Document No.", DocumentNum);
-        TempSalesOrderImportResult_A.Validate("Line No.", SalesLine."Line No.");
-        TempSalesOrderImportResult_A.Validate(Quantity, Format(Quantity_A));
-    end;
-
-    procedure Inventrycheck(var retQuantity_origin: integer; var retQuantity_A: integer; var overCheck: Boolean)
-    var
-        Item_Check: Record Item;
-        InventoryCheckQty: Integer;
-    begin
-        retQuantity_A := 0;
-        overCheck := false;
-        InventoryCheckQty := 0;
-        Item_Check.Reset();
-        Item_Check.SetRange("No.", ItemCode);
-        Item_Check.SetRange("Location Filter", '1000');
-
-        if Item_Check.FindFirst() then begin
-            Item_Check.CalcFields(Item_Check.Inventory, Item_Check."Qty. on Sales Order");
-            InventoryCheckQty := Item_Check.Inventory - Item_Check."Qty. on Sales Order";
-        end;
-        if InventoryCheckQty < 0 then begin
-            InventoryCheckQty := 0
-        end;
-        if retQuantity_origin < 0 then begin
-            retQuantity_origin := 0
-        end;
-        if InventoryCheckQty < retQuantity_origin then begin
-            retQuantity_A := retQuantity_origin - InventoryCheckQty;
-            retQuantity_origin := InventoryCheckQty;
-            overCheck := true;
-        end;
+        ItemTrackingMgt.ImportProcessingFlag();
+        ItemTrackingMgt.AssistEditLotSerialNo(SalesLine, SalesLine.Quantity - SalesLine."Quantity Shipped");
+        TempSOImpResult.Validate(Status, SOImportResult.Status::Success);
+        TempSOImpResult.Validate("Document No.", DocNo);
+        TempSOImpResult.Validate("Line No.", SalesLine."Line No.");
     end;
 
     procedure LabelError()
@@ -521,9 +301,17 @@ report 50000 "Sales Order Import"
         Error(Text021, Text022, Text023, Text024, Text025);
     end;
 
-    PROCEDURE InitSubString(String: Text[1024]; Delimiter: Code[10]; Separator: Code[10]);
+    local procedure GetCellValue(RowNo: Integer; ColNo: Integer): Text
     begin
-        StringPatch := NeedStringPatch;
+        TempCSVBuffer.Reset();
+        if TempCSVBuffer.Get(RowNo, ColNo) then
+            exit(TempCSVBuffer.Value)
+        else
+            exit('');
+    end;
+    /* procedure InitSubString(String: Text[1024]; Delimiter: Code[10]; Separator: Code[10]);
+    begin
+        StringPatch := NeedStringPatch();
 
         gs_is := 1;
         if StringPatch then
@@ -564,16 +352,16 @@ report 50000 "Sales Order Import"
         end;
     end;
 
-    PROCEDURE NeedStringPatch(): Boolean;
-    VAR
+    procedure NeedStringPatch(): Boolean;
+    var
         String: Text[30];
     begin
         String := '漢字';
         exit(StrLen(String) = 2);
     end;
 
-    PROCEDURE f_STRLEN(String: Text[1024]) Len: Integer;
-    VAR
+    procedure f_STRLEN(String: Text[1024]) Len: Integer;
+    var
         ip: Integer;
         found: Boolean;
     begin
@@ -594,13 +382,13 @@ report 50000 "Sales Order Import"
             exit(Len - 1);
     end;
 
-    PROCEDURE IsKanjiFirstByte(Cod: Char): Boolean;
+    procedure IsKanjiFirstByte(Cod: Char): Boolean;
     begin
         exit(((Cod >= 129) AND (Cod <= 159)) or ((Cod >= 224) AND (Cod <= 252)));
     end;
 
-    PROCEDURE GetSubString(String: Text[1024]) SubString: Text[250];
-    VAR
+    procedure GetSubString(String: Text[1024]) SubString: Text[250];
+    var
         ip: Integer;
         is: Integer;
         FieldEnd: Boolean;
@@ -669,8 +457,8 @@ report 50000 "Sales Order Import"
     end;
 
 
-    PROCEDURE f_COPYSTR3(String: Text[1024]; Position: Integer; Length: Integer) NewString: Text[1024];
-    VAR
+    procedure f_COPYSTR3(String: Text[1024]; Position: Integer; Length: Integer) NewString: Text[1024];
+    var
         len: Integer;
         epos: Integer;
         ip: Integer;
@@ -698,8 +486,8 @@ report 50000 "Sales Order Import"
         until ip_b >= epos;
     end;
 
-    PROCEDURE f_STRPOS(String: Text[1024]; SubString: Text[30]) Pos: Integer;
-    VAR
+    procedure f_STRPOS(String: Text[1024]; SubString: Text[30]) Pos: Integer;
+    var
         mlen: Integer;
         slen: Integer;
         ip: Integer;
@@ -742,5 +530,6 @@ report 50000 "Sales Order Import"
         until (Pos <> 0) or (ip_b >= 1024);
         exit(Pos);
     end;
+    */
 }
 

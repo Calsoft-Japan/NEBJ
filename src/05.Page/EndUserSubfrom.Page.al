@@ -86,17 +86,6 @@ page 50000 "End User Subfrom"
                 end;
             }
         }
-        area(Promoted)
-        {
-            group(Category_Process)
-            {
-                Caption = 'Process';
-
-                actionref(Search_Promoted; Search)
-                {
-                }
-            }
-        }
     }
 
     trigger OnOpenPage()

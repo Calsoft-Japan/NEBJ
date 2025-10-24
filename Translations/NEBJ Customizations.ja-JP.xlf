@@ -1755,53 +1755,57 @@
         </trans-unit>
         <trans-unit id="Page 1592554000 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>End User Subform</source>
+          <target>End User Subform</target>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page End User Subfrom - Property Caption</note>
         </trans-unit>
         <trans-unit id="Page 1592554000 - Control 2445482498 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>General</source>
+          <target>一般</target>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page End User Subfrom - Control General - Property Caption</note>
         </trans-unit>
         <trans-unit id="Page 1592554000 - Control 316075982 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Blocked</source>
+          <target>ブロック</target>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page End User Subfrom - Control BlockOption - Property Caption</note>
         </trans-unit>
         <trans-unit id="Page 1592554000 - Control 1187014882 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Customer Group</source>
+          <target>顧客区分</target>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page End User Subfrom - Control CustGroup - Property Caption</note>
         </trans-unit>
         <trans-unit id="Page 1592554000 - Control 1190933466 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Customer Name</source>
+          <target>得意先名</target>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page End User Subfrom - Control CustName - Property Caption</note>
         </trans-unit>
         <trans-unit id="Page 1592554000 - Control 4162552748 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Division 1</source>
+          <target>所属1</target>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page End User Subfrom - Control Division1 - Property Caption</note>
         </trans-unit>
         <trans-unit id="Page 1592554000 - Control 505282069 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Division 2</source>
+          <target>所属2</target>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page End User Subfrom - Control Division2 - Property Caption</note>
         </trans-unit>
         <trans-unit id="Page 1592554000 - Control 1142978686 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Division 3</source>
+          <target>所属3</target>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page End User Subfrom - Control Division3 - Property Caption</note>
         </trans-unit>
         <trans-unit id="Page 1592554000 - Action 782762290 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Search</source>
+          <target>検索</target>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page End User Subfrom - Action Search - Property Caption</note>
-        </trans-unit>
-        <trans-unit id="Page 1592554000 - Action 3383493608 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Process</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page End User Subfrom - Action Category_Process - Property Caption</note>
         </trans-unit>
         <trans-unit id="Page 3305963972 - NamedType 940073651" size-unit="char" translate="yes" xml:space="preserve">
           <source>File name can not be blank.</source>
@@ -2191,31 +2195,6 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">PageExtension pageextension70000038 - Control EU Division 3 - Property Caption</note>
         </trans-unit>
-        <trans-unit id="PageExtension 3354393602 - Control 2512773725 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 4117186890">
-          <source>ロット番号</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">PageExtension pageextension70000038 - Control LotInformation - Property Caption</note>
-        </trans-unit>
-        <trans-unit id="PageExtension 949169859 - Control 1942762401 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 388992258">
-          <source>納品書備考 </source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">PageExtension pageextension70000048 - Control Delivery Note Reference - Property Caption</note>
-        </trans-unit>
-        <trans-unit id="PageExtension 949169859 - Control 1819850387 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 388992258">
-          <source>納品先配達時間指定</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">PageExtension pageextension70000048 - Control Delivery Time - Property Caption</note>
-        </trans-unit>
-        <trans-unit id="PageExtension 949169859 - Control 3484030598 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 388992258">
-          <source>直送コード</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">PageExtension pageextension70000048 - Control Direct Shipping Code - Property Caption</note>
-        </trans-unit>
-        <trans-unit id="PageExtension 949169859 - Control 1677449591 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 388992258">
-          <source>Pic指示</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">PageExtension pageextension70000048 - Control Picking Advice - Property Caption</note>
-        </trans-unit>
         <trans-unit id="PageExtension 1586866476 - Control 237914495 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 3390728890">
           <source>備考</source>
           <note from="Developer" annotates="general" priority="2"></note>
@@ -2270,46 +2249,6 @@
           <source>エンドユーザ所属3</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">PageExtension pageextension70000049 - Control EU Division 3 - Property Caption</note>
-        </trans-unit>
-        <trans-unit id="PageExtension 2032307772 - Control 237914495 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 3053760138">
-          <source>備考</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">PageExtension pageextension70000050 - Control Description(Bikou) - Property Caption</note>
-        </trans-unit>
-        <trans-unit id="PageExtension 2032307772 - Control 1031163474 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 3053760138">
-          <source>エンドユーザー</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">PageExtension pageextension70000050 - Control EndUser - Property Caption</note>
-        </trans-unit>
-        <trans-unit id="PageExtension 2032307772 - Control 3873485035 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 3053760138">
-          <source>外部文書番号</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">PageExtension pageextension70000050 - Control ExternaDocumentNo. - Property Caption</note>
-        </trans-unit>
-        <trans-unit id="PageExtension 3307701006 - Control 237914495 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 1056066689">
-          <source>備考</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">PageExtension pageextension70000052 - Control Description(Bikou) - Property Caption</note>
-        </trans-unit>
-        <trans-unit id="PageExtension 3307701006 - Control 2987291209 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 1056066689">
-          <source>備考2</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">PageExtension pageextension70000052 - Control Description(Bikou2) - Property Caption</note>
-        </trans-unit>
-        <trans-unit id="PageExtension 3307701006 - Control 1031163474 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 1056066689">
-          <source>エンドユーザー</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">PageExtension pageextension70000052 - Control EndUser - Property Caption</note>
-        </trans-unit>
-        <trans-unit id="PageExtension 3307701006 - Control 3873485035 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 1056066689">
-          <source>外部文書番号</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">PageExtension pageextension70000052 - Control ExternaDocumentNo. - Property Caption</note>
-        </trans-unit>
-        <trans-unit id="PageExtension 3622699939 - Control 2627792820 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 3332899200">
-          <source>請求先名2</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">PageExtension pageextension70000172 - Control Bill-to Name 2 - Property Caption</note>
         </trans-unit>
         <trans-unit id="TableExtension 156412750 - Field 404841826 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Table 3469146285">
           <source>FAX E-Mail</source>
@@ -3222,72 +3161,86 @@
           <note from="Xliff Generator" annotates="general" priority="3">TableExtension Sales Line Archive Ext - Field StorageTemprature - Property Caption</note>
         </trans-unit>
         <trans-unit id="TableExtension 1846452001 - Field 237914495 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Table 2574427010">
-          <source>Description(Bikou)</source>
+          <source>Description (Bikou)</source>
+          <target>備考</target>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">TableExtension Sales Line Ext - Field Description(Bikou) - Property Caption</note>
         </trans-unit>
         <trans-unit id="TableExtension 1846452001 - Field 2987291209 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Table 2574427010">
-          <source>Description(Bikou2)</source>
+          <source>Description (Bikou 2)</source>
+          <target>備考2</target>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">TableExtension Sales Line Ext - Field Description(Bikou2) - Property Caption</note>
         </trans-unit>
         <trans-unit id="TableExtension 1846452001 - Field 2025196795 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Table 2574427010">
           <source>End User Contact Name</source>
+          <target>End User Contact Name</target>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">TableExtension Sales Line Ext - Field End User Contact Name - Property Caption</note>
         </trans-unit>
         <trans-unit id="TableExtension 1846452001 - Field 3547290667 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Table 2574427010">
           <source>End User Contact No.</source>
+          <target>End User Contact No.</target>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">TableExtension Sales Line Ext - Field End User Contact No. - Property Caption</note>
         </trans-unit>
         <trans-unit id="TableExtension 1846452001 - Field 1031163474 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Table 2574427010">
-          <source>EndUser</source>
+          <source>End User</source>
+          <target>エンドユーザー</target>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">TableExtension Sales Line Ext - Field EndUser - Property Caption</note>
         </trans-unit>
         <trans-unit id="TableExtension 1846452001 - Field 3464206940 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Table 2574427010">
-          <source>EU</source>
+          <source>End User</source>
+          <target>エンドユーザー</target>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">TableExtension Sales Line Ext - Field EU - Property Caption</note>
         </trans-unit>
         <trans-unit id="TableExtension 1846452001 - Field 4034694730 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Table 2574427010">
           <source>EU Description</source>
+          <target>エンドユーザ名</target>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">TableExtension Sales Line Ext - Field EU Description - Property Caption</note>
         </trans-unit>
         <trans-unit id="TableExtension 1846452001 - Field 1512411244 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Table 2574427010">
           <source>EU Division 1</source>
+          <target>エンドユーザ所属1</target>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">TableExtension Sales Line Ext - Field EU Division 1 - Property Caption</note>
         </trans-unit>
         <trans-unit id="TableExtension 1846452001 - Field 2150107861 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Table 2574427010">
           <source>EU Division 2</source>
+          <target>エンドユーザ所属2</target>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">TableExtension Sales Line Ext - Field EU Division 2 - Property Caption</note>
         </trans-unit>
         <trans-unit id="TableExtension 1846452001 - Field 2787804478 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Table 2574427010">
           <source>EU Division 3</source>
+          <target>エンドユーザ所属3</target>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">TableExtension Sales Line Ext - Field EU Division 3 - Property Caption</note>
         </trans-unit>
         <trans-unit id="TableExtension 1846452001 - Field 3873485035 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Table 2574427010">
-          <source>ExternaDocumentNo.</source>
+          <source>Ext.Document No.</source>
+          <target>外部文書番号</target>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">TableExtension Sales Line Ext - Field ExternaDocumentNo. - Property Caption</note>
         </trans-unit>
         <trans-unit id="TableExtension 1846452001 - Field 4211068675 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Table 2574427010">
-          <source>filler1</source>
+          <source>Filler</source>
+          <target>Filler</target>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">TableExtension Sales Line Ext - Field filler1 - Property Caption</note>
         </trans-unit>
         <trans-unit id="TableExtension 1846452001 - Field 2512773725 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Table 2574427010">
-          <source>LotInformation</source>
+          <source>Lot Information</source>
+          <target>Lot Information</target>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">TableExtension Sales Line Ext - Field LotInformation - Property Caption</note>
         </trans-unit>
         <trans-unit id="TableExtension 1846452001 - Field 716134892 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Table 2574427010">
-          <source>StorageTemprature</source>
+          <source>Storage Temprature</source>
+          <target>保管温度</target>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">TableExtension Sales Line Ext - Field StorageTemprature - Property Caption</note>
         </trans-unit>

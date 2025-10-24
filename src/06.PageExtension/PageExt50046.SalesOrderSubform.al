@@ -6,7 +6,6 @@ pageextension 50046 "Sales Order Subform EXT" extends "Sales Order Subform"
         {
             field(EU; Rec.EU)
             {
-                Caption = 'EndUser';
                 ApplicationArea = All;
                 trigger OnLookup(var Text: Text): Boolean
                 var
@@ -28,12 +27,10 @@ pageextension 50046 "Sales Order Subform EXT" extends "Sales Order Subform"
             field("Description(Bikou)"; Rec."Description(Bikou)")
             {
                 ApplicationArea = All;
-                Caption = '備考';
             }
             field("Description(Bikou2)"; Rec."Description(Bikou2)")
             {
                 ApplicationArea = All;
-                Caption = '備考2';
             }
             field(StorageTemprature; Rec.StorageTemprature)
             {

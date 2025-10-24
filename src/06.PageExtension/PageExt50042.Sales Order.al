@@ -1,4 +1,4 @@
-pageextension 50042 pageextension70000029 extends "Sales Order"
+pageextension 50042 "Sales Order Ext" extends "Sales Order"
 {
     layout
     {
@@ -6,10 +6,12 @@ pageextension 50042 pageextension70000029 extends "Sales Order"
         {
             field("Direct Shipping Code"; Rec."Direct Shipping Code")
             {
+                ApplicationArea = All;
                 Caption = '直送コード';
             }
             field("Delivery Note Reference"; Rec."Delivery Note Reference")
             {
+                ApplicationArea = All;
                 Caption = '納品書備考';
             }
         }
@@ -18,6 +20,7 @@ pageextension 50042 pageextension70000029 extends "Sales Order"
         {
             field("Picking Advice"; Rec."Picking Advice")
             {
+                ApplicationArea = All;
                 Caption = 'Pic指示';
             }
         }

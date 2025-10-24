@@ -1,4 +1,4 @@
-pageextension 56631 pageextension70000050 extends "Sales Return Order Subform"
+pageextension 56631 "Sales Return Order Subform Ext" extends "Sales Return Order Subform"
 {
     layout
     {
@@ -6,6 +6,7 @@ pageextension 56631 pageextension70000050 extends "Sales Return Order Subform"
         {
             field("EndUser"; Rec."EndUser")
             {
+                ApplicationArea = All;
                 Caption = 'エンドユーザー';
             }
             field("EU Description"; Rec."EU Description")
@@ -22,6 +23,8 @@ pageextension 56631 pageextension70000050 extends "Sales Return Order Subform"
             }
             field("Description(Bikou)"; Rec."Description(Bikou)")
             {
+
+                ApplicationArea = All;
                 Caption = '備考';
             }
             field("Description(Bikou2)"; Rec."Description(Bikou2)")
@@ -29,6 +32,7 @@ pageextension 56631 pageextension70000050 extends "Sales Return Order Subform"
             }
             field("ExternaDocumentNo."; Rec."ExternaDocumentNo.")
             {
+                ApplicationArea = All;
                 Caption = '外部文書番号';
             }
         }

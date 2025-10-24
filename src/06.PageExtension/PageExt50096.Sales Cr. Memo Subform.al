@@ -1,4 +1,4 @@
-pageextension 50096 pageextension70000052 extends "Sales Cr. Memo Subform"
+pageextension 50096 "Sales Cr. Memo Subform Ext" extends "Sales Cr. Memo Subform"
 {
     layout
     {
@@ -6,6 +6,7 @@ pageextension 50096 pageextension70000052 extends "Sales Cr. Memo Subform"
         {
             field("EndUser"; Rec.EndUser)
             {
+                ApplicationArea = All;
                 Caption = 'エンドユーザー';
             }
 
@@ -23,14 +24,17 @@ pageextension 50096 pageextension70000052 extends "Sales Cr. Memo Subform"
             }
             field("Description(Bikou)"; Rec."Description(Bikou)")
             {
+                ApplicationArea = All;
                 Caption = '備考';
             }
             field("Description(Bikou2)"; Rec."Description(Bikou2)")
             {
+                ApplicationArea = All;
                 Caption = '備考2';
             }
             field("ExternaDocumentNo."; Rec."ExternaDocumentNo.")
             {
+                ApplicationArea = All;
                 Caption = '外部文書番号';
             }
         }

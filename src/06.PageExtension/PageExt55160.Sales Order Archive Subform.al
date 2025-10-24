@@ -6,14 +6,17 @@ pageextension 55160 pageextension70000038 extends "Sales Order Archive Subform"
         {
             field("Description(Bikou)"; Rec."Description(Bikou)")
             {
+                ApplicationArea = All;
                 Caption = '備考';
             }
             field(StorageTemprature; Rec."StorageTemprature")
             {
+                ApplicationArea = All;
                 Caption = '保管温度';
             }
             field("ExternaDocumentNo."; Rec."ExternaDocumentNo.")
             {
+                ApplicationArea = All;
                 Caption = '外部文書番号';
             }
         }
@@ -21,34 +24,42 @@ pageextension 55160 pageextension70000038 extends "Sales Order Archive Subform"
         {
             field("EndUser"; Rec."EndUser")
             {
+                ApplicationArea = All;
                 Caption = 'エンドユーザー';
             }
             field("EU"; Rec."EU")
             {
+                ApplicationArea = All;
                 Caption = 'エンドユーザー';
             }
             field("LotInformation"; Rec."LotInformation")
             {
+                ApplicationArea = All;
                 Caption = 'ロット番号';
             }
             field("EU Description"; Rec."EU Description")
             {
+                ApplicationArea = All;
                 Caption = 'エンドユーザー名';
             }
             field("BOM Flag"; Rec."BOM Flag")
             {
+                ApplicationArea = All;
                 Caption = 'セット区分';
             }
             field("EU Division 1"; Rec."EU Division 1")
             {
+                ApplicationArea = All;
                 Caption = 'エンドユーザ所属1';
             }
             field("EU Division 2"; Rec."EU Division 2")
             {
+                ApplicationArea = All;
                 Caption = 'エンドユーザ所属2';
             }
             field("EU Division 3"; Rec."EU Division 3")
             {
+                ApplicationArea = All;
                 Caption = 'エンドユーザ所属3';
             }
 

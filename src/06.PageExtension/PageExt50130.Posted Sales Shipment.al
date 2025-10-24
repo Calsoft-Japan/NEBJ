@@ -6,6 +6,7 @@ pageextension 50130 pageextension70000002 extends "Posted Sales Shipment"
         {
             field("Direct Shipping Code"; Rec."Direct Shipping Code")
             {
+                ApplicationArea = All;
                 Caption = '直送コード';
             }
         }

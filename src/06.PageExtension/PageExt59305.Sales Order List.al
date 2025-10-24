@@ -6,6 +6,7 @@ pageextension 59305 pageextension70000172 extends "Sales Order List"
         {
             field("Bill-to Name 2"; Rec."Bill-to Name 2")
             {
+                ApplicationArea = All;
                 Caption = '請求先名2';
             }
         }

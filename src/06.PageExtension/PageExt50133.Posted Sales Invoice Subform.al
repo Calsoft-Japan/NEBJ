@@ -1,4 +1,4 @@
-pageextension 50133 pageextension70000005 extends "Posted Sales Invoice Subform"
+pageextension 50133 "PostedSalesInvoiceSubform Ext" extends "Posted Sales Invoice Subform"
 {
     layout
     {

@@ -1,4 +1,4 @@
-pageextension 56628 pageextension70000049 extends "Sales Return Order Arc Subform"
+pageextension 56628 "SalesReturnOrderArcSubform Ext" extends "Sales Return Order Arc Subform"
 {
     layout
     {

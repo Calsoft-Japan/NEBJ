@@ -19,11 +19,6 @@ pageextension 56628 "SalesReturnOrderArcSubform Ext" extends "Sales Return Order
                 ApplicationArea = All;
                 Caption = '外部文書番号';
             }
-            field("LotInformation"; Rec."LotInformation")
-            {
-                ApplicationArea = All;
-                Caption = 'ロット番号';
-            }
         }
         addafter("Line Discount Amount")
         {
@@ -32,20 +27,10 @@ pageextension 56628 "SalesReturnOrderArcSubform Ext" extends "Sales Return Order
                 ApplicationArea = All;
                 Caption = 'エンドユーザー';
             }
-            field("EU"; Rec."EU")
-            {
-                ApplicationArea = All;
-                Caption = 'エンドユーザー';
-            }
             field("EU Description"; Rec."EU Description")
             {
                 ApplicationArea = All;
                 Caption = 'エンドユーザー名';
-            }
-            field("BOM Flag"; Rec."BOM Flag")
-            {
-                ApplicationArea = All;
-                Caption = 'セット区分';
             }
             field("EU Division 1"; Rec."EU Division 1")
             {

@@ -1730,26 +1730,31 @@
         </trans-unit>
         <trans-unit id="Codeunit 3083993609 - NamedType 732759939" size-unit="char" translate="yes" xml:space="preserve">
           <source>Counting records...</source>
+          <target>記録をカウント中...</target> 
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit ItemTrackingMgtNEBJ - NamedType Text004</note>
         </trans-unit>
         <trans-unit id="Codeunit 3083993609 - NamedType 2301836569" size-unit="char" translate="yes" xml:space="preserve">
           <source>Lot No. is assigned, but still lack %1!</source>
+          <target>ロットをアサインしました。%1不足しています！</target> 
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit ItemTrackingMgtNEBJ - NamedType Text013</note>
         </trans-unit>
         <trans-unit id="Codeunit 3083993609 - NamedType 4214926420" size-unit="char" translate="yes" xml:space="preserve">
           <source>Lot information has been successfully applied!</source>
+          <target>ロット情報はアサインされました！</target> 
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit ItemTrackingMgtNEBJ - NamedType Text014</note>
         </trans-unit>
         <trans-unit id="Codeunit 3083993609 - NamedType 3577229803" size-unit="char" translate="yes" xml:space="preserve">
           <source>There is already shipped quantity, please assign the Lot No. manually!</source>
+          <target>出荷済数量がありますので、手動でロットをアサインしてください！</target> 
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit ItemTrackingMgtNEBJ - NamedType Text015</note>
         </trans-unit>
         <trans-unit id="Codeunit 3083993609 - NamedType 1195352358" size-unit="char" translate="yes" xml:space="preserve">
           <source>There is no available stock to assign!</source>
+          <target>有効在庫がありません！</target> 
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit ItemTrackingMgtNEBJ - NamedType Text016</note>
         </trans-unit>

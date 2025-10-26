@@ -119,7 +119,7 @@ report 50000 "Sales Order Import"
                     LineQty := -1;
             end;
 
-            //Stataus
+            //Status
             TempSOImpResult.Status := SOImportResult.Status::Skip;
 
             //Proccessing Date
@@ -188,13 +188,6 @@ report 50000 "Sales Order Import"
         BatchNo: Integer;
         ImportLineCnt: Integer;
         Window: Dialog;
-        /* 
-        gs_is: Integer;
-        gs_imax: Integer;
-        gs_del: Text[10];
-        gs_sep: Text[10];
-        StringPatch: Boolean; 
-        */
         DialogTxt: Label 'Import from zengin file';
         BlankFileErr: Label 'File not found or incorrect.';
         FilterTxt: Label 'Text Files (*.csv)|*.csv|All Files (*.*)|*.*';
@@ -218,7 +211,7 @@ report 50000 "Sales Order Import"
 
     procedure SpecifiedTableProcessing()
     var
-        SalesHeader_temp: Record "Sales Header" temporary;
+        TempSalesHeader: Record "Sales Header" temporary;
     begin
         Customer.Reset();
         Customer.SetFilter("Order Source", OrderSourceCode);
@@ -236,13 +229,13 @@ report 50000 "Sales Order Import"
                     SOImportResult.SetRange(Status, SOImportResult.Status::Success);
                     SOImportResult.SetFilter("Order Source Code", OrderSourceCode);
                     if not SOImportResult.FindFirst() then begin
-                        SalesHeader := SalesHeader_temp;
+                        SalesHeader := TempSalesHeader;
                         SalesHeader."Document Type" := SalesHeader."Document Type"::Order;
                         Clear(SalesHeader."No.");
                         Clear(SalesHeader."Sell-to Customer No.");
                         Clear(SalesHeader."Bill-to Customer No.");
                         SalesHeader.Insert(true);
-                        SalesHeader.InitRecord;
+                        SalesHeader.InitRecord();
                         SalesHeader.Validate("Sell-to Customer No.", CustNo);
                         SalesHeader.Validate("External Document No.", SalesHeader."No.");
                         SalesHeader.Modify();
@@ -309,227 +302,5 @@ report 50000 "Sales Order Import"
         else
             exit('');
     end;
-    /* procedure InitSubString(String: Text[1024]; Delimiter: Code[10]; Separator: Code[10]);
-    begin
-        StringPatch := NeedStringPatch();
-
-        gs_is := 1;
-        if StringPatch then
-            gs_imax := f_STRLEN(String)
-        else
-            gs_imax := STRLEN(String);
-        gs_del := '';
-        gs_sep := '';
-        case Delimiter of
-            '<TAB>':
-                gs_del[1] := 9;
-            '<CR>':
-                gs_del[1] := 13;
-            '<LF>':
-                gs_del[1] := 10;
-            '<CR/LF>':
-                begin
-                    gs_del[1] := 13;
-                    gs_del[2] := 10;
-                end;
-            else
-                gs_del := Delimiter;
-        end;
-        case Separator of
-            '<TAB>':
-                gs_sep[1] := 9;
-            '<CR>':
-                gs_sep[1] := 13;
-            '<LF>':
-                gs_sep[1] := 10;
-            '<CR/LF>':
-                begin
-                    gs_sep[1] := 13;
-                    gs_sep[2] := 10;
-                end;
-            else
-                gs_sep := Separator;
-        end;
-    end;
-
-    procedure NeedStringPatch(): Boolean;
-    var
-        String: Text[30];
-    begin
-        String := '漢字';
-        exit(StrLen(String) = 2);
-    end;
-
-    procedure f_STRLEN(String: Text[1024]) Len: Integer;
-    var
-        ip: Integer;
-        found: Boolean;
-    begin
-        Len := 0;
-        ip := 0;
-        found := false;
-        repeat
-            Len += 1;
-            ip += 1;
-            if String[ip] = 0 then
-                found := true;
-            if IsKanjiFirstByte(String[ip]) then
-                Len += 1;
-        until found or (Len >= 1024);
-        if (Len = 1024) AND (not found) then
-            exit(Len)
-        else
-            exit(Len - 1);
-    end;
-
-    procedure IsKanjiFirstByte(Cod: Char): Boolean;
-    begin
-        exit(((Cod >= 129) AND (Cod <= 159)) or ((Cod >= 224) AND (Cod <= 252)));
-    end;
-
-    procedure GetSubString(String: Text[1024]) SubString: Text[250];
-    var
-        ip: Integer;
-        is: Integer;
-        FieldEnd: Boolean;
-    begin
-        if gs_imax = 0 then
-            exit('');
-        if String[gs_is] = gs_del[1] then begin
-            gs_is += 1;
-            ip := 1;
-            is := 1;
-            FieldEnd := false;
-            repeat
-                case String[gs_is] of
-                    0:
-                        FieldEnd := true;
-                    gs_del[1]:
-                        case String[gs_is + 1] of
-                            0:
-                                FieldEnd := true;
-                            gs_del[1]:
-                                begin
-                                    SubString[is] := gs_del[1];
-                                    is += 1;
-                                    ip += 2;
-                                    gs_is += 2;
-                                end;
-                            gs_sep[1]:
-                                begin
-                                    ip += 1;
-                                    gs_is += 2;
-                                    FieldEnd := true;
-                                end;
-                        end;
-                    else begin
-                        SubString += CopyStr(String, gs_is, 1);
-                        is += 1;
-                        ip += 1;
-                        gs_is += 1;
-                    end
-                end;
-            until FieldEnd;
-            gs_imax := gs_imax - ip;
-        end else begin
-            if StringPatch then
-                ip := f_STRPOS(f_COPYSTR3(String, gs_is, gs_imax), gs_sep)
-            else
-                ip := StrPos(CopyStr(String, gs_is, gs_imax), gs_sep);
-            if ip = 0 then begin
-                if StringPatch then
-                    SubString := f_COPYSTR3(String, gs_is, gs_imax)
-                else
-                    SubString := CopyStr(String, gs_is, gs_imax);
-                gs_imax := 0;
-            end else begin
-                if StringPatch then
-                    if ip <> 1 then
-                        SubString := f_COPYSTR3(String, gs_is, ip - 1)
-                    else
-                        SubString := ''
-                else
-                    SubString := CopyStr(String, gs_is, ip - 1);
-                gs_is := gs_is + ip;
-                gs_imax := gs_imax - ip;
-            end;
-        end;
-    end;
-
-
-    procedure f_COPYSTR3(String: Text[1024]; Position: Integer; Length: Integer) NewString: Text[1024];
-    var
-        len: Integer;
-        epos: Integer;
-        ip: Integer;
-        ip_b: Integer;
-    begin
-        if (Position < 1) or (Length < 0) then
-            NewString := CopyStr(String, Position, Length);
-        NewString := '';
-        len := f_STRLEN(String);
-        if Length = 0 then
-            epos := len
-        else
-            epos := Position + Length - 1;
-        if epos > len then
-            epos := len;
-        ip := 0;
-        ip_b := 0;
-        repeat
-            ip += 1;
-            ip_b += 1;
-            if ip_b >= Position then
-                NewString := NewString + CopyStr(String, ip, 1);
-            if IsKanjiFirstByte(String[ip]) then
-                ip_b += 1;
-        until ip_b >= epos;
-    end;
-
-    procedure f_STRPOS(String: Text[1024]; SubString: Text[30]) Pos: Integer;
-    var
-        mlen: Integer;
-        slen: Integer;
-        ip: Integer;
-        ip_b: Integer;
-        m_ip: Integer;
-        s_ip: Integer;
-        s_ip_b: Integer;
-    begin
-        if (String = '') or (SubString = '') then
-            exit(0);
-        mlen := f_STRLEN(String);
-        slen := f_STRLEN(SubString);
-        if mlen < slen then
-            exit(0);
-        ip := 0;
-        ip_b := 0;
-        Pos := 0;
-        repeat
-            ip += 1;
-            ip_b += 1;
-            if String[ip] = SubString[1] then begin
-                if (mlen - ip_b + 1 < slen) then
-                    exit(0);
-                Pos := ip_b;
-                m_ip := ip;
-                s_ip := 0;
-                s_ip_b := 0;
-                repeat
-                    s_ip += 1;
-                    s_ip_b += 1;
-                    if String[m_ip] <> SubString[s_ip] then
-                        Pos := 0;
-                    m_ip += 1;
-                    if IsKanjiFirstByte(SubString[s_ip]) then
-                        s_ip_b += 1;
-                until (Pos = 0) or (s_ip_b >= slen);
-            end;
-            if IsKanjiFirstByte(String[ip]) then
-                ip_b += 1;
-        until (Pos <> 0) or (ip_b >= 1024);
-        exit(Pos);
-    end;
-    */
 }
 

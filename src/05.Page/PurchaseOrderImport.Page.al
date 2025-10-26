@@ -274,14 +274,17 @@ page 50011 "Purchase Order Import"
         ErrFileMgt: Codeunit "File Management";
         ErrInstream: InStream;
         Outstream1: OutStream;
-        DateFormatTxt1: label '<Year4><Month,2><Day,2><Hours24><Minutes,2><Seconds,2><Second dec>';
+        DateFormatLbl: label '<Year4><Month,2><Day,2><Hours24><Minutes,2><Seconds,2><Second dec>', Locked = true;
+        DialogTitleLbl: Label 'Download Error Log', Locked = true;
+        FileFilterLbl: Label 'Text Files (*.txt)|*.txt', Locked = true;
+        FileExtLbl: Label '_Err.csv', Locked = true;
     begin
-        FileName := Format(CurrentDateTime, 0, DateFormatTxt1) + '_Err.csv';
+        FileName := Format(CurrentDateTime, 0, DateFormatLbl) + FileExtLbl;
         ErrTempBlob.CreateOutStream(Outstream1);
         Outstream1.WriteText(ErrDataTxt);
 
         ErrTempBlob.CreateInStream(ErrInstream);
-        ErrFileMgt.DownloadFromStreamHandler(ErrInstream, 'Download Error Log', '', 'Text files (*.txt)|*.txt', FileName);
+        ErrFileMgt.DownloadFromStreamHandler(ErrInstream, DialogTitleLbl, '', FileFilterLbl, FileName);
     end;
 
     procedure InsertOrModify(var pPurchLine: record "Purchase Line"; var pIsRecModify: Boolean; var IskeyErr: Boolean;
@@ -292,10 +295,10 @@ page 50011 "Purchase Order Import"
         if not IskeyErr then begin
             if pIsRecModify then begin
                 if pPurchLine.Modify() then
-                    PurchOrderMgt.Ext_LotModify(pPurchLine, PrevPurchLine);
+                    PurchOrderMgt.PurchLineLotModify(pPurchLine, PrevPurchLine);
             end else begin
                 if pPurchLine.Insert() then
-                    PurchOrderMgt.Ext_LotInsert(pPurchLine);
+                    PurchOrderMgt.PurchLineLotInsert(pPurchLine);
             end;
             DataCnt += 1;
         end else begin
@@ -313,13 +316,13 @@ page 50011 "Purchase Order Import"
         CRLF: Text;
         TAB: Text;
         MsgTitle: Text;
-        MsgLbl0: label 'インポートテストが終了しました。';
-        MsgLbl1: label 'ファイル名.........';
-        MsgLbl2: label 'データ件数.........';
-        MsgLbl3: label 'インポート件数.....';
-        MsgLbl4: label 'スキップ件数.......';
-        MsgLbl5: label 'エラー件数.........';
-        MsgLbl6: label 'インポートが終了しました。';
+        MsgLbl0: label 'インポートテストが終了しました。', Locked = true;
+        MsgLbl1: label 'ファイル名.........', Locked = true;
+        MsgLbl2: label 'データ件数.........', Locked = true;
+        MsgLbl3: label 'インポート件数.....', Locked = true;
+        MsgLbl4: label 'スキップ件数.......', Locked = true;
+        MsgLbl5: label 'エラー件数.........', Locked = true;
+        MsgLbl6: label 'インポートが終了しました。', Locked = true;
     begin
 
         CRLF[1] := 13;

@@ -12,9 +12,9 @@ report 50000 "Sales Order Import"
         {
             area(content)
             {
-                group(Options)
+                group(Option)
                 {
-                    Caption = 'Options';
+                    Caption = 'Option';
                     field(FileName; FileName)
                     {
                         ApplicationArea = All;
@@ -209,6 +209,15 @@ report 50000 "Sales Order Import"
         Text026: Label 'is not importing.';
         Text027: Label 'Quantity has not been entered in a continuous single-byte numerical value.';
 
+    local procedure GetCellValue(RowNo: Integer; ColNo: Integer): Text
+    begin
+        TempCSVBuffer.Reset();
+        if TempCSVBuffer.Get(RowNo, ColNo) then
+            exit(TempCSVBuffer.Value)
+        else
+            exit('');
+    end;
+
     procedure SpecifiedTableProcessing()
     var
         TempSalesHeader: Record "Sales Header" temporary;
@@ -292,15 +301,6 @@ report 50000 "Sales Order Import"
     procedure LabelError()
     begin
         Error(Text021, Text022, Text023, Text024, Text025);
-    end;
-
-    local procedure GetCellValue(RowNo: Integer; ColNo: Integer): Text
-    begin
-        TempCSVBuffer.Reset();
-        if TempCSVBuffer.Get(RowNo, ColNo) then
-            exit(TempCSVBuffer.Value)
-        else
-            exit('');
     end;
 }
 

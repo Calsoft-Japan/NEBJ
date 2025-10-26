@@ -30,7 +30,6 @@ codeunit 50000 PurchOrderMgmt
                     until ReservEntry.Next() = 0;
                 end else begin
                     if Rec."Quantity (Base)" <> 0 then begin
-
                         ReservEntry."Lot No." := 'A';
                         CreateResvEntry.CreateReservEntryFor(
                             Database::"Purchase Line",

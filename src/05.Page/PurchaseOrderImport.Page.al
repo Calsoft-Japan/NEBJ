@@ -62,8 +62,8 @@ page 50011 "Purchase Order Import"
 
                 trigger OnAction()
                 var
-                    ImpPurchLine: record "Purchase Line";
-                    TestPurchLine: record "Purchase Line" temporary;
+                    ImpPurchLine: Record "Purchase Line";
+                    TestPurchLine: Record "Purchase Line" temporary;
                     TempExcelBuf: Record "Excel Buffer" temporary;
                     SheetName: Text;
                     DataCnt: Integer;
@@ -86,7 +86,7 @@ page 50011 "Purchase Order Import"
                     if IsImport then begin  //Import Execution
                         ImpPurchLine.Reset();
                         ImpPurchLine.LockTable();
-                        IF TempExcelBuf.FindFirst() then begin
+                        if TempExcelBuf.FindFirst() then begin
                             RowNo := TempExcelBuf."Row No.";
                             repeat
                                 if (TempExcelBuf."Row No." <> RowNo) and (TempExcelBuf."Row No." <> 2) then begin
@@ -202,7 +202,6 @@ page 50011 "Purchase Order Import"
                     end else begin
                         pPurchLine.Validate("No.");
                     end;
-                    ;
                 end;
             7:
                 begin
@@ -248,7 +247,6 @@ page 50011 "Purchase Order Import"
                 end;
             else
         end;
-
     end;
 
     procedure ErrLogWrite(var pExcelBuf: Record "Excel Buffer"; FieldTxt: Text)

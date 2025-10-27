@@ -36,9 +36,18 @@ tableextension 50018 "Customer Ext" extends Customer
         field(50031; "Chemi-logi Delivery Slip"; Boolean) { }
         field(50032; "Yamato Delivery Slip"; Boolean) { }
         field(50033; "Delivery Slip Address"; Code[20]) { }
-        field(50034; "Division 1"; Text[100]) { }
-        field(50035; "Division 2"; Text[100]) { }
-        field(50036; "Division 3"; Text[100]) { }
+        field(50034; "Division 1"; Text[100])
+        {
+            Caption = 'Division 1';
+        }
+        field(50035; "Division 2"; Text[100])
+        {
+            Caption = 'Division 2';
+        }
+        field(50036; "Division 3"; Text[100])
+        {
+            Caption = 'Division 3';
+        }
         field(50037; "Payment Exception"; Text[50]) { }
         field(50038; "Order Source"; Code[20]) { }
         field(50039; "Head Office Code"; Code[20]) { }
@@ -56,6 +65,5 @@ tableextension 50018 "Customer Ext" extends Customer
         field(50051; "LDB_Soshiki_CD_Lowest"; Code[8]) { }
         field(50052; "LDB_Soshiki_Name_Lowest_Full"; Text[200]) { }
         field(50053; "LDB_Labo_Flg"; Code[1]) { }
-
     }
 }

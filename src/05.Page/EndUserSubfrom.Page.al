@@ -12,6 +12,12 @@ page 50000 "End User Subfrom"
             group(General)
             {
                 Caption = 'General';
+                field(CustNo; CustNo)
+                {
+                    ApplicationArea = All;
+                    Caption = 'Customer No.';
+                    QuickEntry = false;
+                }
                 field(CustName; CustName)
                 {
                     ApplicationArea = All;
@@ -78,6 +84,7 @@ page 50000 "End User Subfrom"
                 ShortcutKey = 'F3';
                 trigger OnAction()
                 begin
+                    Rec.SetFilter("No.", '*' + CustNo + '*');
                     Rec.SetFilter(Name, '*' + CustName + '*');
                     Rec.SetFilter("Division 1", '*' + Division1 + '*');
                     Rec.SetFilter("Division 2", '*' + Division2 + '*');
@@ -91,6 +98,7 @@ page 50000 "End User Subfrom"
     trigger OnOpenPage()
     begin
         BlockOption := BlockOption::ExclBlock;
+        Rec.SetFilter("No.", '');
         Rec.SetFilter(Name, '');
         Rec.SetFilter("Division 1", '');
         Rec.SetFilter("Division 2", '');
@@ -99,6 +107,7 @@ page 50000 "End User Subfrom"
     end;
 
     var
+        CustNo: Text[20];
         CustName: Text[100];
         CustGroup: Text[20];
         Division1: Text[100];

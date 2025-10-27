@@ -32,7 +32,6 @@ pageextension 50112 "Customer List Ext" extends "Customer List"
         {
             field("Customer Group"; Rec."Customer Group")
             {
-                CaptionML = ENU = 'Customer Group', JPN = '顧客区分';
                 trigger OnLookup(var Text: Text): Boolean
                 var
                     CustomerTypePage: Page "Customer Type List";

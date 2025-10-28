@@ -46,9 +46,6 @@ reportextension 56631 "SalesReturnOrdConfirmation Ext" extends "Return Order Con
             column(StorageTemprature; "Sales Line".StorageTemprature) { } //  保管温度
             column(ReturnReasonCode_Line; "Sales Line"."Return Reason Code") { } // (16) 理由コード
             column(ExternalDocumentNo; "Sales Line"."ExternaDocumentNo.") { }// (18) 外部伝票番号
-        }
-        add(Total)
-        {
             column(EU_Description; "Sales Line"."EU Description") { } // EU品名
             column(Description_Bikou; "Sales Line"."Description(Bikou)") { } // 備考
         }

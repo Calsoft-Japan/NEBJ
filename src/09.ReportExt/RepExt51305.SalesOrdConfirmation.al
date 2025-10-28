@@ -47,7 +47,12 @@ reportextension 51305 "Sales Ord Confirmation Ext" extends "Standard Sales - Ord
 
             trigger OnAfterAfterGetRecord()
             begin
-                Customer2.get(Header."Direct Shipping Code");
+                begin
+                    if Header."Direct Shipping Code" <> '' then begin
+                        if Customer2.Get(Header."Direct Shipping Code") then;
+                    end else
+                        Clear(Customer2);
+                end;
             end;
 
         }
@@ -71,6 +76,8 @@ reportextension 51305 "Sales Ord Confirmation Ext" extends "Standard Sales - Ord
             column(Description_Bikou2_; "Description(Bikou2)")
             { }
             column(ExternaDocumentNo_; "ExternaDocumentNo.")
+            { }
+            column(Planned_Delivery_Date; "Planned Delivery Date")
             { }
         }
     }

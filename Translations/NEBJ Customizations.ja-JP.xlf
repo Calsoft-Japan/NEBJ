@@ -3277,7 +3277,7 @@
         </trans-unit>
         <trans-unit id="Enum 1614408206 - EnumValue 3787114202 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>ExclOnly</source>
-          <target>請求）可能のみ</target> 
+          <target>両方(出荷、請求)可能のみ</target> 
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Enum Block Option - EnumValue ExclOnly - Property Caption</note>
         </trans-unit>

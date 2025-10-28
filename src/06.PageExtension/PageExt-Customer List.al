@@ -17,15 +17,19 @@ pageextension 50112 "Customer List Ext" extends "Customer List"
         {
             field(County; Rec.County)
             {
+                ApplicationArea = All;
             }
             field(City; Rec.City)
             {
+                ApplicationArea = All;
             }
             field("Address 2"; Rec."Address 2")
             {
+                ApplicationArea = All;
             }
             field("Name2"; Rec."Name 2")
             {
+                ApplicationArea = All;
             }
         }
         addafter("Post Code")
@@ -74,26 +78,32 @@ pageextension 50112 "Customer List Ext" extends "Customer List"
         {
             field("for Sales Information"; Rec."for Sales Information")
             {
+                ApplicationArea = All;
                 Caption = '即販情報取決め';
             }
             field(Sample; Rec.Sample)
             {
+                ApplicationArea = All;
                 Caption = 'サンプル試薬';
             }
             field(Customer; Rec.Customer)
             {
+                ApplicationArea = All;
                 Caption = '販売店';
             }
             field(Password; Rec.Password)
             {
+                ApplicationArea = All;
                 Caption = 'パスワード';
             }
             field("Name in English"; Rec."Name in English")
             {
+                ApplicationArea = All;
                 Caption = '英語名';
             }
             field("Order Source"; Rec."Order Source")
             {
+                ApplicationArea = All;
                 Caption = '発注先';
             }
             field("LDB_Kikan_CD"; Rec."LDB_Kikan_CD")

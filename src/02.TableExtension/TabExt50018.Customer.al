@@ -10,7 +10,11 @@ tableextension 50018 "Customer Ext" extends Customer
         field(50005; "Invoice Issue Type"; Option) { OptionMembers = "",Print,Export,"Print+Export"; }
         field(50007; "VAT Rounding Type"; Option) { OptionMembers = Nearest,Up,Down; }
         field(50008; "VAT Calc. Per Line"; Boolean) { }
-        field(50012; "Customer Group"; Text[20]) { }
+        field(50012; "Customer Group"; Text[20])
+        {
+            Caption = '顧客区分';
+            TableRelation = "Customer Type";
+        }
         field(50013; "Address3"; Text[50]) { }
         field(50014; "The number of Catalog"; Integer) { }
         field(50015; "Catalog Request"; Boolean) { }

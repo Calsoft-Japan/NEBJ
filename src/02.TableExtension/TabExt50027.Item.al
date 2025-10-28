@@ -1,4 +1,4 @@
-tableextension 50927 "Item Ext" extends Item
+tableextension 50027 "Item Ext" extends Item
 {
     fields
     {
@@ -26,7 +26,10 @@ tableextension 50927 "Item Ext" extends Item
         field(50023; "AdditionalInformation7"; Text[100]) { }
         field(50024; "AdditionalInformation8"; Text[100]) { }
         field(50027; "Shelf Life"; Text[10]) { }
-        field(50028; "ItemGroup1"; Code[10]) { }
+        field(50028; "ItemGroup1"; Code[10])
+        {
+            Caption = 'アイテムグループ1';
+        }
         field(50029; "ItemGroup2"; Code[10]) { }
         field(50030; "ItemGroup3"; Code[10]) { }
         field(50031; "ItemGroup4"; Code[10]) { }
@@ -43,12 +46,33 @@ tableextension 50927 "Item Ext" extends Item
         field(50042; "Sample"; Boolean) { }
         field(50043; "Wholesales Rate"; Text[20]) { }
         field(50044; "Item not for Web"; Boolean) { }
-        field(50050; "Item Disc. Group 2"; Code[10]) { }
-        field(50051; "Item Disc. Group 3"; Code[10]) { }
+        field(50045; "In-transit (Qty.)"; Decimal)
+        {
+            CalcFormula = Sum("Item Ledger Entry".Quantity WHERE("Item No." = FIELD("No."),
+                                                                  "Global Dimension 1 Code" = FIELD("Global Dimension 1 Filter"),
+                                                                  "Global Dimension 2 Code" = FIELD("Global Dimension 2 Filter"),
+                                                                  "Location Code" = FILTER(1),
+                                                                  "Drop Shipment" = FIELD("Drop Shipment Filter"),
+                                                                  "Variant Code" = FIELD("Variant Filter"),
+                                                                  "Lot No." = FIELD("Lot No. Filter"),
+                                                                  "Serial No." = FIELD("Serial No. Filter")));
+            FieldClass = FlowField;
+        }
+        field(50050; "Item Disc. Group 2"; Code[10])
+        {
+            DataClassification = CustomerContent;
+            TableRelation = "Item Discount Group";
+        }
+        field(50051; "Item Disc. Group 3"; Code[10])
+        {
+            DataClassification = CustomerContent;
+            TableRelation = "Item Discount Group";
+        }
         field(50052; "Disable All Item Discount"; Boolean) { }
         field(50053; "AdditionalInformation9"; Text[100]) { }
         field(50054; "AdditionalInformation10"; Text[100]) { }
         field(50055; "Okurijo Nittsu"; Boolean) { }
+        field(50056; "Memo"; Blob) { }
     }
 }
 

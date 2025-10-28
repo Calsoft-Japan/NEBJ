@@ -103,6 +103,8 @@ pageextension 50021 "Customer Card Ext" extends "Customer Card"
 
             field("Customer Group"; Rec."Customer Group")
             {
+                ApplicationArea = All;
+                Caption = '顧客区分';
                 trigger OnLookup(var Text: Text): Boolean
                 var
                     CustomerTypePage: Page "Customer Type List";

@@ -1,4 +1,4 @@
-pageextension 50112 "Customer List Ext" extends "Customer List"
+pageextension 50022 "Customer List Ext" extends "Customer List"
 {
     layout
     {
@@ -11,6 +11,7 @@ pageextension 50112 "Customer List Ext" extends "Customer List"
             }
             field(Address; Rec.Address)
             {
+                ApplicationArea = All;
             }
         }
         addafter(Name)
@@ -54,6 +55,8 @@ pageextension 50112 "Customer List Ext" extends "Customer List"
         {
             field("Customer Group"; Rec."Customer Group")
             {
+                ApplicationArea = All;
+                Caption = '顧客区分';
                 trigger OnLookup(var Text: Text): Boolean
                 var
                     CustomerTypePage: Page "Customer Type List";

@@ -69,8 +69,7 @@ pageextension 50112 "Customer List Ext" extends "Customer List"
             //Caption = '住所3';
             //}
         }
-    }
-        
+
         addafter("Shipping Agent Code")
         {
             field("for Sales Information"; Rec."for Sales Information")

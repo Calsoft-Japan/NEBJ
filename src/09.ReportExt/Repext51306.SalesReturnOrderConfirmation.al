@@ -32,9 +32,7 @@ reportextension 56631 "SalesReturnOrdConfirmation Ext" extends "Return Order Con
             column(CompanyAddress; CompanyInfo.Address) { }
             column(CompanyAddress2; CompanyInfo."Address 2") { }
             column(CompanyFax; CompanyInfo."Fax No.") { }
-
         }
-
         modify("Sales Header")
         {
             trigger OnAfterPreDataItem()
@@ -43,14 +41,16 @@ reportextension 56631 "SalesReturnOrdConfirmation Ext" extends "Return Order Con
             end;
         }
 
-        add("Sales line")
+        add(RoundLoop)
         {
-
-            column(StorageTemprature; StorageTemprature) { } //  保管温度
-            column(EU_Description; "EU Description") { } // EU品名
-            column(Description_Bikou; ("Description(Bikou)")) { } // 備考
-            column(ReturnReasonCode_Line; "Return Reason Code") { } // (16) 理由コード
-            column(ExternalDocumentNo; "ExternaDocumentNo.") { }// (18) 外部伝票番号
+            column(StorageTemprature; "Sales Line".StorageTemprature) { } //  保管温度
+            column(ReturnReasonCode_Line; "Sales Line"."Return Reason Code") { } // (16) 理由コード
+            column(ExternalDocumentNo; "Sales Line"."ExternaDocumentNo.") { }// (18) 外部伝票番号
+        }
+        add(Total)
+        {
+            column(EU_Description; "Sales Line"."EU Description") { } // EU品名
+            column(Description_Bikou; "Sales Line"."Description(Bikou)") { } // 備考
         }
     }
 }

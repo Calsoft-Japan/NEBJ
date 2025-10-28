@@ -9,6 +9,24 @@ pageextension 50112 "Customer List Ext" extends "Customer List"
                 ApplicationArea = All;
                 Caption = '本社コード';
             }
+            field(Address; Address)
+            {
+            }
+        }
+        addafter(Name)
+        {
+            field(County; County)
+            {
+            }
+            field(City; City)
+            {
+            }
+            field("Address 2"; "Address 2")
+            {
+            }
+            field("Name 2"; "Name 2")
+            {
+            }
         }
         addafter("Post Code")
         {
@@ -51,6 +69,8 @@ pageextension 50112 "Customer List Ext" extends "Customer List"
             //Caption = '住所3';
             //}
         }
+    }
+        
         addafter("Shipping Agent Code")
         {
             field("for Sales Information"; Rec."for Sales Information")

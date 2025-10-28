@@ -9,22 +9,22 @@ pageextension 50112 "Customer List Ext" extends "Customer List"
                 ApplicationArea = All;
                 Caption = '本社コード';
             }
-            field(Address; Address)
+            field(Address; Rec.Address)
             {
             }
         }
         addafter(Name)
         {
-            field(County; County)
+            field(County; Rec.County)
             {
             }
-            field(City; City)
+            field(City; Rec.City)
             {
             }
-            field("Address 2"; "Address 2")
+            field("Address 2"; Rec."Address 2")
             {
             }
-            field("Name 2"; "Name 2")
+            field("Name2"; Rec."Name 2")
             {
             }
         }

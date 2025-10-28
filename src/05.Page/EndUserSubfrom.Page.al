@@ -64,6 +64,7 @@ page 50000 "End User Subfrom"
                     QuickEntry = true;
                 }
                 field(Name; Rec.Name) { ApplicationArea = All; }
+                field("Customer Group"; Rec."Customer Group") { ApplicationArea = All; }
                 field("City"; Rec."City") { ApplicationArea = All; }
                 field("Division 1"; Rec."Division 1") { ApplicationArea = All; }
                 field("Division 2"; Rec."Division 2") { ApplicationArea = All; }

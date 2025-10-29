@@ -85,12 +85,7 @@ page 50000 "End User Subfrom"
                 ShortcutKey = 'F3';
                 trigger OnAction()
                 begin
-                    Rec.SetFilter("No.", '*' + CustNo + '*');
-                    Rec.SetFilter(Name, '*' + CustName + '*');
-                    Rec.SetFilter("Division 1", '*' + Division1 + '*');
-                    Rec.SetFilter("Division 2", '*' + Division2 + '*');
-                    Rec.SetFilter("Division 3", '*' + Division3 + '*');
-                    Rec.SetFilter(Blocked, SelectBlock(BlockOption));
+                    ApplyPageFilters();
                 end;
             }
         }
@@ -98,13 +93,7 @@ page 50000 "End User Subfrom"
 
     trigger OnOpenPage()
     begin
-        BlockOption := BlockOption::ExclBlock;
-        Rec.SetFilter("No.", '');
-        Rec.SetFilter(Name, '');
-        Rec.SetFilter("Division 1", '');
-        Rec.SetFilter("Division 2", '');
-        Rec.SetFilter("Division 3", '');
-        Rec.SetFilter(Blocked, SelectBlock(BlockOption));
+        InitializeFilters();
     end;
 
     var
@@ -139,6 +128,29 @@ page 50000 "End User Subfrom"
             BlockValue::ExclOnly:
                 SetValue := ''' ''';
         end;
+    end;
+
+    local procedure ApplyPageFilters()
+    begin
+        Rec.SetFilter("No.", '*' + CustNo + '*');
+        Rec.SetFilter(Name, '*' + CustName + '*');
+        Rec.SetFilter("Customer Group", '*' + CustGroup + '*');
+        Rec.SetFilter("Division 1", '*' + Division1 + '*');
+        Rec.SetFilter("Division 2", '*' + Division2 + '*');
+        Rec.SetFilter("Division 3", '*' + Division3 + '*');
+        Rec.SetFilter(Blocked, SelectBlock(BlockOption));
+    end;
+
+    local procedure InitializeFilters()
+    begin
+        BlockOption := BlockOption::ExclBlock;
+        Rec.SetFilter("No.", '');
+        Rec.SetFilter(Name, '');
+        Rec.SetFilter("Customer Group", '');
+        Rec.SetFilter("Division 1", '');
+        Rec.SetFilter("Division 2", '');
+        Rec.SetFilter("Division 3", '');
+        Rec.SetFilter(Blocked, SelectBlock(BlockOption));
     end;
 }
 

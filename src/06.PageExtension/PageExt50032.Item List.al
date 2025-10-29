@@ -197,11 +197,9 @@ pageextension 50032 "Item List Ext" extends "Item List"
 
         ItemCategoryDescription := '';
         ItemCategory.Reset();
-        with ItemCategory do begin
-            SETRANGE(ItemCategory.Code, Rec."Item Category Code");
-            if FINDSET then
-                ItemCategoryDescription := ItemCategory.Description;
-        end;
+        ItemCategory.SETRANGE(ItemCategory.Code, Rec."Item Category Code");
+        if ItemCategory.FINDSET then
+            ItemCategoryDescription := ItemCategory.Description;
     end;
 
     trigger OnAfterGetRecord()

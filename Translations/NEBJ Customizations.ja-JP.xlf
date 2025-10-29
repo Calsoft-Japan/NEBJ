@@ -3306,7 +3306,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Enum Block Option - EnumValue Ship - Property Caption</note>
         </trans-unit>
         <trans-unit id="Enum 1614408206 - EnumValue 4248816442 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Shiponly</source>
+          <source>ShipOnly</source>
           <target>出荷のみ</target> 
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Enum Block Option - EnumValue Shiponly - Property Caption</note>

@@ -145,11 +145,10 @@ page 50000 "End User Subfrom"
             BlockOption::InvoiceOnly:
                 Rec.SetFilter(Blocked, 'Ship');
             BlockOption::Ship:
-                Rec.SetFilter(Blocked, ''' ''|Ship|Invoice|All');
-            BlockOption::Shiponly:
+                Rec.SetFilter(Blocked, ''' ''|Invoice|');
+            BlockOption::ShipOnly:
                 Rec.SetFilter(Blocked, 'Invoice');
         end;
-        //Rec.SetFilter(Blocked, SetBlockOpt(BlockOption));
     end;
 
     local procedure SetBlockOpt(BlockValue: Enum "Block Option") SetValue: Text

@@ -5,22 +5,22 @@ tableextension 50037 "Sales Line Ext" extends "Sales Line"
         field(50002; "EndUser"; Code[10])
         {
             Caption = 'End User';
-        }
-        field(50007; "EU"; Code[20])
-        {
-            Caption = 'End User';
             trigger OnValidate()
             var
                 Customer: Record Customer;
             begin
-                if Rec.EU <> '' then begin
-                    if Customer.Get(EU) then;
+                if Rec.EndUser <> '' then begin
+                    if Customer.Get(EndUser) then;
                     "EU Description" := Customer.Name;
                     "EU Division 1" := Customer."Division 1";
                     "EU Division 2" := Customer."Division 2";
                     "EU Division 3" := Customer."Division 3";
                 end;
             end;
+        }
+        field(50007; "EU"; Code[20])
+        {
+            Caption = 'End User';
         }
         field(50008; "Description(Bikou)"; Text[200])
         {

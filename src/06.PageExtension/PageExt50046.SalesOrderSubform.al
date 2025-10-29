@@ -4,7 +4,7 @@ pageextension 50046 "Sales Order Subform EXT" extends "Sales Order Subform"
     {
         addafter(ShortcutDimCode8)
         {
-            field(EU; Rec.EU)
+            field(EndUser; Rec.EndUser)
             {
                 ApplicationArea = All;
                 trigger OnLookup(var Text: Text): Boolean

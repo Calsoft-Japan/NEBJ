@@ -86,6 +86,7 @@ page 50000 "End User Subfrom"
                 trigger OnAction()
                 begin
                     ApplyPageFilters();
+                    CurrPage.Update(false);
                 end;
             }
         }
@@ -93,7 +94,7 @@ page 50000 "End User Subfrom"
 
     trigger OnOpenPage()
     begin
-        InitializeFilters();
+        InitPageFilters();
     end;
 
     var
@@ -110,24 +111,18 @@ page 50000 "End User Subfrom"
         SetCustNo := Rec."No.";
     end;
 
-    local procedure SelectBlock(BlockValue: Enum "Block Option") SetValue: Text
+
+
+    local procedure InitPageFilters()
     begin
-        case BlockValue of
-            BlockValue::ExclBlock:
-                SetValue := ''' ''|Ship|Invoice';
-            BlockValue::Ship:
-                SetValue := ''' ''|Invoice';
-            BlockValue::Invoice:
-                SetValue := ''' ''|Ship';
-            BlockValue::InclBlock:
-                SetValue := ''' ''|Ship|Invoice|All';
-            BlockValue::Shiponly:
-                SetValue := 'Invoice';
-            BlockValue::InvoiceOnly:
-                SetValue := 'Ship';
-            BlockValue::ExclOnly:
-                SetValue := ''' ''';
-        end;
+        BlockOption := BlockOption::ExclBlock;
+        Rec.SetFilter("No.", '');
+        Rec.SetFilter(Name, '');
+        Rec.SetFilter("Customer Group", '');
+        Rec.SetFilter("Division 1", '');
+        Rec.SetFilter("Division 2", '');
+        Rec.SetFilter("Division 3", '');
+        Rec.SetFilter(Blocked, SetBlockOpt(BlockOption));
     end;
 
     local procedure ApplyPageFilters()
@@ -138,19 +133,43 @@ page 50000 "End User Subfrom"
         Rec.SetFilter("Division 1", '*' + Division1 + '*');
         Rec.SetFilter("Division 2", '*' + Division2 + '*');
         Rec.SetFilter("Division 3", '*' + Division3 + '*');
-        Rec.SetFilter(Blocked, SelectBlock(BlockOption));
+        case BlockOption of
+            BlockOption::ExclBlock:
+                Rec.SetFilter(Blocked, ''' ''|Ship|Invoice');
+            BlockOption::InclBlock:
+                Rec.SetFilter(Blocked, ''' ''|Ship|Invoice|All');
+            BlockOption::ExclOnly:
+                Rec.SetFilter(Blocked, '');
+            BlockOption::Invoice:
+                Rec.SetFilter(Blocked, ''' ''|Ship');
+            BlockOption::InvoiceOnly:
+                Rec.SetFilter(Blocked, 'Ship');
+            BlockOption::Ship:
+                Rec.SetFilter(Blocked, ''' ''|Ship|Invoice|All');
+            BlockOption::Shiponly:
+                Rec.SetFilter(Blocked, 'Invoice');
+        end;
+        //Rec.SetFilter(Blocked, SetBlockOpt(BlockOption));
     end;
 
-    local procedure InitializeFilters()
+    local procedure SetBlockOpt(BlockValue: Enum "Block Option") SetValue: Text
     begin
-        BlockOption := BlockOption::ExclBlock;
-        Rec.SetFilter("No.", '');
-        Rec.SetFilter(Name, '');
-        Rec.SetFilter("Customer Group", '');
-        Rec.SetFilter("Division 1", '');
-        Rec.SetFilter("Division 2", '');
-        Rec.SetFilter("Division 3", '');
-        Rec.SetFilter(Blocked, SelectBlock(BlockOption));
+        case BlockValue of
+            BlockValue::ExclBlock:
+                SetValue := ''' ''|Ship|Invoice';
+            BlockValue::Ship:
+                SetValue := ''' ''|Invoice|';
+            BlockValue::Invoice:
+                SetValue := ''' ''|Ship';
+            BlockValue::InclBlock:
+                SetValue := ''' ''|Ship|Invoice|All';
+            BlockValue::Shiponly:
+                SetValue := 'Invoice';
+            BlockValue::InvoiceOnly:
+                SetValue := 'Ship';
+            BlockValue::ExclOnly:
+                SetValue := '';
+        end;
     end;
 }
 

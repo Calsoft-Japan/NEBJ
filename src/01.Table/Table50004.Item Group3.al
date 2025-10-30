@@ -1,6 +1,6 @@
-table 50004 "Item Group4"
+table 50004 "Item Group3"
 {
-    Caption = 'アイテムグループ4';
+    Caption = 'アイテムグループ3';
     DataClassification = ToBeClassified;
 
     fields

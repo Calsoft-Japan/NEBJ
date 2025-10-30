@@ -1,9 +1,9 @@
-page 50003 "Item Group2"
+page 50002 "Item Groups1"
 {
-    Caption = 'アイテムグループ2';
+    Caption = 'アイテムグループ1';
     ApplicationArea = All;
     PageType = Card;
-    SourceTable = 50003;
+    SourceTable = 50002;
 
     layout
     {

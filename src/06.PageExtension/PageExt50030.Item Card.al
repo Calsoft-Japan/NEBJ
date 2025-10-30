@@ -232,7 +232,7 @@ pageextension 50030 "Item Card Ext" extends "Item Card"
         }
         addafter("Automatic Ext. Texts")
         {
-            /*
+
             field("ItemGroup1"; Rec."ItemGroup1")
             {
                 ApplicationArea = All;
@@ -245,10 +245,10 @@ pageextension 50030 "Item Card Ext" extends "Item Card"
                 begin
                     //ItemDiscGroupPage.SetGroupNumber(3);
                     ItemGroups1.LOOKUPMODE := true;
-                    ItemGroups1.CAPTION := FIELDCAPTION(ItemGroup1);
+                    //ItemGroups1.CAPTION := FieldCaption(Rec."ItemGroup1");
                     if ItemGroups1.RUNMODAL = ACTION::LookupOK then begin
                         ItemGroups1.GETRECORD(Item_Group1);
-                        "ItemGroup1" := Item_Group1.Code;
+                        Rec."ItemGroup1" := Item_Group1.Code;
                     end;
                 end;
             }
@@ -264,10 +264,10 @@ pageextension 50030 "Item Card Ext" extends "Item Card"
                 begin
                     //ItemDiscGroupPage.SetGroupNumber(3);
                     ItemGroups2.LOOKUPMODE := true;
-                    ItemGroups2.CAPTION := FIELDCAPTION(ItemGroup2);
+                    //ItemGroups2.CAPTION := FIELDCAPTION(ItemGroup2);
                     if ItemGroups2.RUNMODAL = ACTION::LookupOK then begin
                         ItemGroups2.GETRECORD(Item_Group2);
-                        ItemGroup2 := Item_Group2.Code;
+                        Rec.ItemGroup2 := Item_Group2.Code;
                     end;
                 end;
             }
@@ -283,10 +283,10 @@ pageextension 50030 "Item Card Ext" extends "Item Card"
                 begin
                     //ItemDiscGroupPage.SetGroupNumber(3);
                     ItemGroups3.LOOKUPMODE := true;
-                    ItemGroups3.CAPTION := FIELDCAPTION(ItemGroup3);
+                    //ItemGroups3.CAPTION := FIELDCAPTION(ItemGroup3);
                     if ItemGroups3.RUNMODAL = ACTION::LookupOK then begin
                         ItemGroups3.GETRECORD(Item_Group3);
-                        "ItemGroup3" := Item_Group3.Code;
+                        Rec."ItemGroup3" := Item_Group3.Code;
                     end;
                 end;
             }
@@ -309,7 +309,7 @@ pageextension 50030 "Item Card Ext" extends "Item Card"
                     end;
                 end;
             }
-            */
+
 
         }
 

@@ -151,33 +151,25 @@ pageextension 50030 "Item Card Ext" extends "Item Card"
                 ApplicationArea = All;
                 Caption = '消費期限';
             }
-            field(Memo; Rec.Memo)
+            group(MemoGroup)
             {
-                ApplicationArea = All;
                 Caption = 'メモ';
+                field("Memo"; MemoGroup)
+                {
+                    ApplicationArea = Basic, Suite;
+                    Importance = Additional;
+                    MultiLine = true;
+                    ShowCaption = false;
+                    ToolTip = 'この品目に追加したいメモを記載。';
+
+                    trigger OnValidate()
+                    begin
+                        SetMemoGroup(MemoGroup);
+                    end;
+                }
             }
 
         }
-
-        /*Select from dropdown list
-        Modify("item Disc. Group")
-        {
-            trigger OnLookup(var Text: Text): Boolean
-            var
-                ItemDiscGroupPage: Page "Item Disc. Groups";
-                ItemDiscGroup: Record "Item Discount Group";
-            begin
-                ItemDiscGroupPage.SetGroupNumber(1);
-                ItemDiscGroupPage.LOOKUPMODE := true;
-                ItemDiscGroupPage.CAPTION := FIELDCAPTION("Item Disc. Group");
-                if ItemDiscGroupPage.RUNMODAL = ACTION::LookupOK then begin
-                    ItemDiscGroupPage.GETRECORD(ItemDiscGroup);
-                    "Item Disc. Group" := ItemDiscGroup.Code;
-                end;
-            end;
-        }
-        */
-
         addafter("Item Disc. Group")
         {
             field("Item Disc. Group 2"; Rec."Item Disc. Group 2")
@@ -240,7 +232,7 @@ pageextension 50030 "Item Card Ext" extends "Item Card"
         }
         addafter("Automatic Ext. Texts")
         {
-            /*
+
             field("ItemGroup1"; Rec."ItemGroup1")
             {
                 ApplicationArea = All;
@@ -253,10 +245,10 @@ pageextension 50030 "Item Card Ext" extends "Item Card"
                 begin
                     //ItemDiscGroupPage.SetGroupNumber(3);
                     ItemGroups1.LOOKUPMODE := true;
-                    ItemGroups1.CAPTION := FIELDCAPTION(ItemGroup1);
+                    //ItemGroups1.CAPTION := FieldCaption(Rec."ItemGroup1");
                     if ItemGroups1.RUNMODAL = ACTION::LookupOK then begin
                         ItemGroups1.GETRECORD(Item_Group1);
-                        "ItemGroup1" := Item_Group1.Code;
+                        Rec."ItemGroup1" := Item_Group1.Code;
                     end;
                 end;
             }
@@ -272,10 +264,10 @@ pageextension 50030 "Item Card Ext" extends "Item Card"
                 begin
                     //ItemDiscGroupPage.SetGroupNumber(3);
                     ItemGroups2.LOOKUPMODE := true;
-                    ItemGroups2.CAPTION := FIELDCAPTION(ItemGroup2);
+                    //ItemGroups2.CAPTION := FIELDCAPTION(ItemGroup2);
                     if ItemGroups2.RUNMODAL = ACTION::LookupOK then begin
                         ItemGroups2.GETRECORD(Item_Group2);
-                        ItemGroup2 := Item_Group2.Code;
+                        Rec.ItemGroup2 := Item_Group2.Code;
                     end;
                 end;
             }
@@ -291,10 +283,10 @@ pageextension 50030 "Item Card Ext" extends "Item Card"
                 begin
                     //ItemDiscGroupPage.SetGroupNumber(3);
                     ItemGroups3.LOOKUPMODE := true;
-                    ItemGroups3.CAPTION := FIELDCAPTION(ItemGroup3);
+                    //ItemGroups3.CAPTION := FIELDCAPTION(ItemGroup3);
                     if ItemGroups3.RUNMODAL = ACTION::LookupOK then begin
                         ItemGroups3.GETRECORD(Item_Group3);
-                        "ItemGroup3" := Item_Group3.Code;
+                        Rec."ItemGroup3" := Item_Group3.Code;
                     end;
                 end;
             }
@@ -305,40 +297,110 @@ pageextension 50030 "Item Card Ext" extends "Item Card"
 
                 trigger OnLookup(var Text: Text): Boolean
                 var
-                    ItemGroups4: Page "Item Groups4";
-                    Item_Group4: Record "Item Group4";
+                    ItemGroups4: Page "Item Groups3";
+                    Item_Group4: Record "Item Group3";
                 begin
                     //ItemDiscGroupPage.SetGroupNumber(3);
                     ItemGroups4.LOOKUPMODE := true;
-                    ItemGroups4.CAPTION := FIELDCAPTION(ItemGroup4);
+                    //ItemGroups4.CAPTION := FIELDCAPTION(ItemGroup4);
                     if ItemGroups4.RUNMODAL = ACTION::LookupOK then begin
                         ItemGroups4.GETRECORD(Item_Group4);
-                        "ItemGroup4" := Item_Group4.Code;
+                        Rec."ItemGroup4" := Item_Group4.Code;
                     end;
                 end;
             }
-            */
+
 
         }
 
         addbefore("Item Category Code")
         {
-            field(id; ItemCategoryParent)
+            field(ItemCategoryParent; ItemCategoryParent)
             {
                 Caption = '品目分類親コード（表示）';
+                ApplicationArea = All;
                 Editable = false;
             }
         }
+
         modify("Item Category Code")
         {
-            trigger OnAftervalidate()
+            trigger OnAfterValidate()
             var
-                myInt: Integer;
+                ItemCategory: Record "Item Category";
             begin
-                ItemCategoryCodeSearch()
+                // 親カテゴリを検索してセット
+                ItemCategoryParent := '';
+
+                if Rec."Item Category Code" <> '' then begin
+                    if ItemCategory.Get(Rec."Item Category Code") then
+                        ItemCategoryParent := ItemCategory."Parent Category";
+                end;
             end;
         }
+
     }
+
+    // Memo Field
+    var
+        MemoGroup: Text;
+
+    // ページ読み込み時：BLOB からテキストを読み出して MemoGroup にセット
+    trigger OnAfterGetRecord()
+    begin
+        MemoGroup := GetMemoGroup();
+    end;
+
+    // BLOB に文字列を書き込む（保存）
+    procedure SetMemoGroup(NewMemoGroup: Text)
+    var
+        OutStream: OutStream;
+    begin
+        // BLOB を上書き（クリアと同等）
+        Rec."Memo".CreateOutStream(OutStream, TEXTENCODING::UTF8);
+        OutStream.WriteText(NewMemoGroup);
+
+        // レコード保存
+        Rec.Modify();
+    end;
+
+    // BLOB からテキストを読み出して返す
+    procedure GetMemoGroup(): Text
+    var
+        InStream: InStream;
+        TempText: Text;
+    begin
+        TempText := '';
+        // 空の BLOB でも問題なく空文字列が返ります
+        Rec."Memo".CreateInStream(InStream, TEXTENCODING::UTF8);
+        InStream.ReadText(TempText);
+        exit(TempText);
+    end;
+
+
+    //Item Category Parent Code
+    var
+        ItemCategoryParent: Code[20];
+
+    /*Select from dropdown list
+    Modify("item Disc. Group")
+    {
+        trigger OnLookup(var Text: Text): Boolean
+        var
+            ItemDiscGroupPage: Page "Item Disc. Groups";
+            ItemDiscGroup: Record "Item Discount Group";
+        begin
+            ItemDiscGroupPage.SetGroupNumber(1);
+            ItemDiscGroupPage.LOOKUPMODE := true;
+            ItemDiscGroupPage.CAPTION := FIELDCAPTION("Item Disc. Group");
+            if ItemDiscGroupPage.RUNMODAL = ACTION::LookupOK then begin
+                ItemDiscGroupPage.GETRECORD(ItemDiscGroup);
+                "Item Disc. Group" := ItemDiscGroup.Code;
+            end;
+        end;
+    }
+    */
+
     /*
    actions
    {
@@ -423,29 +485,8 @@ pageextension 50030 "Item Card Ext" extends "Item Card"
            }
 
        }
-
-   }
-   */
-    var
-        ItemCategoryParent: code[20];
-
-    local procedure ItemCategoryCodeSearch()
-    var
-        itemCategory: Record "Item Category";
-    begin
-        itemCategory.SetRange(code, Rec."Item Category Code");
-
-        if itemCategory.Findfirst() then begin
-            ItemCategoryParent := itemCategory."Parent Category";
-        end else BEGIN
-            ItemCategoryParent := '';
-        END;
-    end;
-
-    trigger OnAfterGetRecord()
-    begin
-        ItemCategoryCodeSearch();
-    end;
+        */
 
 }
+
 

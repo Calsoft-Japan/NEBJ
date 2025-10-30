@@ -85,8 +85,23 @@ page 50000 "End User Subfrom"
                 Image = Find;
                 ShortcutKey = 'F3';
                 trigger OnAction()
+                var
+                    Cust: Record Customer;
+                    BlockFilter: Text;
                 begin
-                    ApplyPageFilters();
+                    if not Cust.Get(CustNo) then begin
+                        Rec.Reset();
+                        Rec.SetFilter("No.", '*' + CustNo + '*');
+                        Rec.SetFilter(Name, '*' + CustName + '*');
+                        Rec.SetFilter("Customer Group", '*' + CustGroup + '*');
+                        Rec.SetFilter("Division 1", '*' + Division1 + '*');
+                        Rec.SetFilter("Division 2", '*' + Division2 + '*');
+                        Rec.SetFilter("Division 3", '*' + Division3 + '*');
+                        Rec.SetFilter(Blocked, GetBlockOption(BlockOption));
+                    end else begin
+                        Rec.Reset();
+                        Rec.SetFilter("No.", '*' + CustNo + '*');
+                    end;
                 end;
             }
         }
@@ -140,6 +155,8 @@ page 50000 "End User Subfrom"
     end;
 
     local procedure ApplyPageFilters()
+    var
+        CustBlocked: Enum "Customer Blocked";
     begin
         Rec.Reset();
         Rec.SetFilter("No.", '*' + CustNo + '*');
@@ -158,12 +175,32 @@ page 50000 "End User Subfrom"
             BlockOption::Ship:
                 Rec.SetFilter(Blocked, ''' ''|Invoice');
             BlockOption::ShipOnly:
-                //Rec.SetFilter(Blocked, 'Invoice');
-                Rec.SetRange(Blocked, Rec.Blocked::Invoice);
+                //Rec.SetFilter(Blocked, '|Invoice');
+                Rec.SetRange(Blocked, CustBlocked::Invoice);
             BlockOption::Invoice:
                 Rec.SetFilter(Blocked, ''' ''|Ship');
             BlockOption::InvoiceOnly:
-                Rec.SetFilter(Blocked, 'Ship');
+                Rec.SetFilter(Blocked, '|Ship');
+        end;
+    end;
+
+    local procedure GetBlockOption(pBlockOpt: Enum "Block Option") BlockFilter: Text
+    begin
+        case pBlockOpt of
+            pBlockOpt::ExclOnly:
+                BlockFilter := ''' ''';
+            pBlockOpt::ExclBlock:
+                BlockFilter := ''' ''|Ship|Invoice';
+            pBlockOpt::InclBlock:
+                BlockFilter := ''' ''|Ship|Invoice|All';
+            pBlockOpt::Ship:
+                BlockFilter := ''' ''|Invoice';
+            pBlockOpt::ShipOnly:
+                BlockFilter := 'Invoice';
+            pBlockOpt::Invoice:
+                BlockFilter := ''' ''|Ship';
+            pBlockOpt::InvoiceOnly:
+                BlockFilter := 'Ship';
         end;
     end;
 }

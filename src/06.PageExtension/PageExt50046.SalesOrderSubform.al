@@ -13,7 +13,7 @@ pageextension 50046 "Sales Order Subform EXT" extends "Sales Order Subform"
                 begin
                     Clear(EndUserSubform);
                     EndUserSubform.LookupMode(true);
-                    if not (EndUserSubform.RunModal() = Action::OK) then
+                    if not (EndUserSubform.RunModal() = Action::LookupOK) then
                         exit(false)
                     else
                         Text := EndUserSubform.GetCurrentRecNo;

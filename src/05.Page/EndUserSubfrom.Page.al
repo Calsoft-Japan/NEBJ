@@ -2,7 +2,7 @@ page 50000 "End User Subfrom"
 {
     ApplicationArea = All;
     Caption = 'End User Subform';
-    PageType = Card;
+    PageType = Worksheet;
     SourceTable = Customer;
 
     layout
@@ -11,7 +11,8 @@ page 50000 "End User Subfrom"
         {
             group(General)
             {
-                Caption = 'General';
+                //Caption = 'General';
+                ShowCaption = false;
                 field(CustNo; CustNo)
                 {
                     ApplicationArea = All;
@@ -89,7 +90,6 @@ page 50000 "End User Subfrom"
                     Cust: Record Customer;
                     SetFilter: Text;
                 begin
-                    //ApplyPageFilters();
                     if not Cust.Get(CustNo) then begin
                         Rec.Reset();
                         Rec.SetFilter(Blocked, GetBlockOption(BlockOption));

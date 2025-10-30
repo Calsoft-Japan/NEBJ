@@ -151,13 +151,43 @@ pageextension 50030 "Item Card Ext" extends "Item Card"
                 ApplicationArea = All;
                 Caption = '消費期限';
             }
-            field(Memo; Rec.Memo)
+            group(MemoGroup)
             {
-                ApplicationArea = All;
                 Caption = 'メモ';
+                field("Memo"; MemoGroup)
+                {
+                    ApplicationArea = Basic, Suite;
+                    Importance = Additional;
+                    MultiLine = true;
+                    ShowCaption = false;
+                    ToolTip = 'この品目に追加したいメモを記載。';
+
+                    trigger OnValidate()
+                    begin
+                        SetMemoGroup(MemoGroup);
+                    end;
+                }
             }
 
         }
+
+    var
+        MemoGroup: Text;
+
+    trigger OnAfterGetRecord()
+    begin
+        MemoGroup := GetMemoGroup();
+    end;
+
+    procedure SetMemoGroup(NewMemoGroup: Text)
+    var
+        OutStream: OutStream;
+    begin
+        Clear(Rec."Memo");
+        Rec."Memo".CreateOutStream(OutStream, TEXTENCODING::UTF8);
+        OutStream.WriteText(NewMemoGroup);
+        Rec.Modify();
+    end;
 
         /*Select from dropdown list
         Modify("item Disc. Group")
@@ -338,7 +368,8 @@ pageextension 50030 "Item Card Ext" extends "Item Card"
                 ItemCategoryCodeSearch()
             end;
         }
-    }
+
+
     /*
    actions
    {
@@ -447,5 +478,7 @@ pageextension 50030 "Item Card Ext" extends "Item Card"
         ItemCategoryCodeSearch();
     end;
 
+
 }
+
 

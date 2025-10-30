@@ -1,9 +1,9 @@
-page 50001 "Customer Type List"
+page 50004 "Item Group4"
 {
-    Caption = '顧客区分';
+    Caption = 'アイテムグループ4';
     ApplicationArea = All;
     PageType = Card;
-    SourceTable = 50001;
+    SourceTable = 50004;
 
     layout
     {
@@ -13,18 +13,16 @@ page 50001 "Customer Type List"
             {
                 field(Code; Rec."Code")
                 {
+                    ApplicationArea = All;
                 }
-                field("Customer Type Name"; Rec."Customer Type Name")
+                field("Description"; Rec."Description")
                 {
-                }
-                field("Caption"; Rec."Caption")
-                {
+                    ApplicationArea = All;
+
                 }
             }
         }
-    }
-    actions
-    {
+
     }
 }
 

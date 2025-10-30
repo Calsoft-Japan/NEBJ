@@ -72,7 +72,7 @@ tableextension 50027 "Item Ext" extends Item
         field(50053; "AdditionalInformation9"; Text[100]) { }
         field(50054; "AdditionalInformation10"; Text[100]) { }
         field(50055; "Okurijo Nittsu"; Boolean) { }
-        field(50056; "Memo"; Blob) { }
+        field(50056; "Memo"; BLOB) { }
     }
 }
 

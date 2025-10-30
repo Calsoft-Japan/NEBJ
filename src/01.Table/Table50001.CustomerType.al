@@ -1,4 +1,4 @@
-table 50039 "Customer Type"
+table 50001 "Customer Type"
 {
     Caption = 'Customer Type';
     DataClassification = ToBeClassified;

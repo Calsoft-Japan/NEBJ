@@ -297,15 +297,15 @@ pageextension 50030 "Item Card Ext" extends "Item Card"
 
                 trigger OnLookup(var Text: Text): Boolean
                 var
-                    ItemGroups4: Page "Item Groups4";
-                    Item_Group4: Record "Item Group4";
+                    ItemGroups4: Page "Item Groups3";
+                    Item_Group4: Record "Item Group3";
                 begin
                     //ItemDiscGroupPage.SetGroupNumber(3);
                     ItemGroups4.LOOKUPMODE := true;
-                    ItemGroups4.CAPTION := FIELDCAPTION(ItemGroup4);
+                    //ItemGroups4.CAPTION := FIELDCAPTION(ItemGroup4);
                     if ItemGroups4.RUNMODAL = ACTION::LookupOK then begin
                         ItemGroups4.GETRECORD(Item_Group4);
-                        "ItemGroup4" := Item_Group4.Code;
+                        Rec."ItemGroup4" := Item_Group4.Code;
                     end;
                 end;
             }

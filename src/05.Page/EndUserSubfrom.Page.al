@@ -126,28 +126,30 @@ page 50000 "End User Subfrom"
 
     local procedure ApplyPageFilters()
     begin
-        Rec.SetFilter("No.", '*' + CustNo + '*');
-        Rec.SetFilter(Name, '*' + CustName + '*');
-        Rec.SetFilter("Customer Group", '*' + CustGroup + '*');
-        Rec.SetFilter("Division 1", '*' + Division1 + '*');
-        Rec.SetFilter("Division 2", '*' + Division2 + '*');
-        Rec.SetFilter("Division 3", '*' + Division3 + '*');
-        //Rec.SetFilter(Blocked, SetBlockOpt(BlockOption.AsInteger()));
-        case BlockOption of
-            BlockOption::ExclOnly:
-                Rec.SetFilter(Blocked, ''' ''');
-            BlockOption::ExclBlock:
-                Rec.SetFilter(Blocked, ''' ''|Ship|Invoice');
-            BlockOption::InclBlock:
-                Rec.SetFilter(Blocked, ''' ''|Ship|Invoice|All');
-            BlockOption::Ship:
-                Rec.SetFilter(Blocked, ''' ''|Invoice');
-            BlockOption::ShipOnly:
-                Rec.SetFilter(Blocked, 'Invoice');
-            BlockOption::Invoice:
-                Rec.SetFilter(Blocked, ''' ''|Ship');
-            BlockOption::InvoiceOnly:
-                Rec.SetFilter(Blocked, 'Ship');
+        if CustNo = '' then begin
+            Rec.SetFilter("No.", '*' + CustNo + '*');
+            Rec.SetFilter(Name, '*' + CustName + '*');
+            Rec.SetFilter("Customer Group", '*' + CustGroup + '*');
+            Rec.SetFilter("Division 1", '*' + Division1 + '*');
+            Rec.SetFilter("Division 2", '*' + Division2 + '*');
+            Rec.SetFilter("Division 3", '*' + Division3 + '*');
+            //Rec.SetFilter(Blocked, SetBlockOpt(BlockOption.AsInteger()));
+            case BlockOption of
+                BlockOption::ExclOnly:
+                    Rec.SetFilter(Blocked, ''' ''');
+                BlockOption::ExclBlock:
+                    Rec.SetFilter(Blocked, ''' ''|Ship|Invoice');
+                BlockOption::InclBlock:
+                    Rec.SetFilter(Blocked, ''' ''|Ship|Invoice|All');
+                BlockOption::Ship:
+                    Rec.SetFilter(Blocked, ''' ''|Invoice');
+                BlockOption::ShipOnly:
+                    Rec.SetFilter(Blocked, 'Invoice');
+                BlockOption::Invoice:
+                    Rec.SetFilter(Blocked, ''' ''|Ship');
+                BlockOption::InvoiceOnly:
+                    Rec.SetFilter(Blocked, 'Ship');
+            end;
         end;
     end;
 

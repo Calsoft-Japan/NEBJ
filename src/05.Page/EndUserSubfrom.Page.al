@@ -88,21 +88,20 @@ page 50000 "End User Subfrom"
                 trigger OnAction()
                 var
                     Cust: Record Customer;
-                    SetFilter: Text;
                 begin
-                    if not Cust.Get(CustNo) then begin
-                        Rec.Reset();
-                        Rec.SetFilter(Blocked, GetBlockOption(BlockOption));
-                        Rec.SetFilter("No.", '*' + CustNo + '*');
-                        Rec.SetFilter(Name, '*' + CustName + '*');
-                        Rec.SetFilter("Customer Group", '*' + CustGroup + '*');
-                        Rec.SetFilter("Division 1", '*' + Division1 + '*');
-                        Rec.SetFilter("Division 2", '*' + Division2 + '*');
-                        Rec.SetFilter("Division 3", '*' + Division3 + '*');
-                    end else begin
-                        Rec.Reset();
-                        Rec.SetFilter("No.", '*' + CustNo + '*');
-                    end;
+                    //if not Cust.Get(CustNo) then begin
+                    Rec.Reset();
+                    Rec.SetFilter(Blocked, GetBlockOption(BlockOption));
+                    Rec.SetFilter("No.", '*' + CustNo + '*');
+                    Rec.SetFilter(Name, '*' + CustName + '*');
+                    Rec.SetFilter("Customer Group", '*' + CustGroup + '*');
+                    Rec.SetFilter("Division 1", '*' + Division1 + '*');
+                    Rec.SetFilter("Division 2", '*' + Division2 + '*');
+                    Rec.SetFilter("Division 3", '*' + Division3 + '*');
+                    //end else begin
+                    //Rec.Reset();
+                    //Rec.SetFilter("No.", '*' + CustNo + '*');
+                    //end;
                 end;
             }
         }

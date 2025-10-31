@@ -5,7 +5,10 @@ table 50000 "Sales Inquiry Line"
 
     fields
     {
-        field(1; "Document Type"; Option) { OptionMembers = Quote,Order,Invoice,"Credit Memo","Blanket Order","Return Order"; }
+        field(1; "Document Type"; Option)
+        {
+            OptionMembers = Quote,Order,Invoice,"Credit Memo","Blanket Order","Return Order";
+        }
         field(2; "Document No."; Code[20]) { }
         field(3; "Line No."; Integer) { }
         field(4; "Sell-to Customer No."; Code[20]) { }

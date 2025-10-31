@@ -24,8 +24,6 @@
       <rd:DataSourceID>751f281c-92c0-4af5-ac1c-be51bbaa2f68</rd:DataSourceID>
     </DataSource>
   </DataSources>
-<<<<<<< HEAD
-=======
   <DataSets>
     <DataSet Name="DataSet_Result">
       <Query>
@@ -600,7 +598,6 @@
       </Fields>
     </DataSet>
   </DataSets>
->>>>>>> 48f33b40bf92ddde71d82e4e55bd4c62d358b7eb
   <ReportSections>
     <ReportSection>
       <Body>
@@ -1700,24 +1697,18 @@
                                 <Paragraph>
                                   <TextRuns>
                                     <TextRun>
-<<<<<<< HEAD
                                       <Value>=Fields!ReturnReasonCode_Line.Value</Value>
-=======
                                       <Value>=IIF(
   IsNothing(Fields!ReturnReasonDesc_Line.Value) OR Fields!ReturnReasonDesc_Line.Value = "",  Fields!ReturnReasonCode_Line.Value, Fields!ReturnReasonCode_Line.Value &amp; " " &amp; Fields!ReturnReasonDesc_Line.Value  
 )</Value>
->>>>>>> 48f33b40bf92ddde71d82e4e55bd4c62d358b7eb
                                       <Style>
                                         <FontFamily>MS UI Gothic</FontFamily>
                                       </Style>
                                     </TextRun>
                                   </TextRuns>
                                   <Style>
-<<<<<<< HEAD
                                     <TextAlign>Center</TextAlign>
-=======
                                     <TextAlign>Right</TextAlign>
->>>>>>> 48f33b40bf92ddde71d82e4e55bd4c62d358b7eb
                                   </Style>
                                 </Paragraph>
                               </Paragraphs>
@@ -1769,13 +1760,11 @@
                       </TablixCells>
                     </TablixRow>
                     <TablixRow>
-<<<<<<< HEAD
                       <Height>0.6cm</Height>
                       <TablixCells>
                         <TablixCell>
                           <CellContents>
                             <Textbox Name="Textbox74">
-=======
                       <Height>0.56109cm</Height>
                       <TablixCells>
                         <TablixCell>
@@ -1813,7 +1802,6 @@
                           <CellContents>
                             <Textbox Name="Textbox88">
                               <rd:DefaultName>Textbox88</rd:DefaultName>
->>>>>>> 48f33b40bf92ddde71d82e4e55bd4c62d358b7eb
                               <CanGrow>true</CanGrow>
                               <KeepTogether>true</KeepTogether>
                               <Paragraphs>
@@ -1829,10 +1817,7 @@
                                   <Style />
                                 </Paragraph>
                               </Paragraphs>
-<<<<<<< HEAD
                               <rd:DefaultName>Textbox74</rd:DefaultName>
-=======
->>>>>>> 48f33b40bf92ddde71d82e4e55bd4c62d358b7eb
                               <Style>
                                 <Border>
                                   <Style>None</Style>
@@ -1847,21 +1832,16 @@
                         </TablixCell>
                         <TablixCell>
                           <CellContents>
-<<<<<<< HEAD
                             <Textbox Name="Textbox216">
-=======
                             <Textbox Name="Textbox35">
                               <rd:DefaultName>Textbox35</rd:DefaultName>
->>>>>>> 48f33b40bf92ddde71d82e4e55bd4c62d358b7eb
                               <CanGrow>true</CanGrow>
                               <KeepTogether>true</KeepTogether>
                               <Paragraphs>
                                 <Paragraph>
                                   <TextRuns>
                                     <TextRun>
-<<<<<<< HEAD
                                       <Value>="保管温度：" + Fields!StorageTemprature.Value</Value>
-=======
                                       <Value />
                                       <Style>
                                         <FontFamily>MS UI Gothic</FontFamily>
@@ -2463,7 +2443,6 @@
                                   <TextRuns>
                                     <TextRun>
                                       <Value />
->>>>>>> 48f33b40bf92ddde71d82e4e55bd4c62d358b7eb
                                       <Style>
                                         <FontFamily>MS UI Gothic</FontFamily>
                                       </Style>
@@ -2486,19 +2465,15 @@
                         </TablixCell>
                         <TablixCell>
                           <CellContents>
-<<<<<<< HEAD
                             <Textbox Name="Textbox76">
-=======
                             <Textbox Name="Textbox14">
                               <rd:DefaultName>Textbox14</rd:DefaultName>
->>>>>>> 48f33b40bf92ddde71d82e4e55bd4c62d358b7eb
                               <CanGrow>true</CanGrow>
                               <KeepTogether>true</KeepTogether>
                               <Paragraphs>
                                 <Paragraph>
                                   <TextRuns>
                                     <TextRun>
-<<<<<<< HEAD
                                       <Value />
                                       <Style>
                                         <FontFamily>MS UI Gothic</FontFamily>
@@ -2792,9 +2767,7 @@
                                   <TextRuns>
                                     <TextRun>
                                       <Value>=Fields!EU_Description.Value</Value>
-=======
                                       <Value>="保管温度：" &amp; Fields!StorageTemprature.Value &amp; " " &amp; Fields!Desc_SalesLine.Value &amp; " " &amp; Fields!Desc_SalesLine.Value &amp; " " &amp; Fields!Description_Bikou.Value</Value>
->>>>>>> 48f33b40bf92ddde71d82e4e55bd4c62d358b7eb
                                       <Style>
                                         <FontFamily>MS UI Gothic</FontFamily>
                                       </Style>
@@ -2817,12 +2790,9 @@
                         </TablixCell>
                         <TablixCell>
                           <CellContents>
-<<<<<<< HEAD
                             <Textbox Name="Textbox66">
-=======
                             <Textbox Name="Textbox16">
                               <rd:DefaultName>Textbox16</rd:DefaultName>
->>>>>>> 48f33b40bf92ddde71d82e4e55bd4c62d358b7eb
                               <CanGrow>true</CanGrow>
                               <KeepTogether>true</KeepTogether>
                               <Paragraphs>
@@ -2830,7 +2800,6 @@
                                   <TextRuns>
                                     <TextRun>
                                       <Value />
-<<<<<<< HEAD
                                       <Style>
                                         <FontFamily>MS UI Gothic</FontFamily>
                                       </Style>
@@ -3123,8 +3092,6 @@
                                   <TextRuns>
                                     <TextRun>
                                       <Value>=Fields!Description_Bikou.Value</Value>
-=======
->>>>>>> 48f33b40bf92ddde71d82e4e55bd4c62d358b7eb
                                       <Style>
                                         <FontFamily>MS UI Gothic</FontFamily>
                                       </Style>
@@ -3149,12 +3116,9 @@
                         </TablixCell>
                         <TablixCell>
                           <CellContents>
-<<<<<<< HEAD
                             <Textbox Name="Textbox44">
-=======
                             <Textbox Name="Textbox18">
                               <rd:DefaultName>Textbox18</rd:DefaultName>
->>>>>>> 48f33b40bf92ddde71d82e4e55bd4c62d358b7eb
                               <CanGrow>true</CanGrow>
                               <KeepTogether>true</KeepTogether>
                               <Paragraphs>
@@ -3172,10 +3136,7 @@
                                   </Style>
                                 </Paragraph>
                               </Paragraphs>
-<<<<<<< HEAD
                               <rd:DefaultName>Textbox44</rd:DefaultName>
-=======
->>>>>>> 48f33b40bf92ddde71d82e4e55bd4c62d358b7eb
                               <Style>
                                 <Border>
                                   <Style>None</Style>
@@ -3190,12 +3151,9 @@
                         </TablixCell>
                         <TablixCell>
                           <CellContents>
-<<<<<<< HEAD
                             <Textbox Name="Textbox45">
-=======
                             <Textbox Name="Textbox20">
                               <rd:DefaultName>Textbox20</rd:DefaultName>
->>>>>>> 48f33b40bf92ddde71d82e4e55bd4c62d358b7eb
                               <CanGrow>true</CanGrow>
                               <KeepTogether>true</KeepTogether>
                               <Paragraphs>
@@ -3213,10 +3171,7 @@
                                   </Style>
                                 </Paragraph>
                               </Paragraphs>
-<<<<<<< HEAD
                               <rd:DefaultName>Textbox45</rd:DefaultName>
-=======
->>>>>>> 48f33b40bf92ddde71d82e4e55bd4c62d358b7eb
                               <Style>
                                 <Border>
                                   <Style>None</Style>
@@ -3231,12 +3186,9 @@
                         </TablixCell>
                         <TablixCell>
                           <CellContents>
-<<<<<<< HEAD
                             <Textbox Name="Textbox46">
-=======
                             <Textbox Name="Textbox24">
                               <rd:DefaultName>Textbox24</rd:DefaultName>
->>>>>>> 48f33b40bf92ddde71d82e4e55bd4c62d358b7eb
                               <CanGrow>true</CanGrow>
                               <KeepTogether>true</KeepTogether>
                               <Paragraphs>
@@ -3254,10 +3206,7 @@
                                   </Style>
                                 </Paragraph>
                               </Paragraphs>
-<<<<<<< HEAD
                               <rd:DefaultName>Textbox46</rd:DefaultName>
-=======
->>>>>>> 48f33b40bf92ddde71d82e4e55bd4c62d358b7eb
                               <Style>
                                 <Border>
                                   <Style>None</Style>
@@ -3272,12 +3221,9 @@
                         </TablixCell>
                         <TablixCell>
                           <CellContents>
-<<<<<<< HEAD
                             <Textbox Name="Textbox47">
-=======
                             <Textbox Name="Textbox26">
                               <rd:DefaultName>Textbox26</rd:DefaultName>
->>>>>>> 48f33b40bf92ddde71d82e4e55bd4c62d358b7eb
                               <CanGrow>true</CanGrow>
                               <KeepTogether>true</KeepTogether>
                               <Paragraphs>
@@ -3295,10 +3241,7 @@
                                   </Style>
                                 </Paragraph>
                               </Paragraphs>
-<<<<<<< HEAD
                               <rd:DefaultName>Textbox47</rd:DefaultName>
-=======
->>>>>>> 48f33b40bf92ddde71d82e4e55bd4c62d358b7eb
                               <Style>
                                 <Border>
                                   <Style>None</Style>
@@ -3313,12 +3256,9 @@
                         </TablixCell>
                         <TablixCell>
                           <CellContents>
-<<<<<<< HEAD
                             <Textbox Name="Textbox48">
-=======
                             <Textbox Name="Textbox28">
                               <rd:DefaultName>Textbox28</rd:DefaultName>
->>>>>>> 48f33b40bf92ddde71d82e4e55bd4c62d358b7eb
                               <CanGrow>true</CanGrow>
                               <KeepTogether>true</KeepTogether>
                               <Paragraphs>
@@ -3336,10 +3276,7 @@
                                   </Style>
                                 </Paragraph>
                               </Paragraphs>
-<<<<<<< HEAD
                               <rd:DefaultName>Textbox48</rd:DefaultName>
-=======
->>>>>>> 48f33b40bf92ddde71d82e4e55bd4c62d358b7eb
                               <Style>
                                 <Border>
                                   <Style>None</Style>
@@ -3354,12 +3291,9 @@
                         </TablixCell>
                         <TablixCell>
                           <CellContents>
-<<<<<<< HEAD
                             <Textbox Name="Textbox50">
-=======
                             <Textbox Name="Textbox30">
                               <rd:DefaultName>Textbox30</rd:DefaultName>
->>>>>>> 48f33b40bf92ddde71d82e4e55bd4c62d358b7eb
                               <CanGrow>true</CanGrow>
                               <KeepTogether>true</KeepTogether>
                               <Paragraphs>
@@ -3377,10 +3311,7 @@
                                   </Style>
                                 </Paragraph>
                               </Paragraphs>
-<<<<<<< HEAD
                               <rd:DefaultName>Textbox50</rd:DefaultName>
-=======
->>>>>>> 48f33b40bf92ddde71d82e4e55bd4c62d358b7eb
                               <Style>
                                 <Border>
                                   <Style>None</Style>
@@ -3395,12 +3326,9 @@
                         </TablixCell>
                         <TablixCell>
                           <CellContents>
-<<<<<<< HEAD
                             <Textbox Name="Textbox51">
-=======
                             <Textbox Name="Textbox32">
                               <rd:DefaultName>Textbox32</rd:DefaultName>
->>>>>>> 48f33b40bf92ddde71d82e4e55bd4c62d358b7eb
                               <CanGrow>true</CanGrow>
                               <KeepTogether>true</KeepTogether>
                               <Paragraphs>
@@ -3418,7 +3346,6 @@
                                   </Style>
                                 </Paragraph>
                               </Paragraphs>
-<<<<<<< HEAD
                               <rd:DefaultName>Textbox51</rd:DefaultName>
                               <Style>
                                 <Border>
@@ -3451,8 +3378,6 @@
                                 </Paragraph>
                               </Paragraphs>
                               <rd:DefaultName>Textbox52</rd:DefaultName>
-=======
->>>>>>> 48f33b40bf92ddde71d82e4e55bd4c62d358b7eb
                               <Style>
                                 <Border>
                                   <Style>None</Style>
@@ -3488,7 +3413,6 @@
                     <TablixMember />
                     <TablixMember>
                       <Group Name="Details" />
-<<<<<<< HEAD
                       <SortExpressions>
                         <SortExpression>
                           <Value>=Fields!No_SalesHdr.Value</Value>
@@ -3516,7 +3440,6 @@
                           </Visibility>
                         </TablixMember>
                       </TablixMembers>
-=======
                       <TablixMembers>
                         <TablixMember />
                         <TablixMember />
@@ -3526,23 +3449,19 @@
                       <Visibility>
                         <Hidden>=iif(Fields!TypeInt.Value&gt;0,false,true)</Hidden>
                       </Visibility>
->>>>>>> 48f33b40bf92ddde71d82e4e55bd4c62d358b7eb
                     </TablixMember>
                   </TablixMembers>
                 </TablixRowHierarchy>
                 <RepeatRowHeaders>true</RepeatRowHeaders>
                 <DataSetName>DataSet_Result</DataSetName>
-<<<<<<< HEAD
                 <Top>5.35216cm</Top>
                 <Left>0.45979cm</Left>
                 <Height>3.33849cm</Height>
                 <Width>26.02131cm</Width>
-=======
                 <Top>5.2816cm</Top>
                 <Left>0.44554cm</Left>
                 <Height>3.25084cm</Height>
                 <Width>25.97589cm</Width>
->>>>>>> 48f33b40bf92ddde71d82e4e55bd4c62d358b7eb
                 <ZIndex>12</ZIndex>
                 <Style>
                   <Border>
@@ -3573,14 +3492,11 @@
                     </Style>
                   </Paragraph>
                 </Paragraphs>
-<<<<<<< HEAD
                 <rd:DefaultName>Textbox211</rd:DefaultName>
                 <Top>8.8172cm</Top>
                 <Left>9.56004cm</Left>
-=======
                 <Top>8.77939cm</Top>
                 <Left>8.69329cm</Left>
->>>>>>> 48f33b40bf92ddde71d82e4e55bd4c62d358b7eb
                 <Height>0.6cm</Height>
                 <Width>2.77516cm</Width>
                 <ZIndex>13</ZIndex>
@@ -3614,14 +3530,11 @@
                     </Style>
                   </Paragraph>
                 </Paragraphs>
-<<<<<<< HEAD
                 <rd:DefaultName>Textbox212</rd:DefaultName>
                 <Top>8.8172cm</Top>
                 <Left>12.40576cm</Left>
-=======
                 <Top>8.77939cm</Top>
                 <Left>11.53901cm</Left>
->>>>>>> 48f33b40bf92ddde71d82e4e55bd4c62d358b7eb
                 <Height>0.6cm</Height>
                 <Width>3.03622cm</Width>
                 <ZIndex>14</ZIndex>
@@ -3673,13 +3586,10 @@
                 </Style>
               </Textbox>
               <Line Name="Line1">
-<<<<<<< HEAD
                 <Top>8.80687cm</Top>
                 <Left>0.43564cm</Left>
-=======
                 <Top>8.603cm</Top>
                 <Left>0.37593cm</Left>
->>>>>>> 48f33b40bf92ddde71d82e4e55bd4c62d358b7eb
                 <Height>0cm</Height>
                 <Width>26.04551cm</Width>
                 <ZIndex>16</ZIndex>
@@ -3693,13 +3603,10 @@
             <KeepTogether>true</KeepTogether>
             <OmitBorderOnPageBreak>true</OmitBorderOnPageBreak>
             <Top>0.41447cm</Top>
-<<<<<<< HEAD
             <Height>9.4172cm</Height>
             <Width>26.78506cm</Width>
-=======
             <Height>10.67551cm</Height>
             <Width>26.47886cm</Width>
->>>>>>> 48f33b40bf92ddde71d82e4e55bd4c62d358b7eb
             <Style>
               <Border>
                 <Style>None</Style>
@@ -3707,21 +3614,15 @@
             </Style>
           </Rectangle>
         </ReportItems>
-<<<<<<< HEAD
         <Height>9.85813cm</Height>
-=======
         <Height>11.27342cm</Height>
->>>>>>> 48f33b40bf92ddde71d82e4e55bd4c62d358b7eb
         <Style>
           <FontFamily>Segoe UI</FontFamily>
           <FontSize>8pt</FontSize>
         </Style>
       </Body>
-<<<<<<< HEAD
       <Width>26.78506cm</Width>
-=======
       <Width>26.98919cm</Width>
->>>>>>> 48f33b40bf92ddde71d82e4e55bd4c62d358b7eb
       <Page>
         <PageHeader>
           <Height>2.24253cm</Height>
@@ -4013,7 +3914,6 @@ End Function
 </Code>
   <Language>=User!Language</Language>
   <ConsumeContainerWhitespace>true</ConsumeContainerWhitespace>
-<<<<<<< HEAD
   <rd:ReportUnitType>Cm</rd:ReportUnitType>
   <rd:ReportID>f0d83fdf-51ec-46c7-8f7f-6a3413aae661</rd:ReportID>
   <DataSets>
@@ -4593,6 +4493,4 @@ End Function
       </Query>
     </DataSet>
   </DataSets>
-=======
->>>>>>> 48f33b40bf92ddde71d82e4e55bd4c62d358b7eb
 </Report>

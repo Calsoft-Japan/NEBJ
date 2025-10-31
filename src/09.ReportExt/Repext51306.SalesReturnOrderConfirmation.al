@@ -1,7 +1,7 @@
 reportextension 56631 "SalesReturnOrdConfirmation Ext" extends "Return Order Confirmation"
 
 {
-    RDLCLayout = 'src\10.ReportLayout\SalesReturnOrderConfirmation_NEBJ.rdlc';
+    //RDLCLayout = 'src\10.ReportLayout\SalesReturnOrderConfirmation_NEBJ.rdlc';
 
     dataset
     {
@@ -52,7 +52,7 @@ reportextension 56631 "SalesReturnOrdConfirmation Ext" extends "Return Order Con
         }
     }
     var
-        ReturnReason: Record "Return Reason"; // Correct table (6635)
+        ReturnReason: Record "Return Reason";
         ReturnReasonDescTxt: Text[250];
 
     local procedure FillReturnReasonDescOnly()

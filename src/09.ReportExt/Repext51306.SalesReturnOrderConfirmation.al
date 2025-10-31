@@ -47,7 +47,32 @@ reportextension 56631 "SalesReturnOrdConfirmation Ext" extends "Return Order Con
             column(ReturnReasonCode_Line; "Sales Line"."Return Reason Code") { } // (16) 理由コード
             column(ExternalDocumentNo; "Sales Line"."ExternaDocumentNo.") { }// (18) 外部伝票番号
             column(EU_Description; "Sales Line"."EU Description") { } // EU品名
-            column(Description_Bikou; "Sales Line"."Description(Bikou)") { } // 備考
+            column(Description_Bikou; "Sales Line"."Description(Bikou)") { } // 備考 
+            column(ReturnReasonDesc_Line; ReturnReasonDescTxt) { }// 理由説明文  
+        }
+
+        modify(RoundLoop)
+        {
+            trigger OnAfterAfterGetRecord()
+            begin
+                FillReturnReasonDescOnly();
+            end;
         }
     }
+    var
+        ReturnReason: Record "Return Reason"; // Correct table (6635)
+        ReturnReasonDescTxt: Text[250];
+
+    local procedure FillReturnReasonDescOnly()
+    begin
+        Clear(ReturnReasonDescTxt);
+
+        if "Sales Line"."Return Reason Code" = '' then
+            exit;
+
+        if ReturnReason.Get("Sales Line"."Return Reason Code") then
+            ReturnReasonDescTxt := ReturnReason.Description
+        else
+            ReturnReasonDescTxt := '';
+    end;
 }

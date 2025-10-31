@@ -71,6 +71,10 @@ reportextension 51305 "Sales Ord Confirmation Ext" extends "Standard Sales - Ord
             { }
             column(EU_Division_1; "EU Division 1")
             { }
+            column(EU_Division_2; "EU Division 2")
+            { }
+            column(EU_Division_3; "EU Division 3")
+            { }
             column(Description_Bikou_; "Description(Bikou)")
             { }
             column(Description_Bikou2_; "Description(Bikou2)")

@@ -1,7 +1,7 @@
 reportextension 56631 "SalesReturnOrdConfirmation Ext" extends "Return Order Confirmation"
 
 {
-    RDLCLayout = 'src\10.ReportLayout\SalesReturnOrderConfirmation_NEBJ.rdlc';
+    //RDLCLayout = 'src\10.ReportLayout\SalesReturnOrderConfirmation_NEBJ.rdlc';
 
     dataset
     {

@@ -1,7 +1,7 @@
 reportextension 56631 "SalesReturnOrdConfirmation Ext" extends "Return Order Confirmation"
 
 {
-    // RDLCLayout = '.\ReportLayout\SalesReturnOrderConfirmation_NEBJ.rdlc';
+    RDLCLayout = 'src\10.ReportLayout\SalesReturnOrderConfirmation_NEBJ.rdlc';
 
     dataset
     {
@@ -33,14 +33,6 @@ reportextension 56631 "SalesReturnOrdConfirmation Ext" extends "Return Order Con
             column(CompanyAddress2; CompanyInfo."Address 2") { }
             column(CompanyFax; CompanyInfo."Fax No.") { }
         }
-        modify("Sales Header")
-        {
-            trigger OnAfterPreDataItem()
-            begin
-                CompanyInfo.Get();
-            end;
-        }
-
         add(RoundLoop)
         {
             column(StorageTemprature; "Sales Line".StorageTemprature) { } //  保管温度

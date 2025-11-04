@@ -176,45 +176,11 @@ pageextension 50030 "Item Card Ext" extends "Item Card"
             {
                 ApplicationArea = All;
                 Caption = 'アイテム割引グループ2';
-
-                /*Select from dropdown list
-                trigger OnLookup(var Text: Text): Boolean
-                var
-                    ItemDiscGroupPage: Page "Item Disc. Groups";
-                    ItemDiscGroup: Record "Item Discount Group";
-                begin
-                    ItemDiscGroupPage.SetGroupNumber(2);
-                    ItemDiscGroupPage.LOOKUPMODE := true;
-                    ItemDiscGroupPage.CAPTION := FIELDCAPTION("Item Disc. Group 2");
-                    if ItemDiscGroupPage.RUNMODAL = ACTION::LookupOK then begin
-                        ItemDiscGroupPage.GETRECORD(ItemDiscGroup);
-                        "Item Disc. Group 2" := ItemDiscGroup.Code;
-                    end;
-                end;
-                */
             }
             field("Item Disc. Group 3"; Rec."Item Disc. Group 3")
             {
                 ApplicationArea = All;
                 Caption = 'アイテム割引グループ3';
-
-                /*Select from dropdown list
-                trigger OnLookup(var Text: Text): Boolean
-                var
-                    ItemDiscGroupPage: Page "Item Disc. Groups";
-                    ItemDiscGroup: Record "Item Discount Group";
-                begin
-                    //PBCS08.01 ADD BEGIN
-                    ItemDiscGroupPage.SetGroupNumber(3);
-                    ItemDiscGroupPage.LOOKUPMODE := true;
-                    ItemDiscGroupPage.CAPTION := FIELDCAPTION("Item Disc. Group 3");
-                    if ItemDiscGroupPage.RUNMODAL = ACTION::LookupOK then begin
-                        ItemDiscGroupPage.GETRECORD(ItemDiscGroup);
-                        "Item Disc. Group 3" := ItemDiscGroup.Code;
-                    end;
-                    //PBCS08.01 ADD END
-                end;
-                */
             }
             field("Disable All Item Discount"; Rec."Disable All Item Discount")
             {
@@ -223,12 +189,6 @@ pageextension 50030 "Item Card Ext" extends "Item Card"
 
             }
 
-            /*
-            modify("Replenishment System")
-            {
-                OptionCaptionML = JPN = '仕入,生産オーダー, ';
-            }
-            */
         }
         addafter("Automatic Ext. Texts")
         {
@@ -382,110 +342,6 @@ pageextension 50030 "Item Card Ext" extends "Item Card"
     var
         ItemCategoryParent: Code[20];
 
-    /*Select from dropdown list
-    Modify("item Disc. Group")
-    {
-        trigger OnLookup(var Text: Text): Boolean
-        var
-            ItemDiscGroupPage: Page "Item Disc. Groups";
-            ItemDiscGroup: Record "Item Discount Group";
-        begin
-            ItemDiscGroupPage.SetGroupNumber(1);
-            ItemDiscGroupPage.LOOKUPMODE := true;
-            ItemDiscGroupPage.CAPTION := FIELDCAPTION("Item Disc. Group");
-            if ItemDiscGroupPage.RUNMODAL = ACTION::LookupOK then begin
-                ItemDiscGroupPage.GETRECORD(ItemDiscGroup);
-                "Item Disc. Group" := ItemDiscGroup.Code;
-            end;
-        end;
-    }
-    */
-
-    /*
-   actions
-   {
-
-       addafter("Identifiers")
-       {
-
-           action(Action1000000028)
-           {
-               Caption = '販売価格変更バックアップ取得';
-               Promoted = true;
-               PromotedCategory = Process;
-
-
-               trigger OnAction()
-               var
-                   Itemsalespricebkup: page "ITEMSALESPRICEBKUP Modal";
-               begin
-                   Itemsalespricebkup.Run();
-               END;
-           }
-           action(Action1000000029)
-           {
-               Caption = '販売価格変更';
-               Promoted = true;
-               PromotedCategory = Process;
-
-
-               trigger OnAction()
-               var
-                   Itemsalespricechange: page "ITEMSALESPRICECHANGE Modal";
-
-               begin
-                   Itemsalespricechange.Run();
-               END;
-           }
-       }
-
-       addafter("Return Orders")
-       {
-
-           action(Action1000000030)
-           {
-               Caption = '仕入価格変更バックアップ取得';
-               Promoted = true;
-               PromotedCategory = Process;
-
-
-               trigger OnAction()
-               var
-                   Purchasepricebkup: page "PURCHASEPRICEBKUP Modal";
-               begin
-                   Purchasepricebkup.Run();
-               END;
-           }
-           action(Action1000000031)
-           {
-               Caption = '仕入価格追加';
-               Promoted = true;
-               PromotedCategory = Process;
-
-
-               trigger OnAction()
-               var
-                   Purchasepriceadd: page "PURCHASEPRICEADD Modal";
-               begin
-                   Purchasepriceadd.Run();
-               END;
-           }
-           action(Action1000000032)
-           {
-               Caption = '仕入価格変更';
-               Promoted = true;
-               PromotedCategory = Process;
-
-               trigger OnAction()
-               var
-                   Purchasepricechange: page "PURCHASEPRICECHANGE Modal";
-               begin
-                   Purchasepricechange.Run();
-               END;
-           }
-
-       }
-        */
 
 }
 

@@ -130,7 +130,7 @@ pageextension 50032 "Item List Ext" extends "Item List"
             field("Campaine YN"; Rec."Campaine YN")
             {
                 ApplicationArea = All;
-                Caption = 'カルタヘナ法';
+                Caption = 'キャンペーン区分';
             }
             field(Size; Rec."Size")
             {

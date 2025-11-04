@@ -11,24 +11,33 @@ pageextension 56631 "Sales Return Order Subform Ext" extends "Sales Return Order
             }
             field("EU Description"; Rec."EU Description")
             {
+                ApplicationArea = All;
+                Caption = 'エンドユーザー名';
             }
             field("EU Division 1"; Rec."EU Division 1")
             {
+                ApplicationArea = All;
+                Caption = 'エンドユーザー所属1';
             }
             field("EU Division 2"; Rec."EU Division 2")
             {
+                ApplicationArea = All;
+                Caption = 'エンドユーザー所属2';
             }
             field("EU Division 3"; Rec."EU Division 3")
             {
+                ApplicationArea = All;
+                Caption = 'エンドユーザー所属3';
             }
             field("Description(Bikou)"; Rec."Description(Bikou)")
             {
-
                 ApplicationArea = All;
                 Caption = '備考';
             }
             field("Description(Bikou2)"; Rec."Description(Bikou2)")
             {
+                ApplicationArea = All;
+                Caption = '備考2';
             }
             field("ExternaDocumentNo."; Rec."ExternaDocumentNo.")
             {

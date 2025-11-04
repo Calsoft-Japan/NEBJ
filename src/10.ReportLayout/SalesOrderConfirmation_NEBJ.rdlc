@@ -11,7 +11,7 @@
       <am:Name>MSRB</am:Name>
       <am:Version>15.1.30001.02</am:Version>
     </am:UpdatedBy>
-    <am:LastModifiedTimestamp>2025-10-30T00:11:47.9688034Z</am:LastModifiedTimestamp>
+    <am:LastModifiedTimestamp>2025-11-04T02:18:51.7932369Z</am:LastModifiedTimestamp>
   </am:AuthoringMetadata>
   <AutoRefresh>0</AutoRefresh>
   <DataSources>
@@ -816,6 +816,12 @@
         <Field Name="EU_Division_3">
           <Value>EU_Division_3</Value>
         </Field>
+        <Field Name="ItemFullName_Line">
+          <Value>ItemFullName_Line</Value>
+        </Field>
+        <Field Name="ItemOfficialName_Line">
+          <Value>ItemOfficialName_Line</Value>
+        </Field>
       </Fields>
     </DataSet>
   </DataSets>
@@ -836,6 +842,7 @@
                   <TablixCells>
                     <TablixCell>
                       <CellContents>
+                        <rd:Selected>true</rd:Selected>
                         <Rectangle Name="Rectangle1">
                           <ReportItems>
                             <Tablix Name="LinesTable">
@@ -1433,15 +1440,15 @@
                                       </TablixCell>
                                       <TablixCell>
                                         <CellContents>
-                                          <Textbox Name="Textbox42">
-                                            <rd:DefaultName>Textbox42</rd:DefaultName>
+                                          <Textbox Name="ItemOfficialName_Line">
+                                            <rd:DefaultName>ItemOfficialName_Line</rd:DefaultName>
                                             <CanGrow>true</CanGrow>
                                             <KeepTogether>true</KeepTogether>
                                             <Paragraphs>
                                               <Paragraph>
                                                 <TextRuns>
                                                   <TextRun>
-                                                    <Value>=Fields!Description_Line.Value</Value>
+                                                    <Value>=Fields!ItemOfficialName_Line.Value</Value>
                                                     <Style>
                                                       <FontFamily>MS UI Gothic</FontFamily>
                                                       <FontSize>8pt</FontSize>
@@ -2133,7 +2140,7 @@
                                               <Paragraph>
                                                 <TextRuns>
                                                   <TextRun>
-                                                    <Value>=100 - (Fields!LineDiscountPercent_Line.Value)</Value>
+                                                    <Value>=IIF ( Fields!LineDiscountPercent_Line.Value = 0, 0.0, 100 - Fields!LineDiscountPercent_Line.Value)</Value>
                                                     <Style>
                                                       <FontFamily>MS UI Gothic</FontFamily>
                                                       <FontSize>8pt</FontSize>
@@ -2259,7 +2266,6 @@
                                       </TablixCell>
                                       <TablixCell>
                                         <CellContents>
-                                          <rd:Selected>true</rd:Selected>
                                           <Textbox Name="PlannedShipmentDate_Line3">
                                             <rd:DefaultName>PlannedShipmentDate_Line</rd:DefaultName>
                                             <CanGrow>true</CanGrow>

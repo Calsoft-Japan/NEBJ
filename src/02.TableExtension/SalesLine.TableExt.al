@@ -5,6 +5,7 @@ tableextension 50037 "Sales Line Ext" extends "Sales Line"
         field(50002; "EndUser"; Code[10])
         {
             Caption = 'End User';
+            TableRelation = Customer;
             trigger OnValidate()
             var
                 Customer: Record Customer;

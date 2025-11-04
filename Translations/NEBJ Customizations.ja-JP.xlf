@@ -1660,71 +1660,85 @@
         </trans-unit>
         <trans-unit id="Table 1232259966 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Sales Orer Import Result</source>
+          <target>Sales Orer Import Result</target>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Table Sales Order Import Result - Property Caption</note>
         </trans-unit>
         <trans-unit id="Table 1232259966 - Field 3730438861 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Batch No.</source>
+          <target>一括処理番号</target>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Table Sales Order Import Result - Field Batch No. - Property Caption</note>
         </trans-unit>
         <trans-unit id="Table 1232259966 - Field 486908828 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Document No.</source>
+          <target>受注番号</target>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Table Sales Order Import Result - Field Document No. - Property Caption</note>
         </trans-unit>
         <trans-unit id="Table 1232259966 - Field 883711285 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Entry No.</source>
+          <target>登録番号</target>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Table Sales Order Import Result - Field Entry No. - Property Caption</note>
         </trans-unit>
         <trans-unit id="Table 1232259966 - Field 2755906565 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Error Comment</source>
+          <target>エラーコメント</target>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Table Sales Order Import Result - Field Error Comment - Property Caption</note>
         </trans-unit>
         <trans-unit id="Table 1232259966 - Field 3169019348 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Import Line Count</source>
+          <target>Import Line Count</target>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Table Sales Order Import Result - Field Import Line Count - Property Caption</note>
         </trans-unit>
         <trans-unit id="Table 1232259966 - Field 765483476 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Item Code</source>
+          <target>商品コード</target>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Table Sales Order Import Result - Field Item Code - Property Caption</note>
         </trans-unit>
         <trans-unit id="Table 1232259966 - Field 3320823955 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Line No.</source>
+          <target>受注ライン番号</target>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Table Sales Order Import Result - Field Line No. - Property Caption</note>
         </trans-unit>
         <trans-unit id="Table 1232259966 - Field 687084242 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Order Source Code</source>
+          <target>発注元事業所コード</target>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Table Sales Order Import Result - Field Order Source Code - Property Caption</note>
         </trans-unit>
         <trans-unit id="Table 1232259966 - Field 2574755782 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Order Source Order No.</source>
+          <target>発注番号</target>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Table Sales Order Import Result - Field Order Source Order No. - Property Caption</note>
         </trans-unit>
-        <trans-unit id="Table 1232259966 - Field 2079052800 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Proccessing Date</source>
+        <trans-unit id="Table 1232259966 - Field 2078185145 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Processing Date</source>
+          <target>処理日</target>
           <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Table Sales Order Import Result - Field Proccessing Date - Property Caption</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Sales Order Import Result - Field Processing Date - Property Caption</note>
         </trans-unit>
         <trans-unit id="Table 1232259966 - Field 2704404533 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Quantity</source>
+          <target>数量</target>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Table Sales Order Import Result - Field Quantity - Property Caption</note>
         </trans-unit>
         <trans-unit id="Table 1232259966 - Field 513339096 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Status</source>
+          <target>ステータス</target>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Table Sales Order Import Result - Field Status - Property Caption</note>
         </trans-unit>
         <trans-unit id="Table 1232259966 - Field 2708250016 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>User ID</source>
+          <target>取込作業者</target>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Table Sales Order Import Result - Field User ID - Property Caption</note>
         </trans-unit>
@@ -2044,6 +2058,7 @@
         </trans-unit>
         <trans-unit id="PageExtension 1633892545 - Action 824813397 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 1673401186">
           <source>Import Sales Order</source>
+          <target>受注取込</target>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">PageExtension Sales Order Ext - Action SalesOrderImport - Property Caption</note>
         </trans-unit>

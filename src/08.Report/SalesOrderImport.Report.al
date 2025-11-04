@@ -123,7 +123,7 @@ report 50000 "Sales Order Import"
             TempSOImpResult.Status := SOImportResult.Status::Skip;
 
             //Proccessing Date
-            TempSOImpResult."Proccessing Date" := CurrentDateTime;
+            TempSOImpResult."Processing Date" := CurrentDateTime;
 
             //User ID
             TempSOImpResult."User ID" := UserId;

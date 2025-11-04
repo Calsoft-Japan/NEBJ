@@ -15,7 +15,7 @@ page 50100 "Sales Order Import Result"
             {
                 field("Batch No."; Rec."Batch No.") { ApplicationArea = All; }
                 field("Entry No."; Rec."Entry No.") { ApplicationArea = All; }
-                field("Proccessing Date"; Rec."Proccessing Date") { ApplicationArea = All; }
+                field("Proccessing Date"; Rec."Processing Date") { ApplicationArea = All; }
                 field(Status; Rec.Status) { ApplicationArea = All; }
                 field("Error Comment"; Rec."Error Comment") { ApplicationArea = All; }
                 field("Order Source Code"; Rec."Order Source Code") { ApplicationArea = All; }

@@ -1,7 +1,7 @@
 table 50000 "Sales Inquiry Line"
 {
     Caption = 'Sales Inquiry Line';
-    DataClassification = ToBeClassified;
+    DataClassification = CustomerContent;
 
     fields
     {
@@ -14,8 +14,8 @@ table 50000 "Sales Inquiry Line"
         field(4; "Sell-to Customer No."; Code[20]) { }
         field(5; "Bill-to Customer No."; Code[20]) { }
         field(6; "Bill-to Name"; Text[100]) { }
-        field(7; "Bill-to Address"; Text[100]) { }
-        field(8; "Your Reference"; Text[35]) { }
+        field(7; "Bill-to Address"; Text[100]) { }  //Can not find in FDD106
+        field(8; "Your Reference"; Text[35]) { }    //Can not find in FDD106
         field(9; "Ship-to Code"; Code[10]) { }
         field(10; "Ship-to Name"; Text[100]) { }
         field(11; "Ship-to Address"; Text[100]) { }

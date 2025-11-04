@@ -5,83 +5,83 @@ table 50000 "Sales Inquiry Line"
 
     fields
     {
-        field(1; "Document Type"; Option)
+        field(1; "Document Type"; Option)//Can find in FDD106
         {
             OptionMembers = Quote,Order,Invoice,"Credit Memo","Blanket Order","Return Order";
         }
-        field(2; "Document No."; Code[20])
+        field(2; "Document No."; Code[20])//Can find in FDD106
         { }
-        field(3; "Line No."; Integer)
+        field(3; "Line No."; Integer)//Can find in FDD106
         { }
-        field(4; "Sell-to Customer No."; Code[20])
+        field(4; "Sell-to Customer No."; Code[20])//Can find in FDD106
         { }
-        field(5; "Bill-to Customer No."; Code[20])
+        field(5; "Bill-to Customer No."; Code[20])//Can find in FDD106
         { }
-        field(6; "Bill-to Name"; Text[100])
+        field(6; "Bill-to Name"; Text[100])//Can find in FDD106
         { }
         field(7; "Bill-to Address"; Text[100])
-        { }  //Can not find in FDD106
+        { }
         field(8; "Your Reference"; Text[35])
-        { }    //Can not find in FDD106
-        field(9; "Ship-to Code"; Code[10])
         { }
-        field(10; "Ship-to Name"; Text[100])
+        field(9; "Ship-to Code"; Code[10])//Can find in FDD106
         { }
-        field(11; "Ship-to Address"; Text[100])
+        field(10; "Ship-to Name"; Text[100])//Can find in FDD106
         { }
-        field(12; "Order Date"; Date)
+        field(11; "Ship-to Address"; Text[100])//Can find in FDD106
         { }
-        field(13; "Posting Date"; Date)
+        field(12; "Order Date"; Date)//Can find in FDD106
+        { }
+        field(13; "Posting Date"; Date)//Can find in FDD106
         { }
         field(14; "Shipment Date (Hdr.)"; Date)
-        { } //Can not find in FDD106
-        field(15; "Posting Description"; Text[100])
+        { }
+        field(15; "Posting Description"; Text[100])//Can find in FDD106
         { }
         field(16; "Payment Terms Code"; Code[10])
-        { } //Can not find in FDD106
-        field(17; "Due Date"; Date)
+        { }
+        field(17; "Due Date"; Date)//Can find in FDD106
         { }
         field(18; "Payment Discount ."; Decimal)
-        { } //Can not find in FDD106
+        { }
         field(19; "Pmt. Discount Date"; Date)
-        { } //Can not find in FDD106
+        { }
         field(20; "Shipment Method Code"; Code[10])
-        { } //Can not find in FDD106
+        { }
         field(21; "Location Code (Hdr.)"; Code[10])
-        { } //Can not find in FDD106
+        { }
         field(22; "Shortcut Dim. 1 Code (Hdr.)"; Code[20])
-        { } //Can not find in FDD106
+        { }
         field(23; "Shortcut Dim. 2 Code (Hdr.)"; Code[20])
-        { } //Can not find in FDD106
-        field(24; "Customer Posting Group"; Code[20])
+        { }
+        field(24; "Customer Posting Group"; Code[20])//Can find in FDD106
         { }
         field(25; "Currency Code (Hdr.)"; Code[10])
-        { } //Can not find in FDD106
+        { }
         field(26; "Currency Factor"; Decimal)
-        { } //Can not find in FDD106
+        { }
         field(27; "Prices Including VAT"; Boolean)
-        { } //Can not find in FDD106
+        { }
         field(28; "Invoice Disc. Code"; Code[20])
-        { } //Can not find in FDD106
+        { }
         field(29; "Language Code"; Code[10])
-        { } //Can not find in FDD106
-        field(30; "Salesperson Code"; Code[20])
+        { }
+        field(30; "Salesperson Code"; Code[20])//Can find in FDD106
         { }
         field(31; "Order No. (Hdr.)"; Code[20])
-        { } //Can not find in FDD106
+        { }
         field(32; "Order Class"; Code[10])
-        { } //Can not find in FDD106
+        { }
         field(33; "Comment"; Boolean)
-        { } //Can not find in FDD106
+        { }
         field(34; "No. Printed"; Integer)
-        { } //Can not find in FDD106
+        { }
         field(35; "On Hold"; Code[3])
-        { } //Can not find in FDD106
-        field(36; "Applies-to Doc. Type"; Option) //Can not find in FDD106
+        { }
+        field(36; "Applies-to Doc. Type"; Option)
         {
             OptionMembers = ,Payment,Invoice,"Credit Memo","Finance Charge Memo",Reminder,Refund;
         }
-        field(37; "Applies-to Doc. No."; Code[20])//Can not find in FDD106
+        field(37; "Applies-to Doc. No."; Code[20])
         { }
         field(38; "Bal. Account No."; Code[20])
         { }
@@ -115,13 +115,13 @@ table 50000 "Sales Inquiry Line"
         { }
         field(53; "Combine Shipments"; Boolean)
         { }
-        field(54; "Reason Code"; Code[10])
+        field(54; "Reason Code"; Code[10])//Can find in FDD106
         { }
         field(55; "EU 3-Party Trade"; Boolean)
         { }
         field(56; "VAT Country.Region Code"; Code[10])
         { }
-        field(57; "Sell-to Customer Name"; Text[100])
+        field(57; "Sell-to Customer Name"; Text[100])//Can find in FDD106
         { }
         field(58; "Sell-to Address"; Text[100])
         { }
@@ -133,17 +133,19 @@ table 50000 "Sales Inquiry Line"
         { }
         field(62; "Sell-to Country.Region Code"; Code[10])
         { }
-        field(63; "Ship-to Post Code"; Code[20])
+        field(63; "Ship-to Post Code"; Code[20])//Can find in FDD106
         { }
         field(64; "Ship-to Country.Region Code"; Code[10])
         { }
         field(65; "Bal. Account Type"; Option)
-        { OptionMembers = "G/L Account","Bank Account"; }
+        {
+            OptionMembers = "G/L Account","Bank Account";
+        }
         field(66; "Correction"; Boolean)
         { }
-        field(67; "Document Date"; Date)
+        field(67; "Document Date"; Date)//Can find in FDD106
         { }
-        field(68; "External Document No."; Code[35])
+        field(68; "External Document No."; Code[35])//Can find in FDD106
         { }
         field(69; "Payment Method Code"; Code[10])
         { }
@@ -159,7 +161,7 @@ table 50000 "Sales Inquiry Line"
         { }
         field(75; "Pre-Assigned No."; Code[20])
         { }
-        field(76; "User ID"; Text[50])
+        field(76; "User ID"; Text[50])//Can find in FDD106
         { }
         field(77; "Source Code"; Code[10])
         { }
@@ -290,49 +292,51 @@ table 50000 "Sales Inquiry Line"
         { }
         field(141; "Dealer 3"; Code[10])
         { }
-        field(142; "Type"; Option)
-        { OptionMembers = ,"G/L Account",Item,Resource,"Fixed Asset","Charge (Item)"; }
-        field(143; "No."; Code[20])
+        field(142; "Type"; Option)//Can find in FDD106
+        {
+            OptionMembers = ,"G/L Account",Item,Resource,"Fixed Asset","Charge (Item)";
+        }
+        field(143; "No."; Code[20])//Can find in FDD106
         { }
-        field(144; "Location Code"; Code[10])
+        field(144; "Location Code"; Code[10])//Can find in FDD106
         { }
         field(145; "Posting Group"; Code[20])
         { }
-        field(146; "Shipment Date"; Date)
+        field(146; "Shipment Date"; Date)//Can find in FDD106
         { }
-        field(147; "Description"; Text[100])
+        field(147; "Description"; Text[100])//Can find in FDD106
         { }
-        field(148; "Description 2"; Text[50])
+        field(148; "Description 2"; Text[50])//Can find in FDD106
         { }
-        field(149; "Unit of Measure"; Code[10])
+        field(149; "Unit of Measure"; Code[10])//Can find in FDD106
         { }
-        field(150; "Quantity"; Decimal)
+        field(150; "Quantity"; Decimal)//Can find in FDD106
         { }
         field(151; "Outstanding Quantity"; Decimal)
         { }
-        field(152; "Qty. to Invoice"; Decimal)
+        field(152; "Qty. to Invoice"; Decimal)//Can find in FDD106
         { }
         field(153; "Qty. to Ship"; Decimal)
         { }
-        field(154; "Unit Price"; Decimal)
+        field(154; "Unit Price"; Decimal)//Can find in FDD106
         { }
-        field(155; "Unit Cost (LCY)"; Decimal)
+        field(155; "Unit Cost (LCY)"; Decimal)//Can find in FDD106
         { }
-        field(156; "VAT ."; Decimal)
+        field(156; "VAT %"; Decimal)//Can find in FDD106
         { }
-        field(157; "Line Discount ."; Decimal)
+        field(157; "Line Discount %"; Decimal)//Can find in FDD106
         { }
-        field(158; "Line Discount Amount"; Decimal)
+        field(158; "Line Discount Amount"; Decimal)//Can find in FDD106
         { }
-        field(159; "Amount"; Decimal)
+        field(159; "Amount"; Decimal)//Can find in FDD106
         { }
-        field(160; "Amount Including VAT"; Decimal)
+        field(160; "Amount Including VAT"; Decimal)//Can find in FDD106
         { }
         field(161; "Allow Invoice Disc."; Boolean)
         { }
-        field(162; "Gross Weight"; Decimal)
+        field(162; "Gross Weight"; Decimal)//Can find in FDD106
         { }
-        field(163; "Net Weight"; Decimal)
+        field(163; "Net Weight"; Decimal)//Can find in FDD106
         { }
         field(164; "Units per Parcel"; Decimal)
         { }
@@ -340,13 +344,13 @@ table 50000 "Sales Inquiry Line"
         { }
         field(166; "Appl.-to Item Entry"; Integer)
         { }
-        field(167; "Shortcut Dimension 1 Code"; Code[20])
+        field(167; "Shortcut Dimension 1 Code"; Code[20])//Can find in FDD106
         { }
-        field(168; "Shortcut Dimension 2 Code"; Code[20])
+        field(168; "Shortcut Dimension 2 Code"; Code[20])//Can find in FDD106
         { }
         field(169; "Customer Price Group"; Code[10])
         { }
-        field(170; "Job No."; Code[20])
+        field(170; "Job No."; Code[20])//Can find in FDD106
         { }
         field(171; "Work Type Code"; Code[10])
         { }
@@ -356,17 +360,17 @@ table 50000 "Sales Inquiry Line"
         { }
         field(174; "Shipped Not Invoiced"; Decimal)
         { }
-        field(175; "Quantity Shipped"; Decimal)
+        field(175; "Quantity Shipped"; Decimal)//Can find in FDD106
         { }
-        field(176; "Quantity Invoiced"; Decimal)
+        field(176; "Quantity Invoiced"; Decimal)//Can find in FDD106
         { }
         field(177; "Shipment No."; Code[20])
         { }
         field(178; "Shipment Line No."; Integer)
         { }
-        field(179; "Profit ."; Decimal)
+        field(179; "Profit %"; Decimal)//Can find in FDD106
         { }
-        field(180; "Inv. Discount Amount"; Decimal)
+        field(180; "Inv. Discount Amount"; Decimal)//Can find in FDD106
         { }
         field(181; "Purchase Order No."; Code[20])
         { }
@@ -374,9 +378,9 @@ table 50000 "Sales Inquiry Line"
         { }
         field(183; "Drop Shipment"; Boolean)
         { }
-        field(184; "Gen. Bus. Posting Group"; Code[20])
+        field(184; "Gen. Bus. Posting Group"; Code[20])//Can find in FDD106
         { }
-        field(185; "Gen. Prod. Posting Group"; Code[20])
+        field(185; "Gen. Prod. Posting Group"; Code[20])//Can find in FDD106
         { }
         field(186; "VAT Calculation Type"; Option)
         { OptionMembers = "Normal VAT","Reverse Charge VAT","Full VAT","Sales Tax"; }
@@ -398,17 +402,17 @@ table 50000 "Sales Inquiry Line"
         { }
         field(195; "Tax Group Code"; Code[20])
         { }
-        field(196; "VAT Bus. Posting Group"; Code[20])
+        field(196; "VAT Bus. Posting Group"; Code[20])//Can find in FDD106
         { }
-        field(197; "VAT Prod. Posting Group"; Code[20])
+        field(197; "VAT Prod. Posting Group"; Code[20])//Can find in FDD106
         { }
-        field(198; "Currency Code"; Code[10])
+        field(198; "Currency Code"; Code[10])//Can find in FDD106
         { }
         field(199; "Outstanding Amount (LCY)"; Decimal)
         { }
         field(200; "Shipped Not Invoiced (LCY)"; Decimal)
         { }
-        field(201; "Reserved Quantity"; Decimal)
+        field(201; "Reserved Quantity"; Decimal)//Can find in FDD106
         { }
         field(202; "Reserve"; Option)
         { OptionMembers = Never,Optional,Always; }
@@ -492,15 +496,15 @@ table 50000 "Sales Inquiry Line"
         { }
         field(242; "Job Contract Entry No."; Integer)
         { }
-        field(243; "Variant Code"; Code[10])
+        field(243; "Variant Code"; Code[10])//Can find in FDD106
         { }
-        field(244; "Bin Code"; Code[20])
+        field(244; "Bin Code"; Code[20])//Can find in FDD106
         { }
         field(245; "Qty. per Unit of Measure"; Decimal)
         { }
         field(246; "Planned"; Boolean)
         { }
-        field(247; "Unit of Measure Code"; Code[10])
+        field(247; "Unit of Measure Code"; Code[10])//Can find in FDD106
         { }
         field(248; "Quantity (Base)"; Decimal)
         { }
@@ -528,7 +532,7 @@ table 50000 "Sales Inquiry Line"
         { }
         field(260; "Use Duplication List"; Boolean)
         { }
-        field(261; "Responsibility Center"; Code[10])
+        field(261; "Responsibility Center"; Code[10])//Can find in FDD106
         { }
         field(262; "Out-of-Stock Substitution"; Boolean)
         { }
@@ -546,13 +550,13 @@ table 50000 "Sales Inquiry Line"
         { OptionMembers = ,Customer,Vendor,"Bar Code"; }
         field(269; "Cross-Reference Type No."; Text[30])
         { }
-        field(270; "Item Category Code"; Code[20])
+        field(270; "Item Category Code"; Code[20])//Can find in FDD106
         { }
         field(271; "Nonstock"; Boolean)
         { }
         field(272; "Purchasing Code"; Code[10])
         { }
-        field(273; "Product Group Code"; Code[10])
+        field(273; "Product Group Code"; Code[10])//Can find in FDD106
         { }
         field(274; "Special Order"; Boolean)
         { }
@@ -566,17 +570,17 @@ table 50000 "Sales Inquiry Line"
         { }
         field(279; "Completely Shipped"; Boolean)
         { }
-        field(280; "Requested Delivery Date"; Date)
+        field(280; "Requested Delivery Date"; Date)//Can find in FDD106
         { }
-        field(281; "Promised Delivery Date"; Date)
+        field(281; "Promised Delivery Date"; Date)//Can find in FDD106
         { }
         field(282; "Shipping Time"; DateFormula)
         { }
         field(283; "Outbound Whse. Handling Time"; DateFormula)
         { }
-        field(284; "Planned Delivery Date"; Date)
+        field(284; "Planned Delivery Date"; Date)//Can find in FDD106
         { }
-        field(285; "Planned Shipment Date"; Date)
+        field(285; "Planned Shipment Date"; Date)//Can find in FDD106
         { }
         field(286; "Shipping Agent Code"; Code[10])
         { }
@@ -624,17 +628,17 @@ table 50000 "Sales Inquiry Line"
         { }
         field(308; "For Reduced VAT"; Boolean)
         { }
-        field(309; "Shortcut Dimension 3 Code"; Code[20])
+        field(309; "Shortcut Dimension 3 Code"; Code[20])//Can find in FDD106
         { }
-        field(310; "Shortcut Dimension 4 Code"; Code[20])
+        field(310; "Shortcut Dimension 4 Code"; Code[20])//Can find in FDD106
         { }
-        field(311; "Shortcut Dimension 5 Code"; Code[20])
+        field(311; "Shortcut Dimension 5 Code"; Code[20])//Can find in FDD106
         { }
-        field(312; "Shortcut Dimension 6 Code"; Code[20])
+        field(312; "Shortcut Dimension 6 Code"; Code[20])//Can find in FDD106
         { }
-        field(313; "Shortcut Dimension 7 Code"; Code[20])
+        field(313; "Shortcut Dimension 7 Code"; Code[20])//Can find in FDD106
         { }
-        field(314; "Shortcut Dimension 8 Code"; Code[20])
+        field(314; "Shortcut Dimension 8 Code"; Code[20])//Can find in FDD106
         { }
         field(315; "Shortcut Dimension 1"; Code[20])
         { }
@@ -660,6 +664,83 @@ table 50000 "Sales Inquiry Line"
         { }
         field(326; "Cancelled"; Boolean)
         { }
+        field(328; "Description(Bikou)"; Text[200])
+        {
+        }
+        field(329; "StorageTemprature"; Text[20])
+        {
+        }
+        field(330; "ExternaDocumentNo."; Text[20])// Duplicate field. Ref. 68 field
+        {
+        }
+        field(332; "EU Description"; Text[50])
+        {
+        }
+        field(335; "EU Division 1"; Text[100])
+        {
+        }
+        field(336; "EU Division 2"; Text[100])
+        {
+        }
+        field(337; "EU Division 3"; Text[100])
+        {
+        }
+        field(338; "Customer Name 2"; Text[50])
+        {
+        }
+        field(339; "Item Category Description"; Text[50])
+        {
+        }
+        field(340; "Product Group Description"; Text[50])
+        {
+        }
+        field(341; "Customer Group"; Text[20])
+        {
+        }
+        field(342; "Customer Group Name"; Text[30])
+        {
+        }
+        field(343; "SerialNoType"; Text[10])
+        {
+        }
+        field(344; "SalesYear"; Integer)
+        {
+        }
+        field(345; "SalesMonth"; Integer)
+        {
+        }
+        field(346; "SalesQuater"; Text[10])
+        {
+        }
+        field(347; "ItemToxicKBN"; Text[12])
+        {
+        }
+        field(348; "EndUser Group"; Text[30])
+        {
+        }
+        field(349; "EndUser Group Name"; Text[50])
+        {
+        }
+
+        field(351; "Item Description"; Text[100])
+        {
+        }
+        field(352; "EndUser"; Code[10])
+        {
+        }
+        field(353; "Order Status"; Option)
+        {
+            OptionMembers = "Open","Released","Pending Approval","Pending Prepayment";
+        }
+        field(354; "NONE"; Text[20]) //New Field
+        {
+        }
+        field(355; "GUID"; GUID) //New Field
+        {
+        }
+        field(356; "Creation Date"; Date)//New Field
+        {
+        }
     }
     keys
     {

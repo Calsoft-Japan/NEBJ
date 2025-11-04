@@ -1690,7 +1690,7 @@
         </trans-unit>
         <trans-unit id="Table 1232259966 - Field 3169019348 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Import Line Count</source>
-          <target>Import Line Count</target>
+          <target>取込行（負値）</target>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Table Sales Order Import Result - Field Import Line Count - Property Caption</note>
         </trans-unit>
@@ -1735,6 +1735,12 @@
           <target>ステータス</target>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Table Sales Order Import Result - Field Status - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 1232259966 - Field 513339096 - Property 62802879" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Skip,Success</source>
+          <target>スキップ,成功</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Sales Order Import Result - Field Status - Property OptionCaption</note>
         </trans-unit>
         <trans-unit id="Table 1232259966 - Field 2708250016 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>User ID</source>

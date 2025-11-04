@@ -32,6 +32,7 @@ table 50022 "Sales Order Import Result"
         field(7; "Status"; Option)
         {
             Caption = 'Status';
+            OptionCaption = 'Skip,Success';
             OptionMembers = Skip,Success;
         }
         field(8; "Error Comment"; Text[200])

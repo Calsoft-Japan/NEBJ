@@ -1,6 +1,6 @@
 codeunit 50002 "Sales Line Enhancement"
 {
-    [EventSubscriber(ObjectType::Table, DATABASE::"Sales Line", 'OnCopyFromItemOnAfterCheck', '', true, true)]
+    [EventSubscriber(ObjectType::Table, Database::"Sales Line", 'OnCopyFromItemOnAfterCheck', '', true, true)]
     procedure Ext_LotInsert(var SalesLine: Record "Sales Line"; Item: Record Item)
     var
         Temprature1: Text[20];
@@ -14,9 +14,8 @@ codeunit 50002 "Sales Line Enhancement"
         Temprature2 := '-70';
         Temprature3 := '-80℃';
         Temprature4 := '-80';
-        IF ((Item.StorageTemp = Temprature1) OR (Item.StorageTemp = Temprature2) OR
-            (Item.StorageTemp = Temprature3) OR (Item.StorageTemp = Temprature4)) THEN BEGIN
-            MESSAGE(Text50001 + '(' + Item.StorageTemp + ')');
-        END;
+        IF ((Item.StorageTemp = Temprature1) or (Item.StorageTemp = Temprature2) or
+            (Item.StorageTemp = Temprature3) or (Item.StorageTemp = Temprature4)) then
+            Message(Text50001 + '(' + Item.StorageTemp + ')');
     end;
 }

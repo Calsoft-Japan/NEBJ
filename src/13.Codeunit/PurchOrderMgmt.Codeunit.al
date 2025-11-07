@@ -1,7 +1,7 @@
 codeunit 50000 PurchOrderMgmt
 {
     //New Code : Test it properly
-    //[EventSubscriber(ObjectType::Table, Database::"Purchase Line", 'OnAfterInsertEvent', '', true, true)]
+    [EventSubscriber(ObjectType::Table, Database::"Purchase Line", 'OnAfterInsertEvent', '', true, true)]
     procedure PurchLineLotInsert(var Rec: Record "Purchase Line")
     var
         Item: Record Item;
@@ -39,7 +39,6 @@ codeunit 50000 PurchOrderMgmt
                             Rec."Qty. per Unit of Measure",
                             Rec.Quantity,
                             Rec."Quantity (Base)", ReservEntry);
-
                         CreateResvEntry.CreateEntry(
                             Rec."No.",
                             Rec."Variant Code",
@@ -52,8 +51,7 @@ codeunit 50000 PurchOrderMgmt
     end;
 
     //New Code : Test it properly
-    //[EventSubscriber(ObjectType::Table, Database::"Purchase Line", 'OnAfterModifyEvent', '', true, true)]
-    //procedure PurchLineLotModify(var Rec: Record "Purchase Line"; var xRec: Record "Purchase Line")
+    [EventSubscriber(ObjectType::Table, Database::"Purchase Line", 'OnAfterModifyEvent', '', true, true)]
     procedure PurchLineLotModify(var Rec: Record "Purchase Line"; var xRec: Record "Purchase Line")
     var
         Item: Record Item;
@@ -81,6 +79,7 @@ codeunit 50000 PurchOrderMgmt
                         ReservEntry.Modify();
                     until ReservEntry.Next() = 0;
                 end else begin
+                    ReservEntry."Lot No." := 'A';
                     CreateResvEntry.CreateReservEntryFor(
                             Database::"Purchase Line",
                             Rec."Document Type".AsInteger(),
@@ -90,7 +89,6 @@ codeunit 50000 PurchOrderMgmt
                             Rec.Quantity - xRec.Quantity,
                             Rec."Quantity (Base)" - xRec."Quantity (Base)",
                             ReservEntry);
-
                     CreateResvEntry.CreateEntry(
                             Rec."No.",
                             Rec."Variant Code",

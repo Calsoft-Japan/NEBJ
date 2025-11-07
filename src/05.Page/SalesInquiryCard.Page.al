@@ -1,9 +1,10 @@
-/* page 50018 "NEBJ Sales Inquiry"
+page 50018 "Sales Inquiry Card"
 {
-    Caption = 'NEBJ Sales Inquiry';
-    DataCaptionExpression = '';
+    ApplicationArea = All;
+    Caption = 'Sales Inquiry';
     PageType = Document;
     UsageCategory = Tasks;
+    DataCaptionExpression = '';
 
     layout
     {
@@ -48,8 +49,8 @@
 
                     trigger OnValidate();
                     begin
-                        CurrPage.SalesInquirySubform.PAGE.ControlShowMode(ShowMode);
-                        CurrPage.UPDATE(FALSE);
+                        CurrPage.SalesInquirySubform.Page.ControlShowMode(ShowMode);
+                        CurrPage.Update(false);
                     end;
                 }
             }
@@ -59,19 +60,18 @@
                 field(SelltoCustomerFilter; SelltoCustomerFilter)
                 {
                     Caption = 'Sell-to Customer Filter';
-
                     trigger OnLookup(var Text: Text): Boolean;
                     var
                         CustomerList: Page "Customer List";
                     begin
-                        CLEAR(CustomerList);
-                        CustomerList.LOOKUPMODE(TRUE);
-                        IF CustomerList.RUNMODAL = ACTION::LookupOK THEN BEGIN
+                        Clear(CustomerList);
+                        CustomerList.LookupMode(true);
+                        if CustomerList.RunModal() = Action::LookupOK then begin
                             Text += CustomerList.GetSelectionFilter;
-                            EXIT(TRUE);
-                        END ELSE
-                            EXIT(FALSE);
-                        CurrPage.UPDATE;
+                            exit(true);
+                        end else
+                            exit(false);
+                        CurrPage.Update;
                     end;
                 }
                 field(BilltoCustomerFilter; BilltoCustomerFilter)
@@ -83,35 +83,33 @@
                     var
                         CustomerList: Page "Customer List";
                     begin
-                        CLEAR(CustomerList);
-                        CustomerList.LOOKUPMODE(TRUE);
-                        IF CustomerList.RUNMODAL = ACTION::LookupOK THEN BEGIN
+                        Clear(CustomerList);
+                        CustomerList.LookupMode(true);
+                        if CustomerList.RunModal() = Action::LookupOK then begin
                             Text += CustomerList.GetSelectionFilter;
-                            EXIT(TRUE);
-                        END ELSE
-                            EXIT(FALSE);
+                            exit(true);
+                        end else
+                            exit(false);
                     end;
                 }
                 field(PostingDateFilter; PostingDateFilter)
                 {
                     Caption = 'Posting Date Filter';
-
                     trigger OnValidate();
                     begin
                         ApplMgt.MakeDateFilter(PostingDateFilter);
-                        SalesInqLine.SETFILTER("Posting Date", PostingDateFilter);
-                        PostingDateFilter := SalesInqLine.GETFILTER("Posting Date");
+                        SalesInqLine.SetFilter("Posting Date", PostingDateFilter);
+                        PostingDateFilter := SalesInqLine.GetFilter("Posting Date");
                     end;
                 }
                 field(OrderDateFilter; OrderDateFilter)
                 {
                     Caption = 'Order Date Filter';
-
                     trigger OnValidate();
                     begin
                         ApplMgt.MakeDateFilter(OrderDateFilter);
-                        SalesInqLine.SETFILTER("Order Date", OrderDateFilter);
-                        OrderDateFilter := SalesInqLine.GETFILTER("Order Date");
+                        SalesInqLine.SetFilter("Order Date", OrderDateFilter);
+                        OrderDateFilter := SalesInqLine.GetFilter("Order Date");
                     end;
                 }
             }
@@ -121,18 +119,17 @@
                 field(GLAccFilter; GLAccFilter)
                 {
                     Caption = 'G/L Account Filter';
-
                     trigger OnLookup(var Text: Text): Boolean;
                     var
                         GLAccList: Page "G/L Account List";
                     begin
-                        CLEAR(GLAccList);
-                        GLAccList.LOOKUPMODE(TRUE);
-                        IF GLAccList.RUNMODAL = ACTION::LookupOK THEN BEGIN
+                        Clear(GLAccList);
+                        GLAccList.LookupMode(true);
+                        if GLAccList.RunModal() = Action::LookupOK then begin
                             Text += GLAccList.GetSelectionFilter;
-                            EXIT(TRUE);
-                        END ELSE
-                            EXIT(FALSE);
+                            exit(true);
+                        end else
+                            exit(false);
                     end;
                 }
                 field(ItemFilter; ItemFilter)
@@ -143,84 +140,77 @@
                     var
                         ItemList: Page "Item List";
                     begin
-                        CLEAR(ItemList);
-                        ItemList.LOOKUPMODE(TRUE);
-                        IF ItemList.RUNMODAL = ACTION::LookupOK THEN BEGIN
+                        Clear(ItemList);
+                        ItemList.LookupMode(true);
+                        if ItemList.RunModal() = Action::LookupOK then begin
                             Text += ItemList.GetSelectionFilter;
-                            EXIT(TRUE);
-                        END ELSE
-                            EXIT(FALSE);
+                            exit(true);
+                        end else
+                            exit(false);
                     end;
                 }
                 field(ResourceFilter; ResourceFilter)
                 {
                     Caption = 'Resource Filter';
-
                     trigger OnLookup(var Text: Text): Boolean;
                     var
                         ResourceList: Page "Resource List";
                     begin
-                        CLEAR(ResourceList);
-                        ResourceList.LOOKUPMODE(TRUE);
-                        IF ResourceList.RUNMODAL = ACTION::LookupOK THEN BEGIN
+                        Clear(ResourceList);
+                        ResourceList.LookupMode(true);
+                        if ResourceList.RunModal() = Action::LookupOK then begin
                             Text += ResourceList.GetSelectionFilter;
-                            EXIT(TRUE);
-                        END ELSE
-                            EXIT(FALSE);
+                            exit(true);
+                        end else
+                            exit(false);
                     end;
                 }
                 field(FAFilter; FAFilter)
                 {
                     Caption = 'Fixed Asset Filter';
-
                     trigger OnLookup(var Text: Text): Boolean;
                     var
                         FAList: Page "Fixed Asset List";
                     begin
-                        CLEAR(FAList);
-                        FAList.LOOKUPMODE(TRUE);
-                        IF FAList.RUNMODAL = ACTION::LookupOK THEN BEGIN
+                        Clear(FAList);
+                        FAList.LookupMode(true);
+                        if FAList.RunModal() = Action::LookupOK then begin
                             Text += FAList.GetSelectionFilter;
-                            EXIT(TRUE);
-                        END ELSE
-                            EXIT(FALSE);
+                            exit(true);
+                        end else
+                            exit(false);
                     end;
                 }
                 field(ItemChargeFilter; ItemChargeFilter)
                 {
                     Caption = 'Item Charge Filter';
-
                     trigger OnLookup(var Text: Text): Boolean;
                     var
                         ItemCharge: Page "Item Charges";
                     begin
-                        CLEAR(ItemCharge);
-                        ItemCharge.LOOKUPMODE(TRUE);
-                        IF ItemCharge.RUNMODAL = ACTION::LookupOK THEN BEGIN
+                        Clear(ItemCharge);
+                        ItemCharge.LookupMode(true);
+                        if ItemCharge.RunModal() = Action::LookupOK then begin
                             Text += ItemCharge.GetSelectionFilter;
-                            EXIT(TRUE);
-                        END ELSE
-                            EXIT(FALSE);
+                            exit(true);
+                        end else
+                            exit(false);
                     end;
                 }
-                field("ShowDummyLine"; ShowDummyLine)
+                field(ShowDummyLine; ShowDummyLine)
                 {
-                    Caption = 'Show Zero Amount Line',
-                                JPN = '金額が０の行を表示';
+                    ApplicationArea = All;
+                    Caption = 'Show Zero Amount Line';
                 }
             }
-            part(SalesInquirySubform; 50019)
-            {
-            }
+            part(SalesInquirySubform; "Sales Inquiry Subform") { }
             group(Total)
             {
-                Caption = 'Total',
-                            JPN = '合計';
+                Caption = 'Total';
                 field(TotalQty; TotalQty)
                 {
                     BlankZero = true;
-                    Caption = 'Total Quantity (Base)',
-                                JPN = '合計数量 (基本単位)';
+                    Caption = 'Total Quantity (Base)';
                     DecimalPlaces = 0 : 2;
                     Editable = false;
                     Importance = Promoted;
@@ -229,8 +219,7 @@
                 {
                     AutoFormatType = 1;
                     BlankZero = true;
-                    Caption = 'Total Amount (LCY)',
-                                JPN = '合計金額 (基本通貨)';
+                    Caption = 'Total Amount (LCY)';
                     Editable = false;
                     Importance = Promoted;
                 }
@@ -238,8 +227,7 @@
                 {
                     AutoFormatType = 1;
                     BlankZero = true;
-                    Caption = 'Total Amount Incl. VAT (LCY)',
-                                JPN = '税込合計金額 (基本通貨)';
+                    Caption = 'Total Amount Incl. VAT (LCY)';
                     Editable = false;
                     Importance = Promoted;
                 }
@@ -247,45 +235,40 @@
         }
     }
 
-    actions
+    Actions
     {
         area(processing)
         {
-            group("F&unctions")
+            group(Functions)
             {
-                Caption = 'F&unctions',
-                            JPN = '機能(&U)';
-                action("&Show Data")
+                Caption = 'Functions';
+                Action(ShowData)
                 {
-                    Caption = '&Show Data',
-                                JPN = 'データ表示(&S)';
+                    Caption = 'Show Data';
                     Image = ViewPage;
                     Promoted = true;
                     PromotedIsBig = true;
-
                     trigger OnAction();
                     begin
-                        Window.OPEN(Text000);
-                        CurrPage.SalesInquirySubform.PAGE.SetIncludeTable(
+                        Window.Open(Text000);
+                        CurrPage.SalesInquirySubform.Page.SetIncludeTable(
                           SalesQuote, SalesOrder, SalesInvoice, SalesCreditMemo, SalesReturnOrder, PostedSalesInvoice, PostedSalesCrMemo);
-                        CurrPage.SalesInquirySubform.PAGE.SetHeaderFilter(
+                        CurrPage.SalesInquirySubform.Page.SetHeaderFilter(
                           SelltoCustomerFilter, BilltoCustomerFilter, PostingDateFilter, OrderDateFilter);
-                        CurrPage.SalesInquirySubform.PAGE.SetLineFilter(
+                        CurrPage.SalesInquirySubform.Page.SetLineFilter(
                           GLAccFilter, ItemFilter, ResourceFilter, FAFilter, ItemChargeFilter, ShowDummyLine);
-                        CurrPage.SalesInquirySubform.PAGE.FindRecords(CurrGUID);
-                        CurrPage.SalesInquirySubform.PAGE.GetTotalValue(TotalQty, TotalAmount, TotalAmountInclVAT);
-                        Window.CLOSE;
-                        CurrPage.UPDATE(FALSE);
+                        CurrPage.SalesInquirySubform.Page.FindRecords(CurrGUID);
+                        CurrPage.SalesInquirySubform.Page.GetTotalValue(TotalQty, TotalAmount, TotalAmountInclVAT);
+                        Window.Close();
+                        CurrPage.Update(false);
                     end;
                 }
-                action("&Clear Data")
+                Action(ClearData)
                 {
-                    Caption = '&Clear Data',
-                                JPN = 'データ消去(&C)';
+                    Caption = 'Clear Data';
                     Image = List;
                     Promoted = true;
                     PromotedIsBig = true;
-
                     trigger OnAction();
                     begin
                         SelltoCustomerFilter := '';
@@ -300,141 +283,126 @@
                         TotalQty := 0;
                         TotalAmount := 0;
                         TotalAmountInclVAT := 0;
-                        CurrPage.SalesInquirySubform.PAGE.ClearInquiryData(CurrGUID);
-                        CurrPage.UPDATE(FALSE);
+                        CurrPage.SalesInquirySubform.Page.ClearInquiryData(CurrGUID);
+                        CurrPage.Update(false);
                     end;
                 }
-                action("Select &All")
+                Action(SelectAll)
                 {
-                    Caption = 'Select &All',
-                                JPN = '検索対象全設定(&A)';
+                    Caption = 'Select All';
                     Image = Registered;
                     Promoted = true;
                     PromotedIsBig = true;
-
                     trigger OnAction();
                     begin
-                        SalesQuote := TRUE;
-                        SalesOrder := TRUE;
-                        SalesInvoice := TRUE;
-                        SalesCreditMemo := TRUE;
-                        SalesReturnOrder := TRUE;
-                        PostedSalesInvoice := TRUE;
-                        PostedSalesCrMemo := TRUE;
+                        SalesQuote := true;
+                        SalesOrder := true;
+                        SalesInvoice := true;
+                        SalesCreditMemo := true;
+                        SalesReturnOrder := true;
+                        PostedSalesInvoice := true;
+                        PostedSalesCrMemo := true;
                     end;
                 }
-                action("&Deselect All")
+                Action(DeselectAll)
                 {
-                    Caption = '&Deselect All',
-                                JPN = '検索対象全消去(&D)';
+                    Caption = 'Deselect All';
                     Image = Stop;
                     Promoted = true;
                     PromotedIsBig = true;
-
                     trigger OnAction();
                     begin
-                        SalesQuote := FALSE;
-                        SalesOrder := FALSE;
-                        SalesInvoice := FALSE;
-                        SalesCreditMemo := FALSE;
-                        SalesReturnOrder := FALSE;
-                        PostedSalesInvoice := FALSE;
-                        PostedSalesCrMemo := FALSE;
+                        SalesQuote := false;
+                        SalesOrder := false;
+                        SalesInvoice := false;
+                        SalesCreditMemo := false;
+                        SalesReturnOrder := false;
+                        PostedSalesInvoice := false;
+                        PostedSalesCrMemo := false;
                     end;
                 }
-                action("ExportDatawithoutlot")
+                Action(ExportDatawithoutLot)
                 {
-                    Caption = 'Export Data without LN/SN', JPN = 'ロット/シリアル番号なしでエクスポート(&E)';
+                    Caption = 'Export Data without LN/SN';
                     Image = ExportToExcel;
                     Promoted = true;
                     PromotedIsBig = true;
-
                     trigger OnAction();
                     begin
-                        CurrPage.SalesInquirySubform.PAGE.ExportDataToExcel(FALSE);
+                        CurrPage.SalesInquirySubform.Page.ExportDataToExcel(false);
                     end;
                 }
-                action("ExportDatawithlot")
+                Action(ExportDatawithLot)
                 {
-                    Caption = 'Export &Data with LN/SN/Expiration Date', JPN = 'ロット/シリアル/有効期限付きエクスポート(&D)';
+                    Caption = 'Export Data with LN/SN/Expiration Date';
                     Image = ExportToExcel;
                     Promoted = true;
                     PromotedIsBig = true;
-
                     trigger OnAction();
                     begin
-                        CurrPage.SalesInquirySubform.PAGE.ExportDataToExcel(TRUE);
+                        CurrPage.SalesInquirySubform.Page.ExportDataToExcel(true);
                     end;
                 }
-                action("SalesForceImportData")
+                Action(SalesForceImportData)
                 {
-                    Caption = 'Sales Force Import Data',
-                                JPN = 'Sales Force取り込み用データエクスポート';
+                    Caption = 'Sales Force Import Data';
                     Image = ExportToExcel;
                     Promoted = true;
                     PromotedIsBig = true;
-
                     trigger OnAction();
                     begin
-                        CurrPage.SalesInquirySubform.PAGE.ExportSFDataToExcel(FALSE);
+                        CurrPage.SalesInquirySubform.Page.ExportSFDataToExcel(false);
                     end;
                 }
-
             }
         }
     }
 
     trigger OnClosePage();
     begin
-        SalesInqLine.RESET;
-        SalesInqLine.SETRANGE(GUID, CurrGUID);//PBCWEST
-        SalesInqLine.DELETEALL;
+        SalesInqLine.Reset();
+        SalesInqLine.SetRange(Guid, CurrGUID);
+        SalesInqLine.DeleteAll();
     end;
 
     trigger OnInit();
     begin
-        PostedSalesInvoice := TRUE;
-        PostedSalesCrMemo := TRUE;
+        PostedSalesInvoice := true;
+        PostedSalesCrMemo := true;
         ShowDummyLine := true;
-        CurrPage.SalesInquirySubform.PAGE.ControlShowMode(ShowMode);
+        CurrPage.SalesInquirySubform.Page.ControlShowMode(ShowMode);
     end;
 
     trigger OnOpenPage();
     begin
-        PBCJPSetup.GET;
-        IF NOT PBCJPSetup."Use Sales Inquiry" THEN
-            JPCKFunc.ShowJpckFuncNotUsed;
-        CurrGUID := CREATEGUID;
-        SalesInqLine.RESET;
-        SalesInqLine.SETCURRENTKEY("Creation Date"); //PBCWEST
-        SalesInqLine.SETRANGE("Creation Date", TODAY - 3);
-        IF NOT SalesInqLine.ISEMPTY THEN
-            SalesInqLine.DELETEALL;
-
-        SalesInqLine.RESET;
+        CurrGUID := CreateGuid();
+        SalesInqLine.Reset();
+        SalesInqLine.SetCurrentKey("Creation Date");
+        SalesInqLine.SetRange("Creation Date", Today() - 3);
+        if not SalesInqLine.IsEmpty then
+            SalesInqLine.DeleteAll();
+        SalesInqLine.Reset();
     end;
 
     var
-        PBCJPSetup: Record "PBCJP Setup";
         SalesInqLine: Record "Sales Inquiry Line" temporary;
-        JPCKFunc: Codeunit "NEB JPCK_Functions";
-        ApplMgt: Codeunit "TextManagement";
-        CurrGUID: Guid;
+        ApplMgt: Codeunit "Filter Tokens";
+        ShowMode: Option "Header + Line","Header Only","Line Only";
         SelltoCustomerFilter: Text;
         BilltoCustomerFilter: Text;
         PostingDateFilter: Text;
         OrderDateFilter: Text;
+        ItemChargeFilter: Text;
+        ResourceFilter: Text;
         GLAccFilter: Text;
         ItemFilter: Text;
-        ResourceFilter: Text;
         FAFilter: Text;
-        ItemChargeFilter: Text;
+        CurrGUID: Guid;
         NoFilterCount: Integer;
-        ShowMode: Option "Header + Line","Header Only","Line Only";
-        ShowDummyLine: Boolean;
         TotalQty: Decimal;
         TotalAmount: Decimal;
         TotalAmountInclVAT: Decimal;
+        ShowDummyLine: Boolean;
         SalesQuote: Boolean;
         SalesOrder: Boolean;
         SalesInvoice: Boolean;
@@ -443,7 +411,5 @@
         PostedSalesInvoice: Boolean;
         PostedSalesCrMemo: Boolean;
         Window: Dialog;
-        Text000: TextConst ENU = 'Now searching.\Please wait ...', JPN = '検索中。\お待ち下さい ・・・';
+        Text000: Label 'Now searching.\Please wait ...';
 }
-
- */

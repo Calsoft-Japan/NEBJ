@@ -5,6 +5,22 @@ codeunit 50001 ItemTrackingMgtNEBJ
         ImportProcess := true;
     end;
 
+    [EventSubscriber(ObjectType::Codeunit, Codeunit::"Copy Document Mgt.", 'OnAfterInsertToSalesLine', '', true, true)]
+    procedure InitAssistEditLotSerialNo(var ToSalesLine: Record "Sales Line")
+    begin
+        if (ToSalesLine."Document Type" = ToSalesLine."Document Type"::Order) and
+            (ToSalesLine.Type = ToSalesLine.Type::Item) and (ToSalesLine.Quantity <> 0) then
+            AssistEditLotSerialNo(ToSalesLine, ToSalesLine.Quantity);
+    end;
+
+    [EventSubscriber(ObjectType::Page, Page::"Sales Order Subform", 'OnAfterQuantityOnAfterValidate', '', true, true)]
+    procedure OnAfterAddItem(var SalesLine: Record "Sales Line"; xSalesLine: Record "Sales Line")
+    begin
+        if (SalesLine."Document Type" = SalesLine."Document Type"::Order) and
+            (SalesLine.Type = SalesLine.Type::Item) and (SalesLine.Quantity <> 0) then
+            AssistEditLotSerialNo(SalesLine, SalesLine.Quantity);
+    end;
+
     procedure AssistEditLotSerialNo(var SalesLine: Record "Sales Line" temporary; NeedQty: Decimal): Boolean
     var
         ItemLedgEntry: Record "Item Ledger Entry";
@@ -137,6 +153,9 @@ codeunit 50001 ItemTrackingMgtNEBJ
                                 ReservEntry4.Delete();
                             ReservEntry3.Delete();
                         until ReservEntry3.Next() = 0;
+                    ReservEntry3."Warranty Date" := TempEntrySummary."Warranty Date";
+                    ReservEntry3."Expiration Date" := TempEntrySummary."Expiration Date";
+                    ReservEntry3."Lot No." := TempEntrySummary."Lot No.";
                     CreateReservEntry.CreateReservEntryFor(
                         Database::"Sales Line",
                         SalesLine."Document Type".AsInteger(),
@@ -176,6 +195,9 @@ codeunit 50001 ItemTrackingMgtNEBJ
                                     ReservEntry4.Delete();
                                 ReservEntry3.Delete();
                             until ReservEntry3.Next() = 0;
+                        ReservEntry3."Warranty Date" := TempEntrySummary."Warranty Date";
+                        ReservEntry3."Expiration Date" := TempEntrySummary."Expiration Date";
+                        ReservEntry3."Lot No." := TempEntrySummary."Lot No.";
                         CreateReservEntry.CreateReservEntryFor(
                             Database::"Sales Line",
                             SalesLine."Document Type".AsInteger(),
@@ -209,6 +231,9 @@ codeunit 50001 ItemTrackingMgtNEBJ
                                     ReservEntry4.Delete();
                                 ReservEntry3.Delete();
                             until ReservEntry3.Next() = 0;
+                        ReservEntry3."Warranty Date" := TempEntrySummary."Warranty Date";
+                        ReservEntry3."Expiration Date" := TempEntrySummary."Expiration Date";
+                        ReservEntry3."Lot No." := TempEntrySummary."Lot No.";
                         CreateReservEntry.CreateReservEntryFor(
                             Database::"Sales Line",
                             SalesLine."Document Type".AsInteger(),
@@ -217,7 +242,6 @@ codeunit 50001 ItemTrackingMgtNEBJ
                             SalesLine."Qty. per Unit of Measure",
                             TempEntrySummary."Total Available Quantity" / SalesLine."Qty. per Unit of Measure",
                             TempEntrySummary."Total Available Quantity", ReservEntry3);
-
                         CreateReservEntry.CreateEntry(
                             SalesLine."No.",
                             SalesLine."Variant Code",

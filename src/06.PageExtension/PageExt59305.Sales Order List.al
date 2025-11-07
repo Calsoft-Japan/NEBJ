@@ -11,6 +11,23 @@ pageextension 59305 "Sales Order List Ext" extends "Sales Order List"
             }
         }
     }
+    actions
+    {
+        addafter("Create Inventor&y Put-away/Pick_Promoted")
+        {
+            actionref(SalesOrderImport_Promoted; SalesOrderImport) { }
+        }
+        addafter("Create Inventor&y Put-away/Pick")
+        {
+            action(SalesOrderImport)
+            {
+                ApplicationArea = All;
+                Caption = 'Import Sales Order';
+                Image = Import;
+                RunObject = Report "Sales Order Import";
+            }
+        }
+    }
 
 }
 

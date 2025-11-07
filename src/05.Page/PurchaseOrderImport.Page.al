@@ -10,7 +10,7 @@ page 50011 "Purchase Order Import"
         {
             field(FileName; FileName)
             {
-                Caption = 'Choose File Name';
+                Caption = 'Import File Name';
                 Lookup = true;
 
                 trigger OnLookup(var Text: Text): Boolean

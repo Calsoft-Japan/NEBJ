@@ -580,12 +580,6 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page End User Subfrom - Property Caption</note>
         </trans-unit>
-        <trans-unit id="Page 1592554000 - Control 2445482498 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>General</source>
-          <target>一般</target>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page End User Subfrom - Control General - Property Caption</note>
-        </trans-unit>
         <trans-unit id="Page 1592554000 - Control 316075982 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Blocked</source>
           <target>ブロック</target>
@@ -665,27 +659,260 @@
           <note from="Xliff Generator" annotates="general" priority="3">Page Purchase Order Import - Method ErrLogWrite - NamedType ErrLbl3</note>
         </trans-unit>
         <trans-unit id="Page 3305963972 - Control 989751795 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Choose File Name</source>
+          <source>Import File Name</source>
+          <target>ファイル名</target>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page Purchase Order Import - Control FileName - Property Caption</note>
         </trans-unit>
         <trans-unit id="Page 3305963972 - Control 3201496503 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Import</source>
+          <target>インポート</target>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page Purchase Order Import - Control Import - Property Caption</note>
         </trans-unit>
         <trans-unit id="Page 3305963972 - Control 1128255148 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Import (Test)</source>
+          <target>インポート(テストのみ)</target>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page Purchase Order Import - Control IsImpTest - Property Caption</note>
         </trans-unit>
         <trans-unit id="Page 3305963972 - Action 155853105 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Execute</source>
+          <target>Execute</target>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page Purchase Order Import - Action execute - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Page 4165833255 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>NEBJ Sales Inquiry</source>
+          <target>NEBJ 販売照会</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Sales Inquiry Card - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 4165833255 - NamedType 2476940767" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Now searching.\Please wait ...</source>
+          <target>検索中。\お待ち下さい ・・・</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Sales Inquiry Card - NamedType Text000</note>
+        </trans-unit>
+        <trans-unit id="Page 4165833255 - Control 739346273 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Header Field Filter</source>
+          <target>ヘッダー項目フィルター</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Sales Inquiry Card - Control Group - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 4165833255 - Control 2941223512 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Bill-to Customer Filter</source>
+          <target>請求先得意先フィルター</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Sales Inquiry Card - Control BilltoCustomerFilter - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 4165833255 - Control 486876902 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Order Date Filter</source>
+          <target>受注日フィルター</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Sales Inquiry Card - Control OrderDateFilter - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 4165833255 - Control 447285968 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Posting Date Filter</source>
+          <target>転記日フィルター</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Sales Inquiry Card - Control PostingDateFilter - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 4165833255 - Control 766802579 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Sell-to Customer Filter</source>
+          <target>販売先得意先フィルター</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Sales Inquiry Card - Control SelltoCustomerFilter - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 4165833255 - Control 3349558288 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Include</source>
+          <target>検索対象</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Sales Inquiry Card - Control Include - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 4165833255 - Control 2663274630 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Posted Sales Credit Memo</source>
+          <target>転記済クレジットメモ</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Sales Inquiry Card - Control PostedSalesCrMemo - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 4165833255 - Control 1682009332 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Posted Sales Invoice</source>
+          <target>転記済請求</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Sales Inquiry Card - Control PostedSalesInvoice - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 4165833255 - Control 4275230785 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Sales Credit Memo</source>
+          <target>クレジットメモ</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Sales Inquiry Card - Control SalesCreditMemo - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 4165833255 - Control 927944371 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Sales Invoice</source>
+          <target>請求</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Sales Inquiry Card - Control SalesInvoice - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 4165833255 - Control 3617415722 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Sales Order</source>
+          <target>受注</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Sales Inquiry Card - Control SalesOrder - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 4165833255 - Control 647151006 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Sales Quote</source>
+          <target>見積</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Sales Inquiry Card - Control SalesQuote - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 4165833255 - Control 1932774032 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Sales Return Order</source>
+          <target>売上返品</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Sales Inquiry Card - Control SalesReturnOrder - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 4165833255 - Control 1589179724 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Show Mode</source>
+          <target>表示モード</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Sales Inquiry Card - Control ShowMode - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 4165833255 - Control 1589179724 - Property 62802879" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Header + Line,Header Only,Line Only</source>
+          <target>ヘッダー + ライン,ヘッダーのみ,ラインのみ</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Sales Inquiry Card - Control ShowMode - Property OptionCaption</note>
+        </trans-unit>
+        <trans-unit id="Page 4165833255 - Control 2616754320 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Line Field Filter</source>
+          <target>ライン項目フィルター</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Sales Inquiry Card - Control Line Field Filter - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 4165833255 - Control 4261085857 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Fixed Asset Filter</source>
+          <target>固定資産フィルター</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Sales Inquiry Card - Control FAFilter - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 4165833255 - Control 3932929510 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>G/L Account Filter</source>
+          <target>勘定科目フィルター</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Sales Inquiry Card - Control GLAccFilter - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 4165833255 - Control 3011638017 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Item Charge Filter</source>
+          <target>費用項目フィルター</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Sales Inquiry Card - Control ItemChargeFilter - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 4165833255 - Control 1553686271 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Item Filter</source>
+          <target>品目フィルター</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Sales Inquiry Card - Control ItemFilter - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 4165833255 - Control 4150322462 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Resource Filter</source>
+          <target>リソースフィルター</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Sales Inquiry Card - Control ResourceFilter - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 4165833255 - Control 4005280567 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Show Zero Amount Line</source>
+          <target>金額が０の行を表示</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Sales Inquiry Card - Control ShowDummyLine - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 4165833255 - Control 245426702 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Total</source>
+          <target>合計</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Sales Inquiry Card - Control Total - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 4165833255 - Control 588318770 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Total Amount (LCY)</source>
+          <target>合計金額 (基本通貨)</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Sales Inquiry Card - Control TotalAmount - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 4165833255 - Control 725055695 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Total Amount Incl. VAT (LCY)</source>
+          <target>税込合計金額 (基本通貨)</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Sales Inquiry Card - Control TotalAmountInclVAT - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 4165833255 - Control 1065973674 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Total Quantity (Base)</source>
+          <target>合計数量 (基本単位)</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Sales Inquiry Card - Control TotalQty - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 4165833255 - Action 1929393835 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Functions</source>
+          <target>機能</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Sales Inquiry Card - Action Functions - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 4165833255 - Action 1758329763 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Clear Data</source>
+          <target>データ消去</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Sales Inquiry Card - Action ClearData - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 4165833255 - Action 2427105420 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Deselect All</source>
+          <target>検索対象全消去</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Sales Inquiry Card - Action DeselectAll - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 4165833255 - Action 2453998267 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Export Data with LN/SN/Expiration Date</source>
+          <target>ロット/シリアル/有効期限付きエクスポート</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Sales Inquiry Card - Action ExportDatawithLot - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 4165833255 - Action 2973610849 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Export Data without LN/SN</source>
+          <target>ロット/シリアル番号なしでエクスポート</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Sales Inquiry Card - Action ExportDatawithoutLot - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 4165833255 - Action 1410040836 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Sales Force Import Data</source>
+          <target>Sales Force取り込み用データエクスポート</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Sales Inquiry Card - Action SalesForceImportData - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 4165833255 - Action 2223207931 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Select All</source>
+          <target>検索対象全設定</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Sales Inquiry Card - Action SelectAll - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 4165833255 - Action 88470173 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Show Data</source>
+          <target>データ表示</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Sales Inquiry Card - Action ShowData - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 4139010253 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Line</source>
+          <target>ライン</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Sales Inquiry Subform - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 4139010253 - NamedType 2476940767" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Please specify the search criteria.</source>
+          <target>検索対象を指定して下さい。</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Sales Inquiry Subform - NamedType Text000</note>
+        </trans-unit>
         <trans-unit id="Page 1232259966 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Sales Order Import Result</source>
+          <target>Sales Order Import Result</target>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page Sales Order Import Result - Property Caption</note>
         </trans-unit>
@@ -873,6 +1100,12 @@
           <source>Pic指示</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">PageExtension Sales Order Ext - Control Picking Advice - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="PageExtension 1737375231 - Action 824813397 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 3332899200">
+          <source>Import Sales Order</source>
+          <target>受注取込</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension Sales Order List Ext - Action SalesOrderImport - Property Caption</note>
         </trans-unit>
         <trans-unit id="PageExtension 1737375231 - Control 2627792820 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 3332899200">
           <source>請求先名2</source>

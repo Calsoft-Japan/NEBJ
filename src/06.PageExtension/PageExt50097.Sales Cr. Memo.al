@@ -1,4 +1,4 @@
-pageextension 50100 "Sales Credit Memo Ext" extends "Sales Credit Memo"
+pageextension 50097 "Sales Credit Memo Ext" extends "Sales Credit Memo"
 {
     actions
     {
@@ -18,7 +18,7 @@ pageextension 50100 "Sales Credit Memo Ext" extends "Sales Credit Memo"
                     SalesCrMemoHdr: Record "Sales Cr.Memo Header";
                 begin
                     CurrPage.SetSelectionFilter(SalesCrMemoHdr);
-                    Report.RunModal(1316, true, true, SalesCrMemoHdr);
+                    Report.RunModal(50001, true, true, SalesCrMemoHdr);
                 end;
             }
         }

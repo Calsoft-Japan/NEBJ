@@ -84,13 +84,13 @@ reportextension 51305 "Sales Ord Confirmation Ext" extends "Standard Sales - Ord
             column(Planned_Delivery_Date; "Planned Delivery Date")
             { }
             //2025-11-04
-            column(ItemOfficialName_Line; ItemOfficialNameTxt) { }
+            column(ItemDescFromItem_Line; ItemDescFromItemTxt) { }
         }
         modify(Line)
         {
             trigger OnAfterAfterGetRecord()
             begin
-                SetItemFullName(Line);
+                SetItemDescFromItem(Line)
             end;
         }
     }
@@ -99,15 +99,17 @@ reportextension 51305 "Sales Ord Confirmation Ext" extends "Standard Sales - Ord
         CompanyInfo2: Record "Company Information";
         Customer2: Record Customer;
         ItemRec: Record Item;
-        ItemOfficialNameTxt: Text[100];
+        ItemDescFromItemTxt: Text[100];
 
-    local procedure SetItemFullName(SalesLine: Record "Sales Line")
+    local procedure SetItemDescFromItem(SalesLine: Record "Sales Line")
     begin
-        Clear(ItemOfficialNameTxt);
-        // Only if this row is an Item line
+        Clear(ItemDescFromItemTxt);
         if SalesLine.Type = SalesLine.Type::Item then begin
             if ItemRec.Get(SalesLine."No.") then
-                ItemOfficialNameTxt := ItemRec.FullName;   // <-- 正式名称 (custom field 50001)
-        end;
+                ItemDescFromItemTxt := ItemRec.Description      // ← from Item card
+            else
+                ItemDescFromItemTxt := '';                       // no item found
+        end else
+            ItemDescFromItemTxt := SalesLine.Description;        // keep text/GL lines readable
     end;
 }

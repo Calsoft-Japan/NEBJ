@@ -1101,6 +1101,12 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">PageExtension Sales Order Ext - Control Picking Advice - Property Caption</note>
         </trans-unit>
+        <trans-unit id="PageExtension 1737375231 - Action 824813397 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 3332899200">
+          <source>Import Sales Order</source>
+          <target>受注取込</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension Sales Order List Ext - Action SalesOrderImport - Property Caption</note>
+        </trans-unit>
         <trans-unit id="PageExtension 1737375231 - Control 2627792820 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 3332899200">
           <source>請求先名2</source>
           <note from="Developer" annotates="general" priority="2"></note>

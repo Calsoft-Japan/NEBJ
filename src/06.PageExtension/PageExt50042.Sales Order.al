@@ -25,7 +25,7 @@ pageextension 50042 "Sales Order Ext" extends "Sales Order"
             }
         }
     }
-    actions
+    /* actions
     {
         addafter(GetRecurringSalesLines_Promoted)
         {
@@ -41,5 +41,5 @@ pageextension 50042 "Sales Order Ext" extends "Sales Order"
                 RunObject = Report "Sales Order Import";
             }
         }
-    }
+    } */
 }

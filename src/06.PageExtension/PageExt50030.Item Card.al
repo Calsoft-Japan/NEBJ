@@ -21,7 +21,7 @@ pageextension 50030 "Item Card Ext" extends "Item Card"
                 ApplicationArea = All;
                 Caption = '仕切り率 (テキストのみ)';
             }
-            field("Inventory - ""Qty. on Sales Order"""; Rec."Inventory" - Rec."Qty. on Sales Order")
+            field("Inventory - Qty. on Sales Order"; InventoryDiff)
             {
                 ApplicationArea = All;
                 DecimalPlaces = 0 : 0;
@@ -303,37 +303,38 @@ pageextension 50030 "Item Card Ext" extends "Item Card"
 
     }
 
-    // Memo Field
+    var
+        InventoryDiff: Decimal;
+
+
     var
         MemoGroup: Text;
 
-    // ページ読み込み時：BLOB からテキストを読み出して MemoGroup にセット
     trigger OnAfterGetRecord()
     begin
+
+        Rec.CalcFields("Inventory", "Qty. on Sales Order");
+        InventoryDiff := Rec."Inventory" - Rec."Qty. on Sales Order";
+
         MemoGroup := GetMemoGroup();
     end;
 
-    // BLOB に文字列を書き込む（保存）
     procedure SetMemoGroup(NewMemoGroup: Text)
     var
         OutStream: OutStream;
     begin
-        // BLOB を上書き（クリアと同等）
         Rec."Memo".CreateOutStream(OutStream, TEXTENCODING::UTF8);
         OutStream.WriteText(NewMemoGroup);
 
-        // レコード保存
         Rec.Modify();
     end;
 
-    // BLOB からテキストを読み出して返す
     procedure GetMemoGroup(): Text
     var
         InStream: InStream;
         TempText: Text;
     begin
         TempText := '';
-        // 空の BLOB でも問題なく空文字列が返ります
         Rec."Memo".CreateInStream(InStream, TEXTENCODING::UTF8);
         InStream.ReadText(TempText);
         exit(TempText);

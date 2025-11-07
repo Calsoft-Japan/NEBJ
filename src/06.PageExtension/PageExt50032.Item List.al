@@ -34,11 +34,11 @@ pageextension 50032 "Item List Ext" extends "Item List"
                 ApplicationArea = All;
                 Caption = '仕切り率 (テキストのみ)';
             }
-            //field(Inventory; Rec.Inventory)
-            //{
-            //    ApplicationArea = All;
-            //    Caption = '';
-            //}
+            field(Inventory; Rec.Inventory)
+            {
+                ApplicationArea = All;
+                Caption = '在庫数量';
+            }
             field("In-transit (Qty.)"; Rec."In-transit (Qty.)")
             {
                 ApplicationArea = All;
@@ -47,8 +47,9 @@ pageextension 50032 "Item List Ext" extends "Item List"
             }
             field("Qty. on Sales Order"; Rec."Qty. on Sales Order")
             {
+                ApplicationArea = All;
             }
-            field("Inventory - ""Qty. on Sales Order"""; Rec."Inventory" - Rec."Qty. on Sales Order")
+            field("Inventory - Qty. on Sales Order"; InventoryDiff)
             {
                 ApplicationArea = All;
                 DecimalPlaces = 0 : 0;
@@ -126,7 +127,6 @@ pageextension 50032 "Item List Ext" extends "Item List"
         }
         addafter("Base Unit of Measure")
         {
-            //キャプションミス？
             field("Campaine YN"; Rec."Campaine YN")
             {
                 ApplicationArea = All;
@@ -177,6 +177,8 @@ pageextension 50032 "Item List Ext" extends "Item List"
     {
     }
 
+
+
     var
         ItemCategoryDescription: Text[50];
         ItemCategory: Record "Item Category";
@@ -202,8 +204,15 @@ pageextension 50032 "Item List Ext" extends "Item List"
             ItemCategoryDescription := ItemCategory.Description;
     end;
 
+    var
+        InventoryDiff: Decimal;
+
     trigger OnAfterGetRecord()
     begin
+
+        Rec.CalcFields("Inventory", "Qty. on Sales Order");
+        InventoryDiff := Rec."Inventory" - Rec."Qty. on Sales Order";
+
         ItemCategoryCodeSearch();
     end;
 }

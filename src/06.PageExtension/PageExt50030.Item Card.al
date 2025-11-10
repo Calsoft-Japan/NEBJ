@@ -344,13 +344,6 @@ pageextension 50030 "Item Card Ext" extends "Item Card"
         InStream.ReadText(TempText);
         exit(TempText);
     end;
-
-
-    //Item Category Parent Code
-    var
-        ItemCategoryParent: Code[20];
-
-
 }
 
 

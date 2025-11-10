@@ -153,24 +153,6 @@ pageextension 50030 "Item Card Ext" extends "Item Card"
                 ApplicationArea = All;
                 Caption = '消費期限';
             }
-            group(MemoGroup)
-            {
-                Caption = 'メモ';
-                field("Memo"; MemoGroup)
-                {
-                    ApplicationArea = Basic, Suite;
-                    Importance = Additional;
-                    MultiLine = true;
-                    ShowCaption = false;
-                    ToolTip = 'この品目に追加したいメモを記載。';
-
-                    trigger OnValidate()
-                    begin
-                        SetMemoGroup(MemoGroup);
-                    end;
-                }
-            }
-
         }
         addafter("Item Disc. Group")
         {
@@ -272,6 +254,24 @@ pageextension 50030 "Item Card Ext" extends "Item Card"
                 end;
             }
 
+            group(MemoGroup)
+            {
+                Caption = 'メモ';
+                field("Memo"; MemoGroup)
+                {
+                    ApplicationArea = Basic, Suite;
+                    Importance = Additional;
+                    MultiLine = true;
+                    ShowCaption = false;
+                    ToolTip = 'この品目に追加したいメモを記載。';
+
+                    trigger OnValidate()
+                    begin
+                        SetMemoGroup(MemoGroup);
+                    end;
+                }
+            }
+
 
         }
 
@@ -305,10 +305,10 @@ pageextension 50030 "Item Card Ext" extends "Item Card"
 
     var
         InventoryDiff: Decimal;
-
-
-    var
         MemoGroup: Text;
+        ItemCategoryParent: Code[20];
+        ItemCategory: Record "Item Category";
+
 
     trigger OnAfterGetRecord()
     begin
@@ -317,6 +317,11 @@ pageextension 50030 "Item Card Ext" extends "Item Card"
         InventoryDiff := Rec."Inventory" - Rec."Qty. on Sales Order";
 
         MemoGroup := GetMemoGroup();
+
+        ItemCategoryParent := '';
+        if Rec."Item Category Code" <> '' then
+            if ItemCategory.Get(Rec."Item Category Code") then
+                ItemCategoryParent := ItemCategory."Parent Category";
     end;
 
     procedure SetMemoGroup(NewMemoGroup: Text)

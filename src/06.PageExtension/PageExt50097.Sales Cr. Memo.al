@@ -15,10 +15,9 @@ pageextension 50097 "Sales Credit Memo Ext" extends "Sales Credit Memo"
 
                 trigger OnAction()
                 var
-                    SalesCrMemoHdr: Record "Sales Cr.Memo Header";
+                    RequestPage: Page "Sales Cr. Memo Report Request";
                 begin
-                    CurrPage.SetSelectionFilter(SalesCrMemoHdr);
-                    Report.RunModal(50001, true, true, SalesCrMemoHdr);
+                    RequestPage.RunModal();
                 end;
             }
         }

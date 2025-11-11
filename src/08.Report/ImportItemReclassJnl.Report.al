@@ -28,13 +28,6 @@ report 50002 "Import Goods Rcpt. Insp. Data"
                         AssistEdit = true;
 
                         trigger OnAssistEdit()
-                        var
-                            FileMgt: Codeunit "File Management";
-                            FromFile: Text[100];
-                            FileContent: Text;
-                            FileContent2: Text;
-                            FieldSeperator: Char;
-                            Columns: List of [Text];
                         begin
                             UploadIntoStream(DialogTxt, '', FilterTxt, FileName, FileInStream);
                             if FileName = '' then
@@ -44,10 +37,6 @@ report 50002 "Import Goods Rcpt. Insp. Data"
                             Encoding.Encoding(932);
                             StreamReader.StreamReader(FileInStream, Encoding);
                             FileContent := StreamReader.ReadToEnd();
-                            /* Clear(TempBlob);
-                            TempBlob.CreateOutStream(ContentOutStream, TextEncoding::UTF8);
-                            ContentOutStream.WriteText(FileContent);
-                            TempBlob.CreateInStream(ContentInStream); */
                         end;
                     }
                 }
@@ -61,7 +50,7 @@ report 50002 "Import Goods Rcpt. Insp. Data"
         NextLineNo := 0;
 
         ExcelBuf.LockTable();
-        ReadExcelSheet();
+        ReadTextFile(FileContent);
         //AnalyzeData();
     end;
 
@@ -82,6 +71,7 @@ report 50002 "Import Goods Rcpt. Insp. Data"
         FileInStream: InStream;
         ContentOutStream: OutStream;
         ContentInStream: InStream;
+        FileContent: Text;
         TemplateName: Code[20];
         BatchName: Code[20];
         FileName: Text[250];
@@ -110,11 +100,6 @@ report 50002 "Import Goods Rcpt. Insp. Data"
         DialogTxt: Label 'Import from excel file';
         BlankFileErr: Label 'File not found or incorrect.';
         FilterTxt: Label 'Text Files (*.txt)|*.txt|All Files (*.*)|*.*';
-
-    local procedure ReadExcelSheet();
-    begin
-        ReadTextFile();
-    end;
 
     local procedure AnalyzeData();
     VAR
@@ -377,10 +362,9 @@ report 50002 "Import Goods Rcpt. Insp. Data"
         end;
     end;
 
-    local procedure ReadTextFile()
+    local procedure ReadTextFile(pFileContent: Text)
     var
         Window: Dialog;
-        FileContent: Text;
         FieldSeperator: Char;
         Chr: Char;
         ColumnNo: Integer;
@@ -397,6 +381,10 @@ report 50002 "Import Goods Rcpt. Insp. Data"
 
         FieldSeperator := 9;
 
+        Clear(TempBlob);
+        TempBlob.CreateOutStream(ContentOutStream);
+        ContentOutStream.WriteText(pFileContent);
+        TempBlob.CreateInStream(ContentInStream);
 
         while not FileInStream.EOS do begin
             FileInStream.ReadText(FileContent);

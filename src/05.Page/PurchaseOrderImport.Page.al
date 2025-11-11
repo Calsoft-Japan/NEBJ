@@ -118,6 +118,7 @@ page 50011 "Purchase Order Import"
                         CreateErroLog();
                     end;
                     ImportMessage(DataCnt, ErrCnt, IsImport);
+                    CurrPage.Close();
                 end;
             }
         }

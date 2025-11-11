@@ -77,6 +77,8 @@ page 50011 "Purchase Order Import"
 
                     TempExcelBuf.LockTable();
                     SheetName := TempExcelBuf.SelectSheetsNameStream(FileInStream);
+                    if SheetName = '' then
+                        CurrPage.Close();
                     TempExcelBuf.OpenBookStream(FileInStream, SheetName);
                     TempExcelBuf.ReadSheetContinous(SheetName, true);
 

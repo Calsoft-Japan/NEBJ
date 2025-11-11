@@ -15,7 +15,7 @@ report 50002 "Import Goods Rcpt. Insp. Data"
                 group(Option)
                 {
                     Caption = 'Option';
-                    field(ReqBatchName; ReqBatchName)
+                    field(ReqBatchName; BatchName)
                     {
                         ApplicationArea = All;
                         Caption = 'Batch Name';
@@ -32,24 +32,56 @@ report 50002 "Import Goods Rcpt. Insp. Data"
                             FileMgt: Codeunit "File Management";
                             FromFile: Text[100];
                             FileContent: Text;
-                            ContentOutStream: OutStream;
-                            ContentInStream: InStream;
+                            FileContent2: Text;
+                            FieldSeperator: Char;
+                            Columns: List of [Text];
                         begin
                             UploadIntoStream(DialogTxt, '', FilterTxt, FileName, FileInStream);
                             if FileName = '' then
                                 Error(BlankFileErr);
+
+                            Clear(TempBlob);
+                            Encoding.Encoding(932);
+                            StreamReader.StreamReader(FileInStream, Encoding);
+                            FileContent := StreamReader.ReadToEnd();
+                            /* Clear(TempBlob);
+                            TempBlob.CreateOutStream(ContentOutStream, TextEncoding::UTF8);
+                            ContentOutStream.WriteText(FileContent);
+                            TempBlob.CreateInStream(ContentInStream); */
                         end;
                     }
                 }
             }
         }
     }
+    trigger OnPreReport()
+    begin
+        TemplateName := 'TRANSFER';
+
+        NextLineNo := 0;
+
+        ExcelBuf.LockTable();
+        ReadExcelSheet();
+        //AnalyzeData();
+    end;
+
+    trigger OnPostReport()
+    begin
+        ExcelBuf.DeleteAll();
+        Message(ImpMsg)
+    end;
+
     var
+        TempCSVBuffer: Record "CSV Buffer" temporary;
         ExcelBuf: Record "Excel Buffer";
         ItemJnlBatch: Record "Item Journal Batch";
         ItemJnlLine: Record "Item Journal Line";
+        TempBlob: Codeunit "Temp Blob";
+        Encoding: Codeunit DotNet_Encoding;
+        StreamReader: Codeunit DotNet_StreamReader;
         FileInStream: InStream;
-        ReqBatchName: Code[20];
+        ContentOutStream: OutStream;
+        ContentInStream: InStream;
         TemplateName: Code[20];
         BatchName: Code[20];
         FileName: Text[250];
@@ -60,73 +92,33 @@ report 50002 "Import Goods Rcpt. Insp. Data"
         EntryNo: Integer;
         NewLotNo: Code[20];
         NewExpDate: Date;
-        xlsLineNo: Integer;
-        xlsItemNo: Code[20];
-        xlsPostingDate: Date;
-        xlsASEDate: Date;
-        xlsEntryType: Integer;
-        xlsDocNo: Code[20];
-        xlsExtDocNo: Code[20];
+        LineNo: Integer;
+        ItemNo: Code[20];
+        PostingDate: Date;
+        ASEDate: Date;
+        DocNo: Code[20];
+        ExtDocNo: Code[20];
         xlsRecNo: Code[20];
-        xlsLocCode: Code[20];
-        xlsNewLocCode: Code[20];
-        xlsJnlBatchName: Code[10];
-        xlsLotNo: Code[20];
-        xlsSerialNo: Code[20];
-        xlsExpDate: Date;
-        xlsDescription: Text[80];
-        xlsDocDate: Date;
-        xlsQty: Decimal;
+        LocCode: Code[20];
+        NewLocCode: Code[20];
+        LotNo: Code[20];
+        SerialNo: Code[20];
+        ExpDate: Date;
+        Description: Text[80];
+        Qty: Decimal;
+        ImpMsg: Label 'Import Completed';
         DialogTxt: Label 'Import from excel file';
         BlankFileErr: Label 'File not found or incorrect.';
-        FilterTxt: Label 'Text Files (*.csv)|*.csv|All Files (*.*)|*.*';
+        FilterTxt: Label 'Text Files (*.txt)|*.txt|All Files (*.*)|*.*';
 
     local procedure ReadExcelSheet();
-    VAR
-        Position: Integer;
     begin
-        ReadSheetTXT2(FileName);
+        ReadTextFile();
     end;
 
     local procedure AnalyzeData();
     VAR
-        TempExcelBuf: Record "Excel Buffer" temporary;
-        TempBudgetBuf: Record "Budget Buffer" temporary;
-        BudgetBuf: Record "Budget Buffer";
-        HeaderRowNo: Integer;
-        CountDim: Integer;
-        TestDate: Date;
-        OldRowNo: Integer;
-        DimRowNo: Integer;
-        DimCode3: Code[20];
-        lrecItem: Record 27;
-        lintRowCounter: Integer;
-        ldecPrice: Decimal;
-        lrecItemVendor: Record 99;
-        ltxtVendorItemNo: Text[20];
-        lcodVendorNo: Code[20];
-        lcodItemNo: Code[20];
-        SalesType: Text[30];
-        SalesCode: Text[30];
-        StartingDate: Date;
-        CurrencyCode: Text[30];
-        UnitOfMeasure: Text[30];
-        MinQty: Decimal;
-        UnitPrice: Decimal;
-        EndingDate: Date;
-        AllowLineDisc: Boolean;
-        txtType: Text[30];
-        txtCode: Code[30];
-        UOMCode: Text[30];
-        LineDisc: Decimal;
-        ReservEntry: Record 337;
-        CreateReservEntry: Codeunit 99000830;
-        ReservEngineMgt: Codeunit 99000831;
-        lrReservEntry: Record 337;
-        ReserveItemJnlLine: Codeunit 99000835;
-        lrecLotNoInfo: Record 6505;
-        lrecSNInfo: Record 6504;
-        lint: BigInteger;
+        RowCounter: Integer;
     begin
         if ExcelBuf.FindLast() then
             TotalRecNo := ExcelBuf."Row No."
@@ -134,71 +126,61 @@ report 50002 "Import Goods Rcpt. Insp. Data"
             TotalRecNo := ExcelBuf.Count;
         RecNo := 0;
 
-        for lintRowCounter := 2 to TotalRecNo do begin
+        for RowCounter := 2 to TotalRecNo do begin
             RecNo := RecNo + 1;
 
-            CLEAR(xlsLineNo);
-            CLEAR(xlsDocNo);
-            CLEAR(xlsExtDocNo);
-            CLEAR(xlsPostingDate);
-            CLEAR(xlsItemNo);
-            CLEAR(xlsDescription);
-            CLEAR(xlsLocCode);
-            CLEAR(xlsNewLocCode);
-            CLEAR(xlsLotNo);
-            CLEAR(xlsExpDate);
-            CLEAR(xlsQty);
-            CLEAR(xlsASEDate);
-            CLEAR(xlsRecNo);
+            Clear(LineNo);
+            Clear(DocNo);
+            Clear(ExtDocNo);
+            Clear(PostingDate);
+            Clear(ItemNo);
+            Clear(Description);
+            Clear(LocCode);
+            Clear(NewLocCode);
+            Clear(LotNo);
+            Clear(ExpDate);
+            Clear(Qty);
+            Clear(ASEDate);
+            Clear(RecNo);
 
-            if ExcelBuf.Get(lintRowCounter, 1) then begin
-                xlsDocNo := ExcelBuf."Cell Value as Text";
+            if ExcelBuf.Get(RowCounter, 1) then begin
+                DocNo := ExcelBuf."Cell Value as Text";
 
-                if ExcelBuf.Get(lintRowCounter, 2) then begin
-                    xlsExtDocNo := ExcelBuf."Cell Value as Text";
-                end;
+                if ExcelBuf.Get(RowCounter, 2) then
+                    ExtDocNo := ExcelBuf."Cell Value as Text";
 
-                if ExcelBuf.Get(lintRowCounter, 3) then begin
-                    Evaluate(xlsPostingDate, FormatDataToDate(ExcelBuf."Cell Value as Text"));
-                end;
+                if ExcelBuf.Get(RowCounter, 3) then
+                    Evaluate(PostingDate, FormatDataToDate(ExcelBuf."Cell Value as Text"));
 
-                if ExcelBuf.Get(lintRowCounter, 4) then begin
-                    xlsItemNo := ExcelBuf."Cell Value as Text";
-                end;
+                if ExcelBuf.Get(RowCounter, 4) then
+                    ItemNo := ExcelBuf."Cell Value as Text";
 
-                if ExcelBuf.Get(lintRowCounter, 5) then begin
-                    xlsDescription := ExcelBuf."Cell Value as Text";
-                end;
-                if ExcelBuf.Get(lintRowCounter, 6) then begin
-                    xlsLocCode := ExcelBuf."Cell Value as Text";
-                end;
+                if ExcelBuf.Get(RowCounter, 5) then
+                    Description := ExcelBuf."Cell Value as Text";
 
-                if ExcelBuf.Get(lintRowCounter, 7) then begin
-                    xlsNewLocCode := Format(ExcelBuf."Cell Value as Text");
-                end;
+                if ExcelBuf.Get(RowCounter, 6) then
+                    LocCode := ExcelBuf."Cell Value as Text";
 
-                if ExcelBuf.Get(lintRowCounter, 8) then begin
-                    xlsLotNo := ExcelBuf."Cell Value as Text";
-                end;
+                if ExcelBuf.Get(RowCounter, 7) then
+                    NewLocCode := Format(ExcelBuf."Cell Value as Text");
 
-                if ExcelBuf.Get(lintRowCounter, 9) then begin
-                    Evaluate(xlsExpDate, FormatDataToDate(ExcelBuf."Cell Value as Text"));
-                end;
+                if ExcelBuf.Get(RowCounter, 8) then
+                    LotNo := ExcelBuf."Cell Value as Text";
 
-                if ExcelBuf.Get(lintRowCounter, 10) then begin
-                    Evaluate(xlsQty, ExcelBuf."Cell Value as Text");
-                end;
+                if ExcelBuf.Get(RowCounter, 9) then
+                    Evaluate(ExpDate, FormatDataToDate(ExcelBuf."Cell Value as Text"));
 
-                if ExcelBuf.Get(lintRowCounter, 11) then begin
-                    Evaluate(xlsASEDate, FormatDataToDate(ExcelBuf."Cell Value as Text"));
-                end;
+                if ExcelBuf.Get(RowCounter, 10) then
+                    Evaluate(Qty, ExcelBuf."Cell Value as Text");
 
-                if ExcelBuf.Get(lintRowCounter, 12) then begin
+                if ExcelBuf.Get(RowCounter, 11) then
+                    Evaluate(ASEDate, FormatDataToDate(ExcelBuf."Cell Value as Text"));
+
+                if ExcelBuf.Get(RowCounter, 12) then
                     xlsRecNo := ExcelBuf."Cell Value as Text";
-                end;
 
                 // create new line
-                InsertItemJnlLine(xlsLotNo, xlsSerialNo, xlsItemNo, xlsLocCode, '', xlsQty, '', xlsLineNo);
+                InsertItemJnlLine(LotNo, SerialNo, ItemNo, LocCode, '', Qty, '', LineNo);
 
             end;
         end;
@@ -206,16 +188,13 @@ report 50002 "Import Goods Rcpt. Insp. Data"
 
     procedure InsertItemJnlLine(LotNo: Code[20]; SerialNo: Code[20]; ItemNo: Code[20]; LocCode2: Code[10]; Bin2: Code[20]; Quantity1: Decimal; Uom: Code[10]; intLineNo: Integer);
     VAR
-        lrecLotNoInfo: Record "Lot No. Information";
-        lrecItemLedgerEntry: Record "Item Ledger Entry";
-        WhseEntry2: Record "Warehouse Entry";
-        WhseEntry3: Record "Warehouse Entry";
-        ReservEntry: Record "Reservation Entry";
-        lrReservEntry: Record "Reservation Entry";
         RecRef: RecordRef;
-        CreateReservEntry: Codeunit "Create Reserv. Entry";
+        LotNoInfo: Record "Lot No. Information";
+        ReservEntry: Record "Reservation Entry";
+        ReservEntry2: Record "Reservation Entry";
+        ItemLedEntry: Record "Item Ledger Entry";
+        CreateRsvEntry: Codeunit "Create Reserv. Entry";
         ReservEngineMgt: Codeunit "Reservation Engine Mgt.";
-        ReserveItemJnlLine: Codeunit "Item Jnl. Line-Reserve";
         ReservMgmt: Codeunit "Reservation Management";
         DirEnum: Enum "Transfer Direction";
     begin
@@ -235,44 +214,44 @@ report 50002 "Import Goods Rcpt. Insp. Data"
             ItemJnlLine."Line No." := NextLineNo;
 
             ItemJnlLine.Validate("Entry Type", ItemJnlLine."Entry Type"::Transfer);
-            ItemJnlLine.Validate("Posting Date", xlsPostingDate);
-            ItemJnlLine.Validate("Document No.", xlsDocNo);
-            ItemJnlLine.Validate("External Document No.", xlsExtDocNo);
+            ItemJnlLine.Validate("Posting Date", PostingDate);
+            ItemJnlLine.Validate("Document No.", DocNo);
+            ItemJnlLine.Validate("External Document No.", ExtDocNo);
 
-            ItemJnlLine.Validate("Item No.", xlsItemNo);
-            ItemJnlLine.Validate("Location Code", xlsLocCode);
+            ItemJnlLine.Validate("Item No.", ItemNo);
+            ItemJnlLine.Validate("Location Code", LocCode);
 
             OldLotNo := '';
             EntryNo := 0;
-            lrecItemLedgerEntry.Reset();
-            lrecItemLedgerEntry.SetCurrentKey("Item No.", "Posting Date");
-            lrecItemLedgerEntry.SetRange("Item No.", xlsItemNo);
-            lrecItemLedgerEntry.SetRange("Variant Code", '');
-            lrecItemLedgerEntry.SetRange("Location Code", xlsLocCode);
-            lrecItemLedgerEntry.SetRange("External Document No.", xlsExtDocNo);
-            lrecItemLedgerEntry.SetFilter("Remaining Quantity", '<>%1', 0);
-            if lrecItemLedgerEntry.FindLast() then begin
-                OldLotNo := lrecItemLedgerEntry."Lot No.";
-                EntryNo := lrecItemLedgerEntry."Entry No.";
+            ItemLedEntry.Reset();
+            ItemLedEntry.SetCurrentKey("Item No.", "Posting Date");
+            ItemLedEntry.SetRange("Item No.", ItemNo);
+            ItemLedEntry.SetRange("Variant Code", '');
+            ItemLedEntry.SetRange("Location Code", LocCode);
+            ItemLedEntry.SetRange("External Document No.", ExtDocNo);
+            ItemLedEntry.SetFilter("Remaining Quantity", '<>%1', 0);
+            if ItemLedEntry.FindLast() then begin
+                OldLotNo := ItemLedEntry."Lot No.";
+                EntryNo := ItemLedEntry."Entry No.";
             end else begin
-                lrecItemLedgerEntry.SetRange("External Document No.");
-                if lrecItemLedgerEntry.FindLast() then
-                    OldLotNo := lrecItemLedgerEntry."Lot No."
+                ItemLedEntry.SetRange("External Document No.");
+                if ItemLedEntry.FindLast() then
+                    OldLotNo := ItemLedEntry."Lot No."
             end;
 
             NewLotNo := '';
             NewExpDate := 0D;
-            lrecItemLedgerEntry.Reset();
-            lrecItemLedgerEntry.SetCurrentKey("Item No.", "Posting Date");
-            lrecItemLedgerEntry.SetRange("Item No.", xlsItemNo);
-            lrecItemLedgerEntry.SetRange("Variant Code", '');
-            lrecItemLedgerEntry.SetRange("Lot No.", xlsLotNo);
-            if lrecItemLedgerEntry.FindLast() then begin
-                NewExpDate := lrecItemLedgerEntry."Expiration Date";
+            ItemLedEntry.Reset();
+            ItemLedEntry.SetCurrentKey("Item No.", "Posting Date");
+            ItemLedEntry.SetRange("Item No.", ItemNo);
+            ItemLedEntry.SetRange("Variant Code", '');
+            ItemLedEntry.SetRange("Lot No.", LotNo);
+            if ItemLedEntry.FindLast() then begin
+                NewExpDate := ItemLedEntry."Expiration Date";
             end;
 
-            ItemJnlLine.Validate("New Location Code", xlsNewLocCode);
-            ItemJnlLine.Validate(Quantity, xlsQty);
+            ItemJnlLine.Validate("New Location Code", NewLocCode);
+            ItemJnlLine.Validate(Quantity, Qty);
             if EntryNo <> 0 then
                 ItemJnlLine.Validate(ItemJnlLine."Applies-to Entry", EntryNo);
 
@@ -282,7 +261,7 @@ report 50002 "Import Goods Rcpt. Insp. Data"
                 Clear(ReservEntry);
                 ReservEntry."Lot No." := OldLotNo;
                 ReservEntry."Serial No." := SerialNo;
-                CreateReservEntry.CreateReservEntryFor(
+                CreateRsvEntry.CreateReservEntryFor(
                   Database::"Item Journal Line",
                   ItemJnlLine."Entry Type".AsInteger(),
                   ItemJnlLine."Journal Template Name",
@@ -294,7 +273,7 @@ report 50002 "Import Goods Rcpt. Insp. Data"
                   Abs(ItemJnlLine."Quantity (Base)"),
                   ReservEntry);
 
-                CreateReservEntry.CreateEntry(
+                CreateRsvEntry.CreateEntry(
                   ItemJnlLine."Item No.",
                   ItemJnlLine."Variant Code",
                   ItemJnlLine."Location Code",
@@ -302,35 +281,35 @@ report 50002 "Import Goods Rcpt. Insp. Data"
                   0D, 0D, 0,
                   ReservEntry."Reservation Status"::Prospect);
 
-                Clear(lrReservEntry);
-                ReservEngineMgt.InitFilterAndSortingLookupFor(lrReservEntry, true);
-                //ReserveItemJnlLine.FilterReservFor(lrReservEntry, ItemJnlLine);
+                Clear(ReservEntry2);
+                ReservEngineMgt.InitFilterAndSortingLookupFor(ReservEntry2, true);
+                //ReserveItemJnlLine.FilterReservFor(ReservEntry2, ItemJnlLine);
                 ReservMgmt.FilterReservFor(RecRef, ReservEntry, DirEnum::Inbound);
-                lrReservEntry.SetRange("Reservation Status", lrReservEntry."Reservation Status"::Prospect);
+                ReservEntry2.SetRange("Reservation Status", ReservEntry2."Reservation Status"::Prospect);
                 if SerialNo <> '' then
-                    lrReservEntry.SetRange("Serial No.", SerialNo);
+                    ReservEntry2.SetRange("Serial No.", SerialNo);
                 if LotNo <> '' then
-                    lrReservEntry.SetRange("Lot No.", OldLotNo);
-                if lrReservEntry.FindFirst() then
+                    ReservEntry2.SetRange("Lot No.", OldLotNo);
+                if ReservEntry2.FindFirst() then
                     repeat
-                        lrReservEntry.Validate("New Lot No.", LotNo);
+                        ReservEntry2.Validate("New Lot No.", LotNo);
 
                         if NewExpDate <> 0D then
-                            lrReservEntry.Validate("New Expiration Date", NewExpDate)
+                            ReservEntry2.Validate("New Expiration Date", NewExpDate)
                         else
-                            if xlsExpDate <> 0D then
-                                lrReservEntry.Validate("New Expiration Date", xlsExpDate);
-                        lrReservEntry.Modify();
-                        lrReservEntry.Validate("Quantity (Base)", xlsQty);
-                        if not lrecLotNoInfo.Get(lrReservEntry."Item No.", lrReservEntry."Variant Code", lrReservEntry."New Lot No.") then begin
-                            lrecLotNoInfo.Init();
-                            lrecLotNoInfo."Item No." := lrReservEntry."Item No.";
-                            lrecLotNoInfo."Lot No." := lrReservEntry."New Lot No.";
-                            lrecLotNoInfo."First Receiving Date" := xlsPostingDate;
-                            lrecLotNoInfo."Inspection Passed Date" := xlsASEDate;
-                            lrecLotNoInfo.Insert();
+                            if ExpDate <> 0D then
+                                ReservEntry2.Validate("New Expiration Date", ExpDate);
+                        ReservEntry2.Modify();
+                        ReservEntry2.Validate("Quantity (Base)", Qty);
+                        if not LotNoInfo.Get(ReservEntry2."Item No.", ReservEntry2."Variant Code", ReservEntry2."New Lot No.") then begin
+                            LotNoInfo.Init();
+                            LotNoInfo."Item No." := ReservEntry2."Item No.";
+                            LotNoInfo."Lot No." := ReservEntry2."New Lot No.";
+                            LotNoInfo."First Receiving Date" := PostingDate;
+                            LotNoInfo."Inspection Passed Date" := ASEDate;
+                            LotNoInfo.Insert();
                         end;
-                    until lrReservEntry.Next() = 0;
+                    until ReservEntry2.Next() = 0;
             end;
         end;
     end;
@@ -398,61 +377,69 @@ report 50002 "Import Goods Rcpt. Insp. Data"
         end;
     end;
 
-    local procedure ReadSheetTXT2(FileName: Text[250])
+    local procedure ReadTextFile()
     var
-        FileCSV: File;
         Window: Dialog;
+        FileContent: Text;
+        FieldSeperator: Char;
+        Chr: Char;
+        ColumnNo: Integer;
+        RowNo: Integer;
+        ChrOK: Integer;
+        i: Integer;
+        j: Integer;
         ReadFileLbl: Label 'Reading CSV worksheet...\\';
+        Columns: List of [Text];
     begin
-        /* if GUIALLOWED then
-            Window.OPEN(
-              ReadFileLbl +
-              '#1########################\');
-        ExcelBuf.DELETEALL;
+        if GuiAllowed then
+            Window.Open(ReadFileLbl + '#1########################\');
+        ExcelBuf.DeleteAll();
 
-        lchrFieldSeperator := 9;
+        FieldSeperator := 9;
 
-        FileCSV.WRITEMODE(true);
-        FileCSV.TEXTMODE(true);
-        FileCSV.OPEN(FileName);
-        FileCSV.CREATEINSTREAM(lInStream);
 
-        i := 0;
-        ltxtLine := '';
+        while not FileInStream.EOS do begin
+            FileInStream.ReadText(FileContent);
+            Columns := FileContent.Split(FieldSeperator);
 
-        intColumn := 0;
-        intRow := 1;
+            // Now you can process each column
+            Message('Column 1: %1, Column 2: %2', Columns.Get(1), Columns.Get(2));
+        end;
+
+        /* i := 0;
+        FileContent := '';
+
+        ColumnNo := 0;
+        RowNo := 1;
 
         repeat
             i += 1;
-            ChrOK := lInStream.READ(Chr);
-            z := Chr;
-            if (z <> 10) and (z <> 13) and (Chr <> lchrFieldSeperator) then begin
-                ltxtLine += Format(Chr);
+            ChrOK := ContentInStream.Read(Chr);
+            j := Chr;
+            if (j <> 10) and (j <> 13) and (Chr <> FieldSeperator) then begin
+                FileContent += Format(Chr);
             end
             else begin
-                intColumn += 1;
-                if z = 10 then begin
-                    intColumn := 0;
-                    intRow += 1;
+                ColumnNo += 1;
+                if j = 10 then begin
+                    ColumnNo := 0;
+                    RowNo += 1;
                 end;
 
-                if DELCHR(Format(ltxtLine), '<', '') <> '' then begin
-                    Init();
-                    "Row No." := intRow;
-                    "Column No." := intColumn;
-                    "Cell Value as Text" := DELCHR(Format(ltxtLine), '>', '');
-                    Insert();
-                    if GUIALLOWED then
-                        Window.UPDATE(1, "Cell Value as Text");
+                if DelChr(Format(FileContent), '<', '') <> '' then begin
+                    ExcelBuf.Init();
+                    ExcelBuf."Row No." := RowNo;
+                    ExcelBuf."Column No." := ColumnNo;
+                    ExcelBuf."Cell Value as Text" := DelChr(Format(FileContent), '>', '');
+                    ExcelBuf.Insert();
+                    if GuiAllowed then
+                        Window.Update(1, ExcelBuf."Cell Value as Text");
                 end;
 
-                ltxtLine := '';
+                FileContent := '';
             end;
         until (ChrOK = 0);
-        FileCSV.CLOSE;
-        if GUIALLOWED then
-            Window.CLOSE;
-    */
+        if GuiAllowed then
+            Window.Close(); */
     end;
 }

@@ -318,7 +318,6 @@ page 50011 "Purchase Order Import"
         MsgLbl1: label 'ファイル名.........', Locked = true;
         MsgLbl2: label 'データ件数.........', Locked = true;
         MsgLbl3: label 'インポート件数.....', Locked = true;
-        MsgLbl4: label 'スキップ件数.......', Locked = true;
         MsgLbl5: label 'エラー件数.........', Locked = true;
         MsgLbl6: label 'インポートが終了しました。', Locked = true;
     begin
@@ -335,7 +334,6 @@ page 50011 "Purchase Order Import"
         + MsgLbl1 + ConvertStr(FileName, '\', '/') + CRLF
         + MsgLbl2 + TAB + format(DataCnt) + CRLF
         + MsgLbl3 + TAB + format(DataCnt) + CRLF
-        + MsgLbl4 + TAB + format(0) + CRLF
         + MsgLbl5 + TAB + format(ErrCnt) + CRLF);
     end;
 

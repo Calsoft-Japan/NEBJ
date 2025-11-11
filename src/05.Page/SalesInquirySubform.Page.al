@@ -330,10 +330,6 @@ page 50019 "Sales Inquiry Subform"
         }
     }
 
-    actions
-    {
-    }
-
     trigger OnInit();
     begin
         ShowHeader := true;
@@ -354,6 +350,7 @@ page 50019 "Sales Inquiry Subform"
         SalesCrMemoLine: Record "Sales Cr.Memo Line";
         GLSetup: Record "General Ledger Setup";
         CurrExchRate: Record "Currency Exchange Rate";
+        TempExcelBuffer: Record "Excel Buffer" temporary;
         DimMgt: Codeunit "DimensionManagement";
         ShowHeader: Boolean;
         ShowLine: Boolean;
@@ -381,7 +378,6 @@ page 50019 "Sales Inquiry Subform"
         ShortcutDimCode: array[8] of Code[20];
         AmtRoundPrecision: Decimal;
         Text000: Label 'Please specify the search criteria.';
-        TempExcelBuffer: Record "Excel Buffer" temporary;
 
     procedure ControlShowMode(ShowMode: Option "Header + Line","Header Only","Line Only");
     begin
@@ -726,13 +722,9 @@ page 50019 "Sales Inquiry Subform"
     procedure FindPostedSalesInvoice(CurrGUID: Guid);
     var
         SalesInvLine2: Record "Sales Invoice Line";
-        Found: Boolean;
-        lrecCustomer: Record Customer;
-        lrecCustomerType: Record "Customer Type";
-        lrecItemCategory: Record "Item Category";
-        lrecItem: Record Item;
         AmountLCY: Decimal;
         ProfitLCY: Decimal;
+        Found: Boolean;
     begin
         if not PostedSalesInvoice then
             exit;
@@ -1081,197 +1073,19 @@ page 50019 "Sales Inquiry Subform"
             until SalesCrMemoHdr.Next() = 0;
     end;
 
-    procedure SOCalcLCYAmounts(var InqSalesLine: Record "Sales Line"; RoundType: Text[1]; CurrencyCode: Code[10]);
-    var
-        SalesHeader: Record "Sales Header";
-        CalcSalesLine: Record "Sales Line";
-        TempSalesLine: Record "Sales Line" temporary;
-        CalcAmount: array[3] of Decimal;
-        CalcAmountInclVAT: array[3] of Decimal;
-    begin
-        AmtRoundPrecision := GetRoundingPrecision(CurrencyCode);
-        TempSalesLine.Reset();
-        TempSalesLine.DeleteAll();
-        CalcSalesLine.SetRange("Document Type", InqSalesLine."Document Type");
-        CalcSalesLine.SetRange("Document No.", InqSalesLine."Document No.");
-        if CalcSalesLine.FindSet() then
-            Repeat
-                if CalcSalesLine."Line Amount" - CalcSalesLine."Inv. Discount Amount" <> 0 then begin
-                    TempSalesLine.Init();
-                    TempSalesLine."Document Type" := CalcSalesLine."Document Type";
-                    TempSalesLine."Document No." := CalcSalesLine."Document No.";
-                    TempSalesLine."Line No." := CalcSalesLine."Line No.";
-                    if SalesHeader.Get(TempSalesLine."Document Type", TempSalesLine."No.") then;
-                    if SalesHeader."Prices Including VAT" then begin
-                        TempSalesLine.Amount :=
-                          Round((CalcSalesLine."Line Amount" - CalcSalesLine."Inv. Discount Amount") / ((100 + CalcSalesLine."VAT %") / 100),
-                                AmtRoundPrecision, RoundType);
-                        TempSalesLine."Amount Including VAT" := CalcSalesLine."Line Amount" - CalcSalesLine."Inv. Discount Amount";
-                    end else begin
-                        TempSalesLine.Amount := CalcSalesLine."Line Amount" - CalcSalesLine."Inv. Discount Amount";
-                        TempSalesLine."Amount Including VAT" :=
-                          Round((CalcSalesLine."Line Amount" - CalcSalesLine."Inv. Discount Amount") * ((100 + CalcSalesLine."VAT %") / 100),
-                                AmtRoundPrecision, RoundType);
-                    end;
-
-                    CalcAmount[1] += TempSalesLine.Amount;
-                    CalcAmountInclVAT[1] += TempSalesLine."Amount Including VAT";
-                    CalcAmount[2] :=
-                      Round(CurrExchRate.ExchangeAmtFCYToLCY(GetCDate(CalcSalesLine."Posting Date"), CurrencyCode,
-                            CalcAmount[1], SalesHeader."Currency Factor"));
-                    if CalcSalesLine.Amount <> CalcSalesLine."Amount Including VAT" then
-                        CalcAmountInclVAT[2] :=
-                          Round(CurrExchRate.ExchangeAmtFCYToLCY(GetCDate(CalcSalesLine."Posting Date"), CurrencyCode,
-                                CalcAmountInclVAT[1], SalesHeader."Currency Factor"))
-                    else
-                        CalcAmountInclVAT[2] := CalcAmount[2];
-
-                    TempSalesLine.Amount := CalcAmount[2] - CalcAmount[3];
-                    TempSalesLine."Amount Including VAT" := CalcAmountInclVAT[2] - CalcAmountInclVAT[3];
-                    CalcAmount[3] += TempSalesLine.Amount;
-                    CalcAmountInclVAT[3] += TempSalesLine."Amount Including VAT";
-                    TempSalesLine.Insert();
-                end;
-            until CalcSalesLine.Next() = 0;
-
-        if TempSalesLine.Get(InqSalesLine."Document Type", InqSalesLine."Document No.", InqSalesLine."Line No.") then begin
-            InqSalesLine.Amount := TempSalesLine.Amount;
-            InqSalesLine."Amount Including VAT" := TempSalesLine."Amount Including VAT";
-        end else begin
-            InqSalesLine.Amount := 0;
-            InqSalesLine."Amount Including VAT" := 0;
-        end;
-    end;
-
-    procedure PSICalcLCYAmounts(var InqSalesInvLine: Record "Sales Invoice Line"; CurrencyCode: Code[10]): Decimal;
-    var
-        SalesInvHeader: Record "Sales Invoice Header";
-        CalcSalesInvLine: Record "Sales Invoice Line";
-        TempSalesInvLine: Record "Sales Invoice Line" temporary;
-        CalcAmount: array[3] of Decimal;
-        CalcAmountInclVAT: array[3] of Decimal;
-        DocType: Option " ","Sales Shipment","Sales Invoice","Sales Return Receipt","Sales Credit Memo","Purchase Receipt","Purchase Invoice","Purchase Return Shipment","Purchase Credit Memo";
-    begin
-        TempSalesInvLine.Reset();
-        TempSalesInvLine.DeleteAll();
-        CalcSalesInvLine.SetRange("Document No.", InqSalesInvLine."Document No.");
-        if CalcSalesInvLine.FindSet() then
-            Repeat
-                if CalcSalesInvLine.Amount <> 0 then begin
-                    if SalesInvHeader.Get(CalcSalesInvLine."Document No.") then;
-                    TempSalesInvLine.Init();
-                    TempSalesInvLine."Document No." := CalcSalesInvLine."Document No.";
-                    TempSalesInvLine."Line No." := CalcSalesInvLine."Line No.";
-                    CalcAmount[1] += CalcSalesInvLine.Amount;
-                    CalcAmountInclVAT[1] += CalcSalesInvLine."Amount Including VAT";
-                    CalcAmount[2] :=
-                      Round(CurrExchRate.ExchangeAmtFCYToLCY(GetCDate(CalcSalesInvLine."Posting Date"), CurrencyCode,
-                            CalcAmount[1], SalesInvHeader."Currency Factor"));
-                    if CalcSalesInvLine.Amount <> CalcSalesInvLine."Amount Including VAT" then
-                        CalcAmountInclVAT[2] :=
-                          Round(CurrExchRate.ExchangeAmtFCYToLCY(GetCDate(CalcSalesInvLine."Posting Date"), CurrencyCode,
-                                CalcAmountInclVAT[1], SalesInvHeader."Currency Factor"))
-                    else
-                        CalcAmountInclVAT[2] := CalcAmount[2];
-
-                    TempSalesInvLine.Amount := CalcAmount[2] - CalcAmount[3];
-                    TempSalesInvLine."Amount Including VAT" := CalcAmountInclVAT[2] - CalcAmountInclVAT[3];
-                    CalcAmount[3] += TempSalesInvLine.Amount;
-                    CalcAmountInclVAT[3] += TempSalesInvLine."Amount Including VAT";
-                    TempSalesInvLine.Insert();
-                end;
-            until CalcSalesInvLine.Next() = 0;
-
-        if TempSalesInvLine.Get(InqSalesInvLine."Document No.", InqSalesInvLine."Line No.") then begin
-            InqSalesInvLine.Amount := TempSalesInvLine.Amount;
-            InqSalesInvLine."Amount Including VAT" := TempSalesInvLine."Amount Including VAT";
-        end else begin
-            InqSalesInvLine.Amount := 0;
-            InqSalesInvLine."Amount Including VAT" := 0;
-        end;
-    end;
-
-    procedure PSCCalcLCYAmounts(var InqSalesCrMLine: Record "Sales Cr.Memo Line"; CurrencyCode: Code[10]);
-    var
-        SalesCrMemoHeader: Record "Sales Cr.Memo Header";
-        CalcSalesCrMLine: Record "Sales Cr.Memo Line";
-        TempSalesCrMLine: Record "Sales Cr.Memo Line" temporary;
-        CalcAmount: array[3] of Decimal;
-        CalcAmountInclVAT: array[3] of Decimal;
-        DocType: Option " ","Sales Shipment","Sales Invoice","Sales Return Receipt","Sales Credit Memo","Purchase Receipt","Purchase Invoice","Purchase Return Shipment","Purchase Credit Memo";
-    begin
-        TempSalesCrMLine.Reset();
-        TempSalesCrMLine.DeleteAll();
-        CalcSalesCrMLine.SetRange("Document No.", InqSalesCrMLine."Document No.");
-        if CalcSalesCrMLine.FindSet() then
-            Repeat
-                if CalcSalesCrMLine.Amount <> 0 then begin
-                    if SalesCrMemoHeader.Get(CalcSalesCrMLine."Document No.") then;
-                    TempSalesCrMLine.Init();
-                    TempSalesCrMLine."Document No." := CalcSalesCrMLine."Document No.";
-                    TempSalesCrMLine."Line No." := CalcSalesCrMLine."Line No.";
-                    CalcAmount[1] += CalcSalesCrMLine.Amount;
-                    CalcAmountInclVAT[1] += CalcSalesCrMLine."Amount Including VAT";
-                    CalcAmount[2] :=
-                      Round(CurrExchRate.ExchangeAmtFCYToLCY(GetCDate(CalcSalesCrMLine."Posting Date"), CurrencyCode,
-                            CalcAmount[1], SalesCrMemoHeader."Currency Factor"));
-                    if CalcSalesCrMLine.Amount <> CalcSalesCrMLine."Amount Including VAT" then
-                        CalcAmountInclVAT[2] :=
-                          Round(CurrExchRate.ExchangeAmtFCYToLCY(GetCDate(CalcSalesCrMLine."Posting Date"), CurrencyCode,
-                                CalcAmountInclVAT[1], SalesCrMemoHeader."Currency Factor"))
-                    else
-                        CalcAmountInclVAT[2] := CalcAmount[2];
-
-                    TempSalesCrMLine.Amount := CalcAmount[2] - CalcAmount[3];
-                    TempSalesCrMLine."Amount Including VAT" := CalcAmountInclVAT[2] - CalcAmountInclVAT[3];
-                    CalcAmount[3] += TempSalesCrMLine.Amount;
-                    CalcAmountInclVAT[3] += TempSalesCrMLine."Amount Including VAT";
-                    TempSalesCrMLine.Insert();
-                end;
-            until CalcSalesCrMLine.Next() = 0;
-
-        if TempSalesCrMLine.Get(InqSalesCrMLine."Document No.", InqSalesCrMLine."Line No.") then begin
-            InqSalesCrMLine.Amount := -TempSalesCrMLine.Amount;
-            InqSalesCrMLine."Amount Including VAT" := -TempSalesCrMLine."Amount Including VAT";
-        end else begin
-            InqSalesCrMLine.Amount := 0;
-            InqSalesCrMLine."Amount Including VAT" := 0;
-        end;
-    end;
-
-    procedure GetLCYAmount(DocType: Option " ","Sales Shipment","Sales Invoice","Sales Return Receipt","Sales Credit Memo","Purchase Receipt","Purchase Invoice","Purchase Return Shipment","Purchase Credit Memo"; DocNo: Code[20]; DocLineNo: Integer; ItemNo: Code[20]; PostingDate: Date): Decimal;
-    var
-        ValueEntry: Record "Value Entry";
-    begin
-        ValueEntry.Reset();
-        ValueEntry.SetCurrentKey("Document No.");
-        ValueEntry.SetRange("Item Ledger Entry Type", "Item Ledger Entry Type"::Sale);
-        ValueEntry.SetRange("Document No.", DocNo);
-        ValueEntry.SetRange("Document Line No.", DocLineNo);
-        ValueEntry.SetRange("Document Type", DocType);
-        ValueEntry.SetRange("Item No.", ItemNo);
-        ValueEntry.SetRange("Posting Date");
-        if ValueEntry.FindFirst() then
-            exit(ValueEntry."Sales Amount (Actual)")
-        else
-            exit(0);
-    end;
-
     procedure ExportDataToExcel(ShowTrackingInfo: Boolean);
     var
         RecRef: RecordRef;
-        lrecSalesLine: Record "Sales Line";
+        SalesLine: Record "Sales Line";
+        ReservEntry: Record "Reservation Entry";
+        ShipmentLine: Record "Sales Shipment Line";
+        SalesInvLine: Record "Sales Invoice Line";
+        SalesCrMemoLine: Record "Sales Cr.Memo Line";
+        ItemLedgerEntry: Record "Item Ledger Entry";
+        TempItemLedgEntry: Record "Item Ledger Entry" temporary;
         ReservMgmt: Codeunit "Reservation Management";
         ReservEngineMgt: Codeunit "Reservation Engine Mgt.";
-        ReserveSalesOrderLine: Codeunit "Sales Line-Reserve";
-        lrReservEntry: Record "Reservation Entry";
-        lrecSalesInvLine: Record "Sales Invoice Line";
         ItemTrackingMgmt: Codeunit "Item Tracking Management";
-        TempItemLedgEntry: Record "Item Ledger Entry" temporary;
-        lrecSalesCrMemoLine: Record "Sales Cr.Memo Line";
-        decRemainingQty: Decimal;
-        lrecItemLedgerEntry: Record "Item Ledger Entry";
-        lresShipmentLine: Record "Sales Shipment Line";
         RowNo: Integer;
         DirEnum: Enum "Transfer Direction";
     begin
@@ -1282,143 +1096,143 @@ page 50019 "Sales Inquiry Subform"
         TempExcelBuffer.CreateNewBook('Sales Inquiry');
         EnterCell(RowNo, 1, Rec.FieldCaption("Document Type"), true, false, false, '@');
         EnterCell(RowNo, 2, Rec.FieldCaption("Document No."), true, false, false, '@');
-        EnterCell(RowNo, 4, Rec.FieldCaption("Sell-to Customer No."), true, false, false, '@');//"Customer No."
-        EnterCell(RowNo, 5, Rec.FieldCaption("Sell-to Customer Name"), true, false, false, '@');//"Customer Name"
-        EnterCell(RowNo, 6, Rec.FieldCaption("Posting Date"), true, false, false, '@');
-        EnterCell(RowNo, 7, Rec.FieldCaption("Order Date"), true, false, false, '@');
-        EnterCell(RowNo, 8, Rec.FieldCaption("Document Date"), true, false, false, '@');
-        EnterCell(RowNo, 9, Rec.FieldCaption("Posting Description"), true, false, false, '@');
-        EnterCell(RowNo, 10, Rec.FieldCaption("Salesperson Code"), true, false, false, '@');
-        EnterCell(RowNo, 11, Rec.FieldCaption("External Document No."), true, false, false, '@');
-        EnterCell(RowNo, 12, Rec.FieldCaption("Bill-to Customer No."), true, false, false, '@');
-        EnterCell(RowNo, 13, Rec.FieldCaption("Bill-to Name"), true, false, false, '@');
-        EnterCell(RowNo, 14, Rec.FieldCaption("Due Date"), true, false, false, '@');
-        EnterCell(RowNo, 15, Rec.FieldCaption("Currency Code"), true, false, false, '@');
-        EnterCell(RowNo, 16, Rec.FieldCaption("Ship-to Code"), true, false, false, '@');
-        EnterCell(RowNo, 17, Rec.FieldCaption("Ship-to Name"), true, false, false, '@');
-        EnterCell(RowNo, 18, Rec.FieldCaption("Ship-to Address"), true, false, false, '@');
-        EnterCell(RowNo, 19, Rec.FieldCaption("Ship-to Post Code"), true, false, false, '@');
-        EnterCell(RowNo, 20, Rec.FieldCaption("Line No."), true, false, false, '@');
-        EnterCell(RowNo, 21, Rec.FieldCaption(Type), true, false, false, '@');
-        EnterCell(RowNo, 22, Rec.FieldCaption("Item No."), true, false, false, '@');///"Item No."
-        EnterCell(RowNo, 24, Rec.FieldCaption("Location Code"), true, false, false, '@');
-        EnterCell(RowNo, 25, Rec.FieldCaption(Description), true, false, false, '@');
-        EnterCell(RowNo, 26, Rec.FieldCaption("Description 2"), true, false, false, '@');
-        EnterCell(RowNo, 27, Rec.FieldCaption("Unit of Measure Code"), true, false, false, '@');
-        EnterCell(RowNo, 28, Rec.FieldCaption("Unit of Measure"), true, false, false, '@');
-        EnterCell(RowNo, 29, Rec.FieldCaption(Quantity), true, false, false, '@');
-        EnterCell(RowNo, 30, Rec.FieldCaption("Reserved Quantity"), true, false, false, '@');
-        EnterCell(RowNo, 32, Rec.FieldCaption("Qty. to Invoice"), true, false, false, '@');
-        EnterCell(RowNo, 33, Rec.FieldCaption("Quantity Shipped"), true, false, false, '@');
-        EnterCell(RowNo, 34, Rec.FieldCaption("Quantity Invoiced"), true, false, false, '@');
-        EnterCell(RowNo, 35, Rec.FieldCaption("Unit Price"), true, false, false, '@');
-        EnterCell(RowNo, 36, Rec.FieldCaption("Unit Cost (LCY)"), true, false, false, '@');
-        EnterCell(RowNo, 37, Rec.FieldCaption("VAT %"), true, false, false, '@');
-        EnterCell(RowNo, 38, Rec.FieldCaption("Line Discount %"), true, false, false, '@');
-        EnterCell(RowNo, 39, Rec.FieldCaption("Line Discount Amount"), true, false, false, '@');
-        EnterCell(RowNo, 40, Rec.FieldCaption("Inv. Discount Amount"), true, false, false, '@');
-        EnterCell(RowNo, 41, Rec.FieldCaption(Amount), true, false, false, '@');
-        EnterCell(RowNo, 42, Rec.FieldCaption("Amount Including VAT"), true, false, false, '@');
-        EnterCell(RowNo, 43, Rec.FieldCaption("Profit %"), true, false, false, '@');
-        EnterCell(RowNo, 44, Rec.FieldCaption("Net Weight"), true, false, false, '@');
-        EnterCell(RowNo, 45, Rec.FieldCaption("Gross Weight"), true, false, false, '@');
-        EnterCell(RowNo, 46, Rec.FieldCaption("Shipment Date"), true, false, false, '@');
-        EnterCell(RowNo, 47, Rec.FieldCaption("Requested Delivery Date"), true, false, false, '@');
-        EnterCell(RowNo, 48, Rec.FieldCaption("Planned Delivery Date"), true, false, false, '@');
-        EnterCell(RowNo, 49, Rec.FieldCaption("Promised Delivery Date"), true, false, false, '@');
-        EnterCell(RowNo, 50, Rec.FieldCaption("Planned Shipment Date"), true, false, false, '@');
-        EnterCell(RowNo, 51, Rec.FieldCaption("Shortcut Dimension 1 Code"), true, false, false, '@');//"Global Dimension 1 Code"
-        EnterCell(RowNo, 52, Rec.FieldCaption("Shortcut Dimension 2 Code"), true, false, false, '@');//"Global Dimension 2 Code"
-        EnterCell(RowNo, 53, Rec.FieldCaption("Shortcut Dimension 3 Code"), true, false, false, '@');
-        EnterCell(RowNo, 54, Rec.FieldCaption("Shortcut Dimension 4 Code"), true, false, false, '@');
-        EnterCell(RowNo, 55, Rec.FieldCaption("Shortcut Dimension 5 Code"), true, false, false, '@');
-        EnterCell(RowNo, 56, Rec.FieldCaption("Shortcut Dimension 6 Code"), true, false, false, '@');
-        EnterCell(RowNo, 57, Rec.FieldCaption("Shortcut Dimension 7 Code"), true, false, false, '@');
-        EnterCell(RowNo, 58, Rec.FieldCaption("Shortcut Dimension 8 Code"), true, false, false, '@');
-        EnterCell(RowNo, 59, Rec.FieldCaption("Job No."), true, false, false, '@');
-        EnterCell(RowNo, 60, Rec.FieldCaption("Reason Code"), true, false, false, '@');
-        EnterCell(RowNo, 61, Rec.FieldCaption("Customer Posting Group"), true, false, false, '@');
-        EnterCell(RowNo, 62, Rec.FieldCaption("Gen. Bus. Posting Group"), true, false, false, '@');
-        EnterCell(RowNo, 63, Rec.FieldCaption("Gen. Prod. Posting Group"), true, false, false, '@');
-        EnterCell(RowNo, 64, Rec.FieldCaption("VAT Bus. Posting Group"), true, false, false, '@');
-        EnterCell(RowNo, 65, Rec.FieldCaption("VAT Prod. Posting Group"), true, false, false, '@');
-        EnterCell(RowNo, 66, Rec.FieldCaption("Variant Code"), true, false, false, '@');
-        EnterCell(RowNo, 67, Rec.FieldCaption("Bin Code"), true, false, false, '@');
-        EnterCell(RowNo, 68, Rec.FieldCaption("Responsibility Center"), true, false, false, '@');
+        EnterCell(RowNo, 3, Rec.FieldCaption("Sell-to Customer No."), true, false, false, '@');//"Customer No."
+        EnterCell(RowNo, 4, Rec.FieldCaption("Sell-to Customer Name"), true, false, false, '@');//"Customer Name"
+        EnterCell(RowNo, 5, Rec.FieldCaption("Posting Date"), true, false, false, '@');
+        EnterCell(RowNo, 6, Rec.FieldCaption("Order Date"), true, false, false, '@');
+        EnterCell(RowNo, 7, Rec.FieldCaption("Document Date"), true, false, false, '@');
+        EnterCell(RowNo, 8, Rec.FieldCaption("Posting Description"), true, false, false, '@');
+        EnterCell(RowNo, 9, Rec.FieldCaption("Salesperson Code"), true, false, false, '@');
+        EnterCell(RowNo, 10, Rec.FieldCaption("External Document No."), true, false, false, '@');
+        EnterCell(RowNo, 11, Rec.FieldCaption("Bill-to Customer No."), true, false, false, '@');
+        EnterCell(RowNo, 12, Rec.FieldCaption("Bill-to Name"), true, false, false, '@');
+        EnterCell(RowNo, 13, Rec.FieldCaption("Due Date"), true, false, false, '@');
+        EnterCell(RowNo, 14, Rec.FieldCaption("Currency Code"), true, false, false, '@');
+        EnterCell(RowNo, 15, Rec.FieldCaption("Ship-to Code"), true, false, false, '@');
+        EnterCell(RowNo, 16, Rec.FieldCaption("Ship-to Name"), true, false, false, '@');
+        EnterCell(RowNo, 17, Rec.FieldCaption("Ship-to Address"), true, false, false, '@');
+        EnterCell(RowNo, 18, Rec.FieldCaption("Ship-to Post Code"), true, false, false, '@');
+        EnterCell(RowNo, 19, Rec.FieldCaption("Line No."), true, false, false, '@');
+        EnterCell(RowNo, 20, Rec.FieldCaption(Type), true, false, false, '@');
+        EnterCell(RowNo, 21, Rec.FieldCaption("Item No."), true, false, false, '@');///"Item No."
+        EnterCell(RowNo, 22, Rec.FieldCaption("Location Code"), true, false, false, '@');
+        EnterCell(RowNo, 23, Rec.FieldCaption(Description), true, false, false, '@');
+        EnterCell(RowNo, 24, Rec.FieldCaption("Description 2"), true, false, false, '@');
+        EnterCell(RowNo, 25, Rec.FieldCaption("Unit of Measure Code"), true, false, false, '@');
+        EnterCell(RowNo, 26, Rec.FieldCaption("Unit of Measure"), true, false, false, '@');
+        EnterCell(RowNo, 27, Rec.FieldCaption(Quantity), true, false, false, '@');
+        EnterCell(RowNo, 28, Rec.FieldCaption("Reserved Quantity"), true, false, false, '@');
+        EnterCell(RowNo, 29, Rec.FieldCaption("Qty. to Invoice"), true, false, false, '@');
+        EnterCell(RowNo, 30, Rec.FieldCaption("Quantity Shipped"), true, false, false, '@');
+        EnterCell(RowNo, 31, Rec.FieldCaption("Quantity Invoiced"), true, false, false, '@');
+        EnterCell(RowNo, 32, Rec.FieldCaption("Unit Price"), true, false, false, '@');
+        EnterCell(RowNo, 33, Rec.FieldCaption("Unit Cost (LCY)"), true, false, false, '@');
+        EnterCell(RowNo, 34, Rec.FieldCaption("VAT %"), true, false, false, '@');
+        EnterCell(RowNo, 35, Rec.FieldCaption("Line Discount %"), true, false, false, '@');
+        EnterCell(RowNo, 36, Rec.FieldCaption("Line Discount Amount"), true, false, false, '@');
+        EnterCell(RowNo, 37, Rec.FieldCaption("Inv. Discount Amount"), true, false, false, '@');
+        EnterCell(RowNo, 38, Rec.FieldCaption(Amount), true, false, false, '@');
+        EnterCell(RowNo, 39, Rec.FieldCaption("Amount Including VAT"), true, false, false, '@');
+        EnterCell(RowNo, 40, Rec.FieldCaption("Profit %"), true, false, false, '@');
+        EnterCell(RowNo, 41, Rec.FieldCaption("Net Weight"), true, false, false, '@');
+        EnterCell(RowNo, 42, Rec.FieldCaption("Gross Weight"), true, false, false, '@');
+        EnterCell(RowNo, 43, Rec.FieldCaption("Shipment Date"), true, false, false, '@');
+        EnterCell(RowNo, 44, Rec.FieldCaption("Requested Delivery Date"), true, false, false, '@');
+        EnterCell(RowNo, 45, Rec.FieldCaption("Planned Delivery Date"), true, false, false, '@');
+        EnterCell(RowNo, 46, Rec.FieldCaption("Promised Delivery Date"), true, false, false, '@');
+        EnterCell(RowNo, 47, Rec.FieldCaption("Planned Shipment Date"), true, false, false, '@');
+        EnterCell(RowNo, 48, Rec.FieldCaption("Shortcut Dimension 1 Code"), true, false, false, '@');//"Global Dimension 1 Code"
+        EnterCell(RowNo, 49, Rec.FieldCaption("Shortcut Dimension 2 Code"), true, false, false, '@');//"Global Dimension 2 Code"
+        EnterCell(RowNo, 50, Rec.FieldCaption("Shortcut Dimension 3 Code"), true, false, false, '@');
+        EnterCell(RowNo, 51, Rec.FieldCaption("Shortcut Dimension 4 Code"), true, false, false, '@');
+        EnterCell(RowNo, 52, Rec.FieldCaption("Shortcut Dimension 5 Code"), true, false, false, '@');
+        EnterCell(RowNo, 53, Rec.FieldCaption("Shortcut Dimension 6 Code"), true, false, false, '@');
+        EnterCell(RowNo, 54, Rec.FieldCaption("Shortcut Dimension 7 Code"), true, false, false, '@');
+        EnterCell(RowNo, 55, Rec.FieldCaption("Shortcut Dimension 8 Code"), true, false, false, '@');
+        EnterCell(RowNo, 56, Rec.FieldCaption("Job No."), true, false, false, '@');
+        EnterCell(RowNo, 57, Rec.FieldCaption("Reason Code"), true, false, false, '@');
+        EnterCell(RowNo, 58, Rec.FieldCaption("Customer Posting Group"), true, false, false, '@');
+        EnterCell(RowNo, 59, Rec.FieldCaption("Gen. Bus. Posting Group"), true, false, false, '@');
+        EnterCell(RowNo, 60, Rec.FieldCaption("Gen. Prod. Posting Group"), true, false, false, '@');
+        EnterCell(RowNo, 61, Rec.FieldCaption("VAT Bus. Posting Group"), true, false, false, '@');
+        EnterCell(RowNo, 62, Rec.FieldCaption("VAT Prod. Posting Group"), true, false, false, '@');
+        EnterCell(RowNo, 63, Rec.FieldCaption("Variant Code"), true, false, false, '@');
+        EnterCell(RowNo, 64, Rec.FieldCaption("Bin Code"), true, false, false, '@');
+        EnterCell(RowNo, 65, Rec.FieldCaption("Responsibility Center"), true, false, false, '@');
         if ShowTrackingInfo then begin
-            EnterCell(RowNo, 73, lrReservEntry.FieldCaption("Serial No."), true, false, false, '@');
-            EnterCell(RowNo, 74, lrReservEntry.FieldCaption("Lot No."), true, false, false, '@');
-            EnterCell(RowNo, 75, lrReservEntry.FieldCaption("Expiration Date"), true, false, false, '@');
-            EnterCell(RowNo, 76, lrReservEntry.FieldCaption(Quantity), true, false, false, '@');
+            EnterCell(RowNo, 66, ReservEntry.FieldCaption("Serial No."), true, false, false, '@');
+            EnterCell(RowNo, 67, ReservEntry.FieldCaption("Lot No."), true, false, false, '@');
+            EnterCell(RowNo, 68, ReservEntry.FieldCaption("Expiration Date"), true, false, false, '@');
+            EnterCell(RowNo, 69, ReservEntry.FieldCaption(Quantity), true, false, false, '@');
         end;
         if Rec.FindSet() then
             Repeat
                 RowNo += 1;
                 EnterCell(RowNo, 1, Format(Rec."Document Type"), false, false, false, '@');
                 EnterCell(RowNo, 2, Format(Rec."Document No."), false, false, false, '@');
-                EnterCell(RowNo, 4, Format(Rec."Sell-to Customer No."), false, false, false, '@');//"Customer No."
-                EnterCell(RowNo, 5, Format(Rec."Sell-to Customer Name"), false, false, false, '@');//"Customer Name"
-                EnterCell(RowNo, 6, Format(Rec."Posting Date"), false, false, false, '');
-                EnterCell(RowNo, 7, Format(Rec."Order Date"), false, false, false, '');
-                EnterCell(RowNo, 8, Format(Rec."Document Date"), false, false, false, '');
-                EnterCell(RowNo, 9, Format(Rec."Posting Description"), false, false, false, '@');
-                EnterCell(RowNo, 10, Format(Rec."Salesperson Code"), false, false, false, '@');
-                EnterCell(RowNo, 11, Format(Rec."External Document No."), false, false, false, '@');
-                EnterCell(RowNo, 12, Format(Rec."Bill-to Customer No."), false, false, false, '@');
-                EnterCell(RowNo, 13, Format(Rec."Bill-to Name"), false, false, false, '@');
-                EnterCell(RowNo, 14, Format(Rec."Due Date"), false, false, false, '');
-                EnterCell(RowNo, 15, Format(Rec."Currency Code"), false, false, false, '@');
-                EnterCell(RowNo, 16, Format(Rec."Ship-to Code"), false, false, false, '@');
-                EnterCell(RowNo, 17, Format(Rec."Ship-to Name"), false, false, false, '@');
-                EnterCell(RowNo, 18, Format(Rec."Ship-to Address"), false, false, false, '@');
-                EnterCell(RowNo, 19, Format(Rec."Ship-to Post Code"), false, false, false, '@');
-                EnterCell(RowNo, 20, Format(Rec."Line No."), false, false, false, '');
-                EnterCell(RowNo, 21, Format(Rec.Type), false, false, false, '');
-                EnterCell(RowNo, 22, Format(Rec."Item No."), false, false, false, '@');//"Item No."
-                EnterCell(RowNo, 24, Format(Rec."Location Code"), false, false, false, '@');
-                EnterCell(RowNo, 25, Format(Rec.Description), false, false, false, '');
-                EnterCell(RowNo, 26, Format(Rec."Description 2"), false, false, false, '');
-                EnterCell(RowNo, 27, Format(Rec."Unit of Measure Code"), false, false, false, '@');
-                EnterCell(RowNo, 28, Format(Rec."Unit of Measure"), false, false, false, '@');
-                EnterCell(RowNo, 29, Format(Rec.Quantity), false, false, false, '');
-                EnterCell(RowNo, 30, Format(Rec."Reserved Quantity"), false, false, false, '');
-                EnterCell(RowNo, 32, Format(Rec."Qty. to Invoice"), false, false, false, '');
-                EnterCell(RowNo, 33, Format(Rec."Quantity Shipped"), false, false, false, '');
-                EnterCell(RowNo, 34, Format(Rec."Quantity Invoiced"), false, false, false, '');
-                EnterCell(RowNo, 35, Format(Rec."Unit Price"), false, false, false, '');
-                EnterCell(RowNo, 36, Format(Rec."Unit Cost (LCY)"), false, false, false, '');
-                EnterCell(RowNo, 37, Format(Rec."VAT %"), false, false, false, '');
-                EnterCell(RowNo, 38, Format(Rec."Line Discount %"), false, false, false, '');
-                EnterCell(RowNo, 39, Format(Rec."Line Discount Amount"), false, false, false, '');
-                EnterCell(RowNo, 40, Format(Rec."Inv. Discount Amount"), false, false, false, '');
-                EnterCell(RowNo, 41, Format(Rec.Amount), false, false, false, '');
-                EnterCell(RowNo, 42, Format(Rec."Amount Including VAT"), false, false, false, '');
-                EnterCell(RowNo, 43, Format(Rec."Profit %"), false, false, false, '');
-                EnterCell(RowNo, 44, Format(Rec."Net Weight"), false, false, false, '');
-                EnterCell(RowNo, 45, Format(Rec."Gross Weight"), false, false, false, '');
-                EnterCell(RowNo, 46, Format(Rec."Shipment Date"), false, false, false, '');
-                EnterCell(RowNo, 47, Format(Rec."Requested Delivery Date"), false, false, false, '');
-                EnterCell(RowNo, 48, Format(Rec."Planned Delivery Date"), false, false, false, '');
-                EnterCell(RowNo, 49, Format(Rec."Promised Delivery Date"), false, false, false, '');
-                EnterCell(RowNo, 50, Format(Rec."Planned Shipment Date"), false, false, false, '');
-                EnterCell(RowNo, 51, Format(Rec."Shortcut Dimension 1 Code"), false, false, false, '@');//"Global Dimension 1 Code"
-                EnterCell(RowNo, 52, Format(Rec."Shortcut Dimension 2 Code"), false, false, false, '@');//"Global Dimension 2 Code"
-                EnterCell(RowNo, 53, Format(Rec."Shortcut Dimension 3 Code"), false, false, false, '@');
-                EnterCell(RowNo, 54, Format(Rec."Shortcut Dimension 4 Code"), false, false, false, '@');
-                EnterCell(RowNo, 55, Format(Rec."Shortcut Dimension 5 Code"), false, false, false, '@');
-                EnterCell(RowNo, 56, Format(Rec."Shortcut Dimension 6 Code"), false, false, false, '@');
-                EnterCell(RowNo, 57, Format(Rec."Shortcut Dimension 7 Code"), false, false, false, '@');
-                EnterCell(RowNo, 58, Format(Rec."Shortcut Dimension 8 Code"), false, false, false, '@');
-                EnterCell(RowNo, 59, Format(Rec."Job No."), false, false, false, '@');
-                EnterCell(RowNo, 60, Format(Rec."Reason Code"), false, false, false, '@');
-                EnterCell(RowNo, 61, Format(Rec."Customer Posting Group"), false, false, false, '@');
-                EnterCell(RowNo, 62, Format(Rec."Gen. Bus. Posting Group"), false, false, false, '@');
-                EnterCell(RowNo, 63, Format(Rec."Gen. Prod. Posting Group"), false, false, false, '@');
-                EnterCell(RowNo, 64, Format(Rec."VAT Bus. Posting Group"), false, false, false, '@');
-                EnterCell(RowNo, 65, Format(Rec."VAT Prod. Posting Group"), false, false, false, '@');
-                EnterCell(RowNo, 66, Format(Rec."Variant Code"), false, false, false, '@');
-                EnterCell(RowNo, 67, Format(Rec."Bin Code"), false, false, false, '@');
-                EnterCell(RowNo, 68, Format(Rec."Responsibility Center"), false, false, false, '@');
+                EnterCell(RowNo, 3, Format(Rec."Sell-to Customer No."), false, false, false, '@');//"Customer No."
+                EnterCell(RowNo, 4, Format(Rec."Sell-to Customer Name"), false, false, false, '@');//"Customer Name"
+                EnterCell(RowNo, 5, Format(Rec."Posting Date"), false, false, false, '');
+                EnterCell(RowNo, 6, Format(Rec."Order Date"), false, false, false, '');
+                EnterCell(RowNo, 7, Format(Rec."Document Date"), false, false, false, '');
+                EnterCell(RowNo, 8, Format(Rec."Posting Description"), false, false, false, '@');
+                EnterCell(RowNo, 9, Format(Rec."Salesperson Code"), false, false, false, '@');
+                EnterCell(RowNo, 10, Format(Rec."External Document No."), false, false, false, '@');
+                EnterCell(RowNo, 11, Format(Rec."Bill-to Customer No."), false, false, false, '@');
+                EnterCell(RowNo, 12, Format(Rec."Bill-to Name"), false, false, false, '@');
+                EnterCell(RowNo, 13, Format(Rec."Due Date"), false, false, false, '');
+                EnterCell(RowNo, 14, Format(Rec."Currency Code"), false, false, false, '@');
+                EnterCell(RowNo, 15, Format(Rec."Ship-to Code"), false, false, false, '@');
+                EnterCell(RowNo, 16, Format(Rec."Ship-to Name"), false, false, false, '@');
+                EnterCell(RowNo, 17, Format(Rec."Ship-to Address"), false, false, false, '@');
+                EnterCell(RowNo, 18, Format(Rec."Ship-to Post Code"), false, false, false, '@');
+                EnterCell(RowNo, 10, Format(Rec."Line No."), false, false, false, '');
+                EnterCell(RowNo, 20, Format(Rec.Type), false, false, false, '');
+                EnterCell(RowNo, 21, Format(Rec."Item No."), false, false, false, '@');//"Item No."
+                EnterCell(RowNo, 22, Format(Rec."Location Code"), false, false, false, '@');
+                EnterCell(RowNo, 23, Format(Rec.Description), false, false, false, '');
+                EnterCell(RowNo, 24, Format(Rec."Description 2"), false, false, false, '');
+                EnterCell(RowNo, 25, Format(Rec."Unit of Measure Code"), false, false, false, '@');
+                EnterCell(RowNo, 26, Format(Rec."Unit of Measure"), false, false, false, '@');
+                EnterCell(RowNo, 27, Format(Rec.Quantity), false, false, false, '');
+                EnterCell(RowNo, 28, Format(Rec."Reserved Quantity"), false, false, false, '');
+                EnterCell(RowNo, 29, Format(Rec."Qty. to Invoice"), false, false, false, '');
+                EnterCell(RowNo, 30, Format(Rec."Quantity Shipped"), false, false, false, '');
+                EnterCell(RowNo, 31, Format(Rec."Quantity Invoiced"), false, false, false, '');
+                EnterCell(RowNo, 32, Format(Rec."Unit Price"), false, false, false, '');
+                EnterCell(RowNo, 33, Format(Rec."Unit Cost (LCY)"), false, false, false, '');
+                EnterCell(RowNo, 34, Format(Rec."VAT %"), false, false, false, '');
+                EnterCell(RowNo, 35, Format(Rec."Line Discount %"), false, false, false, '');
+                EnterCell(RowNo, 36, Format(Rec."Line Discount Amount"), false, false, false, '');
+                EnterCell(RowNo, 37, Format(Rec."Inv. Discount Amount"), false, false, false, '');
+                EnterCell(RowNo, 38, Format(Rec.Amount), false, false, false, '');
+                EnterCell(RowNo, 39, Format(Rec."Amount Including VAT"), false, false, false, '');
+                EnterCell(RowNo, 40, Format(Rec."Profit %"), false, false, false, '');
+                EnterCell(RowNo, 41, Format(Rec."Net Weight"), false, false, false, '');
+                EnterCell(RowNo, 42, Format(Rec."Gross Weight"), false, false, false, '');
+                EnterCell(RowNo, 43, Format(Rec."Shipment Date"), false, false, false, '');
+                EnterCell(RowNo, 44, Format(Rec."Requested Delivery Date"), false, false, false, '');
+                EnterCell(RowNo, 45, Format(Rec."Planned Delivery Date"), false, false, false, '');
+                EnterCell(RowNo, 46, Format(Rec."Promised Delivery Date"), false, false, false, '');
+                EnterCell(RowNo, 47, Format(Rec."Planned Shipment Date"), false, false, false, '');
+                EnterCell(RowNo, 48, Format(Rec."Shortcut Dimension 1 Code"), false, false, false, '@');//"Global Dimension 1 Code"
+                EnterCell(RowNo, 49, Format(Rec."Shortcut Dimension 2 Code"), false, false, false, '@');//"Global Dimension 2 Code"
+                EnterCell(RowNo, 50, Format(Rec."Shortcut Dimension 3 Code"), false, false, false, '@');
+                EnterCell(RowNo, 51, Format(Rec."Shortcut Dimension 4 Code"), false, false, false, '@');
+                EnterCell(RowNo, 52, Format(Rec."Shortcut Dimension 5 Code"), false, false, false, '@');
+                EnterCell(RowNo, 53, Format(Rec."Shortcut Dimension 6 Code"), false, false, false, '@');
+                EnterCell(RowNo, 54, Format(Rec."Shortcut Dimension 7 Code"), false, false, false, '@');
+                EnterCell(RowNo, 55, Format(Rec."Shortcut Dimension 8 Code"), false, false, false, '@');
+                EnterCell(RowNo, 56, Format(Rec."Job No."), false, false, false, '@');
+                EnterCell(RowNo, 57, Format(Rec."Reason Code"), false, false, false, '@');
+                EnterCell(RowNo, 58, Format(Rec."Customer Posting Group"), false, false, false, '@');
+                EnterCell(RowNo, 59, Format(Rec."Gen. Bus. Posting Group"), false, false, false, '@');
+                EnterCell(RowNo, 60, Format(Rec."Gen. Prod. Posting Group"), false, false, false, '@');
+                EnterCell(RowNo, 61, Format(Rec."VAT Bus. Posting Group"), false, false, false, '@');
+                EnterCell(RowNo, 62, Format(Rec."VAT Prod. Posting Group"), false, false, false, '@');
+                EnterCell(RowNo, 63, Format(Rec."Variant Code"), false, false, false, '@');
+                EnterCell(RowNo, 64, Format(Rec."Bin Code"), false, false, false, '@');
+                EnterCell(RowNo, 65, Format(Rec."Responsibility Center"), false, false, false, '@');
                 if ShowTrackingInfo then begin
                     case Rec."Document Type" of
                         Rec."Document Type"::Quote,
@@ -1426,137 +1240,137 @@ page 50019 "Sales Inquiry Subform"
                         Rec."Document Type"::Invoice,
                         Rec."Document Type"::"Credit Memo":
                             begin
-                                if lrecSalesLine.Get(Rec."Document Type", Rec."Document No.", Rec."Line No.") then begin
-                                    ReservEngineMgt.InitFilterAndSortingLookupFor(lrReservEntry, true);
+                                if SalesLine.Get(Rec."Document Type", Rec."Document No.", Rec."Line No.") then begin
+                                    ReservEngineMgt.InitFilterAndSortingLookupFor(ReservEntry, true);
                                     RecRef.GetTable(Rec);
-                                    ReservMgmt.FilterReservFor(RecRef, lrReservEntry, DirEnum::Outbound);
-                                    //ReserveSalesOrderLine.FilterReservFor(lrReservEntry, lrecSalesLine);
-                                    lrReservEntry.SetRange("Reservation Status");
-                                    if lrReservEntry.FindSet() then
+                                    ReservMgmt.FilterReservFor(RecRef, ReservEntry, DirEnum::Outbound);
+                                    //ReserveSalesOrderLine.FilterReservFor(ReservEntry, lrecSalesLine);
+                                    ReservEntry.SetRange("Reservation Status");
+                                    if ReservEntry.FindSet() then
                                         Repeat
-                                            if (lrReservEntry."Serial No." <> '') OR (lrReservEntry."Lot No." <> '') then begin
+                                            if (ReservEntry."Serial No." <> '') OR (ReservEntry."Lot No." <> '') then begin
                                                 RowNo += 1;
-                                                if lrReservEntry."Serial No." <> '' then
-                                                    EnterCell(RowNo, 73, Format(lrReservEntry."Serial No."), false, false, false, '@');
-                                                if lrReservEntry."Lot No." <> '' then
-                                                    EnterCell(RowNo, 74, Format(lrReservEntry."Lot No."), false, false, false, '@');
-                                                if lrReservEntry."Expiration Date" <> 0D then
-                                                    EnterCell(RowNo, 75, Format(lrReservEntry."Expiration Date"), false, false, false, '')
+                                                if ReservEntry."Serial No." <> '' then
+                                                    EnterCell(RowNo, 66, Format(ReservEntry."Serial No."), false, false, false, '@');
+                                                if ReservEntry."Lot No." <> '' then
+                                                    EnterCell(RowNo, 67, Format(ReservEntry."Lot No."), false, false, false, '@');
+                                                if ReservEntry."Expiration Date" <> 0D then
+                                                    EnterCell(RowNo, 68, Format(ReservEntry."Expiration Date"), false, false, false, '')
                                                 else begin
-                                                    lrecItemLedgerEntry.Reset();
-                                                    lrecItemLedgerEntry.SetRange("Item No.", lrReservEntry."Item No.");
-                                                    lrecItemLedgerEntry.SetRange("Variant Code", lrReservEntry."Variant Code");
-                                                    lrecItemLedgerEntry.SetRange("Lot No.", lrReservEntry."Lot No.");
-                                                    lrecItemLedgerEntry.SetRange("Serial No.", lrReservEntry."Serial No.");
-                                                    if lrecItemLedgerEntry.FindFirst() then begin
-                                                        if lrecItemLedgerEntry."Expiration Date" <> 0D then
-                                                            EnterCell(RowNo, 76, Format(lrecItemLedgerEntry."Expiration Date"), false, false, false, '')
+                                                    ItemLedgerEntry.Reset();
+                                                    ItemLedgerEntry.SetRange("Item No.", ReservEntry."Item No.");
+                                                    ItemLedgerEntry.SetRange("Variant Code", ReservEntry."Variant Code");
+                                                    ItemLedgerEntry.SetRange("Lot No.", ReservEntry."Lot No.");
+                                                    ItemLedgerEntry.SetRange("Serial No.", ReservEntry."Serial No.");
+                                                    if ItemLedgerEntry.FindFirst() then begin
+                                                        if ItemLedgerEntry."Expiration Date" <> 0D then
+                                                            EnterCell(RowNo, 68, Format(ItemLedgerEntry."Expiration Date"), false, false, false, '')
                                                     end;
                                                 end;
-                                                EnterCell(RowNo, 77, Format(-lrReservEntry.Quantity), false, false, false, '');
+                                                EnterCell(RowNo, 69, Format(-ReservEntry.Quantity), false, false, false, '');
                                             end;
-                                        until lrReservEntry.Next() = 0;
-                                    lresShipmentLine.Reset();
-                                    lresShipmentLine.SetCurrentKey("Order No.", "Order Line No.");
-                                    lresShipmentLine.SetRange("Order No.", Rec."Document No.");
-                                    lresShipmentLine.SetRange("Order Line No.", Rec."Line No.");
-                                    if lresShipmentLine.FindSet() then
+                                        until ReservEntry.Next() = 0;
+                                    ShipmentLine.Reset();
+                                    ShipmentLine.SetCurrentKey("Order No.", "Order Line No.");
+                                    ShipmentLine.SetRange("Order No.", Rec."Document No.");
+                                    ShipmentLine.SetRange("Order Line No.", Rec."Line No.");
+                                    if ShipmentLine.FindSet() then
                                         Repeat
                                             Clear(TempItemLedgEntry);
                                             TempItemLedgEntry.DeleteAll();
                                             Clear(ItemTrackingMgmt);
                                             RetrieveILEFromShptRcpt(TempItemLedgEntry,//ItemTrackingMgmt.
-                                            Database::"Sales Shipment Line", 0, lresShipmentLine."Document No.", '', 0, lresShipmentLine."Line No.");
+                                            Database::"Sales Shipment Line", 0, ShipmentLine."Document No.", '', 0, ShipmentLine."Line No.");
                                             if TempItemLedgEntry.FindSet() then
                                                 Repeat
                                                     if (TempItemLedgEntry."Serial No." <> '') OR (TempItemLedgEntry."Lot No." <> '') then begin
                                                         RowNo += 1;
                                                         if TempItemLedgEntry."Serial No." <> '' then
-                                                            EnterCell(RowNo, 73, Format(TempItemLedgEntry."Serial No."), false, false, false, '@');
+                                                            EnterCell(RowNo, 66, Format(TempItemLedgEntry."Serial No."), false, false, false, '@');
                                                         if TempItemLedgEntry."Lot No." <> '' then
-                                                            EnterCell(RowNo, 74, Format(TempItemLedgEntry."Lot No."), false, false, false, '@');
+                                                            EnterCell(RowNo, 67, Format(TempItemLedgEntry."Lot No."), false, false, false, '@');
                                                         if TempItemLedgEntry."Expiration Date" <> 0D then
-                                                            EnterCell(RowNo, 75, Format(TempItemLedgEntry."Expiration Date"), false, false, false, '')
+                                                            EnterCell(RowNo, 68, Format(TempItemLedgEntry."Expiration Date"), false, false, false, '')
                                                         else begin
-                                                            lrecItemLedgerEntry.Reset();
-                                                            lrecItemLedgerEntry.SetRange("Item No.", TempItemLedgEntry."Item No.");
-                                                            lrecItemLedgerEntry.SetRange("Variant Code", TempItemLedgEntry."Variant Code");
-                                                            lrecItemLedgerEntry.SetRange("Lot No.", TempItemLedgEntry."Lot No.");
-                                                            lrecItemLedgerEntry.SetRange("Serial No.", TempItemLedgEntry."Serial No.");
-                                                            if lrecItemLedgerEntry.FindFirst() then begin
-                                                                if lrecItemLedgerEntry."Expiration Date" <> 0D then
-                                                                    EnterCell(RowNo, 76, Format(lrecItemLedgerEntry."Expiration Date"), false, false, false, '')
+                                                            ItemLedgerEntry.Reset();
+                                                            ItemLedgerEntry.SetRange("Item No.", TempItemLedgEntry."Item No.");
+                                                            ItemLedgerEntry.SetRange("Variant Code", TempItemLedgEntry."Variant Code");
+                                                            ItemLedgerEntry.SetRange("Lot No.", TempItemLedgEntry."Lot No.");
+                                                            ItemLedgerEntry.SetRange("Serial No.", TempItemLedgEntry."Serial No.");
+                                                            if ItemLedgerEntry.FindFirst() then begin
+                                                                if ItemLedgerEntry."Expiration Date" <> 0D then
+                                                                    EnterCell(RowNo, 68, Format(ItemLedgerEntry."Expiration Date"), false, false, false, '')
                                                             end;
                                                         end;
-                                                        EnterCell(RowNo, 77, Format(TempItemLedgEntry.Quantity), false, false, false, '');
+                                                        EnterCell(RowNo, 69, Format(TempItemLedgEntry.Quantity), false, false, false, '');
                                                     end;
                                                 until TempItemLedgEntry.Next() = 0;
-                                        until lresShipmentLine.Next() = 0;
+                                        until ShipmentLine.Next() = 0;
                                 end;
                             end;
                         Rec."Document Type"::"Posted Invoice":
                             begin
-                                if lrecSalesInvLine.Get(Rec."Document No.",
+                                if SalesInvLine.Get(Rec."Document No.",
                                 Rec."Line No.") then begin
                                     Clear(TempItemLedgEntry);
                                     TempItemLedgEntry.DeleteAll();
                                     Clear(ItemTrackingMgmt);
-                                    RetrieveILEFromPostedInv(TempItemLedgEntry, lrecSalesInvLine.RowID1);//ItemTrackingMgmt.RetrieveILEFromPostedInv
+                                    RetrieveILEFromPostedInv(TempItemLedgEntry, SalesInvLine.RowID1);//ItemTrackingMgmt.RetrieveILEFromPostedInv
                                     if TempItemLedgEntry.FindSet() then
                                         Repeat
                                             if (TempItemLedgEntry."Serial No." <> '') OR (TempItemLedgEntry."Lot No." <> '') then begin
                                                 RowNo += 1;
                                                 if TempItemLedgEntry."Serial No." <> '' then
-                                                    EnterCell(RowNo, 73, Format(TempItemLedgEntry."Serial No."), false, false, false, '@');
+                                                    EnterCell(RowNo, 66, Format(TempItemLedgEntry."Serial No."), false, false, false, '@');
                                                 if TempItemLedgEntry."Lot No." <> '' then
-                                                    EnterCell(RowNo, 74, Format(TempItemLedgEntry."Lot No."), false, false, false, '@');
+                                                    EnterCell(RowNo, 67, Format(TempItemLedgEntry."Lot No."), false, false, false, '@');
                                                 if TempItemLedgEntry."Expiration Date" <> 0D then
-                                                    EnterCell(RowNo, 75, Format(TempItemLedgEntry."Expiration Date"), false, false, false, '')
+                                                    EnterCell(RowNo, 68, Format(TempItemLedgEntry."Expiration Date"), false, false, false, '')
                                                 else begin
-                                                    lrecItemLedgerEntry.Reset();
-                                                    lrecItemLedgerEntry.SetRange("Item No.", TempItemLedgEntry."Item No.");
-                                                    lrecItemLedgerEntry.SetRange("Variant Code", TempItemLedgEntry."Variant Code");
-                                                    lrecItemLedgerEntry.SetRange("Lot No.", TempItemLedgEntry."Lot No.");
-                                                    lrecItemLedgerEntry.SetRange("Serial No.", TempItemLedgEntry."Serial No.");
-                                                    if lrecItemLedgerEntry.FindFirst() then begin
-                                                        if lrecItemLedgerEntry."Expiration Date" <> 0D then
-                                                            EnterCell(RowNo, 76, Format(lrecItemLedgerEntry."Expiration Date"), false, false, false, '')
+                                                    ItemLedgerEntry.Reset();
+                                                    ItemLedgerEntry.SetRange("Item No.", TempItemLedgEntry."Item No.");
+                                                    ItemLedgerEntry.SetRange("Variant Code", TempItemLedgEntry."Variant Code");
+                                                    ItemLedgerEntry.SetRange("Lot No.", TempItemLedgEntry."Lot No.");
+                                                    ItemLedgerEntry.SetRange("Serial No.", TempItemLedgEntry."Serial No.");
+                                                    if ItemLedgerEntry.FindFirst() then begin
+                                                        if ItemLedgerEntry."Expiration Date" <> 0D then
+                                                            EnterCell(RowNo, 68, Format(ItemLedgerEntry."Expiration Date"), false, false, false, '')
                                                     end;
                                                 end;
-                                                EnterCell(RowNo, 77, Format(TempItemLedgEntry.Quantity), false, false, false, '');
+                                                EnterCell(RowNo, 69, Format(TempItemLedgEntry.Quantity), false, false, false, '');
                                             end;
                                         until TempItemLedgEntry.Next() = 0;
                                 end;
                             end;
                         Rec."Document Type"::"Posted Credit Memo":
                             begin
-                                if lrecSalesCrMemoLine.Get(Rec."Document No.", Rec."Line No.") then begin
+                                if SalesCrMemoLine.Get(Rec."Document No.", Rec."Line No.") then begin
                                     Clear(TempItemLedgEntry);
                                     TempItemLedgEntry.DeleteAll();
                                     Clear(ItemTrackingMgmt);
-                                    RetrieveILEFromPostedInv(TempItemLedgEntry, lrecSalesCrMemoLine.RowID1);//ItemTrackingMgmt.RetrieveILEFromPostedInv
+                                    RetrieveILEFromPostedInv(TempItemLedgEntry, SalesCrMemoLine.RowID1);//ItemTrackingMgmt.RetrieveILEFromPostedInv
                                     if TempItemLedgEntry.FindSet() then
                                         Repeat
                                             if (TempItemLedgEntry."Serial No." <> '') OR (TempItemLedgEntry."Lot No." <> '') then begin
                                                 RowNo += 1;
                                                 if TempItemLedgEntry."Serial No." <> '' then
-                                                    EnterCell(RowNo, 73, Format(TempItemLedgEntry."Serial No."), false, false, false, '@');
+                                                    EnterCell(RowNo, 66, Format(TempItemLedgEntry."Serial No."), false, false, false, '@');
                                                 if TempItemLedgEntry."Lot No." <> '' then
-                                                    EnterCell(RowNo, 74, Format(TempItemLedgEntry."Lot No."), false, false, false, '@');
+                                                    EnterCell(RowNo, 67, Format(TempItemLedgEntry."Lot No."), false, false, false, '@');
                                                 if TempItemLedgEntry."Expiration Date" <> 0D then
-                                                    EnterCell(RowNo, 75, Format(TempItemLedgEntry."Expiration Date"), false, false, false, '')
+                                                    EnterCell(RowNo, 68, Format(TempItemLedgEntry."Expiration Date"), false, false, false, '')
                                                 else begin
-                                                    lrecItemLedgerEntry.Reset();
-                                                    lrecItemLedgerEntry.SetRange("Item No.", TempItemLedgEntry."Item No.");
-                                                    lrecItemLedgerEntry.SetRange("Variant Code", TempItemLedgEntry."Variant Code");
-                                                    lrecItemLedgerEntry.SetRange("Lot No.", TempItemLedgEntry."Lot No.");
-                                                    lrecItemLedgerEntry.SetRange("Serial No.", TempItemLedgEntry."Serial No.");
-                                                    if lrecItemLedgerEntry.FindFirst() then begin
-                                                        if lrecItemLedgerEntry."Expiration Date" <> 0D then
-                                                            EnterCell(RowNo, 76, Format(lrecItemLedgerEntry."Expiration Date"), false, false, false, '')
+                                                    ItemLedgerEntry.Reset();
+                                                    ItemLedgerEntry.SetRange("Item No.", TempItemLedgEntry."Item No.");
+                                                    ItemLedgerEntry.SetRange("Variant Code", TempItemLedgEntry."Variant Code");
+                                                    ItemLedgerEntry.SetRange("Lot No.", TempItemLedgEntry."Lot No.");
+                                                    ItemLedgerEntry.SetRange("Serial No.", TempItemLedgEntry."Serial No.");
+                                                    if ItemLedgerEntry.FindFirst() then begin
+                                                        if ItemLedgerEntry."Expiration Date" <> 0D then
+                                                            EnterCell(RowNo, 68, Format(ItemLedgerEntry."Expiration Date"), false, false, false, '')
                                                     end;
                                                 end;
-                                                EnterCell(RowNo, 77, Format(TempItemLedgEntry.Quantity), false, false, false, '');
+                                                EnterCell(RowNo, 69, Format(TempItemLedgEntry.Quantity), false, false, false, '');
                                             end;
                                         until TempItemLedgEntry.Next() = 0;
                                 end;
@@ -1595,17 +1409,6 @@ page 50019 "Sales Inquiry Subform"
     procedure ExportSFDataToExcel(ShowTrackingInfo: Boolean);
     var
         RowNo: Integer;
-        lrecSalesLine: Record "Sales Line";
-        ReservEngineMgt: Codeunit "Reservation Engine Mgt.";
-        ReserveSalesOrderLine: Codeunit "Sales Line-Reserve";
-        lrReservEntry: Record "Reservation Entry";
-        lrecSalesInvLine: Record "Sales Invoice Line";
-        ItemTrackingMgmt: Codeunit "Item Tracking Management";
-        TempItemLedgEntry: Record "Item Ledger Entry" temporary;
-        lrecSalesCrMemoLine: Record "Sales Cr.Memo Line";
-        decRemainingQty: Decimal;
-        lrecItemLedgerEntry: Record "Item Ledger Entry";
-        lresShipmentLine: Record "Sales Shipment Line";
     begin
         TempExcelBuffer.DeleteAll();
         Clear(TempExcelBuffer);
@@ -1647,12 +1450,12 @@ page 50019 "Sales Inquiry Subform"
                 EnterCell(RowNo, 1, Format(Rec."Posting Date"), false, false, false, '@');
                 EnterCell(RowNo, 2, Format(Rec."Document No."), false, false, false, '@');
                 EnterCell(RowNo, 3, Format(Rec."Item No."), false, false, false, '');//"Item No."
-                EnterCell(RowNo, 10, Format(Rec."Sell-to Customer No."), false, false, false, '@');//"Customer No."
-                EnterCell(RowNo, 11, Format(Rec."Sell-to Customer Name"), false, false, false, '@');//"Customer Name"
-                EnterCell(RowNo, 15, Format(Rec.Quantity), false, false, false, '');
-                EnterCell(RowNo, 16, Format(Rec.Amount, 0, 1), false, false, false, '@');
-                EnterCell(RowNo, 21, Format(Rec."User ID"), false, false, false, '@');
-                EnterCell(RowNo, 25, Format(Rec."Unit Price", 0, 1), false, false, false, '@');
+                EnterCell(RowNo, 4, Format(Rec."Sell-to Customer No."), false, false, false, '@');//"Customer No."
+                EnterCell(RowNo, 5, Format(Rec."Sell-to Customer Name"), false, false, false, '@');//"Customer Name"
+                EnterCell(RowNo, 6, Format(Rec.Quantity), false, false, false, '');
+                EnterCell(RowNo, 7, Format(Rec.Amount, 0, 1), false, false, false, '@');
+                EnterCell(RowNo, 8, Format(Rec."User ID"), false, false, false, '@');
+                EnterCell(RowNo, 9, Format(Rec."Unit Price", 0, 1), false, false, false, '@');
             until Rec.Next() = 0;
         this.TempExcelBuffer.WriteSheet('Sales Inquiry', CompanyName, UserId);
         this.TempExcelBuffer.CloseBook();

@@ -77,49 +77,49 @@ page 50011 "Purchase Order Import"
 
                     TempExcelBuf.LockTable();
                     SheetName := TempExcelBuf.SelectSheetsNameStream(FileInStream);
-                    if SheetName = '' then
-                        CurrPage.Close();
-                    TempExcelBuf.OpenBookStream(FileInStream, SheetName);
-                    TempExcelBuf.ReadSheetContinous(SheetName, true);
+                    if SheetName <> '' then begin
+                        TempExcelBuf.OpenBookStream(FileInStream, SheetName);
+                        TempExcelBuf.ReadSheetContinous(SheetName, true);
 
-                    TempExcelBuf.Reset();
-                    TempExcelBuf.SetFilter("Row No.", '<>1');
-                    if IsImport then begin  //Import Execution
-                        ImpPurchLine.Reset();
-                        ImpPurchLine.LockTable();
-                        if TempExcelBuf.FindFirst() then begin
-                            RowNo := TempExcelBuf."Row No.";
-                            repeat
-                                if (TempExcelBuf."Row No." <> RowNo) and (TempExcelBuf."Row No." <> 2) then begin
-                                    InsertOrModify(ImpPurchLine, IsRecModify, IskeyErr, DataCnt, ErrCnt, IsJudgeFlg);
-                                    RowNo := TempExcelBuf."Row No.";
-                                end;
-                                ValidateExcelData(TempExcelBuf, ImpPurchLine, IsRecModify, IskeyErr, IsJudgeFlg);
-                            until TempExcelBuf.Next() <= 0;
+                        TempExcelBuf.Reset();
+                        TempExcelBuf.SetFilter("Row No.", '<>1');
+                        if IsImport then begin  //Import Execution
+                            ImpPurchLine.Reset();
+                            ImpPurchLine.LockTable();
+                            if TempExcelBuf.FindFirst() then begin
+                                RowNo := TempExcelBuf."Row No.";
+                                repeat
+                                    if (TempExcelBuf."Row No." <> RowNo) and (TempExcelBuf."Row No." <> 2) then begin
+                                        InsertOrModify(ImpPurchLine, IsRecModify, IskeyErr, DataCnt, ErrCnt, IsJudgeFlg);
+                                        RowNo := TempExcelBuf."Row No.";
+                                    end;
+                                    ValidateExcelData(TempExcelBuf, ImpPurchLine, IsRecModify, IskeyErr, IsJudgeFlg);
+                                until TempExcelBuf.Next() <= 0;
+                            end;
+                            InsertOrModify(ImpPurchLine, IsRecModify, IskeyErr, DataCnt, ErrCnt, IsJudgeFlg);
+                            Commit;
                         end;
-                        InsertOrModify(ImpPurchLine, IsRecModify, IskeyErr, DataCnt, ErrCnt, IsJudgeFlg);
-                        Commit;
-                    end;
-                    /* end else begin  //Import Test Execution
-                        TestPurchLine.Reset();
-                        TestPurchLine.LockTable();
-                        IF TempExcelBuf.FindFirst() then begin
-                            RowNo := TempExcelBuf."Row No.";
-                            repeat
-                                if (TempExcelBuf."Row No." <> RowNo) and (TempExcelBuf."Row No." <> 2) then begin
-                                    InsertOrModify(TestPurchLine, IsRecModify, IskeyErr, DataCnt, ErrCnt, IsJudgeFlg);
-                                    RowNo := TempExcelBuf."Row No.";
-                                end;
-                                ValidateExcelData(TempExcelBuf, TestPurchLine, IsRecModify, IskeyErr, IsJudgeFlg);
-                            until TempExcelBuf.Next() <= 0;
+                        /* end else begin  //Import Test Execution
+                            TestPurchLine.Reset();
+                            TestPurchLine.LockTable();
+                            IF TempExcelBuf.FindFirst() then begin
+                                RowNo := TempExcelBuf."Row No.";
+                                repeat
+                                    if (TempExcelBuf."Row No." <> RowNo) and (TempExcelBuf."Row No." <> 2) then begin
+                                        InsertOrModify(TestPurchLine, IsRecModify, IskeyErr, DataCnt, ErrCnt, IsJudgeFlg);
+                                        RowNo := TempExcelBuf."Row No.";
+                                    end;
+                                    ValidateExcelData(TempExcelBuf, TestPurchLine, IsRecModify, IskeyErr, IsJudgeFlg);
+                                until TempExcelBuf.Next() <= 0;
+                            end;
+                            InsertOrModify(TestPurchLine, IsRecModify, IskeyErr, DataCnt, ErrCnt, IsJudgeFlg);
+                        end; */
+                        TempExcelBuf.CloseBook();
+                        if IsErrFlag then begin
+                            CreateErroLog();
                         end;
-                        InsertOrModify(TestPurchLine, IsRecModify, IskeyErr, DataCnt, ErrCnt, IsJudgeFlg);
-                    end; */
-                    TempExcelBuf.CloseBook();
-                    if IsErrFlag then begin
-                        CreateErroLog();
+                        ImportMessage(DataCnt, ErrCnt, IsImport);
                     end;
-                    ImportMessage(DataCnt, ErrCnt, IsImport);
                     CurrPage.Close();
                 end;
             }

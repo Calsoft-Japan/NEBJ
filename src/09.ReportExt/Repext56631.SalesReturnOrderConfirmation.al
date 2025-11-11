@@ -32,6 +32,8 @@ reportextension 56631 "SalesReturnOrdConfirmation Ext" extends "Return Order Con
             column(CompanyAddress; CompanyInfo.Address) { }
             column(CompanyAddress2; CompanyInfo."Address 2") { }
             column(CompanyFax; CompanyInfo."Fax No.") { }
+            //
+
         }
         add(RoundLoop)
         {
@@ -40,7 +42,8 @@ reportextension 56631 "SalesReturnOrdConfirmation Ext" extends "Return Order Con
             column(ExternalDocumentNo; "Sales Line"."ExternaDocumentNo.") { }// (18) 外部伝票番号
             column(EU_Description; "Sales Line"."EU Description") { } // EU品名
             column(Description_Bikou; "Sales Line"."Description(Bikou)") { } // 備考 
-            column(ReturnReasonDesc_Line; ReturnReasonDescTxt) { }// 理由説明文  
+            column(ReturnReasonDesc_Line; ReturnReasonDescTxt) { }// 理由説明文              
+            column(NetUnitPrice; NetUnitPriceTxt) { }// 
         }
 
         modify(RoundLoop)
@@ -48,12 +51,19 @@ reportextension 56631 "SalesReturnOrdConfirmation Ext" extends "Return Order Con
             trigger OnAfterAfterGetRecord()
             begin
                 FillReturnReasonDescOnly();
+
+                // --- Calculate Net Unit Price (Line Amount Excl. Tax / Quantity) ---
+                if "Sales Line".Quantity <> 0 then
+                    NetUnitPriceTxt := -1 * ("Sales Line"."Line Amount" / "Sales Line".Quantity)
+                else
+                    NetUnitPriceTxt := 0;
             end;
         }
     }
     var
         ReturnReason: Record "Return Reason";
         ReturnReasonDescTxt: Text[250];
+        NetUnitPriceTxt: Decimal;// (3) Net Unit Price
 
     local procedure FillReturnReasonDescOnly()
     begin

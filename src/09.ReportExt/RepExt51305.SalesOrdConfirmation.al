@@ -57,13 +57,8 @@ reportextension 51305 "Sales Ord Confirmation Ext" extends "Standard Sales - Ord
 
         }
 
-        // Use this section to add fields from Sales Line.
-
         add(Line)
         {
-            // column(LineDiscountAmount; "Line Discount Amount")
-            // {
-            // }
             column(StorageTemp; "StorageTemprature")
             {
             }

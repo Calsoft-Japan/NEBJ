@@ -1,4 +1,4 @@
-codeunit 50002 "Sales Line Enhancement"
+codeunit 50002 "Sales Enhancement"
 {
     [EventSubscriber(ObjectType::Table, Database::"Sales Line", 'OnCopyFromItemOnAfterCheck', '', true, true)]
     procedure Ext_LotInsert(var SalesLine: Record "Sales Line"; Item: Record Item)

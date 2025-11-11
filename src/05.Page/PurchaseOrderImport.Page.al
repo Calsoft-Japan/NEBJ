@@ -29,14 +29,14 @@ page 50011 "Purchase Order Import"
             field(Import; IsImport)
             {
                 Caption = 'Import';
-                trigger OnValidate()
+                /* trigger OnValidate()
                 var
                 begin
                     if IsImport then
                         IsImpTest := false;
-                end;
+                end; */
             }
-            field(IsImpTest; IsImpTest)
+            /* field(IsImpTest; IsImpTest)
             {
                 Caption = 'Import (Test)';
                 trigger OnValidate()
@@ -45,8 +45,7 @@ page 50011 "Purchase Order Import"
                     if IsImpTest then
                         IsImport := false;
                 end;
-
-            }
+            } */
         }
     }
     actions
@@ -98,7 +97,8 @@ page 50011 "Purchase Order Import"
                         end;
                         InsertOrModify(ImpPurchLine, IsRecModify, IskeyErr, DataCnt, ErrCnt, IsJudgeFlg);
                         Commit;
-                    end else begin  //Import Test Execution
+                    end;
+                    /* end else begin  //Import Test Execution
                         TestPurchLine.Reset();
                         TestPurchLine.LockTable();
                         IF TempExcelBuf.FindFirst() then begin
@@ -112,7 +112,7 @@ page 50011 "Purchase Order Import"
                             until TempExcelBuf.Next() <= 0;
                         end;
                         InsertOrModify(TestPurchLine, IsRecModify, IskeyErr, DataCnt, ErrCnt, IsJudgeFlg);
-                    end;
+                    end; */
                     TempExcelBuf.CloseBook();
                     if IsErrFlag then begin
                         CreateErroLog();
@@ -131,7 +131,7 @@ page 50011 "Purchase Order Import"
         FileName: Text[250];
         IsErrFlag: Boolean;
         IsImport: Boolean;
-        IsImpTest: Boolean;
+        //IsImpTest: Boolean;
         ImpFileLbl: Label 'Import excel file';
         BlankFileErr: Label 'File name can not be blank.';
         DialogTxt: Label 'Excel File (%1)|%1';
@@ -140,7 +140,7 @@ page 50011 "Purchase Order Import"
     trigger OnInit()
     begin
         IsImport := true;
-        IsImpTest := false;
+        //IsImpTest := false;
     end;
 
     procedure ValidateExcelData(var pExcelBuf: Record "Excel Buffer"; var pPurchLine: record "Purchase Line";

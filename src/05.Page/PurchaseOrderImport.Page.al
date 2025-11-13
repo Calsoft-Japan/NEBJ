@@ -29,23 +29,7 @@ page 50011 "Purchase Order Import"
             field(Import; IsImport)
             {
                 Caption = 'Import';
-                /* trigger OnValidate()
-                var
-                begin
-                    if IsImport then
-                        IsImpTest := false;
-                end; */
             }
-            /* field(IsImpTest; IsImpTest)
-            {
-                Caption = 'Import (Test)';
-                trigger OnValidate()
-                var
-                begin
-                    if IsImpTest then
-                        IsImport := false;
-                end;
-            } */
         }
     }
     actions
@@ -99,21 +83,6 @@ page 50011 "Purchase Order Import"
                             InsertOrModify(ImpPurchLine, IsRecModify, IskeyErr, DataCnt, ErrCnt, IsJudgeFlg);
                             Commit;
                         end;
-                        /* end else begin  //Import Test Execution
-                            TestPurchLine.Reset();
-                            TestPurchLine.LockTable();
-                            IF TempExcelBuf.FindFirst() then begin
-                                RowNo := TempExcelBuf."Row No.";
-                                repeat
-                                    if (TempExcelBuf."Row No." <> RowNo) and (TempExcelBuf."Row No." <> 2) then begin
-                                        InsertOrModify(TestPurchLine, IsRecModify, IskeyErr, DataCnt, ErrCnt, IsJudgeFlg);
-                                        RowNo := TempExcelBuf."Row No.";
-                                    end;
-                                    ValidateExcelData(TempExcelBuf, TestPurchLine, IsRecModify, IskeyErr, IsJudgeFlg);
-                                until TempExcelBuf.Next() <= 0;
-                            end;
-                            InsertOrModify(TestPurchLine, IsRecModify, IskeyErr, DataCnt, ErrCnt, IsJudgeFlg);
-                        end; */
                         TempExcelBuf.CloseBook();
                         if IsErrFlag then begin
                             CreateErroLog();
@@ -134,7 +103,6 @@ page 50011 "Purchase Order Import"
         FileName: Text[250];
         IsErrFlag: Boolean;
         IsImport: Boolean;
-        //IsImpTest: Boolean;
         ImpFileLbl: Label 'Import excel file';
         BlankFileErr: Label 'File name can not be blank.';
         DialogTxt: Label 'Excel File (%1)|%1';
@@ -143,7 +111,6 @@ page 50011 "Purchase Order Import"
     trigger OnInit()
     begin
         IsImport := true;
-        //IsImpTest := false;
     end;
 
     procedure ValidateExcelData(var pExcelBuf: Record "Excel Buffer"; var pPurchLine: record "Purchase Line";
@@ -273,17 +240,23 @@ page 50011 "Purchase Order Import"
     var
         ErrTempBlob: Codeunit "Temp Blob";
         ErrFileMgt: Codeunit "File Management";
+        Encoding: Codeunit DotNet_Encoding;
+        StreamWriter: Codeunit DotNet_StreamWriter;
         ErrInstream: InStream;
-        Outstream1: OutStream;
+        ErrOutstream: OutStream;
         DateFormatLbl: label '<Year4><Month,2><Day,2><Hours24><Minutes,2><Seconds,2><Second dec>', Locked = true;
         DialogTitleLbl: Label 'Download Error Log', Locked = true;
         FileFilterLbl: Label 'Text Files (*.txt)|*.txt', Locked = true;
         FileExtLbl: Label '_Err.csv', Locked = true;
     begin
         FileName := Format(CurrentDateTime, 0, DateFormatLbl) + FileExtLbl;
-        ErrTempBlob.CreateOutStream(Outstream1);
-        Outstream1.WriteText(ErrDataTxt);
 
+        Clear(ErrTempBlob);
+        ErrTempBlob.CreateOutStream(ErrOutstream);
+        Encoding.Encoding(932);
+        StreamWriter.StreamWriter(ErrOutstream, Encoding);
+        StreamWriter.WriteLine(ErrDataTxt);
+        StreamWriter.Flush();
         ErrTempBlob.CreateInStream(ErrInstream);
         ErrFileMgt.DownloadFromStreamHandler(ErrInstream, DialogTitleLbl, '', FileFilterLbl, FileName);
     end;
@@ -301,10 +274,11 @@ page 50011 "Purchase Order Import"
                 if pPurchLine.Insert() then
                     PurchOrderMgt.PurchLineLotInsert(pPurchLine);
             end;
-            DataCnt += 1;
+            //DataCnt += 1;
         end else begin
             ErrCnt += 1;
         end;
+        DataCnt += 1;
         pPurchLine.Reset();
         InitPurchLine(pPurchLine);
         InitPurchLine(PrevPurchLine);
@@ -317,7 +291,6 @@ page 50011 "Purchase Order Import"
         CRLF: Text;
         TAB: Text;
         MsgTitle: Text;
-        MsgLbl0: label 'インポートテストが終了しました。', Locked = true;
         MsgLbl1: label 'ファイル名.........', Locked = true;
         MsgLbl2: label 'データ件数.........', Locked = true;
         MsgLbl3: label 'インポート件数.....', Locked = true;
@@ -328,15 +301,13 @@ page 50011 "Purchase Order Import"
         CRLF[1] := 13;
         CRLF[2] := 10;
         TAB[1] := 9;
-        if IsImport then begin
+        if IsImport then
             MsgTitle := MsgLbl6;
-        end else begin
-            MsgTitle := MsgLbl0;
-        end;
+
         Message(MsgTitle + CRLF
         + MsgLbl1 + ConvertStr(FileName, '\', '/') + CRLF
         + MsgLbl2 + TAB + format(DataCnt) + CRLF
-        + MsgLbl3 + TAB + format(DataCnt) + CRLF
+        + MsgLbl3 + TAB + format(DataCnt - ErrCnt) + CRLF
         + MsgLbl5 + TAB + format(ErrCnt) + CRLF);
     end;
 

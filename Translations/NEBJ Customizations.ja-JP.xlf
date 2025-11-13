@@ -1107,6 +1107,12 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Report Sales Order Import - Control FileName - Property Caption</note>
         </trans-unit>
+        <trans-unit id="PageExtension 3752244521 - Action 2285815948 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 2466464261">
+          <source>Import Goods Receipt Insp. Data</source>
+          <target>入荷検品データインポート</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension Item Reclass. Jornal Ext - Action ImportGoodsRcpt - Property Caption</note>
+        </trans-unit>
         <trans-unit id="PageExtension 510266991 - Action 3894195457 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 387971303">
           <source>Import Purch. Order</source>
           <target>発注明細インポート直接原価付き</target>

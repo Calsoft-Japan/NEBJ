@@ -28,6 +28,11 @@ report 50002 "Import Goods Rcpt. Insp. Data"
                         AssistEdit = true;
 
                         trigger OnAssistEdit()
+                        var
+                            Encoding: Codeunit DotNet_Encoding;
+                            StreamReader: Codeunit DotNet_StreamReader;
+                            ContentOutStream: OutStream;
+                            FileContent: Text;
                         begin
                             UploadIntoStream(DialogTxt, '', FilterTxt, FileName, FileInStream);
                             if FileName = '' then
@@ -37,6 +42,9 @@ report 50002 "Import Goods Rcpt. Insp. Data"
                             Encoding.Encoding(932);
                             StreamReader.StreamReader(FileInStream, Encoding);
                             FileContent := StreamReader.ReadToEnd();
+                            TempBlob.CreateOutStream(ContentOutStream, TextEncoding::UTF8);
+                            ContentOutStream.WriteText(FileContent);
+                            TempBlob.CreateInStream(ContentInStream);
                         end;
                     }
                 }
@@ -50,8 +58,8 @@ report 50002 "Import Goods Rcpt. Insp. Data"
         NextLineNo := 0;
 
         ExcelBuf.LockTable();
-        ReadTextFile(FileContent);
-        //AnalyzeData();
+        ReadTextFileNew(ContentInStream);
+        AnalyzeData();
     end;
 
     trigger OnPostReport()
@@ -60,46 +68,44 @@ report 50002 "Import Goods Rcpt. Insp. Data"
         Message(ImpMsg)
     end;
 
+    local procedure ReadTextFileNew(pContentInStream: InStream)
     var
-        TempCSVBuffer: Record "CSV Buffer" temporary;
-        ExcelBuf: Record "Excel Buffer";
-        ItemJnlBatch: Record "Item Journal Batch";
-        ItemJnlLine: Record "Item Journal Line";
-        TempBlob: Codeunit "Temp Blob";
+        CSVBuffer: Record "CSV Buffer";
         Encoding: Codeunit DotNet_Encoding;
         StreamReader: Codeunit DotNet_StreamReader;
-        FileInStream: InStream;
-        ContentOutStream: OutStream;
-        ContentInStream: InStream;
         FileContent: Text;
-        TemplateName: Code[20];
-        BatchName: Code[20];
-        FileName: Text[250];
-        TotalRecNo: Integer;
-        RecNo: Integer;
-        NextLineNo: Integer;
-        OldLotNo: Code[20];
-        EntryNo: Integer;
-        NewLotNo: Code[20];
-        NewExpDate: Date;
-        LineNo: Integer;
-        ItemNo: Code[20];
-        PostingDate: Date;
-        ASEDate: Date;
-        DocNo: Code[20];
-        ExtDocNo: Code[20];
-        xlsRecNo: Code[20];
-        LocCode: Code[20];
-        NewLocCode: Code[20];
-        LotNo: Code[20];
-        SerialNo: Code[20];
-        ExpDate: Date;
-        Description: Text[80];
-        Qty: Decimal;
-        ImpMsg: Label 'Import Completed';
-        DialogTxt: Label 'Import from excel file';
-        BlankFileErr: Label 'File not found or incorrect.';
-        FilterTxt: Label 'Text Files (*.txt)|*.txt|All Files (*.*)|*.*';
+        Columns: List of [Text];
+        ColumnValue: Text;
+        TabChr: Char;
+        Window: Dialog;
+        ColNo: Integer;
+        RowNo: Integer;
+        ReadFileLbl: Label 'Reading CSV worksheet...\\';
+    begin
+        if GuiAllowed then
+            Window.Open(ReadFileLbl + '#1########################\');
+
+        ExcelBuf.DeleteAll();
+
+        RowNo := 1;
+        TabChr := 9;
+        while (not ContentInStream.EOS) do begin
+            ContentInStream.ReadText(FileContent);
+            Columns := FileContent.Split(TabChr);
+            ColNo := 1;
+            foreach ColumnValue in Columns do begin
+                ExcelBuf.Init();
+                ExcelBuf."Row No." := RowNo;
+                ExcelBuf."Column No." := ColNo;
+                ExcelBuf."Cell Value as Text" := ColumnValue;
+                ExcelBuf.Insert();
+                ColNo += 1;
+            end;
+            RowNo += 1;
+        end;
+        if GuiAllowed then
+            Window.Close();
+    end;
 
     local procedure AnalyzeData();
     VAR
@@ -114,19 +120,7 @@ report 50002 "Import Goods Rcpt. Insp. Data"
         for RowCounter := 2 to TotalRecNo do begin
             RecNo := RecNo + 1;
 
-            Clear(LineNo);
-            Clear(DocNo);
-            Clear(ExtDocNo);
-            Clear(PostingDate);
-            Clear(ItemNo);
-            Clear(Description);
-            Clear(LocCode);
-            Clear(NewLocCode);
-            Clear(LotNo);
-            Clear(ExpDate);
-            Clear(Qty);
-            Clear(ASEDate);
-            Clear(RecNo);
+            ClearAllVariables();
 
             if ExcelBuf.Get(RowCounter, 1) then begin
                 DocNo := ExcelBuf."Cell Value as Text";
@@ -362,8 +356,30 @@ report 50002 "Import Goods Rcpt. Insp. Data"
         end;
     end;
 
-    local procedure ReadTextFile(pFileContent: Text)
+    local procedure ClearAllVariables()
+    begin
+        Clear(LineNo);
+        Clear(DocNo);
+        Clear(ExtDocNo);
+        Clear(PostingDate);
+        Clear(ItemNo);
+        Clear(Description);
+        Clear(LocCode);
+        Clear(NewLocCode);
+        Clear(LotNo);
+        Clear(ExpDate);
+        Clear(Qty);
+        Clear(ASEDate);
+        Clear(RecNo);
+    end;
+
+    /* 
+    local procedure ReadTextFile(pContentInStream: InStream)
     var
+        CSVBuffer: Record "CSV Buffer";
+        Encoding: Codeunit DotNet_Encoding;
+        StreamReader: Codeunit DotNet_StreamReader;
+        FileContent: Text;
         Window: Dialog;
         FieldSeperator: Char;
         Chr: Char;
@@ -373,28 +389,15 @@ report 50002 "Import Goods Rcpt. Insp. Data"
         i: Integer;
         j: Integer;
         ReadFileLbl: Label 'Reading CSV worksheet...\\';
-        Columns: List of [Text];
     begin
         if GuiAllowed then
             Window.Open(ReadFileLbl + '#1########################\');
+
         ExcelBuf.DeleteAll();
 
         FieldSeperator := 9;
 
-        Clear(TempBlob);
-        TempBlob.CreateOutStream(ContentOutStream);
-        ContentOutStream.WriteText(pFileContent);
-        TempBlob.CreateInStream(ContentInStream);
-
-        while not FileInStream.EOS do begin
-            FileInStream.ReadText(FileContent);
-            Columns := FileContent.Split(FieldSeperator);
-
-            // Now you can process each column
-            Message('Column 1: %1, Column 2: %2', Columns.Get(1), Columns.Get(2));
-        end;
-
-        /* i := 0;
+        i := 0;
         FileContent := '';
 
         ColumnNo := 0;
@@ -402,7 +405,7 @@ report 50002 "Import Goods Rcpt. Insp. Data"
 
         repeat
             i += 1;
-            ChrOK := ContentInStream.Read(Chr);
+            ChrOK := pContentInStream.Read(Chr);
             j := Chr;
             if (j <> 10) and (j <> 13) and (Chr <> FieldSeperator) then begin
                 FileContent += Format(Chr);
@@ -428,6 +431,110 @@ report 50002 "Import Goods Rcpt. Insp. Data"
             end;
         until (ChrOK = 0);
         if GuiAllowed then
-            Window.Close(); */
+            Window.Close();
     end;
+       local procedure AnalyzeDataNew();
+       VAR
+           RowNo: Integer;
+           TotRows: Integer;
+           Window: Dialog;
+           ReadFileLbl: Label 'Reading CSV worksheet...\\';
+       begin
+           TotRows := TempCSVBuffer.GetNumberOfLines();
+           if GuiAllowed then
+               Window.Open(ReadFileLbl + '#1########################\');
+
+           for RowNo := 2 to TotRows do begin
+               RecNo := RecNo + 1;
+
+               Clear(LineNo);
+               Clear(DocNo);
+               Clear(ExtDocNo);
+               Clear(PostingDate);
+               Clear(ItemNo);
+               Clear(Description);
+               Clear(LocCode);
+               Clear(NewLocCode);
+               Clear(LotNo);
+               Clear(ExpDate);
+               Clear(Qty);
+               Clear(ASEDate);
+               Clear(RecNo);
+
+               DocNo := GetCellValue(RowNo, 1).TrimStart('"').TrimEnd('"');
+
+               ExtDocNo := GetCellValue(RowNo, 2).TrimStart('"').TrimEnd('"');
+
+               Evaluate(PostingDate, FormatDataToDate(GetCellValue(RowNo, 3).TrimStart('"').TrimEnd('"')));
+
+               ItemNo := GetCellValue(RowNo, 4).TrimStart('"').TrimEnd('"');
+
+               Description := GetCellValue(RowNo, 5).TrimStart('"').TrimEnd('"');
+
+               LocCode := GetCellValue(RowNo, 6).TrimStart('"').TrimEnd('"');
+
+               NewLocCode := GetCellValue(RowNo, 7).TrimStart('"').TrimEnd('"');
+
+               LotNo := GetCellValue(RowNo, 8).TrimStart('"').TrimEnd('"');
+
+               Evaluate(ExpDate, FormatDataToDate(GetCellValue(RowNo, 9).TrimStart('"').TrimEnd('"')));
+
+               Evaluate(Qty, GetCellValue(RowNo, 10).TrimStart('"').TrimEnd('"'));
+
+               Evaluate(ASEDate, FormatDataToDate(GetCellValue(RowNo, 11).TrimStart('"').TrimEnd('"')));
+
+               xlsRecNo := ExcelBuf."Cell Value as Text";
+
+               // create new line
+               InsertItemJnlLine(LotNo, SerialNo, ItemNo, LocCode, '', Qty, '', LineNo);
+
+           end;
+       end; */
+
+    /* local procedure GetCellValue(RowNo: Integer; ColNo: Integer): Text
+    begin
+        TempCSVBuffer.Reset();
+        if TempCSVBuffer.Get(RowNo, ColNo) then
+            exit(TempCSVBuffer.Value)
+        else
+            exit('');
+    end;
+    */
+
+    var
+        TempCSVBuffer: Record "CSV Buffer" temporary;
+        ExcelBuf: Record "Excel Buffer";
+        ItemJnlBatch: Record "Item Journal Batch";
+        ItemJnlLine: Record "Item Journal Line";
+        TempBlob: Codeunit "Temp Blob";
+        FileInStream: InStream;
+        ContentInStream: InStream;
+        TemplateName: Code[20];
+        BatchName: Code[20];
+        FileName: Text[250];
+        TotalRecNo: Integer;
+        RecNo: Integer;
+        NextLineNo: Integer;
+        OldLotNo: Code[20];
+        EntryNo: Integer;
+        NewLotNo: Code[20];
+        NewExpDate: Date;
+        LineNo: Integer;
+        ItemNo: Code[20];
+        PostingDate: Date;
+        ASEDate: Date;
+        DocNo: Code[20];
+        ExtDocNo: Code[20];
+        xlsRecNo: Code[20];
+        LocCode: Code[20];
+        NewLocCode: Code[20];
+        LotNo: Code[20];
+        SerialNo: Code[20];
+        ExpDate: Date;
+        Description: Text[80];
+        Qty: Decimal;
+        ImpMsg: Label 'Import Completed';
+        DialogTxt: Label 'Import from excel file';
+        BlankFileErr: Label 'File not found or incorrect.';
+        FilterTxt: Label 'Text Files (*.txt)|*.txt|All Files (*.*)|*.*';
 }

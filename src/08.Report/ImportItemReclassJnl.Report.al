@@ -80,7 +80,7 @@ report 50002 "Import Goods Rcpt. Insp. Data"
         Window: Dialog;
         ColNo: Integer;
         RowNo: Integer;
-        ReadFileLbl: Label 'Reading CSV worksheet...\\';
+        ReadFileLbl: Label 'Reading Text File...\\';
     begin
         if GuiAllowed then
             Window.Open(ReadFileLbl + '#1########################\');

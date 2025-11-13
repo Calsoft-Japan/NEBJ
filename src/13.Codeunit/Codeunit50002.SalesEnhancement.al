@@ -21,9 +21,17 @@ codeunit 50002 "Sales Enhancement"
 
     [EventSubscriber(ObjectType::Codeunit, Codeunit::"Sales-Post", 'OnBeforePostSalesDoc', '', false, false)]
     local procedure OnBeforePostSalesDoc(var SalesHeader: Record "Sales Header"; CommitIsSuppressed: Boolean; PreviewMode: Boolean; var HideProgressWindow: Boolean; var IsHandled: Boolean; var CalledBy: Integer)
+    var
+        SalesShptHeader: Record "Sales Shipment Header";
     begin
-        SalesHeader.CalcFields("Direct Shipping Code");
+        SalesShptHeader.SetRange("Order No.", SalesHeader."No.");
+        if SalesShptHeader.FindSet() then
+            repeat
+                SalesShptHeader."Direct Shipping Code" := SalesHeader."Direct Shipping Code";
+                SalesShptHeader.Modify(false);
+            until SalesShptHeader.Next() = 0;
     end;
+
 
 
     [EventSubscriber(ObjectType::Table, Database::"Sales Shipment Line", 'OnAfterInitFromSalesLine', '', true, true)]

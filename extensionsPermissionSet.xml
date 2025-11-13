@@ -2,11 +2,11 @@
 <PermissionSets>
   <PermissionSet RoleID="NEBJ CUSTOMIZATION" RoleName="NEBJ Customization">
     <Permission>
-      <ObjectID>50000</ObjectID>
+      <ObjectID>50002</ObjectID>
       <ObjectType>5</ObjectType>
       <ReadPermission>0</ReadPermission>
       <InsertPermission>0</InsertPermission>
-      <ModifyPermission>0</ModifyPermission>
+      <ModifyPermission>1</ModifyPermission>
       <DeletePermission>0</DeletePermission>
       <ExecutePermission>1</ExecutePermission>
       <SecurityFilter />

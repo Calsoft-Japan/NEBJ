@@ -37,53 +37,51 @@ codeunit 50002 "Sales Enhancement"
     var
         SalesShptHeader: Record "Sales Shipment Header";
     begin
-        // 同じSales Headerから作られた全Shipmentをループしてコピー
         SalesShptHeader.SetRange("Order No.", SalesHeader."No.");
         if SalesShptHeader.FindSet() then
             repeat
                 SalesShptHeader."Direct Shipping Code" := SalesHeader."Direct Shipping Code";
-                SalesShptHeader.Modify(true);
+                SalesShptHeader.Modify(false);
             until SalesShptHeader.Next() = 0;
     end;
 
     [EventSubscriber(ObjectType::Codeunit, Codeunit::"Sales-Post", 'OnAfterPostSalesLine', '', false, false)]
     local procedure CopyCustomFieldsAfterPostSalesLine(var SalesLine: Record "Sales Line"; var SalesHeader: Record "Sales Header")
     var
-        SalesInvLine: Record "Sales Invoice Line";
         SalesInvHeader: Record "Sales Invoice Header";
-        SalesCrMemoLine: Record "Sales Cr.Memo Line";
+        SalesInvLine: Record "Sales Invoice Line";
         SalesCrMemoHeader: Record "Sales Cr.Memo Header";
+        SalesCrMemoLine: Record "Sales Cr.Memo Line";
     begin
         // --- Sales Invoice Line へのコピー ---
-        SalesInvHeader.SetRange("Sell-to Customer No.", SalesHeader."Sell-to Customer No."); // ヘッダ絞り込み
-        if SalesInvHeader.FindSet() then
-            repeat
-                SalesInvLine.SetRange("Document No.", SalesInvHeader."No.");
-                SalesInvLine.SetRange("Line No.", SalesLine."Line No.");
-                if SalesInvLine.FindFirst() then begin
-                    SalesInvLine."EndUser" := SalesLine.EndUser;
-                    SalesInvLine."EU Description" := SalesLine."EU Description";
-                    SalesInvLine."Description(Bikou)" := SalesLine."Description(Bikou)";
-                    SalesInvLine."StorageTemprature" := SalesLine."StorageTemprature";
-                    SalesInvLine."EU Division 1" := SalesLine."EU Division 1";
-                    SalesInvLine."EU Division 2" := SalesLine."EU Division 2";
-                    SalesInvLine."EU Division 3" := SalesLine."EU Division 3";
-                    SalesInvLine.Modify(true);
-                end;
-            until SalesInvHeader.Next() = 0;
+        SalesInvHeader.SetRange("Order No.", SalesHeader."No.");
+        if SalesInvHeader.FindFirst() then begin
+            SalesInvLine.SetRange("Document No.", SalesInvHeader."No.");
+            SalesInvLine.SetRange("Line No.", SalesLine."Line No.");
+            if SalesInvLine.FindFirst() then begin
+                SalesInvLine."EndUser" := SalesLine.EndUser;
+                SalesInvLine."EU Description" := SalesLine."EU Description";
+                SalesInvLine."Description(Bikou)" := SalesLine."Description(Bikou)";
+                SalesInvLine."StorageTemprature" := SalesLine."StorageTemprature";
+                SalesInvLine."EU Division 1" := SalesLine."EU Division 1";
+                SalesInvLine."EU Division 2" := SalesLine."EU Division 2";
+                SalesInvLine."EU Division 3" := SalesLine."EU Division 3";
+                SalesInvLine.Modify(false);
+            end;
+        end;
 
         // --- Sales Cr.Memo Line へのコピー ---
-        SalesCrMemoHeader.SetRange("Sell-to Customer No.", SalesHeader."Sell-to Customer No.");
-        if SalesCrMemoHeader.FindSet() then
-            repeat
-                SalesCrMemoLine.SetRange("Document No.", SalesCrMemoHeader."No.");
-                SalesCrMemoLine.SetRange("Line No.", SalesLine."Line No.");
-                if SalesCrMemoLine.FindFirst() then begin
-                    SalesCrMemoLine."Description(Bikou)" := SalesLine."Description(Bikou)";
-                    SalesCrMemoLine."StorageTemprature" := SalesLine."StorageTemprature";
-                    SalesCrMemoLine."ExternaDocumentNo." := SalesLine."ExternaDocumentNo.";
-                    SalesCrMemoLine.Modify(true);
-                end;
-            until SalesCrMemoHeader.Next() = 0;
+        SalesCrMemoHeader.SetRange("Order No.", SalesHeader."No.");
+        if SalesCrMemoHeader.FindFirst() then begin
+            SalesCrMemoLine.SetRange("Document No.", SalesCrMemoHeader."No.");
+            SalesCrMemoLine.SetRange("Line No.", SalesLine."Line No.");
+            if SalesCrMemoLine.FindFirst() then begin
+                SalesCrMemoLine."Description(Bikou)" := SalesLine."Description(Bikou)";
+                SalesCrMemoLine."StorageTemprature" := SalesLine."StorageTemprature";
+                SalesCrMemoLine."ExternaDocumentNo." := SalesLine."ExternaDocumentNo.";
+                SalesCrMemoLine.Modify(false);
+            end;
+        end;
     end;
 }
+

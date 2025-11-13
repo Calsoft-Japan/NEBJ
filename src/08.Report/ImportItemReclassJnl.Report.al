@@ -38,13 +38,13 @@ report 50002 "Import Goods Rcpt. Insp. Data"
                             if FileName = '' then
                                 Error(BlankFileErr);
 
-                            Clear(TempBlob);
+                            /* Clear(TempBlob);
                             Encoding.Encoding(932);
                             StreamReader.StreamReader(FileInStream, Encoding);
                             FileContent := StreamReader.ReadToEnd();
-                            TempBlob.CreateOutStream(ContentOutStream, TextEncoding::UTF8);
+                            TempBlob.CreateOutStream(ContentOutStream);
                             ContentOutStream.WriteText(FileContent);
-                            TempBlob.CreateInStream(ContentInStream);
+                            TempBlob.CreateInStream(ContentInStream); */
                         end;
                     }
                 }
@@ -89,8 +89,8 @@ report 50002 "Import Goods Rcpt. Insp. Data"
 
         RowNo := 1;
         TabChr := 9;
-        while (not ContentInStream.EOS) do begin
-            ContentInStream.ReadText(FileContent);
+        while (not FileInStream.EOS) do begin
+            FileInStream.ReadText(FileContent);
             Columns := FileContent.Split(TabChr);
             ColNo := 1;
             foreach ColumnValue in Columns do begin
@@ -100,6 +100,8 @@ report 50002 "Import Goods Rcpt. Insp. Data"
                 ExcelBuf."Cell Value as Text" := ColumnValue;
                 ExcelBuf.Insert();
                 ColNo += 1;
+                if GuiAllowed then
+                    Window.Update(1, ExcelBuf."Cell Value as Text");
             end;
             RowNo += 1;
         end;

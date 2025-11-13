@@ -71,7 +71,7 @@ codeunit 50002 "Sales Enhancement"
         end;
 
         // --- Sales Cr.Memo Line へのコピー ---
-        SalesCrMemoHeader.SetRange("Order No.", SalesHeader."No.");
+        SalesCrMemoHeader.SetRange("No.", SalesHeader."No.");
         if SalesCrMemoHeader.FindFirst() then begin
             SalesCrMemoLine.SetRange("Document No.", SalesCrMemoHeader."No.");
             SalesCrMemoLine.SetRange("Line No.", SalesLine."Line No.");

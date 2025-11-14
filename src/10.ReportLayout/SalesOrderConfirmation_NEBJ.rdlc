@@ -11,7 +11,7 @@
       <am:Name>MSRB</am:Name>
       <am:Version>15.1.30001.02</am:Version>
     </am:UpdatedBy>
-    <am:LastModifiedTimestamp>2025-11-14T05:00:52.9798409Z</am:LastModifiedTimestamp>
+    <am:LastModifiedTimestamp>2025-11-14T08:55:51.4203908Z</am:LastModifiedTimestamp>
   </am:AuthoringMetadata>
   <AutoRefresh>0</AutoRefresh>
   <DataSources>
@@ -819,6 +819,9 @@
         </Field>
         <Field Name="NetUnitPrice_Line">
           <Value>NetUnitPrice_Line</Value>
+        </Field>
+        <Field Name="Currency_Code">
+          <Value>Currency_Code</Value>
         </Field>
       </Fields>
     </DataSet>
@@ -3740,11 +3743,11 @@ First(Fields!DirectShippingAddress.Value, "DataSet_Result")</Value>
                                   <TextRuns>
                                     <TextRun>
                                       <Value>=IIf(
-Last(Fields!CurrencyCode.Value, "DataSet_Result") = "JPY",
+(Fields!Currency_Code.Value, "DataSet_Result") = "JPY",
     
-FormatNumber(Last(Fields!TotalSubTotal.Value, "DataSet_Result"), 0),
+FormatNumber((Fields!TotalSubTotal.Value, "DataSet_Result"), 0),
    
-FormatNumber(Last(Fields!TotalSubTotal.Value, "DataSet_Result"), 2)
+FormatNumber((Fields!TotalSubTotal.Value, "DataSet_Result"), 2)
 )</Value>
                                       <Style>
                                         <FontFamily>MS UI Gothic</FontFamily>
@@ -3780,7 +3783,7 @@ FormatNumber(Last(Fields!TotalSubTotal.Value, "DataSet_Result"), 2)
                                 <Paragraph>
                                   <TextRuns>
                                     <TextRun>
-                                      <Value>="合計 " &amp; IIf( Fields!CurrencyCode.Value="", "JPY", Fields!CurrencyCode.Value)</Value>
+                                      <Value>="合計 " &amp; IIf(Fields!Currency_Code.Value="", "JPY", Fields!Currency_Code.Value)</Value>
                                       <Style>
                                         <FontFamily>MS UI Gothic</FontFamily>
                                       </Style>

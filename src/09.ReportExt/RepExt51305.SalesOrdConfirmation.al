@@ -6,6 +6,9 @@ reportextension 51305 "Sales Ord Confirmation Ext" extends "Standard Sales - Ord
     {
         add(Header)
         {
+            column(Currency_Code; "Currency Code")
+            {
+            }
             column(SellToName; Header."Sell-to Customer Name")
             {
             }

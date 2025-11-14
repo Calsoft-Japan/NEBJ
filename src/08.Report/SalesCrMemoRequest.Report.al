@@ -60,7 +60,7 @@ report 50001 "NEBJ Sales Cr. Memo Conf."
                 column(ExternalDocumentNo; "ExternaDocumentNo.") { }
                 column(TotalAmountExclVAT; Amount) { }
                 column(LineTypeTxt; Format(Type)) { }  // returns "Comment", "Item", etc.
-                column(TypeInt; Type) { }// returns integer value of Type enum
+                column(Type_Line; Type) { }// returns integer value of Type enum
 
 
                 trigger OnAfterGetRecord()

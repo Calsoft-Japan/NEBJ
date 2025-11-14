@@ -190,7 +190,7 @@ report 50000 "Sales Order Import"
         Window: Dialog;
         DialogTxt: Label 'Import from zengin file';
         BlankFileErr: Label 'File not found or incorrect.';
-        FilterTxt: Label 'Text Files (*.csv)|*.csv|All Files (*.*)|*.*';
+        FilterTxt: Label 'CSV Files (*.csv)|*.csv|All Files (*.*)|*.*';
         Text011: Label '%1ing ...\';
         Text012: Label 'File Name  #1##############################\';
         Text013: Label 'Record     #2##############################\\';

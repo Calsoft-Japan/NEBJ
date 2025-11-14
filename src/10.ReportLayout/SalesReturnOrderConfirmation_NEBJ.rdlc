@@ -11,7 +11,7 @@
       <am:Name>MSRB</am:Name>
       <am:Version>15.1.30001.02</am:Version>
     </am:UpdatedBy>
-    <am:LastModifiedTimestamp>2025-11-06T06:37:42.3961704Z</am:LastModifiedTimestamp>
+    <am:LastModifiedTimestamp>2025-11-13T00:15:14.4951617Z</am:LastModifiedTimestamp>
   </am:AuthoringMetadata>
   <AutoRefresh>0</AutoRefresh>
   <DataSources>
@@ -600,6 +600,9 @@
         </Field>
         <Field Name="ShiptoAddrCaption">
           <DataField>ShiptoAddrCaption</DataField>
+        </Field>
+        <Field Name="NetUnitPrice">
+          <Value>NetUnitPrice</Value>
         </Field>
       </Fields>
     </DataSet>
@@ -1841,7 +1844,6 @@
                         </TablixCell>
                         <TablixCell>
                           <CellContents>
-                            <rd:Selected>true</rd:Selected>
                             <Textbox Name="UnitPrice_SalesLineFormat2">
                               <rd:DefaultName>UnitPrice_SalesLineFormat</rd:DefaultName>
                               <CanGrow>true</CanGrow>
@@ -1885,7 +1887,7 @@
                                 <Paragraph>
                                   <TextRuns>
                                     <TextRun>
-                                      <Value>=- Fields!UnitPrice_SalesLine.Value</Value>
+                                      <Value>=Fields!NetUnitPrice.Value</Value>
                                       <Style>
                                         <FontFamily>MS UI Gothic</FontFamily>
                                         <FontSize>9pt</FontSize>
@@ -3157,7 +3159,7 @@
                       <TablixMembers>
                         <TablixMember>
                           <Visibility>
-                            <Hidden>=iif(Fields!TypeInt.Value=0,false,true)</Hidden>
+                            <Hidden>true</Hidden>
                           </Visibility>
                         </TablixMember>
                         <TablixMember>

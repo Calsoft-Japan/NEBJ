@@ -1,22 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Report xmlns="http://schemas.microsoft.com/sqlserver/reporting/2016/01/reportdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner" xmlns:am="http://schemas.microsoft.com/sqlserver/reporting/authoringmetadata">
-  <rd:ReportUnitType>Cm</rd:ReportUnitType>
-  <rd:ReportID>0eeb6585-38ae-40f1-885b-8d50088d51b4</rd:ReportID>
-  <am:AuthoringMetadata>
-    <am:CreatedBy>
-      <am:Name>MSRB</am:Name>
-      <am:Version>15.1.30001.02</am:Version>
-    </am:CreatedBy>
-    <am:UpdatedBy>
-      <am:Name>MSRB</am:Name>
-      <am:Version>15.1.30001.02</am:Version>
-    </am:UpdatedBy>
-    <am:LastModifiedTimestamp>2025-11-07T00:22:31.0590318Z</am:LastModifiedTimestamp>
-  </am:AuthoringMetadata>
+<Report xmlns="http://schemas.microsoft.com/sqlserver/reporting/2016/01/reportdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
   <AutoRefresh>0</AutoRefresh>
   <DataSources>
     <DataSource Name="DataSource">
-      <rd:SecurityType>None</rd:SecurityType>
       <ConnectionProperties>
         <DataProvider>SQL</DataProvider>
         <ConnectString />
@@ -778,8 +764,11 @@
         <Field Name="DirectShippingCode">
           <DataField>DirectShippingCode</DataField>
         </Field>
-        <Field Name="Currency_Code">
-          <DataField>Currency_Code</DataField>
+        <Field Name="DirectShippingName">
+          <DataField>DirectShippingName</DataField>
+        </Field>
+        <Field Name="DirectShippingAddress">
+          <DataField>DirectShippingAddress</DataField>
         </Field>
         <Field Name="StorageTemp">
           <DataField>StorageTemp</DataField>
@@ -790,6 +779,12 @@
         <Field Name="EU_Division_1">
           <DataField>EU_Division_1</DataField>
         </Field>
+        <Field Name="EU_Division_2">
+          <DataField>EU_Division_2</DataField>
+        </Field>
+        <Field Name="EU_Division_3">
+          <DataField>EU_Division_3</DataField>
+        </Field>
         <Field Name="Description_Bikou_">
           <DataField>Description_Bikou_</DataField>
         </Field>
@@ -799,34 +794,17 @@
         <Field Name="ExternaDocumentNo_">
           <DataField>ExternaDocumentNo_</DataField>
         </Field>
-        <Field Name="DirectShippingName">
-          <rd:UserDefined>true</rd:UserDefined>
-          <DataField>DirectShippingName</DataField>
-        </Field>
-        <Field Name="DirectShippingAddress">
-          <rd:UserDefined>true</rd:UserDefined>
-          <DataField>DirectShippingAddress</DataField>
-        </Field>
         <Field Name="Planned_Delivery_Date">
-          <Value>Planned_Delivery_Date</Value>
-        </Field>
-        <Field Name="EU_Division_2">
-          <Value>EU_Division_2</Value>
-        </Field>
-        <Field Name="EU_Division_3">
-          <Value>EU_Division_3</Value>
-        </Field>
-        <Field Name="ItemFullName_Line">
-          <Value>ItemFullName_Line</Value>
-        </Field>
-        <Field Name="ItemOfficialName_Line">
-          <Value>ItemOfficialName_Line</Value>
-        </Field>
-        <Field Name="NEBJ_TotalExclVATFormatted">
-          <Value>NEBJ_TotalExclVATFormatted</Value>
+          <DataField>Planned_Delivery_Date</DataField>
         </Field>
         <Field Name="ItemDescFromItem_Line">
-          <Value>ItemDescFromItem_Line</Value>
+          <DataField>ItemDescFromItem_Line</DataField>
+        </Field>
+        <Field Name="UnitPrice2">
+          <Value>UnitPrice2</Value>
+        </Field>
+        <Field Name="NetUnitPrice_Line">
+          <Value>NetUnitPrice_Line</Value>
         </Field>
       </Fields>
     </DataSet>
@@ -891,7 +869,6 @@
                                       <TablixCell>
                                         <CellContents>
                                           <Textbox Name="ItemNo_Line_Lbl">
-                                            <rd:DefaultName>ItemNo_Line_Lbl</rd:DefaultName>
                                             <CanGrow>true</CanGrow>
                                             <KeepTogether>true</KeepTogether>
                                             <Paragraphs>
@@ -911,6 +888,7 @@
                                                 </Style>
                                               </Paragraph>
                                             </Paragraphs>
+                                            <rd:DefaultName>ItemNo_Line_Lbl</rd:DefaultName>
                                             <Style>
                                               <Border>
                                                 <Style>Solid</Style>
@@ -945,7 +923,6 @@
                                       <TablixCell>
                                         <CellContents>
                                           <Textbox Name="Description_Line_Lbl">
-                                            <rd:DefaultName>Description_Line_Lbl</rd:DefaultName>
                                             <CanGrow>true</CanGrow>
                                             <KeepTogether>true</KeepTogether>
                                             <Paragraphs>
@@ -965,6 +942,7 @@
                                                 </Style>
                                               </Paragraph>
                                             </Paragraphs>
+                                            <rd:DefaultName>Description_Line_Lbl</rd:DefaultName>
                                             <Style>
                                               <Border>
                                                 <Style>Solid</Style>
@@ -999,7 +977,6 @@
                                       <TablixCell>
                                         <CellContents>
                                           <Textbox Name="Quantity_Line_Lbl">
-                                            <rd:DefaultName>Quantity_Line_Lbl</rd:DefaultName>
                                             <CanGrow>true</CanGrow>
                                             <KeepTogether>true</KeepTogether>
                                             <Paragraphs>
@@ -1019,6 +996,7 @@
                                                 </Style>
                                               </Paragraph>
                                             </Paragraphs>
+                                            <rd:DefaultName>Quantity_Line_Lbl</rd:DefaultName>
                                             <Style>
                                               <Border>
                                                 <Style>Solid</Style>
@@ -1140,7 +1118,6 @@
                                       <TablixCell>
                                         <CellContents>
                                           <Textbox Name="Textbox30">
-                                            <rd:DefaultName>Textbox30</rd:DefaultName>
                                             <CanGrow>true</CanGrow>
                                             <KeepTogether>true</KeepTogether>
                                             <Paragraphs>
@@ -1160,6 +1137,7 @@
                                                 </Style>
                                               </Paragraph>
                                             </Paragraphs>
+                                            <rd:DefaultName>Textbox30</rd:DefaultName>
                                             <Style>
                                               <Border>
                                                 <Style>Solid</Style>
@@ -1194,7 +1172,6 @@
                                       <TablixCell>
                                         <CellContents>
                                           <Textbox Name="Textbox15">
-                                            <rd:DefaultName>Textbox15</rd:DefaultName>
                                             <CanGrow>true</CanGrow>
                                             <KeepTogether>true</KeepTogether>
                                             <Paragraphs>
@@ -1214,6 +1191,7 @@
                                                 </Style>
                                               </Paragraph>
                                             </Paragraphs>
+                                            <rd:DefaultName>Textbox15</rd:DefaultName>
                                             <Style>
                                               <Border>
                                                 <Style>Solid</Style>
@@ -1248,7 +1226,6 @@
                                       <TablixCell>
                                         <CellContents>
                                           <Textbox Name="Textbox21">
-                                            <rd:DefaultName>Textbox21</rd:DefaultName>
                                             <CanGrow>true</CanGrow>
                                             <KeepTogether>true</KeepTogether>
                                             <Paragraphs>
@@ -1268,6 +1245,7 @@
                                                 </Style>
                                               </Paragraph>
                                             </Paragraphs>
+                                            <rd:DefaultName>Textbox21</rd:DefaultName>
                                             <Style>
                                               <Border>
                                                 <Style>Solid</Style>
@@ -1302,7 +1280,6 @@
                                       <TablixCell>
                                         <CellContents>
                                           <Textbox Name="Textbox18">
-                                            <rd:DefaultName>Textbox18</rd:DefaultName>
                                             <CanGrow>true</CanGrow>
                                             <KeepTogether>true</KeepTogether>
                                             <Paragraphs>
@@ -1322,6 +1299,7 @@
                                                 </Style>
                                               </Paragraph>
                                             </Paragraphs>
+                                            <rd:DefaultName>Textbox18</rd:DefaultName>
                                             <Style>
                                               <Border>
                                                 <Style>Solid</Style>
@@ -1356,7 +1334,6 @@
                                       <TablixCell>
                                         <CellContents>
                                           <Textbox Name="Textbox12">
-                                            <rd:DefaultName>Textbox12</rd:DefaultName>
                                             <CanGrow>true</CanGrow>
                                             <KeepTogether>true</KeepTogether>
                                             <Paragraphs>
@@ -1376,6 +1353,7 @@
                                                 </Style>
                                               </Paragraph>
                                             </Paragraphs>
+                                            <rd:DefaultName>Textbox12</rd:DefaultName>
                                             <Style>
                                               <Border>
                                                 <Style>Solid</Style>
@@ -1415,7 +1393,6 @@
                                       <TablixCell>
                                         <CellContents>
                                           <Textbox Name="Textbox41">
-                                            <rd:DefaultName>Textbox41</rd:DefaultName>
                                             <CanGrow>true</CanGrow>
                                             <KeepTogether>true</KeepTogether>
                                             <Paragraphs>
@@ -1432,6 +1409,7 @@
                                                 <Style />
                                               </Paragraph>
                                             </Paragraphs>
+                                            <rd:DefaultName>Textbox41</rd:DefaultName>
                                             <Style>
                                               <Border>
                                                 <Color>LightGrey</Color>
@@ -1446,7 +1424,6 @@
                                       <TablixCell>
                                         <CellContents>
                                           <Textbox Name="ItemOfficialName_Line">
-                                            <rd:DefaultName>ItemOfficialName_Line</rd:DefaultName>
                                             <CanGrow>true</CanGrow>
                                             <KeepTogether>true</KeepTogether>
                                             <Paragraphs>
@@ -1463,6 +1440,7 @@
                                                 <Style />
                                               </Paragraph>
                                             </Paragraphs>
+                                            <rd:DefaultName>ItemOfficialName_Line</rd:DefaultName>
                                             <Style>
                                               <Border>
                                                 <Color>LightGrey</Color>
@@ -1480,7 +1458,6 @@
                                       <TablixCell>
                                         <CellContents>
                                           <Textbox Name="Textbox65">
-                                            <rd:DefaultName>Textbox65</rd:DefaultName>
                                             <CanGrow>true</CanGrow>
                                             <KeepTogether>true</KeepTogether>
                                             <Paragraphs>
@@ -1497,6 +1474,7 @@
                                                 <Style />
                                               </Paragraph>
                                             </Paragraphs>
+                                            <rd:DefaultName>Textbox65</rd:DefaultName>
                                             <Style>
                                               <Border>
                                                 <Color>LightGrey</Color>
@@ -1511,7 +1489,6 @@
                                       <TablixCell>
                                         <CellContents>
                                           <Textbox Name="Textbox66">
-                                            <rd:DefaultName>Textbox66</rd:DefaultName>
                                             <CanGrow>true</CanGrow>
                                             <KeepTogether>true</KeepTogether>
                                             <Paragraphs>
@@ -1528,6 +1505,7 @@
                                                 <Style />
                                               </Paragraph>
                                             </Paragraphs>
+                                            <rd:DefaultName>Textbox66</rd:DefaultName>
                                             <Style>
                                               <Border>
                                                 <Color>LightGrey</Color>
@@ -1542,7 +1520,6 @@
                                       <TablixCell>
                                         <CellContents>
                                           <Textbox Name="Textbox47">
-                                            <rd:DefaultName>Textbox47</rd:DefaultName>
                                             <CanGrow>true</CanGrow>
                                             <KeepTogether>true</KeepTogether>
                                             <Paragraphs>
@@ -1561,6 +1538,7 @@
                                                 </Style>
                                               </Paragraph>
                                             </Paragraphs>
+                                            <rd:DefaultName>Textbox47</rd:DefaultName>
                                             <Style>
                                               <Border>
                                                 <Color>LightGrey</Color>
@@ -1575,7 +1553,6 @@
                                       <TablixCell>
                                         <CellContents>
                                           <Textbox Name="Textbox48">
-                                            <rd:DefaultName>Textbox48</rd:DefaultName>
                                             <CanGrow>true</CanGrow>
                                             <KeepTogether>true</KeepTogether>
                                             <Paragraphs>
@@ -1594,6 +1571,7 @@
                                                 </Style>
                                               </Paragraph>
                                             </Paragraphs>
+                                            <rd:DefaultName>Textbox48</rd:DefaultName>
                                             <Style>
                                               <Border>
                                                 <Color>LightGrey</Color>
@@ -1608,7 +1586,6 @@
                                       <TablixCell>
                                         <CellContents>
                                           <Textbox Name="Textbox49">
-                                            <rd:DefaultName>Textbox49</rd:DefaultName>
                                             <CanGrow>true</CanGrow>
                                             <KeepTogether>true</KeepTogether>
                                             <Paragraphs>
@@ -1627,6 +1604,7 @@
                                                 </Style>
                                               </Paragraph>
                                             </Paragraphs>
+                                            <rd:DefaultName>Textbox49</rd:DefaultName>
                                             <Style>
                                               <Border>
                                                 <Color>LightGrey</Color>
@@ -1641,7 +1619,6 @@
                                       <TablixCell>
                                         <CellContents>
                                           <Textbox Name="Textbox50">
-                                            <rd:DefaultName>Textbox50</rd:DefaultName>
                                             <CanGrow>true</CanGrow>
                                             <KeepTogether>true</KeepTogether>
                                             <Paragraphs>
@@ -1660,6 +1637,7 @@
                                                 </Style>
                                               </Paragraph>
                                             </Paragraphs>
+                                            <rd:DefaultName>Textbox50</rd:DefaultName>
                                             <Style>
                                               <Border>
                                                 <Color>LightGrey</Color>
@@ -1679,7 +1657,6 @@
                                       <TablixCell>
                                         <CellContents>
                                           <Textbox Name="ItemNo_Line">
-                                            <rd:DefaultName>ItemNo_Line</rd:DefaultName>
                                             <CanGrow>true</CanGrow>
                                             <KeepTogether>true</KeepTogether>
                                             <Paragraphs>
@@ -1696,6 +1673,7 @@
                                                 <Style />
                                               </Paragraph>
                                             </Paragraphs>
+                                            <rd:DefaultName>ItemNo_Line</rd:DefaultName>
                                             <Style>
                                               <Border>
                                                 <Color>LightGrey</Color>
@@ -1710,7 +1688,6 @@
                                       <TablixCell>
                                         <CellContents>
                                           <Textbox Name="Description_Line">
-                                            <rd:DefaultName>Description_Line</rd:DefaultName>
                                             <CanGrow>true</CanGrow>
                                             <KeepTogether>true</KeepTogether>
                                             <Paragraphs>
@@ -1727,6 +1704,7 @@
                                                 <Style />
                                               </Paragraph>
                                             </Paragraphs>
+                                            <rd:DefaultName>Description_Line</rd:DefaultName>
                                             <Style>
                                               <Border>
                                                 <Color>LightGrey</Color>
@@ -1741,7 +1719,6 @@
                                       <TablixCell>
                                         <CellContents>
                                           <Textbox Name="Textbox53">
-                                            <rd:DefaultName>Textbox53</rd:DefaultName>
                                             <CanGrow>true</CanGrow>
                                             <KeepTogether>true</KeepTogether>
                                             <Paragraphs>
@@ -1760,6 +1737,7 @@
                                                 </Style>
                                               </Paragraph>
                                             </Paragraphs>
+                                            <rd:DefaultName>Textbox53</rd:DefaultName>
                                             <Style>
                                               <Border>
                                                 <Color>LightGrey</Color>
@@ -1774,7 +1752,6 @@
                                       <TablixCell>
                                         <CellContents>
                                           <Textbox Name="Textbox78">
-                                            <rd:DefaultName>Textbox78</rd:DefaultName>
                                             <CanGrow>true</CanGrow>
                                             <KeepTogether>true</KeepTogether>
                                             <Paragraphs>
@@ -1793,6 +1770,7 @@
                                                 </Style>
                                               </Paragraph>
                                             </Paragraphs>
+                                            <rd:DefaultName>Textbox78</rd:DefaultName>
                                             <Style>
                                               <Border>
                                                 <Color>LightGrey</Color>
@@ -1807,7 +1785,6 @@
                                       <TablixCell>
                                         <CellContents>
                                           <Textbox Name="Textbox56">
-                                            <rd:DefaultName>Textbox56</rd:DefaultName>
                                             <CanGrow>true</CanGrow>
                                             <KeepTogether>true</KeepTogether>
                                             <Paragraphs>
@@ -1826,6 +1803,7 @@
                                                 </Style>
                                               </Paragraph>
                                             </Paragraphs>
+                                            <rd:DefaultName>Textbox56</rd:DefaultName>
                                             <Style>
                                               <Border>
                                                 <Color>LightGrey</Color>
@@ -1840,7 +1818,6 @@
                                       <TablixCell>
                                         <CellContents>
                                           <Textbox Name="Textbox57">
-                                            <rd:DefaultName>Textbox57</rd:DefaultName>
                                             <CanGrow>true</CanGrow>
                                             <KeepTogether>true</KeepTogether>
                                             <Paragraphs>
@@ -1859,6 +1836,7 @@
                                                 </Style>
                                               </Paragraph>
                                             </Paragraphs>
+                                            <rd:DefaultName>Textbox57</rd:DefaultName>
                                             <Style>
                                               <Border>
                                                 <Color>LightGrey</Color>
@@ -1873,7 +1851,6 @@
                                       <TablixCell>
                                         <CellContents>
                                           <Textbox Name="Textbox58">
-                                            <rd:DefaultName>Textbox58</rd:DefaultName>
                                             <CanGrow>true</CanGrow>
                                             <KeepTogether>true</KeepTogether>
                                             <Paragraphs>
@@ -1892,6 +1869,7 @@
                                                 </Style>
                                               </Paragraph>
                                             </Paragraphs>
+                                            <rd:DefaultName>Textbox58</rd:DefaultName>
                                             <Style>
                                               <Border>
                                                 <Color>LightGrey</Color>
@@ -1906,7 +1884,6 @@
                                       <TablixCell>
                                         <CellContents>
                                           <Textbox Name="Textbox59">
-                                            <rd:DefaultName>Textbox59</rd:DefaultName>
                                             <CanGrow>true</CanGrow>
                                             <KeepTogether>true</KeepTogether>
                                             <Paragraphs>
@@ -1925,6 +1902,7 @@
                                                 </Style>
                                               </Paragraph>
                                             </Paragraphs>
+                                            <rd:DefaultName>Textbox59</rd:DefaultName>
                                             <Style>
                                               <Border>
                                                 <Color>LightGrey</Color>
@@ -1939,7 +1917,6 @@
                                       <TablixCell>
                                         <CellContents>
                                           <Textbox Name="Textbox60">
-                                            <rd:DefaultName>Textbox60</rd:DefaultName>
                                             <CanGrow>true</CanGrow>
                                             <KeepTogether>true</KeepTogether>
                                             <Paragraphs>
@@ -1958,6 +1935,7 @@
                                                 </Style>
                                               </Paragraph>
                                             </Paragraphs>
+                                            <rd:DefaultName>Textbox60</rd:DefaultName>
                                             <Style>
                                               <Border>
                                                 <Color>LightGrey</Color>
@@ -1972,7 +1950,6 @@
                                       <TablixCell>
                                         <CellContents>
                                           <Textbox Name="Textbox61">
-                                            <rd:DefaultName>Textbox61</rd:DefaultName>
                                             <CanGrow>true</CanGrow>
                                             <KeepTogether>true</KeepTogether>
                                             <Paragraphs>
@@ -1991,6 +1968,7 @@
                                                 </Style>
                                               </Paragraph>
                                             </Paragraphs>
+                                            <rd:DefaultName>Textbox61</rd:DefaultName>
                                             <Style>
                                               <Border>
                                                 <Color>LightGrey</Color>
@@ -2010,7 +1988,6 @@
                                       <TablixCell>
                                         <CellContents>
                                           <Textbox Name="Textbox4">
-                                            <rd:DefaultName>Textbox4</rd:DefaultName>
                                             <CanGrow>true</CanGrow>
                                             <KeepTogether>true</KeepTogether>
                                             <Paragraphs>
@@ -2027,6 +2004,7 @@
                                                 <Style />
                                               </Paragraph>
                                             </Paragraphs>
+                                            <rd:DefaultName>Textbox4</rd:DefaultName>
                                             <Style>
                                               <Border>
                                                 <Color>LightGrey</Color>
@@ -2041,7 +2019,6 @@
                                       <TablixCell>
                                         <CellContents>
                                           <Textbox Name="Textbox5">
-                                            <rd:DefaultName>Textbox5</rd:DefaultName>
                                             <CanGrow>true</CanGrow>
                                             <KeepTogether>true</KeepTogether>
                                             <Paragraphs>
@@ -2058,6 +2035,7 @@
                                                 <Style />
                                               </Paragraph>
                                             </Paragraphs>
+                                            <rd:DefaultName>Textbox5</rd:DefaultName>
                                             <Style>
                                               <Border>
                                                 <Color>LightGrey</Color>
@@ -2072,7 +2050,6 @@
                                       <TablixCell>
                                         <CellContents>
                                           <Textbox Name="Quantity_Line2">
-                                            <rd:DefaultName>Quantity_Line</rd:DefaultName>
                                             <CanGrow>true</CanGrow>
                                             <KeepTogether>true</KeepTogether>
                                             <Paragraphs>
@@ -2091,6 +2068,7 @@
                                                 </Style>
                                               </Paragraph>
                                             </Paragraphs>
+                                            <rd:DefaultName>Quantity_Line</rd:DefaultName>
                                             <Style>
                                               <Border>
                                                 <Color>LightGrey</Color>
@@ -2104,22 +2082,19 @@
                                       </TablixCell>
                                       <TablixCell>
                                         <CellContents>
-                                          <Textbox Name="UnitPrice2">
+                                          <Textbox Name="Textbox9">
                                             <CanGrow>true</CanGrow>
                                             <KeepTogether>true</KeepTogether>
                                             <Paragraphs>
                                               <Paragraph>
                                                 <TextRuns>
                                                   <TextRun>
-                                                    <Value>=IIf(
-Last(Fields!CurrencyCode.Value, "DataSet_Result") = "JPY",
-    FormatNumber(Last(Fields!Fields!UnitPrice.Value, "DataSet_Result"), 0),
-    FormatNumber(Last(Fields!Fields!UnitPrice.Value, "DataSet_Result"), 2)
-)</Value>
+                                                    <Value>=IIF(Last(Fields!CurrencyCode.Value) = "",
+     FormatNumber(Fields!UnitPrice.Value, 0),
+     FormatNumber(Fields!UnitPrice.Value, 2))</Value>
                                                     <Style>
                                                       <FontFamily>MS UI Gothic</FontFamily>
                                                       <FontSize>8pt</FontSize>
-                                                      <Format>#,0</Format>
                                                     </Style>
                                                   </TextRun>
                                                 </TextRuns>
@@ -2128,6 +2103,7 @@ Last(Fields!CurrencyCode.Value, "DataSet_Result") = "JPY",
                                                 </Style>
                                               </Paragraph>
                                             </Paragraphs>
+                                            <rd:DefaultName>Textbox9</rd:DefaultName>
                                             <Style>
                                               <Border>
                                                 <Color>LightGrey</Color>
@@ -2142,7 +2118,6 @@ Last(Fields!CurrencyCode.Value, "DataSet_Result") = "JPY",
                                       <TablixCell>
                                         <CellContents>
                                           <Textbox Name="LineDiscountPercent_Line2">
-                                            <rd:DefaultName>LineDiscountPercent_Line1</rd:DefaultName>
                                             <CanGrow>true</CanGrow>
                                             <KeepTogether>true</KeepTogether>
                                             <Paragraphs>
@@ -2162,6 +2137,7 @@ Last(Fields!CurrencyCode.Value, "DataSet_Result") = "JPY",
                                                 </Style>
                                               </Paragraph>
                                             </Paragraphs>
+                                            <rd:DefaultName>LineDiscountPercent_Line1</rd:DefaultName>
                                             <Style>
                                               <Border>
                                                 <Color>LightGrey</Color>
@@ -2175,23 +2151,17 @@ Last(Fields!CurrencyCode.Value, "DataSet_Result") = "JPY",
                                       </TablixCell>
                                       <TablixCell>
                                         <CellContents>
-                                          <Textbox Name="UnitPriceAfterDiscount2">
+                                          <Textbox Name="NetUnitPrice_Line">
                                             <CanGrow>true</CanGrow>
                                             <KeepTogether>true</KeepTogether>
                                             <Paragraphs>
                                               <Paragraph>
                                                 <TextRuns>
                                                   <TextRun>
-                                                    <Value>=Switch(Last(Fields!CurrencyCode.Value, "DataSet_Result") = "JPY",
-        FormatNumber(IIf(Fields!Quantity_Line.Value = 0, 0, Fields!AmountExcludingVAT_Line.Value / Fields!Quantity_Line.Value), 0),
-    Last(Fields!CurrencyCode.Value, "DataSet_Result") IN ("KWD", "BHD"),
-        FormatNumber(IIf(Fields!Quantity_Line.Value = 0, 0, Fields!AmountExcludingVAT_Line.Value / Fields!Quantity_Line.Value), 3),
-    True,
-        FormatNumber(IIf(Fields!Quantity_Line.Value = 0, 0, Fields!AmountExcludingVAT_Line.Value / Fields!Quantity_Line.Value), 2))</Value>
+                                                    <Value>=Fields!NetUnitPrice_Line.Value</Value>
                                                     <Style>
                                                       <FontFamily>MS UI Gothic</FontFamily>
                                                       <FontSize>8pt</FontSize>
-                                                      <Format>#,0</Format>
                                                     </Style>
                                                   </TextRun>
                                                 </TextRuns>
@@ -2200,6 +2170,7 @@ Last(Fields!CurrencyCode.Value, "DataSet_Result") = "JPY",
                                                 </Style>
                                               </Paragraph>
                                             </Paragraphs>
+                                            <rd:DefaultName>NetUnitPrice_Line</rd:DefaultName>
                                             <Style>
                                               <Border>
                                                 <Color>LightGrey</Color>
@@ -2213,49 +2184,43 @@ Last(Fields!CurrencyCode.Value, "DataSet_Result") = "JPY",
                                       </TablixCell>
                                       <TablixCell>
                                         <CellContents>
+                                          <Textbox Name="Textbox10">
+                                            <CanGrow>true</CanGrow>
+                                            <KeepTogether>true</KeepTogether>
+                                            <Paragraphs>
+                                              <Paragraph>
+                                                <TextRuns>
+                                                  <TextRun>
+                                                    <Value>=IIF(Last(Fields!CurrencyCode.Value) = "",
+     FormatNumber(Fields!AmountExcludingVAT_Line.value, 0),
+     FormatNumber(Fields!AmountExcludingVAT_Line.value, 2))</Value>
+                                                    <Style>
+                                                      <FontFamily>MS UI Gothic</FontFamily>
+                                                      <FontSize>8pt</FontSize>
+                                                    </Style>
+                                                  </TextRun>
+                                                </TextRuns>
+                                                <Style>
+                                                  <TextAlign>Right</TextAlign>
+                                                </Style>
+                                              </Paragraph>
+                                            </Paragraphs>
+                                            <rd:DefaultName>Textbox10</rd:DefaultName>
+                                            <Style>
+                                              <Border>
+                                                <Color>LightGrey</Color>
+                                                <Style>None</Style>
+                                              </Border>
+                                              <PaddingLeft>5pt</PaddingLeft>
+                                              <PaddingRight>5pt</PaddingRight>
+                                            </Style>
+                                          </Textbox>
                                           <rd:Selected>true</rd:Selected>
-                                          <Textbox Name="AmountExcludingVAT_Line2">
-                                            <rd:DefaultName>AmountExcludingVAT_Line</rd:DefaultName>
-                                            <CanGrow>true</CanGrow>
-                                            <KeepTogether>true</KeepTogether>
-                                            <Paragraphs>
-                                              <Paragraph>
-                                                <TextRuns>
-                                                  <TextRun>
-                                                    <Value>=IIf(
-Last(Fields!CurrencyCode.Value, "DataSet_Result") = "JPY",
-    
-FormatNumber(Last(Fields!AmountExcludingVAT_Line, "DataSet_Result"), 0),
-    
-FormatNumber(Last(Fields!AmountExcludingVAT_Line, "DataSet_Result"), 2)
-)</Value>
-                                                    <Style>
-                                                      <FontFamily>MS UI Gothic</FontFamily>
-                                                      <FontSize>8pt</FontSize>
-                                                      <Format>#,0</Format>
-                                                    </Style>
-                                                  </TextRun>
-                                                </TextRuns>
-                                                <Style>
-                                                  <TextAlign>Right</TextAlign>
-                                                </Style>
-                                              </Paragraph>
-                                            </Paragraphs>
-                                            <Style>
-                                              <Border>
-                                                <Color>LightGrey</Color>
-                                                <Style>None</Style>
-                                              </Border>
-                                              <PaddingLeft>5pt</PaddingLeft>
-                                              <PaddingRight>5pt</PaddingRight>
-                                            </Style>
-                                          </Textbox>
                                         </CellContents>
                                       </TablixCell>
                                       <TablixCell>
                                         <CellContents>
                                           <Textbox Name="PlannedShipmentDate_Line2">
-                                            <rd:DefaultName>PlannedShipmentDate_Line1</rd:DefaultName>
                                             <CanGrow>true</CanGrow>
                                             <KeepTogether>true</KeepTogether>
                                             <Paragraphs>
@@ -2274,6 +2239,7 @@ FormatNumber(Last(Fields!AmountExcludingVAT_Line, "DataSet_Result"), 2)
                                                 </Style>
                                               </Paragraph>
                                             </Paragraphs>
+                                            <rd:DefaultName>PlannedShipmentDate_Line1</rd:DefaultName>
                                             <Style>
                                               <Border>
                                                 <Color>LightGrey</Color>
@@ -2288,7 +2254,6 @@ FormatNumber(Last(Fields!AmountExcludingVAT_Line, "DataSet_Result"), 2)
                                       <TablixCell>
                                         <CellContents>
                                           <Textbox Name="PlannedShipmentDate_Line3">
-                                            <rd:DefaultName>PlannedShipmentDate_Line</rd:DefaultName>
                                             <CanGrow>true</CanGrow>
                                             <KeepTogether>true</KeepTogether>
                                             <Paragraphs>
@@ -2307,6 +2272,7 @@ FormatNumber(Last(Fields!AmountExcludingVAT_Line, "DataSet_Result"), 2)
                                                 </Style>
                                               </Paragraph>
                                             </Paragraphs>
+                                            <rd:DefaultName>PlannedShipmentDate_Line</rd:DefaultName>
                                             <Style>
                                               <Border>
                                                 <Color>LightGrey</Color>
@@ -2321,7 +2287,6 @@ FormatNumber(Last(Fields!AmountExcludingVAT_Line, "DataSet_Result"), 2)
                                       <TablixCell>
                                         <CellContents>
                                           <Textbox Name="ExtDocNo_SalesHeader_Lbl2">
-                                            <rd:DefaultName>ExtDocNo_SalesHeader_Lbl</rd:DefaultName>
                                             <CanGrow>true</CanGrow>
                                             <KeepTogether>true</KeepTogether>
                                             <Paragraphs>
@@ -2340,6 +2305,7 @@ FormatNumber(Last(Fields!AmountExcludingVAT_Line, "DataSet_Result"), 2)
                                                 </Style>
                                               </Paragraph>
                                             </Paragraphs>
+                                            <rd:DefaultName>ExtDocNo_SalesHeader_Lbl</rd:DefaultName>
                                             <Style>
                                               <Border>
                                                 <Color>LightGrey</Color>
@@ -2359,7 +2325,6 @@ FormatNumber(Last(Fields!AmountExcludingVAT_Line, "DataSet_Result"), 2)
                                       <TablixCell>
                                         <CellContents>
                                           <Textbox Name="Textbox6">
-                                            <rd:DefaultName>Textbox6</rd:DefaultName>
                                             <CanGrow>true</CanGrow>
                                             <KeepTogether>true</KeepTogether>
                                             <Paragraphs>
@@ -2376,6 +2341,7 @@ FormatNumber(Last(Fields!AmountExcludingVAT_Line, "DataSet_Result"), 2)
                                                 <Style />
                                               </Paragraph>
                                             </Paragraphs>
+                                            <rd:DefaultName>Textbox6</rd:DefaultName>
                                             <Style>
                                               <Border>
                                                 <Color>LightGrey</Color>
@@ -2390,14 +2356,16 @@ FormatNumber(Last(Fields!AmountExcludingVAT_Line, "DataSet_Result"), 2)
                                       <TablixCell>
                                         <CellContents>
                                           <Textbox Name="Textbox7">
-                                            <rd:DefaultName>Textbox7</rd:DefaultName>
                                             <CanGrow>true</CanGrow>
                                             <KeepTogether>true</KeepTogether>
                                             <Paragraphs>
                                               <Paragraph>
                                                 <TextRuns>
                                                   <TextRun>
-                                                    <Value>=Fields!EU_Description.Value &amp; " " &amp; Fields!EU_Division_1.Value &amp; " " &amp; Fields!EU_Division_2.Value &amp; " " &amp; Fields!EU_Division_3.Value</Value>
+                                                    <Value>=Fields!EU_Description.Value &amp; " " &amp; 
+Fields!EU_Division_1.Value &amp; " " &amp;
+Fields!EU_Division_2.Value &amp; " " &amp; 
+Fields!EU_Division_3.Value</Value>
                                                     <Style>
                                                       <FontFamily>MS UI Gothic</FontFamily>
                                                       <FontSize>8pt</FontSize>
@@ -2407,6 +2375,7 @@ FormatNumber(Last(Fields!AmountExcludingVAT_Line, "DataSet_Result"), 2)
                                                 <Style />
                                               </Paragraph>
                                             </Paragraphs>
+                                            <rd:DefaultName>Textbox7</rd:DefaultName>
                                             <Style>
                                               <Border>
                                                 <Color>LightGrey</Color>
@@ -2424,7 +2393,6 @@ FormatNumber(Last(Fields!AmountExcludingVAT_Line, "DataSet_Result"), 2)
                                       <TablixCell>
                                         <CellContents>
                                           <Textbox Name="Textbox69">
-                                            <rd:DefaultName>Textbox69</rd:DefaultName>
                                             <CanGrow>true</CanGrow>
                                             <KeepTogether>true</KeepTogether>
                                             <Paragraphs>
@@ -2441,6 +2409,7 @@ FormatNumber(Last(Fields!AmountExcludingVAT_Line, "DataSet_Result"), 2)
                                                 <Style />
                                               </Paragraph>
                                             </Paragraphs>
+                                            <rd:DefaultName>Textbox69</rd:DefaultName>
                                             <Style>
                                               <Border>
                                                 <Color>LightGrey</Color>
@@ -2455,7 +2424,6 @@ FormatNumber(Last(Fields!AmountExcludingVAT_Line, "DataSet_Result"), 2)
                                       <TablixCell>
                                         <CellContents>
                                           <Textbox Name="Textbox11">
-                                            <rd:DefaultName>Textbox11</rd:DefaultName>
                                             <CanGrow>true</CanGrow>
                                             <KeepTogether>true</KeepTogether>
                                             <Paragraphs>
@@ -2474,6 +2442,7 @@ FormatNumber(Last(Fields!AmountExcludingVAT_Line, "DataSet_Result"), 2)
                                                 </Style>
                                               </Paragraph>
                                             </Paragraphs>
+                                            <rd:DefaultName>Textbox11</rd:DefaultName>
                                             <Style>
                                               <Border>
                                                 <Color>LightGrey</Color>
@@ -2488,7 +2457,6 @@ FormatNumber(Last(Fields!AmountExcludingVAT_Line, "DataSet_Result"), 2)
                                       <TablixCell>
                                         <CellContents>
                                           <Textbox Name="Textbox8">
-                                            <rd:DefaultName>Textbox8</rd:DefaultName>
                                             <CanGrow>true</CanGrow>
                                             <KeepTogether>true</KeepTogether>
                                             <Paragraphs>
@@ -2507,6 +2475,7 @@ FormatNumber(Last(Fields!AmountExcludingVAT_Line, "DataSet_Result"), 2)
                                                 </Style>
                                               </Paragraph>
                                             </Paragraphs>
+                                            <rd:DefaultName>Textbox8</rd:DefaultName>
                                             <Style>
                                               <Border>
                                                 <Color>LightGrey</Color>
@@ -2521,7 +2490,6 @@ FormatNumber(Last(Fields!AmountExcludingVAT_Line, "DataSet_Result"), 2)
                                       <TablixCell>
                                         <CellContents>
                                           <Textbox Name="Textbox14">
-                                            <rd:DefaultName>Textbox14</rd:DefaultName>
                                             <CanGrow>true</CanGrow>
                                             <KeepTogether>true</KeepTogether>
                                             <Paragraphs>
@@ -2540,6 +2508,7 @@ FormatNumber(Last(Fields!AmountExcludingVAT_Line, "DataSet_Result"), 2)
                                                 </Style>
                                               </Paragraph>
                                             </Paragraphs>
+                                            <rd:DefaultName>Textbox14</rd:DefaultName>
                                             <Style>
                                               <Border>
                                                 <Color>LightGrey</Color>
@@ -2554,7 +2523,6 @@ FormatNumber(Last(Fields!AmountExcludingVAT_Line, "DataSet_Result"), 2)
                                       <TablixCell>
                                         <CellContents>
                                           <Textbox Name="Textbox16">
-                                            <rd:DefaultName>Textbox16</rd:DefaultName>
                                             <CanGrow>true</CanGrow>
                                             <KeepTogether>true</KeepTogether>
                                             <Paragraphs>
@@ -2573,6 +2541,7 @@ FormatNumber(Last(Fields!AmountExcludingVAT_Line, "DataSet_Result"), 2)
                                                 </Style>
                                               </Paragraph>
                                             </Paragraphs>
+                                            <rd:DefaultName>Textbox16</rd:DefaultName>
                                             <Style>
                                               <Border>
                                                 <Color>LightGrey</Color>
@@ -2587,7 +2556,6 @@ FormatNumber(Last(Fields!AmountExcludingVAT_Line, "DataSet_Result"), 2)
                                       <TablixCell>
                                         <CellContents>
                                           <Textbox Name="Textbox17">
-                                            <rd:DefaultName>Textbox17</rd:DefaultName>
                                             <CanGrow>true</CanGrow>
                                             <KeepTogether>true</KeepTogether>
                                             <Paragraphs>
@@ -2606,6 +2574,7 @@ FormatNumber(Last(Fields!AmountExcludingVAT_Line, "DataSet_Result"), 2)
                                                 </Style>
                                               </Paragraph>
                                             </Paragraphs>
+                                            <rd:DefaultName>Textbox17</rd:DefaultName>
                                             <Style>
                                               <Border>
                                                 <Color>LightGrey</Color>
@@ -2625,7 +2594,6 @@ FormatNumber(Last(Fields!AmountExcludingVAT_Line, "DataSet_Result"), 2)
                                       <TablixCell>
                                         <CellContents>
                                           <Textbox Name="Textbox19">
-                                            <rd:DefaultName>Textbox19</rd:DefaultName>
                                             <CanGrow>true</CanGrow>
                                             <KeepTogether>true</KeepTogether>
                                             <Paragraphs>
@@ -2642,6 +2610,7 @@ FormatNumber(Last(Fields!AmountExcludingVAT_Line, "DataSet_Result"), 2)
                                                 <Style />
                                               </Paragraph>
                                             </Paragraphs>
+                                            <rd:DefaultName>Textbox19</rd:DefaultName>
                                             <Style>
                                               <Border>
                                                 <Color>LightGrey</Color>
@@ -2656,7 +2625,6 @@ FormatNumber(Last(Fields!AmountExcludingVAT_Line, "DataSet_Result"), 2)
                                       <TablixCell>
                                         <CellContents>
                                           <Textbox Name="CustomerAddress51">
-                                            <rd:DefaultName>CustomerAddress51</rd:DefaultName>
                                             <CanGrow>true</CanGrow>
                                             <KeepTogether>true</KeepTogether>
                                             <Paragraphs>
@@ -2673,6 +2641,7 @@ FormatNumber(Last(Fields!AmountExcludingVAT_Line, "DataSet_Result"), 2)
                                                 <Style />
                                               </Paragraph>
                                             </Paragraphs>
+                                            <rd:DefaultName>CustomerAddress51</rd:DefaultName>
                                             <Style>
                                               <Border>
                                                 <Color>LightGrey</Color>
@@ -2690,7 +2659,6 @@ FormatNumber(Last(Fields!AmountExcludingVAT_Line, "DataSet_Result"), 2)
                                       <TablixCell>
                                         <CellContents>
                                           <Textbox Name="Textbox72">
-                                            <rd:DefaultName>Textbox72</rd:DefaultName>
                                             <CanGrow>true</CanGrow>
                                             <KeepTogether>true</KeepTogether>
                                             <Paragraphs>
@@ -2707,6 +2675,7 @@ FormatNumber(Last(Fields!AmountExcludingVAT_Line, "DataSet_Result"), 2)
                                                 <Style />
                                               </Paragraph>
                                             </Paragraphs>
+                                            <rd:DefaultName>Textbox72</rd:DefaultName>
                                             <Style>
                                               <Border>
                                                 <Color>LightGrey</Color>
@@ -2721,7 +2690,6 @@ FormatNumber(Last(Fields!AmountExcludingVAT_Line, "DataSet_Result"), 2)
                                       <TablixCell>
                                         <CellContents>
                                           <Textbox Name="Textbox25">
-                                            <rd:DefaultName>Textbox25</rd:DefaultName>
                                             <CanGrow>true</CanGrow>
                                             <KeepTogether>true</KeepTogether>
                                             <Paragraphs>
@@ -2740,6 +2708,7 @@ FormatNumber(Last(Fields!AmountExcludingVAT_Line, "DataSet_Result"), 2)
                                                 </Style>
                                               </Paragraph>
                                             </Paragraphs>
+                                            <rd:DefaultName>Textbox25</rd:DefaultName>
                                             <Style>
                                               <Border>
                                                 <Color>LightGrey</Color>
@@ -2754,7 +2723,6 @@ FormatNumber(Last(Fields!AmountExcludingVAT_Line, "DataSet_Result"), 2)
                                       <TablixCell>
                                         <CellContents>
                                           <Textbox Name="Textbox26">
-                                            <rd:DefaultName>Textbox26</rd:DefaultName>
                                             <CanGrow>true</CanGrow>
                                             <KeepTogether>true</KeepTogether>
                                             <Paragraphs>
@@ -2773,6 +2741,7 @@ FormatNumber(Last(Fields!AmountExcludingVAT_Line, "DataSet_Result"), 2)
                                                 </Style>
                                               </Paragraph>
                                             </Paragraphs>
+                                            <rd:DefaultName>Textbox26</rd:DefaultName>
                                             <Style>
                                               <Border>
                                                 <Color>LightGrey</Color>
@@ -2787,7 +2756,6 @@ FormatNumber(Last(Fields!AmountExcludingVAT_Line, "DataSet_Result"), 2)
                                       <TablixCell>
                                         <CellContents>
                                           <Textbox Name="Textbox27">
-                                            <rd:DefaultName>Textbox27</rd:DefaultName>
                                             <CanGrow>true</CanGrow>
                                             <KeepTogether>true</KeepTogether>
                                             <Paragraphs>
@@ -2806,6 +2774,7 @@ FormatNumber(Last(Fields!AmountExcludingVAT_Line, "DataSet_Result"), 2)
                                                 </Style>
                                               </Paragraph>
                                             </Paragraphs>
+                                            <rd:DefaultName>Textbox27</rd:DefaultName>
                                             <Style>
                                               <Border>
                                                 <Color>LightGrey</Color>
@@ -2820,7 +2789,6 @@ FormatNumber(Last(Fields!AmountExcludingVAT_Line, "DataSet_Result"), 2)
                                       <TablixCell>
                                         <CellContents>
                                           <Textbox Name="Textbox28">
-                                            <rd:DefaultName>Textbox28</rd:DefaultName>
                                             <CanGrow>true</CanGrow>
                                             <KeepTogether>true</KeepTogether>
                                             <Paragraphs>
@@ -2839,6 +2807,7 @@ FormatNumber(Last(Fields!AmountExcludingVAT_Line, "DataSet_Result"), 2)
                                                 </Style>
                                               </Paragraph>
                                             </Paragraphs>
+                                            <rd:DefaultName>Textbox28</rd:DefaultName>
                                             <Style>
                                               <Border>
                                                 <Color>LightGrey</Color>
@@ -2853,7 +2822,6 @@ FormatNumber(Last(Fields!AmountExcludingVAT_Line, "DataSet_Result"), 2)
                                       <TablixCell>
                                         <CellContents>
                                           <Textbox Name="Textbox29">
-                                            <rd:DefaultName>Textbox29</rd:DefaultName>
                                             <CanGrow>true</CanGrow>
                                             <KeepTogether>true</KeepTogether>
                                             <Paragraphs>
@@ -2872,6 +2840,7 @@ FormatNumber(Last(Fields!AmountExcludingVAT_Line, "DataSet_Result"), 2)
                                                 </Style>
                                               </Paragraph>
                                             </Paragraphs>
+                                            <rd:DefaultName>Textbox29</rd:DefaultName>
                                             <Style>
                                               <Border>
                                                 <Color>LightGrey</Color>
@@ -2891,7 +2860,6 @@ FormatNumber(Last(Fields!AmountExcludingVAT_Line, "DataSet_Result"), 2)
                                       <TablixCell>
                                         <CellContents>
                                           <Textbox Name="Textbox31">
-                                            <rd:DefaultName>Textbox31</rd:DefaultName>
                                             <CanGrow>true</CanGrow>
                                             <KeepTogether>true</KeepTogether>
                                             <Paragraphs>
@@ -2908,6 +2876,7 @@ FormatNumber(Last(Fields!AmountExcludingVAT_Line, "DataSet_Result"), 2)
                                                 <Style />
                                               </Paragraph>
                                             </Paragraphs>
+                                            <rd:DefaultName>Textbox31</rd:DefaultName>
                                             <Style>
                                               <Border>
                                                 <Color>LightGrey</Color>
@@ -2927,7 +2896,6 @@ FormatNumber(Last(Fields!AmountExcludingVAT_Line, "DataSet_Result"), 2)
                                       <TablixCell>
                                         <CellContents>
                                           <Textbox Name="Textbox32">
-                                            <rd:DefaultName>Textbox32</rd:DefaultName>
                                             <CanGrow>true</CanGrow>
                                             <KeepTogether>true</KeepTogether>
                                             <Paragraphs>
@@ -2944,6 +2912,7 @@ FormatNumber(Last(Fields!AmountExcludingVAT_Line, "DataSet_Result"), 2)
                                                 <Style />
                                               </Paragraph>
                                             </Paragraphs>
+                                            <rd:DefaultName>Textbox32</rd:DefaultName>
                                             <Style>
                                               <Border>
                                                 <Color>LightGrey</Color>
@@ -2966,7 +2935,6 @@ FormatNumber(Last(Fields!AmountExcludingVAT_Line, "DataSet_Result"), 2)
                                       <TablixCell>
                                         <CellContents>
                                           <Textbox Name="Textbox75">
-                                            <rd:DefaultName>Textbox75</rd:DefaultName>
                                             <CanGrow>true</CanGrow>
                                             <KeepTogether>true</KeepTogether>
                                             <Paragraphs>
@@ -2983,6 +2951,7 @@ FormatNumber(Last(Fields!AmountExcludingVAT_Line, "DataSet_Result"), 2)
                                                 <Style />
                                               </Paragraph>
                                             </Paragraphs>
+                                            <rd:DefaultName>Textbox75</rd:DefaultName>
                                             <Style>
                                               <Border>
                                                 <Color>LightGrey</Color>
@@ -3002,7 +2971,6 @@ FormatNumber(Last(Fields!AmountExcludingVAT_Line, "DataSet_Result"), 2)
                                       <TablixCell>
                                         <CellContents>
                                           <Textbox Name="Textbox36">
-                                            <rd:DefaultName>Textbox36</rd:DefaultName>
                                             <CanGrow>true</CanGrow>
                                             <KeepTogether>true</KeepTogether>
                                             <Paragraphs>
@@ -3021,6 +2989,7 @@ FormatNumber(Last(Fields!AmountExcludingVAT_Line, "DataSet_Result"), 2)
                                                 </Style>
                                               </Paragraph>
                                             </Paragraphs>
+                                            <rd:DefaultName>Textbox36</rd:DefaultName>
                                             <Style>
                                               <Border>
                                                 <Color>LightGrey</Color>
@@ -3040,7 +3009,6 @@ FormatNumber(Last(Fields!AmountExcludingVAT_Line, "DataSet_Result"), 2)
                                       <TablixCell>
                                         <CellContents>
                                           <Textbox Name="Textbox37">
-                                            <rd:DefaultName>Textbox37</rd:DefaultName>
                                             <CanGrow>true</CanGrow>
                                             <KeepTogether>true</KeepTogether>
                                             <Paragraphs>
@@ -3059,6 +3027,7 @@ FormatNumber(Last(Fields!AmountExcludingVAT_Line, "DataSet_Result"), 2)
                                                 </Style>
                                               </Paragraph>
                                             </Paragraphs>
+                                            <rd:DefaultName>Textbox37</rd:DefaultName>
                                             <Style>
                                               <Border>
                                                 <Color>LightGrey</Color>
@@ -3078,7 +3047,6 @@ FormatNumber(Last(Fields!AmountExcludingVAT_Line, "DataSet_Result"), 2)
                                       <TablixCell>
                                         <CellContents>
                                           <Textbox Name="Textbox38">
-                                            <rd:DefaultName>Textbox38</rd:DefaultName>
                                             <CanGrow>true</CanGrow>
                                             <KeepTogether>true</KeepTogether>
                                             <Paragraphs>
@@ -3097,6 +3065,7 @@ FormatNumber(Last(Fields!AmountExcludingVAT_Line, "DataSet_Result"), 2)
                                                 </Style>
                                               </Paragraph>
                                             </Paragraphs>
+                                            <rd:DefaultName>Textbox38</rd:DefaultName>
                                             <Style>
                                               <Border>
                                                 <Color>LightGrey</Color>
@@ -3116,7 +3085,6 @@ FormatNumber(Last(Fields!AmountExcludingVAT_Line, "DataSet_Result"), 2)
                                       <TablixCell>
                                         <CellContents>
                                           <Textbox Name="Textbox39">
-                                            <rd:DefaultName>Textbox39</rd:DefaultName>
                                             <CanGrow>true</CanGrow>
                                             <KeepTogether>true</KeepTogether>
                                             <Paragraphs>
@@ -3135,6 +3103,7 @@ FormatNumber(Last(Fields!AmountExcludingVAT_Line, "DataSet_Result"), 2)
                                                 </Style>
                                               </Paragraph>
                                             </Paragraphs>
+                                            <rd:DefaultName>Textbox39</rd:DefaultName>
                                             <Style>
                                               <Border>
                                                 <Color>LightGrey</Color>
@@ -3154,7 +3123,6 @@ FormatNumber(Last(Fields!AmountExcludingVAT_Line, "DataSet_Result"), 2)
                                       <TablixCell>
                                         <CellContents>
                                           <Textbox Name="Textbox40">
-                                            <rd:DefaultName>Textbox40</rd:DefaultName>
                                             <CanGrow>true</CanGrow>
                                             <KeepTogether>true</KeepTogether>
                                             <Paragraphs>
@@ -3173,6 +3141,7 @@ FormatNumber(Last(Fields!AmountExcludingVAT_Line, "DataSet_Result"), 2)
                                                 </Style>
                                               </Paragraph>
                                             </Paragraphs>
+                                            <rd:DefaultName>Textbox40</rd:DefaultName>
                                             <Style>
                                               <Border>
                                                 <Color>LightGrey</Color>
@@ -3259,7 +3228,7 @@ FormatNumber(Last(Fields!AmountExcludingVAT_Line, "DataSet_Result"), 2)
                               <RepeatRowHeaders>true</RepeatRowHeaders>
                               <DataSetName>DataSet_Result</DataSetName>
                               <Top>5.80644cm</Top>
-                              <Left>0.18952cm</Left>
+                              <Left>0.18953cm</Left>
                               <Height>3.60475cm</Height>
                               <Width>26.79834cm</Width>
                               <Style>
@@ -3269,7 +3238,6 @@ FormatNumber(Last(Fields!AmountExcludingVAT_Line, "DataSet_Result"), 2)
                               </Style>
                             </Tablix>
                             <Textbox Name="CustomerAddress1">
-                              <rd:DefaultName>CustomerAddress1</rd:DefaultName>
                               <CanGrow>true</CanGrow>
                               <KeepTogether>true</KeepTogether>
                               <Paragraphs>
@@ -3288,6 +3256,7 @@ FormatNumber(Last(Fields!AmountExcludingVAT_Line, "DataSet_Result"), 2)
                                   <Style />
                                 </Paragraph>
                               </Paragraphs>
+                              <rd:DefaultName>CustomerAddress1</rd:DefaultName>
                               <Top>0.51726cm</Top>
                               <Height>0.70556cm</Height>
                               <Width>10.6521cm</Width>
@@ -3307,7 +3276,6 @@ FormatNumber(Last(Fields!AmountExcludingVAT_Line, "DataSet_Result"), 2)
                               </Style>
                             </Textbox>
                             <Textbox Name="CustomerAddress3">
-                              <rd:DefaultName>CustomerAddress3</rd:DefaultName>
                               <KeepTogether>true</KeepTogether>
                               <Paragraphs>
                                 <Paragraph>
@@ -3323,6 +3291,7 @@ FormatNumber(Last(Fields!AmountExcludingVAT_Line, "DataSet_Result"), 2)
                                   <Style />
                                 </Paragraph>
                               </Paragraphs>
+                              <rd:DefaultName>CustomerAddress3</rd:DefaultName>
                               <Top>1.96366cm</Top>
                               <Height>0.38806cm</Height>
                               <Width>10.6521cm</Width>
@@ -3337,7 +3306,6 @@ FormatNumber(Last(Fields!AmountExcludingVAT_Line, "DataSet_Result"), 2)
                               </Style>
                             </Textbox>
                             <Textbox Name="CustomerAddress4">
-                              <rd:DefaultName>CustomerAddress4</rd:DefaultName>
                               <KeepTogether>true</KeepTogether>
                               <Paragraphs>
                                 <Paragraph>
@@ -3353,6 +3321,7 @@ FormatNumber(Last(Fields!AmountExcludingVAT_Line, "DataSet_Result"), 2)
                                   <Style />
                                 </Paragraph>
                               </Paragraphs>
+                              <rd:DefaultName>CustomerAddress4</rd:DefaultName>
                               <Top>2.35172cm</Top>
                               <Height>0.38806cm</Height>
                               <Width>10.6521cm</Width>
@@ -3367,7 +3336,6 @@ FormatNumber(Last(Fields!AmountExcludingVAT_Line, "DataSet_Result"), 2)
                               </Style>
                             </Textbox>
                             <Textbox Name="CustomerAddress9">
-                              <rd:DefaultName>CustomerAddress8</rd:DefaultName>
                               <CanGrow>true</CanGrow>
                               <KeepTogether>true</KeepTogether>
                               <Paragraphs>
@@ -3396,8 +3364,9 @@ FormatNumber(Last(Fields!AmountExcludingVAT_Line, "DataSet_Result"), 2)
                                   <Style />
                                 </Paragraph>
                               </Paragraphs>
+                              <rd:DefaultName>CustomerAddress8</rd:DefaultName>
                               <Top>3.66851cm</Top>
-                              <Left>0.00001cm</Left>
+                              <Left>0.00002cm</Left>
                               <Height>1.02306cm</Height>
                               <Width>10.6521cm</Width>
                               <ZIndex>4</ZIndex>
@@ -3411,7 +3380,6 @@ FormatNumber(Last(Fields!AmountExcludingVAT_Line, "DataSet_Result"), 2)
                               </Style>
                             </Textbox>
                             <Textbox Name="CustomerAddress5">
-                              <rd:DefaultName>CustomerAddress4</rd:DefaultName>
                               <KeepTogether>true</KeepTogether>
                               <Paragraphs>
                                 <Paragraph>
@@ -3427,6 +3395,7 @@ FormatNumber(Last(Fields!AmountExcludingVAT_Line, "DataSet_Result"), 2)
                                   <Style />
                                 </Paragraph>
                               </Paragraphs>
+                              <rd:DefaultName>CustomerAddress4</rd:DefaultName>
                               <Top>2.77506cm</Top>
                               <Height>0.38806cm</Height>
                               <Width>10.6521cm</Width>
@@ -3441,7 +3410,6 @@ FormatNumber(Last(Fields!AmountExcludingVAT_Line, "DataSet_Result"), 2)
                               </Style>
                             </Textbox>
                             <Textbox Name="CustomerAddress6">
-                              <rd:DefaultName>CustomerAddress3</rd:DefaultName>
                               <KeepTogether>true</KeepTogether>
                               <Paragraphs>
                                 <Paragraph>
@@ -3459,8 +3427,9 @@ FormatNumber(Last(Fields!AmountExcludingVAT_Line, "DataSet_Result"), 2)
                                   </Style>
                                 </Paragraph>
                               </Paragraphs>
+                              <rd:DefaultName>CustomerAddress3</rd:DefaultName>
                               <Top>1.29338cm</Top>
-                              <Left>6.54863cm</Left>
+                              <Left>6.54864cm</Left>
                               <Height>0.38806cm</Height>
                               <Width>4.10346cm</Width>
                               <ZIndex>6</ZIndex>
@@ -3474,7 +3443,6 @@ FormatNumber(Last(Fields!AmountExcludingVAT_Line, "DataSet_Result"), 2)
                               </Style>
                             </Textbox>
                             <Textbox Name="CompanyAddress2">
-                              <rd:DefaultName>CompanyAddress2</rd:DefaultName>
                               <CanGrow>true</CanGrow>
                               <KeepTogether>true</KeepTogether>
                               <Paragraphs>
@@ -3493,8 +3461,9 @@ FormatNumber(Last(Fields!AmountExcludingVAT_Line, "DataSet_Result"), 2)
                                   </Style>
                                 </Paragraph>
                               </Paragraphs>
+                              <rd:DefaultName>CompanyAddress2</rd:DefaultName>
                               <Top>1.54032cm</Top>
-                              <Left>18.24707cm</Left>
+                              <Left>18.24708cm</Left>
                               <Height>0.38806cm</Height>
                               <Width>8.7408cm</Width>
                               <ZIndex>7</ZIndex>
@@ -3508,7 +3477,6 @@ FormatNumber(Last(Fields!AmountExcludingVAT_Line, "DataSet_Result"), 2)
                               </Style>
                             </Textbox>
                             <Textbox Name="CompanyAddress3">
-                              <rd:DefaultName>CompanyAddress3</rd:DefaultName>
                               <KeepTogether>true</KeepTogether>
                               <Paragraphs>
                                 <Paragraph>
@@ -3526,8 +3494,9 @@ FormatNumber(Last(Fields!AmountExcludingVAT_Line, "DataSet_Result"), 2)
                                   </Style>
                                 </Paragraph>
                               </Paragraphs>
+                              <rd:DefaultName>CompanyAddress3</rd:DefaultName>
                               <Top>1.96366cm</Top>
-                              <Left>18.24707cm</Left>
+                              <Left>18.24708cm</Left>
                               <Height>0.38806cm</Height>
                               <Width>8.7408cm</Width>
                               <ZIndex>8</ZIndex>
@@ -3541,7 +3510,6 @@ FormatNumber(Last(Fields!AmountExcludingVAT_Line, "DataSet_Result"), 2)
                               </Style>
                             </Textbox>
                             <Textbox Name="CompanyAddress4">
-                              <rd:DefaultName>CompanyAddress4</rd:DefaultName>
                               <KeepTogether>true</KeepTogether>
                               <Paragraphs>
                                 <Paragraph>
@@ -3559,8 +3527,9 @@ FormatNumber(Last(Fields!AmountExcludingVAT_Line, "DataSet_Result"), 2)
                                   </Style>
                                 </Paragraph>
                               </Paragraphs>
+                              <rd:DefaultName>CompanyAddress4</rd:DefaultName>
                               <Top>2.35172cm</Top>
-                              <Left>18.24707cm</Left>
+                              <Left>18.24708cm</Left>
                               <Height>0.38806cm</Height>
                               <Width>8.7408cm</Width>
                               <ZIndex>9</ZIndex>
@@ -3574,7 +3543,6 @@ FormatNumber(Last(Fields!AmountExcludingVAT_Line, "DataSet_Result"), 2)
                               </Style>
                             </Textbox>
                             <Textbox Name="CompanyPhoneNo">
-                              <rd:DefaultName>CompanyPhoneNo</rd:DefaultName>
                               <CanGrow>true</CanGrow>
                               <KeepTogether>true</KeepTogether>
                               <Paragraphs>
@@ -3593,8 +3561,9 @@ FormatNumber(Last(Fields!AmountExcludingVAT_Line, "DataSet_Result"), 2)
                                   </Style>
                                 </Paragraph>
                               </Paragraphs>
+                              <rd:DefaultName>CompanyPhoneNo</rd:DefaultName>
                               <Top>2.77506cm</Top>
-                              <Left>18.24707cm</Left>
+                              <Left>18.24708cm</Left>
                               <Height>0.38806cm</Height>
                               <Width>8.7408cm</Width>
                               <ZIndex>10</ZIndex>
@@ -3608,7 +3577,6 @@ FormatNumber(Last(Fields!AmountExcludingVAT_Line, "DataSet_Result"), 2)
                               </Style>
                             </Textbox>
                             <Textbox Name="CompanyPhoneNo2">
-                              <rd:DefaultName>CompanyPhoneNo</rd:DefaultName>
                               <CanGrow>true</CanGrow>
                               <KeepTogether>true</KeepTogether>
                               <Paragraphs>
@@ -3627,8 +3595,9 @@ FormatNumber(Last(Fields!AmountExcludingVAT_Line, "DataSet_Result"), 2)
                                   </Style>
                                 </Paragraph>
                               </Paragraphs>
+                              <rd:DefaultName>CompanyPhoneNo</rd:DefaultName>
                               <Top>3.1984cm</Top>
-                              <Left>18.24707cm</Left>
+                              <Left>18.24708cm</Left>
                               <Height>0.38806cm</Height>
                               <Width>8.7408cm</Width>
                               <ZIndex>11</ZIndex>
@@ -3642,7 +3611,6 @@ FormatNumber(Last(Fields!AmountExcludingVAT_Line, "DataSet_Result"), 2)
                               </Style>
                             </Textbox>
                             <Textbox Name="CompanyAddress5">
-                              <rd:DefaultName>CompanyAddress2</rd:DefaultName>
                               <CanGrow>true</CanGrow>
                               <KeepTogether>true</KeepTogether>
                               <Paragraphs>
@@ -3662,8 +3630,9 @@ FormatNumber(Last(Fields!AmountExcludingVAT_Line, "DataSet_Result"), 2)
                                   </Style>
                                 </Paragraph>
                               </Paragraphs>
+                              <rd:DefaultName>CompanyAddress2</rd:DefaultName>
                               <Top>0.72187cm</Top>
-                              <Left>18.24706cm</Left>
+                              <Left>18.24707cm</Left>
                               <Height>0.64206cm</Height>
                               <Width>8.7408cm</Width>
                               <ZIndex>12</ZIndex>
@@ -3677,7 +3646,6 @@ FormatNumber(Last(Fields!AmountExcludingVAT_Line, "DataSet_Result"), 2)
                               </Style>
                             </Textbox>
                             <Textbox Name="Textbox55">
-                              <rd:DefaultName>Textbox55</rd:DefaultName>
                               <CanGrow>true</CanGrow>
                               <KeepTogether>true</KeepTogether>
                               <Paragraphs>
@@ -3698,6 +3666,7 @@ FormatNumber(Last(Fields!AmountExcludingVAT_Line, "DataSet_Result"), 2)
                                   <Style />
                                 </Paragraph>
                               </Paragraphs>
+                              <rd:DefaultName>Textbox55</rd:DefaultName>
                               <Top>5.20644cm</Top>
                               <Left>0.18953cm</Left>
                               <Height>0.45889cm</Height>
@@ -3714,14 +3683,15 @@ FormatNumber(Last(Fields!AmountExcludingVAT_Line, "DataSet_Result"), 2)
                               </Style>
                             </Textbox>
                             <Textbox Name="Textbox2">
-                              <rd:DefaultName>Textbox2</rd:DefaultName>
                               <CanGrow>true</CanGrow>
                               <KeepTogether>true</KeepTogether>
                               <Paragraphs>
                                 <Paragraph>
                                   <TextRuns>
                                     <TextRun>
-                                      <Value>="直送情報: " &amp; First(Fields!DirectShippingCode.Value,"DataSet_Result") &amp; " " &amp; First(Fields!DirectShippingName.Value, "DataSet_Result") &amp; " " &amp; First(Fields!DirectShippingAddress.Value, "DataSet_Result")</Value>
+                                      <Value>="直送情報: " &amp; First(Fields!DirectShippingCode.Value,"DataSet_Result") &amp; " " &amp; 
+First(Fields!DirectShippingName.Value, "DataSet_Result") &amp; " " &amp; 
+First(Fields!DirectShippingAddress.Value, "DataSet_Result")</Value>
                                       <Style>
                                         <FontFamily>MS UI Gothic</FontFamily>
                                         <FontSize>9pt</FontSize>
@@ -3731,8 +3701,9 @@ FormatNumber(Last(Fields!AmountExcludingVAT_Line, "DataSet_Result"), 2)
                                   <Style />
                                 </Paragraph>
                               </Paragraphs>
+                              <rd:DefaultName>Textbox2</rd:DefaultName>
                               <Top>5.20644cm</Top>
-                              <Left>9.32214cm</Left>
+                              <Left>9.32215cm</Left>
                               <Height>0.45889cm</Height>
                               <Width>12.25706cm</Width>
                               <ZIndex>14</ZIndex>
@@ -3747,7 +3718,6 @@ FormatNumber(Last(Fields!AmountExcludingVAT_Line, "DataSet_Result"), 2)
                               </Style>
                             </Textbox>
                             <Textbox Name="Textbox3">
-                              <rd:DefaultName>Textbox3</rd:DefaultName>
                               <CanGrow>true</CanGrow>
                               <KeepTogether>true</KeepTogether>
                               <Paragraphs>
@@ -3756,8 +3726,10 @@ FormatNumber(Last(Fields!AmountExcludingVAT_Line, "DataSet_Result"), 2)
                                     <TextRun>
                                       <Value>=IIf(
 Last(Fields!CurrencyCode.Value, "DataSet_Result") = "JPY",
-    FormatNumber(Last(Fields!TotalSubTotal.Value, "DataSet_Result"), 0),
-    FormatNumber(Last(Fields!TotalSubTotal.Value, "DataSet_Result"), 2)
+    
+FormatNumber(Last(Fields!TotalSubTotal.Value, "DataSet_Result"), 0),
+   
+FormatNumber(Last(Fields!TotalSubTotal.Value, "DataSet_Result"), 2)
 )</Value>
                                       <Style>
                                         <FontFamily>MS UI Gothic</FontFamily>
@@ -3770,8 +3742,9 @@ Last(Fields!CurrencyCode.Value, "DataSet_Result") = "JPY",
                                   </Style>
                                 </Paragraph>
                               </Paragraphs>
+                              <rd:DefaultName>Textbox3</rd:DefaultName>
                               <Top>9.45353cm</Top>
-                              <Left>16.60892cm</Left>
+                              <Left>16.60893cm</Left>
                               <Height>0.60705cm</Height>
                               <Width>2.40161cm</Width>
                               <ZIndex>15</ZIndex>
@@ -3786,14 +3759,13 @@ Last(Fields!CurrencyCode.Value, "DataSet_Result") = "JPY",
                               </Style>
                             </Textbox>
                             <Textbox Name="Textbox105">
-                              <rd:DefaultName>Textbox104</rd:DefaultName>
                               <CanGrow>true</CanGrow>
                               <KeepTogether>true</KeepTogether>
                               <Paragraphs>
                                 <Paragraph>
                                   <TextRuns>
                                     <TextRun>
-                                      <Value>="Total Excl. VAT (" &amp; Last(Fields!CurrencyCode.Value, "DataSet_Result") &amp; ")"</Value>
+                                      <Value>="合計 " &amp; IIf(Fields!CurrencyCode.Value="", "JPY", Fields!CurrencyCode.Value)</Value>
                                       <Style>
                                         <FontFamily>MS UI Gothic</FontFamily>
                                       </Style>
@@ -3804,10 +3776,11 @@ Last(Fields!CurrencyCode.Value, "DataSet_Result") = "JPY",
                                   </Style>
                                 </Paragraph>
                               </Paragraphs>
-                              <Top>9.44647cm</Top>
-                              <Left>12.24371cm</Left>
+                              <rd:DefaultName>Textbox104</rd:DefaultName>
+                              <Top>9.45353cm</Top>
+                              <Left>13.82443cm</Left>
                               <Height>0.60705cm</Height>
-                              <Width>4.36521cm</Width>
+                              <Width>2.7845cm</Width>
                               <ZIndex>16</ZIndex>
                               <Style>
                                 <Border>
@@ -3885,7 +3858,6 @@ Last(Fields!CurrencyCode.Value, "DataSet_Result") = "JPY",
           <PrintOnLastPage>true</PrintOnLastPage>
           <ReportItems>
             <Textbox Name="Page_Lbl">
-              <rd:DefaultName>Page_Lbl</rd:DefaultName>
               <CanGrow>true</CanGrow>
               <KeepTogether>true</KeepTogether>
               <Paragraphs>
@@ -3911,6 +3883,7 @@ Last(Fields!CurrencyCode.Value, "DataSet_Result") = "JPY",
                   </Style>
                 </Paragraph>
               </Paragraphs>
+              <rd:DefaultName>Page_Lbl</rd:DefaultName>
               <Top>1.06244cm</Top>
               <Left>22.49003cm</Left>
               <Height>11pt</Height>
@@ -3924,7 +3897,6 @@ Last(Fields!CurrencyCode.Value, "DataSet_Result") = "JPY",
               </Style>
             </Textbox>
             <Textbox Name="Textbox1">
-              <rd:DefaultName>Textbox1</rd:DefaultName>
               <CanGrow>true</CanGrow>
               <KeepTogether>true</KeepTogether>
               <Paragraphs>
@@ -3944,6 +3916,7 @@ Last(Fields!CurrencyCode.Value, "DataSet_Result") = "JPY",
                   </Style>
                 </Paragraph>
               </Paragraphs>
+              <rd:DefaultName>Textbox1</rd:DefaultName>
               <Top>0.11853cm</Top>
               <Left>9.47419cm</Left>
               <Height>0.9525cm</Height>
@@ -3960,7 +3933,6 @@ Last(Fields!CurrencyCode.Value, "DataSet_Result") = "JPY",
               </Style>
             </Textbox>
             <Textbox Name="CompanyAddress1">
-              <rd:DefaultName>CompanyAddress1</rd:DefaultName>
               <CanGrow>true</CanGrow>
               <KeepTogether>true</KeepTogether>
               <Paragraphs>
@@ -3980,6 +3952,7 @@ Last(Fields!CurrencyCode.Value, "DataSet_Result") = "JPY",
                   </Style>
                 </Paragraph>
               </Paragraphs>
+              <rd:DefaultName>CompanyAddress1</rd:DefaultName>
               <Top>1.514cm</Top>
               <Left>18.64923cm</Left>
               <Height>0.38806cm</Height>
@@ -4055,4 +4028,6 @@ End Function
 </Code>
   <Language>=User!Language</Language>
   <ConsumeContainerWhitespace>true</ConsumeContainerWhitespace>
+  <rd:ReportUnitType>Cm</rd:ReportUnitType>
+  <rd:ReportID>0eeb6585-38ae-40f1-885b-8d50088d51b4</rd:ReportID>
 </Report>

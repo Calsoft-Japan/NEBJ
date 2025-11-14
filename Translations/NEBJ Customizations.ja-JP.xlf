@@ -569,10 +569,15 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit ItemTrackingMgtNEBJ - NamedType Text016</note>
         </trans-unit>
-        <trans-unit id="Codeunit 3645345842 - Method 3717769530 - NamedType 14768227" size-unit="char" translate="yes" xml:space="preserve">
+        <trans-unit id="Codeunit 394513540 - Method 3717769530 - NamedType 14768227" size-unit="char" translate="yes" xml:space="preserve">
           <source>保管温度が-70度または-80度の為、休日前の場合には出荷できませんので出荷日を休日後に変更してください。</source>
           <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Sales Line Enhancement - Method Ext_LotInsert - NamedType Text50001</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Sales Enhancement - Method Ext_LotInsert - NamedType Text50001</note>
+        </trans-unit>
+        <trans-unit id="Page 2618203330 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>顧客区分</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Customer Type List - Property Caption</note>
         </trans-unit>
         <trans-unit id="Page 1592554000 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>End User Subform</source>
@@ -669,12 +674,6 @@
           <target>インポート</target>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page Purchase Order Import - Control Import - Property Caption</note>
-        </trans-unit>
-        <trans-unit id="Page 3305963972 - Control 1128255148 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Import (Test)</source>
-          <target>インポート(テストのみ)</target>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page Purchase Order Import - Control IsImpTest - Property Caption</note>
         </trans-unit>
         <trans-unit id="Page 3305963972 - Action 155853105 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Execute</source>
@@ -916,6 +915,60 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page Sales Order Import Result - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Report 2188769160 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Import Goods Receipt Inspection Data</source>
+          <target>入荷検品データインポート </target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Import Goods Rcpt. Insp. Data - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Report 2188769160 - NamedType 940073651" size-unit="char" translate="yes" xml:space="preserve">
+          <source>File not found or incorrect.</source>
+          <target>ファイルが見つからないか正しくありません。</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Import Goods Rcpt. Insp. Data - NamedType BlankFileErr</note>
+        </trans-unit>
+        <trans-unit id="Report 2188769160 - NamedType 149879980" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Import from excel file</source>
+          <target>Import from excel file</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Import Goods Rcpt. Insp. Data - NamedType DialogTxt</note>
+        </trans-unit>
+        <trans-unit id="Report 2188769160 - NamedType 303728444" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Text Files (*.txt)|*.txt|All Files (*.*)|*.*</source>
+          <target>Text Files (*.txt)|*.txt|All Files (*.*)|*.*</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Import Goods Rcpt. Insp. Data - NamedType FilterTxt</note>
+        </trans-unit>
+        <trans-unit id="Report 2188769160 - NamedType 1945087951" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Import Completed</source>
+          <target>Import Completed</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Import Goods Rcpt. Insp. Data - NamedType ImpMsg</note>
+        </trans-unit>
+        <trans-unit id="Report 2188769160 - Method 856207895 - NamedType 3347522258" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Reading Text File...\\</source>
+          <target>Reading Text File...\\</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Import Goods Rcpt. Insp. Data - Method ReadTextFileNew - NamedType ReadFileLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 2188769160 - Control 828292189 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Option</source>
+          <target>オプション</target> 
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Import Goods Rcpt. Insp. Data - Control Option - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Report 2188769160 - Control 989751795 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>File Name</source>
+          <target>ファイル名</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Import Goods Rcpt. Insp. Data - Control FileName - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Report 2188769160 - Control 1397210255 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Batch Name</source>
+          <target>バッチ名</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Import Goods Rcpt. Insp. Data - Control ReqBatchName - Property Caption</note>
+        </trans-unit>
         <trans-unit id="Report 4268876869 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Sales Order Import</source>
           <target>受注取込</target>
@@ -935,7 +988,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Report Sales Order Import - NamedType DialogTxt</note>
         </trans-unit>
         <trans-unit id="Report 4268876869 - NamedType 303728444" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Text Files (*.csv)|*.csv|All Files (*.*)|*.*</source>
+          <source>CSV Files (*.csv)|*.csv|All Files (*.*)|*.*</source>
           <target>CSV ファイル (*.csv)|*.csv|全てのファイル (*.*)|*.*</target>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Report Sales Order Import - NamedType FilterTxt</note>
@@ -1053,6 +1106,12 @@
           <target>ファイル名</target>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Report Sales Order Import - Control FileName - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="PageExtension 3752244521 - Action 2285815948 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 2466464261">
+          <source>Import Goods Receipt Insp. Data</source>
+          <target>入荷検品データインポート</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension Item Reclass. Jornal Ext - Action ImportGoodsRcpt - Property Caption</note>
         </trans-unit>
         <trans-unit id="PageExtension 510266991 - Action 3894195457 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 387971303">
           <source>Import Purch. Order</source>
@@ -1283,7 +1342,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">TableExtension Customer Ext - Field Customer - Property Caption</note>
         </trans-unit>
         <trans-unit id="TableExtension 2204447775 - Field 475748445 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Table 1994964448">
-          <source>Customer Group</source>
+          <source>顧客区分</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">TableExtension Customer Ext - Field Customer Group - Property Caption</note>
         </trans-unit>
@@ -1646,7 +1705,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">TableExtension Item Ext - Field Item not for Web - Property Caption</note>
         </trans-unit>
         <trans-unit id="TableExtension 2480387432 - Field 421362933 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Table 3276313895">
-          <source>ItemGroup1</source>
+          <source>アイテムグループ1</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">TableExtension Item Ext - Field ItemGroup1 - Property Caption</note>
         </trans-unit>

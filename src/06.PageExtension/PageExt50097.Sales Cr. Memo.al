@@ -1,25 +1,31 @@
-pageextension 50097 "Sales Credit Memo Ext" extends "Sales Credit Memo"
+pageextension 50097 "Sales Credit Memo" extends "Sales Credit Memo"
 {
     actions
     {
-        addlast(Reporting)
+        addlast(Processing)
         {
             action(Print)
             {
-                Caption = 'Print';
+                Caption = '印刷';
+                Ellipsis = true;
                 Image = Print;
                 ApplicationArea = All;
+
                 Promoted = true;
-                PromotedCategory = Process;
                 PromotedIsBig = true;
+                PromotedCategory = Process;
 
                 trigger OnAction()
                 var
-                    RequestPage: Page "Sales Cr. Memo Report Request";
+                    SH: Record "Sales Header";
                 begin
-                    RequestPage.RunModal();
+
+                    CurrPage.SetSelectionFilter(SH);
+                    Report.RunModal(50001, true, true, SH);
+
                 end;
             }
         }
     }
+
 }

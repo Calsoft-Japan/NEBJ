@@ -11,7 +11,7 @@
       <am:Name>MSRB</am:Name>
       <am:Version>15.1.30001.02</am:Version>
     </am:UpdatedBy>
-    <am:LastModifiedTimestamp>2025-11-13T00:57:46.8022630Z</am:LastModifiedTimestamp>
+    <am:LastModifiedTimestamp>2025-11-14T03:22:12.5078826Z</am:LastModifiedTimestamp>
   </am:AuthoringMetadata>
   <AutoRefresh>0</AutoRefresh>
   <DataSources>
@@ -24,6 +24,145 @@
       <rd:DataSourceID>b23244e3-9790-4712-be0f-6041ac5f0e69</rd:DataSourceID>
     </DataSource>
   </DataSources>
+  <DataSets>
+    <DataSet Name="DataSet_Result">
+      <Query>
+        <DataSourceName>DataSource</DataSourceName>
+        <CommandText />
+      </Query>
+      <Fields>
+        <Field Name="No_SalesHdr">
+          <DataField>No_SalesHdr</DataField>
+        </Field>
+        <Field Name="DocumentDate">
+          <DataField>DocumentDate</DataField>
+        </Field>
+        <Field Name="BillToName">
+          <DataField>BillToName</DataField>
+        </Field>
+        <Field Name="BillToName2">
+          <DataField>BillToName2</DataField>
+        </Field>
+        <Field Name="BillToAddress">
+          <DataField>BillToAddress</DataField>
+        </Field>
+        <Field Name="BillToAddress2">
+          <DataField>BillToAddress2</DataField>
+        </Field>
+        <Field Name="BillToPostCode">
+          <DataField>BillToPostCode</DataField>
+        </Field>
+        <Field Name="BillToCity">
+          <DataField>BillToCity</DataField>
+        </Field>
+        <Field Name="BillToCustomerNo">
+          <DataField>BillToCustomerNo</DataField>
+        </Field>
+        <Field Name="Direct_Shipping_Code">
+          <DataField>Direct_Shipping_Code</DataField>
+        </Field>
+        <Field Name="PostingDate">
+          <DataField>PostingDate</DataField>
+        </Field>
+        <Field Name="CurrencyCode">
+          <DataField>CurrencyCode</DataField>
+        </Field>
+        <Field Name="CompanyName">
+          <DataField>CompanyName</DataField>
+        </Field>
+        <Field Name="CompanyAddress">
+          <DataField>CompanyAddress</DataField>
+        </Field>
+        <Field Name="CompanyAddress2">
+          <DataField>CompanyAddress2</DataField>
+        </Field>
+        <Field Name="CompanyCity">
+          <DataField>CompanyCity</DataField>
+        </Field>
+        <Field Name="CompanyPostCode">
+          <DataField>CompanyPostCode</DataField>
+        </Field>
+        <Field Name="CompanyFaxNo">
+          <DataField>CompanyFaxNo</DataField>
+        </Field>
+        <Field Name="CompanyPhoneNo">
+          <DataField>CompanyPhoneNo</DataField>
+        </Field>
+        <Field Name="ItemNo_Line">
+          <DataField>ItemNo_Line</DataField>
+        </Field>
+        <Field Name="Document_No_">
+          <DataField>Document_No_</DataField>
+        </Field>
+        <Field Name="Description_Line">
+          <DataField>Description_Line</DataField>
+        </Field>
+        <Field Name="EU_Description">
+          <DataField>EU_Description</DataField>
+        </Field>
+        <Field Name="Bikou_Description">
+          <DataField>Bikou_Description</DataField>
+        </Field>
+        <Field Name="EU_Division_1">
+          <DataField>EU_Division_1</DataField>
+        </Field>
+        <Field Name="Quantity_Line">
+          <DataField>Quantity_Line</DataField>
+        </Field>
+        <Field Name="Quantity_LineFormat">
+          <DataField>Quantity_LineFormat</DataField>
+        </Field>
+        <Field Name="UnitPrice">
+          <DataField>UnitPrice</DataField>
+        </Field>
+        <Field Name="UnitPriceFormat">
+          <DataField>UnitPriceFormat</DataField>
+        </Field>
+        <Field Name="LineDiscountPercent_Line">
+          <DataField>LineDiscountPercent_Line</DataField>
+        </Field>
+        <Field Name="LineDiscountPercent_LineFormat">
+          <DataField>LineDiscountPercent_LineFormat</DataField>
+        </Field>
+        <Field Name="AmountIncludingVAT_Line">
+          <DataField>AmountIncludingVAT_Line</DataField>
+        </Field>
+        <Field Name="AmountIncludingVAT_LineFormat">
+          <DataField>AmountIncludingVAT_LineFormat</DataField>
+        </Field>
+        <Field Name="LineAmountExclVAT">
+          <DataField>LineAmountExclVAT</DataField>
+        </Field>
+        <Field Name="LineAmountExclVATFormat">
+          <DataField>LineAmountExclVATFormat</DataField>
+        </Field>
+        <Field Name="NetUnitPrice">
+          <DataField>NetUnitPrice</DataField>
+        </Field>
+        <Field Name="NetUnitPriceFormat">
+          <DataField>NetUnitPriceFormat</DataField>
+        </Field>
+        <Field Name="StorageTemprature">
+          <DataField>StorageTemprature</DataField>
+        </Field>
+        <Field Name="ExternalDocumentNo">
+          <DataField>ExternalDocumentNo</DataField>
+        </Field>
+        <Field Name="TotalAmountExclVAT">
+          <DataField>TotalAmountExclVAT</DataField>
+        </Field>
+        <Field Name="TotalAmountExclVATFormat">
+          <DataField>TotalAmountExclVATFormat</DataField>
+        </Field>
+        <Field Name="LineTypeTxt">
+          <DataField>LineTypeTxt</DataField>
+        </Field>
+        <Field Name="TypeInt">
+          <DataField>TypeInt</DataField>
+        </Field>
+      </Fields>
+    </DataSet>
+  </DataSets>
   <ReportSections>
     <ReportSection>
       <Body>
@@ -369,7 +508,7 @@
                   <PaddingBottom>2pt</PaddingBottom>
                 </Style>
               </Textbox>
-              <Tablix Name="Tablix1">
+              <Tablix Name="LineTable">
                 <TablixBody>
                   <TablixColumns>
                     <TablixColumn>
@@ -2922,14 +3061,10 @@
                       <TablixMembers>
                         <TablixMember>
                           <Visibility>
-                            <Hidden>true</Hidden>
+                            <Hidden>=Fields!Type_Line.Value &lt;&gt; " "</Hidden>
                           </Visibility>
                         </TablixMember>
-                        <TablixMember>
-                          <Visibility>
-                            <Hidden>=IIf(Fields!TypeInt.Value &gt; 0, False, True)</Hidden>
-                          </Visibility>
-                        </TablixMember>
+                        <TablixMember />
                         <TablixMember />
                         <TablixMember />
                         <TablixMember />
@@ -3031,7 +3166,12 @@
                   <Paragraph>
                     <TextRuns>
                       <TextRun>
-                        <Value>="消費税抜合計" &amp; " " &amp; Last(Fields!CurrencyCode.Value, "DataSet_Result")</Value>
+                        <Value>="消費税抜合計" &amp; =IIf(
+    Fields!CurrencyCode.Value = "JPY",
+    FormatNumber(Fields!YourAmountField.Value, 0),
+    FormatNumber(Fields!YourAmountField.Value, 2)
+) 
+&amp; " " &amp; Fields!CurrencyCode.Value</Value>
                         <Style>
                           <FontStyle>Normal</FontStyle>
                           <FontFamily>MS UI Gothic</FontFamily>
@@ -3046,7 +3186,7 @@
                   </Paragraph>
                 </Paragraphs>
                 <Top>9.63128cm</Top>
-                <Left>9.99442cm</Left>
+                <Left>12.41899cm</Left>
                 <Height>0.50686cm</Height>
                 <Width>3.20646cm</Width>
                 <ZIndex>13</ZIndex>
@@ -3069,7 +3209,7 @@
                     <TextRuns>
                       <TextRun>
                         <Value>=IIf(
-    First(Fields!CurrencyCode.Value, "DataSet_Result") = "JPY",
+First(Fields!CurrencyCode.Value, "DataSet_Result") = "JPY",
     FormatNumber(Sum(-1 * Fields!TotalAmountExclVAT.Value, "DataSet_Result"), 0),
     FormatNumber(Sum(-1 * Fields!TotalAmountExclVAT.Value, "DataSet_Result"), 2)
 )</Value>
@@ -3085,7 +3225,7 @@
                   </Paragraph>
                 </Paragraphs>
                 <Top>9.63128cm</Top>
-                <Left>13.34199cm</Left>
+                <Left>15.76656cm</Left>
                 <Height>0.50686cm</Height>
                 <Width>3.26997cm</Width>
                 <ZIndex>14</ZIndex>
@@ -3428,6 +3568,12 @@
       </Page>
     </ReportSection>
   </ReportSections>
+  <ReportParametersLayout>
+    <GridLayoutDefinition>
+      <NumberOfColumns>4</NumberOfColumns>
+      <NumberOfRows>2</NumberOfRows>
+    </GridLayoutDefinition>
+  </ReportParametersLayout>
   <Code>Public Function BlankZero(ByVal Value As Decimal)
     if Value = 0 then
         Return ""
@@ -3465,143 +3611,4 @@ End Function
 </Code>
   <Language>=User!Language</Language>
   <ConsumeContainerWhitespace>true</ConsumeContainerWhitespace>
-  <DataSets>
-    <DataSet Name="DataSet_Result">
-      <Fields>
-        <Field Name="No_SalesHdr">
-          <DataField>No_SalesHdr</DataField>
-        </Field>
-        <Field Name="DocumentDate">
-          <DataField>DocumentDate</DataField>
-        </Field>
-        <Field Name="BillToName">
-          <DataField>BillToName</DataField>
-        </Field>
-        <Field Name="BillToName2">
-          <DataField>BillToName2</DataField>
-        </Field>
-        <Field Name="BillToAddress">
-          <DataField>BillToAddress</DataField>
-        </Field>
-        <Field Name="BillToAddress2">
-          <DataField>BillToAddress2</DataField>
-        </Field>
-        <Field Name="BillToPostCode">
-          <DataField>BillToPostCode</DataField>
-        </Field>
-        <Field Name="BillToCity">
-          <DataField>BillToCity</DataField>
-        </Field>
-        <Field Name="BillToCustomerNo">
-          <DataField>BillToCustomerNo</DataField>
-        </Field>
-        <Field Name="Direct_Shipping_Code">
-          <DataField>Direct_Shipping_Code</DataField>
-        </Field>
-        <Field Name="PostingDate">
-          <DataField>PostingDate</DataField>
-        </Field>
-        <Field Name="CurrencyCode">
-          <DataField>CurrencyCode</DataField>
-        </Field>
-        <Field Name="CompanyName">
-          <DataField>CompanyName</DataField>
-        </Field>
-        <Field Name="CompanyAddress">
-          <DataField>CompanyAddress</DataField>
-        </Field>
-        <Field Name="CompanyAddress2">
-          <DataField>CompanyAddress2</DataField>
-        </Field>
-        <Field Name="CompanyCity">
-          <DataField>CompanyCity</DataField>
-        </Field>
-        <Field Name="CompanyPostCode">
-          <DataField>CompanyPostCode</DataField>
-        </Field>
-        <Field Name="CompanyFaxNo">
-          <DataField>CompanyFaxNo</DataField>
-        </Field>
-        <Field Name="CompanyPhoneNo">
-          <DataField>CompanyPhoneNo</DataField>
-        </Field>
-        <Field Name="ItemNo_Line">
-          <DataField>ItemNo_Line</DataField>
-        </Field>
-        <Field Name="Document_No_">
-          <DataField>Document_No_</DataField>
-        </Field>
-        <Field Name="Description_Line">
-          <DataField>Description_Line</DataField>
-        </Field>
-        <Field Name="EU_Description">
-          <DataField>EU_Description</DataField>
-        </Field>
-        <Field Name="Bikou_Description">
-          <DataField>Bikou_Description</DataField>
-        </Field>
-        <Field Name="EU_Division_1">
-          <DataField>EU_Division_1</DataField>
-        </Field>
-        <Field Name="Quantity_Line">
-          <DataField>Quantity_Line</DataField>
-        </Field>
-        <Field Name="Quantity_LineFormat">
-          <DataField>Quantity_LineFormat</DataField>
-        </Field>
-        <Field Name="UnitPrice">
-          <DataField>UnitPrice</DataField>
-        </Field>
-        <Field Name="UnitPriceFormat">
-          <DataField>UnitPriceFormat</DataField>
-        </Field>
-        <Field Name="LineDiscountPercent_Line">
-          <DataField>LineDiscountPercent_Line</DataField>
-        </Field>
-        <Field Name="LineDiscountPercent_LineFormat">
-          <DataField>LineDiscountPercent_LineFormat</DataField>
-        </Field>
-        <Field Name="AmountIncludingVAT_Line">
-          <DataField>AmountIncludingVAT_Line</DataField>
-        </Field>
-        <Field Name="AmountIncludingVAT_LineFormat">
-          <DataField>AmountIncludingVAT_LineFormat</DataField>
-        </Field>
-        <Field Name="LineAmountExclVAT">
-          <DataField>LineAmountExclVAT</DataField>
-        </Field>
-        <Field Name="LineAmountExclVATFormat">
-          <DataField>LineAmountExclVATFormat</DataField>
-        </Field>
-        <Field Name="NetUnitPrice">
-          <DataField>NetUnitPrice</DataField>
-        </Field>
-        <Field Name="NetUnitPriceFormat">
-          <DataField>NetUnitPriceFormat</DataField>
-        </Field>
-        <Field Name="StorageTemprature">
-          <DataField>StorageTemprature</DataField>
-        </Field>
-        <Field Name="ExternalDocumentNo">
-          <DataField>ExternalDocumentNo</DataField>
-        </Field>
-        <Field Name="TotalAmountExclVAT">
-          <DataField>TotalAmountExclVAT</DataField>
-        </Field>
-        <Field Name="TotalAmountExclVATFormat">
-          <DataField>TotalAmountExclVATFormat</DataField>
-        </Field>
-        <Field Name="LineTypeTxt">
-          <DataField>LineTypeTxt</DataField>
-        </Field>
-        <Field Name="TypeInt">
-          <DataField>TypeInt</DataField>
-        </Field>
-      </Fields>
-      <Query>
-        <DataSourceName>DataSource</DataSourceName>
-        <CommandText />
-      </Query>
-    </DataSet>
-  </DataSets>
 </Report>

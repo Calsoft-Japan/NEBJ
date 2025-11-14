@@ -6,7 +6,7 @@ report 50001 "NEBJ Sales Cr. Memo Conf."
     PreviewMode = PrintLayout;
 
     DefaultLayout = RDLC;
-    RDLCLayout = 'src\10.ReportLayout\SalesCreditMemoConfirmation_NEBJ.rdlc';
+    //RDLCLayout = 'src\10.ReportLayout\SalesCreditMemoConfirmation_NEBJ.rdlc';
 
     dataset
     {

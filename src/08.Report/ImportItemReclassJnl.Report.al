@@ -102,8 +102,8 @@ report 50002 "Import Goods Rcpt. Insp. Data"
             TotalRecNo := ExcelBuf."Row No."
         else
             TotalRecNo := ExcelBuf.Count;
-        RecNo := 0;
 
+        RecNo := 0;
         for RowCounter := 2 to TotalRecNo do begin
             RecNo := RecNo + 1;
 

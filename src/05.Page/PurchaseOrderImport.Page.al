@@ -26,10 +26,6 @@ page 50011 "Purchase Order Import"
                     TempBlob.CreateInStream(FileInStream);
                 end;
             }
-            field(Import; IsImport)
-            {
-                Caption = 'Import';
-            }
         }
     }
     actions

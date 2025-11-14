@@ -1,6 +1,6 @@
 reportextension 51305 "Sales Ord Confirmation Ext" extends "Standard Sales - Order Conf."
 {
-    //RDLCLayout = '.\ReportLayout\SalesOrderConfirmation_NEBJ.rdlc';
+    //RDLCLayout = 'src\10.ReportLayout\SalesOrderConfirmation_NEBJ.rdlc';
 
     dataset
     {
@@ -79,7 +79,10 @@ reportextension 51305 "Sales Ord Confirmation Ext" extends "Standard Sales - Ord
             column(Planned_Delivery_Date; "Planned Delivery Date")
             { }
             //2025-11-04
-            column(ItemDescFromItem_Line; ItemDescFromItemTxt) { }
+            column(ItemDescFromItem_Line; ItemDescFromItemTxt)
+            { }
+            column(NetUnitPrice_Line; "Line Amount" / Quantity)
+            { }
         }
         modify(Line)
         {

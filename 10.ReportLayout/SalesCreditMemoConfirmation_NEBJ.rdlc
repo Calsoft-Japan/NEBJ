@@ -63,7 +63,62 @@ End Function
   <rd:ReportID>0eeb6585-38ae-40f1-885b-8d50088d51b4</rd:ReportID>
   <DataSets>
     <DataSet Name="DataSet_Result">
-      <Fields />
+      <Fields>
+        <Field Name="No_SalesHdr">
+          <DataField>No_SalesHdr</DataField>
+        </Field>
+        <Field Name="BillToName">
+          <DataField>BillToName</DataField>
+        </Field>
+        <Field Name="BillToName2">
+          <DataField>BillToName2</DataField>
+        </Field>
+        <Field Name="BillToAddress">
+          <DataField>BillToAddress</DataField>
+        </Field>
+        <Field Name="BillToAddress2">
+          <DataField>BillToAddress2</DataField>
+        </Field>
+        <Field Name="BillToPostCode">
+          <DataField>BillToPostCode</DataField>
+        </Field>
+        <Field Name="BillToCity">
+          <DataField>BillToCity</DataField>
+        </Field>
+        <Field Name="BillToCustomerNo">
+          <DataField>BillToCustomerNo</DataField>
+        </Field>
+        <Field Name="Direct_Shipping_Code">
+          <DataField>Direct_Shipping_Code</DataField>
+        </Field>
+        <Field Name="PostingDate">
+          <DataField>PostingDate</DataField>
+        </Field>
+        <Field Name="CompanyName">
+          <DataField>CompanyName</DataField>
+        </Field>
+        <Field Name="CompanyAddress">
+          <DataField>CompanyAddress</DataField>
+        </Field>
+        <Field Name="CompanyCity">
+          <DataField>CompanyCity</DataField>
+        </Field>
+        <Field Name="CompanyPostCode">
+          <DataField>CompanyPostCode</DataField>
+        </Field>
+        <Field Name="CompanyFaxNo">
+          <DataField>CompanyFaxNo</DataField>
+        </Field>
+        <Field Name="NetUnitPrice">
+          <DataField>NetUnitPrice</DataField>
+        </Field>
+        <Field Name="NetUnitPriceFormat">
+          <DataField>NetUnitPriceFormat</DataField>
+        </Field>
+        <Field Name="StorageTemprature">
+          <DataField>StorageTemprature</DataField>
+        </Field>
+      </Fields>
       <Query>
         <DataSourceName>DataSource</DataSourceName>
         <CommandText />

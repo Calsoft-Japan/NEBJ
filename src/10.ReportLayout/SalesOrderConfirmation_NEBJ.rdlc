@@ -11,7 +11,7 @@
       <am:Name>MSRB</am:Name>
       <am:Version>15.1.30001.02</am:Version>
     </am:UpdatedBy>
-    <am:LastModifiedTimestamp>2025-11-07T00:22:31.0590318Z</am:LastModifiedTimestamp>
+    <am:LastModifiedTimestamp>2025-11-14T01:14:41.9264639Z</am:LastModifiedTimestamp>
   </am:AuthoringMetadata>
   <AutoRefresh>0</AutoRefresh>
   <DataSources>
@@ -778,8 +778,11 @@
         <Field Name="DirectShippingCode">
           <DataField>DirectShippingCode</DataField>
         </Field>
-        <Field Name="Currency_Code">
-          <DataField>Currency_Code</DataField>
+        <Field Name="DirectShippingName">
+          <DataField>DirectShippingName</DataField>
+        </Field>
+        <Field Name="DirectShippingAddress">
+          <DataField>DirectShippingAddress</DataField>
         </Field>
         <Field Name="StorageTemp">
           <DataField>StorageTemp</DataField>
@@ -790,6 +793,12 @@
         <Field Name="EU_Division_1">
           <DataField>EU_Division_1</DataField>
         </Field>
+        <Field Name="EU_Division_2">
+          <DataField>EU_Division_2</DataField>
+        </Field>
+        <Field Name="EU_Division_3">
+          <DataField>EU_Division_3</DataField>
+        </Field>
         <Field Name="Description_Bikou_">
           <DataField>Description_Bikou_</DataField>
         </Field>
@@ -799,34 +808,17 @@
         <Field Name="ExternaDocumentNo_">
           <DataField>ExternaDocumentNo_</DataField>
         </Field>
-        <Field Name="DirectShippingName">
-          <rd:UserDefined>true</rd:UserDefined>
-          <DataField>DirectShippingName</DataField>
-        </Field>
-        <Field Name="DirectShippingAddress">
-          <rd:UserDefined>true</rd:UserDefined>
-          <DataField>DirectShippingAddress</DataField>
-        </Field>
         <Field Name="Planned_Delivery_Date">
-          <Value>Planned_Delivery_Date</Value>
-        </Field>
-        <Field Name="EU_Division_2">
-          <Value>EU_Division_2</Value>
-        </Field>
-        <Field Name="EU_Division_3">
-          <Value>EU_Division_3</Value>
-        </Field>
-        <Field Name="ItemFullName_Line">
-          <Value>ItemFullName_Line</Value>
-        </Field>
-        <Field Name="ItemOfficialName_Line">
-          <Value>ItemOfficialName_Line</Value>
-        </Field>
-        <Field Name="NEBJ_TotalExclVATFormatted">
-          <Value>NEBJ_TotalExclVATFormatted</Value>
+          <DataField>Planned_Delivery_Date</DataField>
         </Field>
         <Field Name="ItemDescFromItem_Line">
-          <Value>ItemDescFromItem_Line</Value>
+          <DataField>ItemDescFromItem_Line</DataField>
+        </Field>
+        <Field Name="UnitPrice2">
+          <Value>UnitPrice2</Value>
+        </Field>
+        <Field Name="NetUnitPrice_Line">
+          <Value>NetUnitPrice_Line</Value>
         </Field>
       </Fields>
     </DataSet>
@@ -2104,7 +2096,8 @@
                                       </TablixCell>
                                       <TablixCell>
                                         <CellContents>
-                                          <Textbox Name="UnitPrice2">
+                                          <Textbox Name="Textbox9">
+                                            <rd:DefaultName>Textbox9</rd:DefaultName>
                                             <CanGrow>true</CanGrow>
                                             <KeepTogether>true</KeepTogether>
                                             <Paragraphs>
@@ -2113,13 +2106,12 @@
                                                   <TextRun>
                                                     <Value>=IIf(
 Last(Fields!CurrencyCode.Value, "DataSet_Result") = "JPY",
-    FormatNumber(Last(Fields!Fields!UnitPrice.Value, "DataSet_Result"), 0),
-    FormatNumber(Last(Fields!Fields!UnitPrice.Value, "DataSet_Result"), 2)
+ FormatNumber(Last(Fields!UnitPrice.Value, "DataSet_Result"), 0),
+ FormatNumber(Last(Fields!UnitPrice.Value, "DataSet_Result"), 2)
 )</Value>
                                                     <Style>
                                                       <FontFamily>MS UI Gothic</FontFamily>
                                                       <FontSize>8pt</FontSize>
-                                                      <Format>#,0</Format>
                                                     </Style>
                                                   </TextRun>
                                                 </TextRuns>
@@ -2175,23 +2167,18 @@ Last(Fields!CurrencyCode.Value, "DataSet_Result") = "JPY",
                                       </TablixCell>
                                       <TablixCell>
                                         <CellContents>
-                                          <Textbox Name="UnitPriceAfterDiscount2">
+                                          <Textbox Name="NetUnitPrice_Line">
+                                            <rd:DefaultName>NetUnitPrice_Line</rd:DefaultName>
                                             <CanGrow>true</CanGrow>
                                             <KeepTogether>true</KeepTogether>
                                             <Paragraphs>
                                               <Paragraph>
                                                 <TextRuns>
                                                   <TextRun>
-                                                    <Value>=Switch(Last(Fields!CurrencyCode.Value, "DataSet_Result") = "JPY",
-        FormatNumber(IIf(Fields!Quantity_Line.Value = 0, 0, Fields!AmountExcludingVAT_Line.Value / Fields!Quantity_Line.Value), 0),
-    Last(Fields!CurrencyCode.Value, "DataSet_Result") IN ("KWD", "BHD"),
-        FormatNumber(IIf(Fields!Quantity_Line.Value = 0, 0, Fields!AmountExcludingVAT_Line.Value / Fields!Quantity_Line.Value), 3),
-    True,
-        FormatNumber(IIf(Fields!Quantity_Line.Value = 0, 0, Fields!AmountExcludingVAT_Line.Value / Fields!Quantity_Line.Value), 2))</Value>
+                                                    <Value>=Fields!NetUnitPrice_Line.Value</Value>
                                                     <Style>
                                                       <FontFamily>MS UI Gothic</FontFamily>
                                                       <FontSize>8pt</FontSize>
-                                                      <Format>#,0</Format>
                                                     </Style>
                                                   </TextRun>
                                                 </TextRuns>
@@ -2214,8 +2201,8 @@ Last(Fields!CurrencyCode.Value, "DataSet_Result") = "JPY",
                                       <TablixCell>
                                         <CellContents>
                                           <rd:Selected>true</rd:Selected>
-                                          <Textbox Name="AmountExcludingVAT_Line2">
-                                            <rd:DefaultName>AmountExcludingVAT_Line</rd:DefaultName>
+                                          <Textbox Name="Textbox10">
+                                            <rd:DefaultName>Textbox10</rd:DefaultName>
                                             <CanGrow>true</CanGrow>
                                             <KeepTogether>true</KeepTogether>
                                             <Paragraphs>
@@ -2224,15 +2211,14 @@ Last(Fields!CurrencyCode.Value, "DataSet_Result") = "JPY",
                                                   <TextRun>
                                                     <Value>=IIf(
 Last(Fields!CurrencyCode.Value, "DataSet_Result") = "JPY",
-    
-FormatNumber(Last(Fields!AmountExcludingVAT_Line, "DataSet_Result"), 0),
-    
-FormatNumber(Last(Fields!AmountExcludingVAT_Line, "DataSet_Result"), 2)
+ 
+FormatNumber(Last(Fields!AmountExcludingVAT_Line.value, "DataSet_Result"), 0),
+ 
+FormatNumber(Last(Fields!AmountExcludingVAT_Line.value, "DataSet_Result"), 2)
 )</Value>
                                                     <Style>
                                                       <FontFamily>MS UI Gothic</FontFamily>
                                                       <FontSize>8pt</FontSize>
-                                                      <Format>#,0</Format>
                                                     </Style>
                                                   </TextRun>
                                                 </TextRuns>
@@ -2397,7 +2383,10 @@ FormatNumber(Last(Fields!AmountExcludingVAT_Line, "DataSet_Result"), 2)
                                               <Paragraph>
                                                 <TextRuns>
                                                   <TextRun>
-                                                    <Value>=Fields!EU_Description.Value &amp; " " &amp; Fields!EU_Division_1.Value &amp; " " &amp; Fields!EU_Division_2.Value &amp; " " &amp; Fields!EU_Division_3.Value</Value>
+                                                    <Value>=Fields!EU_Description.Value &amp; " " &amp; 
+Fields!EU_Division_1.Value &amp; " " &amp;
+Fields!EU_Division_2.Value &amp; " " &amp; 
+Fields!EU_Division_3.Value</Value>
                                                     <Style>
                                                       <FontFamily>MS UI Gothic</FontFamily>
                                                       <FontSize>8pt</FontSize>
@@ -3259,7 +3248,7 @@ FormatNumber(Last(Fields!AmountExcludingVAT_Line, "DataSet_Result"), 2)
                               <RepeatRowHeaders>true</RepeatRowHeaders>
                               <DataSetName>DataSet_Result</DataSetName>
                               <Top>5.80644cm</Top>
-                              <Left>0.18952cm</Left>
+                              <Left>0.18953cm</Left>
                               <Height>3.60475cm</Height>
                               <Width>26.79834cm</Width>
                               <Style>
@@ -3397,7 +3386,7 @@ FormatNumber(Last(Fields!AmountExcludingVAT_Line, "DataSet_Result"), 2)
                                 </Paragraph>
                               </Paragraphs>
                               <Top>3.66851cm</Top>
-                              <Left>0.00001cm</Left>
+                              <Left>0.00002cm</Left>
                               <Height>1.02306cm</Height>
                               <Width>10.6521cm</Width>
                               <ZIndex>4</ZIndex>
@@ -3460,7 +3449,7 @@ FormatNumber(Last(Fields!AmountExcludingVAT_Line, "DataSet_Result"), 2)
                                 </Paragraph>
                               </Paragraphs>
                               <Top>1.29338cm</Top>
-                              <Left>6.54863cm</Left>
+                              <Left>6.54864cm</Left>
                               <Height>0.38806cm</Height>
                               <Width>4.10346cm</Width>
                               <ZIndex>6</ZIndex>
@@ -3494,7 +3483,7 @@ FormatNumber(Last(Fields!AmountExcludingVAT_Line, "DataSet_Result"), 2)
                                 </Paragraph>
                               </Paragraphs>
                               <Top>1.54032cm</Top>
-                              <Left>18.24707cm</Left>
+                              <Left>18.24708cm</Left>
                               <Height>0.38806cm</Height>
                               <Width>8.7408cm</Width>
                               <ZIndex>7</ZIndex>
@@ -3527,7 +3516,7 @@ FormatNumber(Last(Fields!AmountExcludingVAT_Line, "DataSet_Result"), 2)
                                 </Paragraph>
                               </Paragraphs>
                               <Top>1.96366cm</Top>
-                              <Left>18.24707cm</Left>
+                              <Left>18.24708cm</Left>
                               <Height>0.38806cm</Height>
                               <Width>8.7408cm</Width>
                               <ZIndex>8</ZIndex>
@@ -3560,7 +3549,7 @@ FormatNumber(Last(Fields!AmountExcludingVAT_Line, "DataSet_Result"), 2)
                                 </Paragraph>
                               </Paragraphs>
                               <Top>2.35172cm</Top>
-                              <Left>18.24707cm</Left>
+                              <Left>18.24708cm</Left>
                               <Height>0.38806cm</Height>
                               <Width>8.7408cm</Width>
                               <ZIndex>9</ZIndex>
@@ -3594,7 +3583,7 @@ FormatNumber(Last(Fields!AmountExcludingVAT_Line, "DataSet_Result"), 2)
                                 </Paragraph>
                               </Paragraphs>
                               <Top>2.77506cm</Top>
-                              <Left>18.24707cm</Left>
+                              <Left>18.24708cm</Left>
                               <Height>0.38806cm</Height>
                               <Width>8.7408cm</Width>
                               <ZIndex>10</ZIndex>
@@ -3628,7 +3617,7 @@ FormatNumber(Last(Fields!AmountExcludingVAT_Line, "DataSet_Result"), 2)
                                 </Paragraph>
                               </Paragraphs>
                               <Top>3.1984cm</Top>
-                              <Left>18.24707cm</Left>
+                              <Left>18.24708cm</Left>
                               <Height>0.38806cm</Height>
                               <Width>8.7408cm</Width>
                               <ZIndex>11</ZIndex>
@@ -3663,7 +3652,7 @@ FormatNumber(Last(Fields!AmountExcludingVAT_Line, "DataSet_Result"), 2)
                                 </Paragraph>
                               </Paragraphs>
                               <Top>0.72187cm</Top>
-                              <Left>18.24706cm</Left>
+                              <Left>18.24707cm</Left>
                               <Height>0.64206cm</Height>
                               <Width>8.7408cm</Width>
                               <ZIndex>12</ZIndex>
@@ -3721,7 +3710,9 @@ FormatNumber(Last(Fields!AmountExcludingVAT_Line, "DataSet_Result"), 2)
                                 <Paragraph>
                                   <TextRuns>
                                     <TextRun>
-                                      <Value>="直送情報: " &amp; First(Fields!DirectShippingCode.Value,"DataSet_Result") &amp; " " &amp; First(Fields!DirectShippingName.Value, "DataSet_Result") &amp; " " &amp; First(Fields!DirectShippingAddress.Value, "DataSet_Result")</Value>
+                                      <Value>="直送情報: " &amp; First(Fields!DirectShippingCode.Value,"DataSet_Result") &amp; " " &amp; 
+First(Fields!DirectShippingName.Value, "DataSet_Result") &amp; " " &amp; 
+First(Fields!DirectShippingAddress.Value, "DataSet_Result")</Value>
                                       <Style>
                                         <FontFamily>MS UI Gothic</FontFamily>
                                         <FontSize>9pt</FontSize>
@@ -3732,7 +3723,7 @@ FormatNumber(Last(Fields!AmountExcludingVAT_Line, "DataSet_Result"), 2)
                                 </Paragraph>
                               </Paragraphs>
                               <Top>5.20644cm</Top>
-                              <Left>9.32214cm</Left>
+                              <Left>9.32215cm</Left>
                               <Height>0.45889cm</Height>
                               <Width>12.25706cm</Width>
                               <ZIndex>14</ZIndex>
@@ -3756,8 +3747,10 @@ FormatNumber(Last(Fields!AmountExcludingVAT_Line, "DataSet_Result"), 2)
                                     <TextRun>
                                       <Value>=IIf(
 Last(Fields!CurrencyCode.Value, "DataSet_Result") = "JPY",
-    FormatNumber(Last(Fields!TotalSubTotal.Value, "DataSet_Result"), 0),
-    FormatNumber(Last(Fields!TotalSubTotal.Value, "DataSet_Result"), 2)
+    
+FormatNumber(Last(Fields!TotalSubTotal.Value, "DataSet_Result"), 0),
+   
+FormatNumber(Last(Fields!TotalSubTotal.Value, "DataSet_Result"), 2)
 )</Value>
                                       <Style>
                                         <FontFamily>MS UI Gothic</FontFamily>
@@ -3771,7 +3764,7 @@ Last(Fields!CurrencyCode.Value, "DataSet_Result") = "JPY",
                                 </Paragraph>
                               </Paragraphs>
                               <Top>9.45353cm</Top>
-                              <Left>16.60892cm</Left>
+                              <Left>16.60893cm</Left>
                               <Height>0.60705cm</Height>
                               <Width>2.40161cm</Width>
                               <ZIndex>15</ZIndex>
@@ -3793,7 +3786,7 @@ Last(Fields!CurrencyCode.Value, "DataSet_Result") = "JPY",
                                 <Paragraph>
                                   <TextRuns>
                                     <TextRun>
-                                      <Value>="Total Excl. VAT (" &amp; Last(Fields!CurrencyCode.Value, "DataSet_Result") &amp; ")"</Value>
+                                      <Value>="合計 " &amp; IIf(Fields!CurrencyCode.Value="", "JPY", Fields!CurrencyCode.Value)</Value>
                                       <Style>
                                         <FontFamily>MS UI Gothic</FontFamily>
                                       </Style>
@@ -3804,10 +3797,10 @@ Last(Fields!CurrencyCode.Value, "DataSet_Result") = "JPY",
                                   </Style>
                                 </Paragraph>
                               </Paragraphs>
-                              <Top>9.44647cm</Top>
-                              <Left>12.24371cm</Left>
+                              <Top>9.45353cm</Top>
+                              <Left>13.82443cm</Left>
                               <Height>0.60705cm</Height>
-                              <Width>4.36521cm</Width>
+                              <Width>2.7845cm</Width>
                               <ZIndex>16</ZIndex>
                               <Style>
                                 <Border>

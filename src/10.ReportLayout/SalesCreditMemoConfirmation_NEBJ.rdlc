@@ -11,7 +11,7 @@
       <am:Name>MSRB</am:Name>
       <am:Version>15.1.30001.02</am:Version>
     </am:UpdatedBy>
-    <am:LastModifiedTimestamp>2025-11-10T01:59:10.6108327Z</am:LastModifiedTimestamp>
+    <am:LastModifiedTimestamp>2025-11-13T00:57:46.8022630Z</am:LastModifiedTimestamp>
   </am:AuthoringMetadata>
   <AutoRefresh>0</AutoRefresh>
   <DataSources>
@@ -24,751 +24,6 @@
       <rd:DataSourceID>b23244e3-9790-4712-be0f-6041ac5f0e69</rd:DataSourceID>
     </DataSource>
   </DataSources>
-  <DataSets>
-    <DataSet Name="DataSet_Result">
-      <Query>
-        <DataSourceName>DataSource</DataSourceName>
-        <CommandText />
-      </Query>
-      <Fields>
-        <Field Name="CompanyAddress1">
-          <DataField>CompanyAddress1</DataField>
-        </Field>
-        <Field Name="CompanyAddress2">
-          <DataField>CompanyAddress2</DataField>
-        </Field>
-        <Field Name="CompanyAddress3">
-          <DataField>CompanyAddress3</DataField>
-        </Field>
-        <Field Name="CompanyAddress4">
-          <DataField>CompanyAddress4</DataField>
-        </Field>
-        <Field Name="CompanyAddress5">
-          <DataField>CompanyAddress5</DataField>
-        </Field>
-        <Field Name="CompanyAddress6">
-          <DataField>CompanyAddress6</DataField>
-        </Field>
-        <Field Name="CompanyAddress7">
-          <DataField>CompanyAddress7</DataField>
-        </Field>
-        <Field Name="CompanyAddress8">
-          <DataField>CompanyAddress8</DataField>
-        </Field>
-        <Field Name="CompanyHomePage">
-          <DataField>CompanyHomePage</DataField>
-        </Field>
-        <Field Name="CompanyEMail">
-          <DataField>CompanyEMail</DataField>
-        </Field>
-        <Field Name="CompanyPicture">
-          <DataField>CompanyPicture</DataField>
-        </Field>
-        <Field Name="CompanyPhoneNo">
-          <DataField>CompanyPhoneNo</DataField>
-        </Field>
-        <Field Name="CompanyPhoneNo_Lbl">
-          <DataField>CompanyPhoneNo_Lbl</DataField>
-        </Field>
-        <Field Name="CompanyGiroNo">
-          <DataField>CompanyGiroNo</DataField>
-        </Field>
-        <Field Name="CompanyGiroNo_Lbl">
-          <DataField>CompanyGiroNo_Lbl</DataField>
-        </Field>
-        <Field Name="CompanyBankName">
-          <DataField>CompanyBankName</DataField>
-        </Field>
-        <Field Name="CompanyBankName_Lbl">
-          <DataField>CompanyBankName_Lbl</DataField>
-        </Field>
-        <Field Name="CompanyBankBranchNo">
-          <DataField>CompanyBankBranchNo</DataField>
-        </Field>
-        <Field Name="CompanyBankBranchNo_Lbl">
-          <DataField>CompanyBankBranchNo_Lbl</DataField>
-        </Field>
-        <Field Name="CompanyBankAccountNo">
-          <DataField>CompanyBankAccountNo</DataField>
-        </Field>
-        <Field Name="CompanyBankAccountNo_Lbl">
-          <DataField>CompanyBankAccountNo_Lbl</DataField>
-        </Field>
-        <Field Name="CompanyIBAN">
-          <DataField>CompanyIBAN</DataField>
-        </Field>
-        <Field Name="CompanyIBAN_Lbl">
-          <DataField>CompanyIBAN_Lbl</DataField>
-        </Field>
-        <Field Name="CompanySWIFT">
-          <DataField>CompanySWIFT</DataField>
-        </Field>
-        <Field Name="CompanySWIFT_Lbl">
-          <DataField>CompanySWIFT_Lbl</DataField>
-        </Field>
-        <Field Name="CompanyLogoPosition">
-          <DataField>CompanyLogoPosition</DataField>
-        </Field>
-        <Field Name="CompanyRegistrationNumber">
-          <DataField>CompanyRegistrationNumber</DataField>
-        </Field>
-        <Field Name="CompanyRegistrationNumber_Lbl">
-          <DataField>CompanyRegistrationNumber_Lbl</DataField>
-        </Field>
-        <Field Name="CompanyVATRegNo">
-          <DataField>CompanyVATRegNo</DataField>
-        </Field>
-        <Field Name="CompanyVATRegNo_Lbl">
-          <DataField>CompanyVATRegNo_Lbl</DataField>
-        </Field>
-        <Field Name="CompanyVATRegistrationNo">
-          <DataField>CompanyVATRegistrationNo</DataField>
-        </Field>
-        <Field Name="CompanyVATRegistrationNo_Lbl">
-          <DataField>CompanyVATRegistrationNo_Lbl</DataField>
-        </Field>
-        <Field Name="CompanyLegalOffice">
-          <DataField>CompanyLegalOffice</DataField>
-        </Field>
-        <Field Name="CompanyLegalOffice_Lbl">
-          <DataField>CompanyLegalOffice_Lbl</DataField>
-        </Field>
-        <Field Name="CompanyCustomGiro">
-          <DataField>CompanyCustomGiro</DataField>
-        </Field>
-        <Field Name="CompanyCustomGiro_Lbl">
-          <DataField>CompanyCustomGiro_Lbl</DataField>
-        </Field>
-        <Field Name="CompanyLegalStatement">
-          <DataField>CompanyLegalStatement</DataField>
-        </Field>
-        <Field Name="CustomerAddress1">
-          <DataField>CustomerAddress1</DataField>
-        </Field>
-        <Field Name="CustomerAddress2">
-          <DataField>CustomerAddress2</DataField>
-        </Field>
-        <Field Name="CustomerAddress3">
-          <DataField>CustomerAddress3</DataField>
-        </Field>
-        <Field Name="CustomerAddress4">
-          <DataField>CustomerAddress4</DataField>
-        </Field>
-        <Field Name="CustomerAddress5">
-          <DataField>CustomerAddress5</DataField>
-        </Field>
-        <Field Name="CustomerAddress6">
-          <DataField>CustomerAddress6</DataField>
-        </Field>
-        <Field Name="CustomerAddress7">
-          <DataField>CustomerAddress7</DataField>
-        </Field>
-        <Field Name="CustomerAddress8">
-          <DataField>CustomerAddress8</DataField>
-        </Field>
-        <Field Name="SellToContactPhoneNoLbl">
-          <DataField>SellToContactPhoneNoLbl</DataField>
-        </Field>
-        <Field Name="SellToContactMobilePhoneNoLbl">
-          <DataField>SellToContactMobilePhoneNoLbl</DataField>
-        </Field>
-        <Field Name="SellToContactEmailLbl">
-          <DataField>SellToContactEmailLbl</DataField>
-        </Field>
-        <Field Name="BillToContactPhoneNoLbl">
-          <DataField>BillToContactPhoneNoLbl</DataField>
-        </Field>
-        <Field Name="BillToContactMobilePhoneNoLbl">
-          <DataField>BillToContactMobilePhoneNoLbl</DataField>
-        </Field>
-        <Field Name="BillToContactEmailLbl">
-          <DataField>BillToContactEmailLbl</DataField>
-        </Field>
-        <Field Name="SellToContactPhoneNo">
-          <DataField>SellToContactPhoneNo</DataField>
-        </Field>
-        <Field Name="SellToContactMobilePhoneNo">
-          <DataField>SellToContactMobilePhoneNo</DataField>
-        </Field>
-        <Field Name="SellToContactEmail">
-          <DataField>SellToContactEmail</DataField>
-        </Field>
-        <Field Name="BillToContactPhoneNo">
-          <DataField>BillToContactPhoneNo</DataField>
-        </Field>
-        <Field Name="BillToContactMobilePhoneNo">
-          <DataField>BillToContactMobilePhoneNo</DataField>
-        </Field>
-        <Field Name="BillToContactEmail">
-          <DataField>BillToContactEmail</DataField>
-        </Field>
-        <Field Name="CustomerPostalBarCode">
-          <DataField>CustomerPostalBarCode</DataField>
-        </Field>
-        <Field Name="YourReference">
-          <DataField>YourReference</DataField>
-        </Field>
-        <Field Name="YourReference_Lbl">
-          <DataField>YourReference_Lbl</DataField>
-        </Field>
-        <Field Name="ExternalDocumentNo">
-          <DataField>ExternalDocumentNo</DataField>
-        </Field>
-        <Field Name="ExternalDocumentNoLbl">
-          <DataField>ExternalDocumentNoLbl</DataField>
-        </Field>
-        <Field Name="ShipmentMethodDescription">
-          <DataField>ShipmentMethodDescription</DataField>
-        </Field>
-        <Field Name="ShipmentMethodDescription_Lbl">
-          <DataField>ShipmentMethodDescription_Lbl</DataField>
-        </Field>
-        <Field Name="ShipmentDate">
-          <DataField>ShipmentDate</DataField>
-        </Field>
-        <Field Name="ShipmentDate_Lbl">
-          <DataField>ShipmentDate_Lbl</DataField>
-        </Field>
-        <Field Name="Shipment_Lbl">
-          <DataField>Shipment_Lbl</DataField>
-        </Field>
-        <Field Name="ShowShippingAddress">
-          <DataField>ShowShippingAddress</DataField>
-        </Field>
-        <Field Name="ShipToAddress_Lbl">
-          <DataField>ShipToAddress_Lbl</DataField>
-        </Field>
-        <Field Name="ShipToAddress1">
-          <DataField>ShipToAddress1</DataField>
-        </Field>
-        <Field Name="ShipToAddress2">
-          <DataField>ShipToAddress2</DataField>
-        </Field>
-        <Field Name="ShipToAddress3">
-          <DataField>ShipToAddress3</DataField>
-        </Field>
-        <Field Name="ShipToAddress4">
-          <DataField>ShipToAddress4</DataField>
-        </Field>
-        <Field Name="ShipToAddress5">
-          <DataField>ShipToAddress5</DataField>
-        </Field>
-        <Field Name="ShipToAddress6">
-          <DataField>ShipToAddress6</DataField>
-        </Field>
-        <Field Name="ShipToAddress7">
-          <DataField>ShipToAddress7</DataField>
-        </Field>
-        <Field Name="ShipToAddress8">
-          <DataField>ShipToAddress8</DataField>
-        </Field>
-        <Field Name="ShipToPhoneNo">
-          <DataField>ShipToPhoneNo</DataField>
-        </Field>
-        <Field Name="PaymentTermsDescription">
-          <DataField>PaymentTermsDescription</DataField>
-        </Field>
-        <Field Name="PaymentTermsDescription_Lbl">
-          <DataField>PaymentTermsDescription_Lbl</DataField>
-        </Field>
-        <Field Name="PaymentMethodDescription">
-          <DataField>PaymentMethodDescription</DataField>
-        </Field>
-        <Field Name="PaymentMethodDescription_Lbl">
-          <DataField>PaymentMethodDescription_Lbl</DataField>
-        </Field>
-        <Field Name="DocumentCopyText">
-          <DataField>DocumentCopyText</DataField>
-        </Field>
-        <Field Name="BillToCustumerNo">
-          <DataField>BillToCustumerNo</DataField>
-        </Field>
-        <Field Name="BilltoCustumerNo_Lbl">
-          <DataField>BilltoCustumerNo_Lbl</DataField>
-        </Field>
-        <Field Name="DocumentDate">
-          <DataField>DocumentDate</DataField>
-        </Field>
-        <Field Name="DocumentDate_Lbl">
-          <DataField>DocumentDate_Lbl</DataField>
-        </Field>
-        <Field Name="DueDate">
-          <DataField>DueDate</DataField>
-        </Field>
-        <Field Name="DueDate_Lbl">
-          <DataField>DueDate_Lbl</DataField>
-        </Field>
-        <Field Name="DocumentNo">
-          <DataField>DocumentNo</DataField>
-        </Field>
-        <Field Name="DocumentNo_Lbl">
-          <DataField>DocumentNo_Lbl</DataField>
-        </Field>
-        <Field Name="AppliesToDocument">
-          <DataField>AppliesToDocument</DataField>
-        </Field>
-        <Field Name="AppliesToDocument_Lbl">
-          <DataField>AppliesToDocument_Lbl</DataField>
-        </Field>
-        <Field Name="PricesIncludingVAT">
-          <DataField>PricesIncludingVAT</DataField>
-        </Field>
-        <Field Name="PricesIncludingVAT_Lbl">
-          <DataField>PricesIncludingVAT_Lbl</DataField>
-        </Field>
-        <Field Name="PricesIncludingVATYesNo">
-          <DataField>PricesIncludingVATYesNo</DataField>
-        </Field>
-        <Field Name="SalesPerson_Lbl">
-          <DataField>SalesPerson_Lbl</DataField>
-        </Field>
-        <Field Name="SalesPersonBlank_Lbl">
-          <DataField>SalesPersonBlank_Lbl</DataField>
-        </Field>
-        <Field Name="SalesPersonName">
-          <DataField>SalesPersonName</DataField>
-        </Field>
-        <Field Name="SelltoCustomerNo">
-          <DataField>SelltoCustomerNo</DataField>
-        </Field>
-        <Field Name="SelltoCustomerNo_Lbl">
-          <DataField>SelltoCustomerNo_Lbl</DataField>
-        </Field>
-        <Field Name="VATRegistrationNo">
-          <DataField>VATRegistrationNo</DataField>
-        </Field>
-        <Field Name="VATRegistrationNo_Lbl">
-          <DataField>VATRegistrationNo_Lbl</DataField>
-        </Field>
-        <Field Name="GlobalLocationNumber">
-          <DataField>GlobalLocationNumber</DataField>
-        </Field>
-        <Field Name="GlobalLocationNumber_Lbl">
-          <DataField>GlobalLocationNumber_Lbl</DataField>
-        </Field>
-        <Field Name="LegalEntityType">
-          <DataField>LegalEntityType</DataField>
-        </Field>
-        <Field Name="LegalEntityType_Lbl">
-          <DataField>LegalEntityType_Lbl</DataField>
-        </Field>
-        <Field Name="Copy_Lbl">
-          <DataField>Copy_Lbl</DataField>
-        </Field>
-        <Field Name="EMail_Header_Lbl">
-          <DataField>EMail_Header_Lbl</DataField>
-        </Field>
-        <Field Name="HomePage_Header_Lbl">
-          <DataField>HomePage_Header_Lbl</DataField>
-        </Field>
-        <Field Name="InvoiceDiscountBaseAmount_Lbl">
-          <DataField>InvoiceDiscountBaseAmount_Lbl</DataField>
-        </Field>
-        <Field Name="InvoiceDiscountAmount_Lbl">
-          <DataField>InvoiceDiscountAmount_Lbl</DataField>
-        </Field>
-        <Field Name="LineAmountAfterInvoiceDiscount_Lbl">
-          <DataField>LineAmountAfterInvoiceDiscount_Lbl</DataField>
-        </Field>
-        <Field Name="LocalCurrency_Lbl">
-          <DataField>LocalCurrency_Lbl</DataField>
-        </Field>
-        <Field Name="ExchangeRateASText">
-          <DataField>ExchangeRateASText</DataField>
-        </Field>
-        <Field Name="Page_Lbl">
-          <DataField>Page_Lbl</DataField>
-        </Field>
-        <Field Name="SalesInvoiceLineDiscount_Lbl">
-          <DataField>SalesInvoiceLineDiscount_Lbl</DataField>
-        </Field>
-        <Field Name="DocumentTitle_Lbl">
-          <DataField>DocumentTitle_Lbl</DataField>
-        </Field>
-        <Field Name="ShowWorkDescription">
-          <DataField>ShowWorkDescription</DataField>
-        </Field>
-        <Field Name="Subtotal_Lbl">
-          <DataField>Subtotal_Lbl</DataField>
-        </Field>
-        <Field Name="Total_Lbl">
-          <DataField>Total_Lbl</DataField>
-        </Field>
-        <Field Name="VATAmount_Lbl">
-          <DataField>VATAmount_Lbl</DataField>
-        </Field>
-        <Field Name="VATBase_Lbl">
-          <DataField>VATBase_Lbl</DataField>
-        </Field>
-        <Field Name="VATAmountSpecification_Lbl">
-          <DataField>VATAmountSpecification_Lbl</DataField>
-        </Field>
-        <Field Name="VATClauses_Lbl">
-          <DataField>VATClauses_Lbl</DataField>
-        </Field>
-        <Field Name="VATIdentifier_Lbl">
-          <DataField>VATIdentifier_Lbl</DataField>
-        </Field>
-        <Field Name="VATPercentage_Lbl">
-          <DataField>VATPercentage_Lbl</DataField>
-        </Field>
-        <Field Name="VATClause_Lbl">
-          <DataField>VATClause_Lbl</DataField>
-        </Field>
-        <Field Name="LineNo_Line">
-          <DataField>LineNo_Line</DataField>
-        </Field>
-        <Field Name="AmountExcludingVAT_Line">
-          <DataField>AmountExcludingVAT_Line</DataField>
-        </Field>
-        <Field Name="AmountExcludingVAT_LineFormat">
-          <DataField>AmountExcludingVAT_LineFormat</DataField>
-        </Field>
-        <Field Name="AmountExcludingVAT_Line_Lbl">
-          <DataField>AmountExcludingVAT_Line_Lbl</DataField>
-        </Field>
-        <Field Name="AmountIncludingVAT_Line">
-          <DataField>AmountIncludingVAT_Line</DataField>
-        </Field>
-        <Field Name="AmountIncludingVAT_LineFormat">
-          <DataField>AmountIncludingVAT_LineFormat</DataField>
-        </Field>
-        <Field Name="AmountIncludingVAT_Line_Lbl">
-          <DataField>AmountIncludingVAT_Line_Lbl</DataField>
-        </Field>
-        <Field Name="Description_Line">
-          <DataField>Description_Line</DataField>
-        </Field>
-        <Field Name="Description_Line_Lbl">
-          <DataField>Description_Line_Lbl</DataField>
-        </Field>
-        <Field Name="LineDiscountPercent_Line">
-          <DataField>LineDiscountPercent_Line</DataField>
-        </Field>
-        <Field Name="LineDiscountPercent_LineFormat">
-          <DataField>LineDiscountPercent_LineFormat</DataField>
-        </Field>
-        <Field Name="LineDiscountPercentText_Line">
-          <DataField>LineDiscountPercentText_Line</DataField>
-        </Field>
-        <Field Name="LineAmount_Line">
-          <DataField>LineAmount_Line</DataField>
-        </Field>
-        <Field Name="LineAmount_Line_Lbl">
-          <DataField>LineAmount_Line_Lbl</DataField>
-        </Field>
-        <Field Name="ItemNo_Line">
-          <DataField>ItemNo_Line</DataField>
-        </Field>
-        <Field Name="ItemNo_Line_Lbl">
-          <DataField>ItemNo_Line_Lbl</DataField>
-        </Field>
-        <Field Name="ItemReferenceNo_Line">
-          <DataField>ItemReferenceNo_Line</DataField>
-        </Field>
-        <Field Name="ItemReferenceNo_Line_Lbl">
-          <DataField>ItemReferenceNo_Line_Lbl</DataField>
-        </Field>
-        <Field Name="ShipmentDate_Line">
-          <DataField>ShipmentDate_Line</DataField>
-        </Field>
-        <Field Name="ShipmentDate_Line_Lbl">
-          <DataField>ShipmentDate_Line_Lbl</DataField>
-        </Field>
-        <Field Name="Quantity_Line">
-          <DataField>Quantity_Line</DataField>
-        </Field>
-        <Field Name="Quantity_Line_Lbl">
-          <DataField>Quantity_Line_Lbl</DataField>
-        </Field>
-        <Field Name="Type_Line">
-          <DataField>Type_Line</DataField>
-        </Field>
-        <Field Name="UnitPrice">
-          <DataField>UnitPrice</DataField>
-        </Field>
-        <Field Name="UnitPrice_Lbl">
-          <DataField>UnitPrice_Lbl</DataField>
-        </Field>
-        <Field Name="UnitOfMeasure">
-          <DataField>UnitOfMeasure</DataField>
-        </Field>
-        <Field Name="UnitOfMeasure_Lbl">
-          <DataField>UnitOfMeasure_Lbl</DataField>
-        </Field>
-        <Field Name="VATIdentifier_Line">
-          <DataField>VATIdentifier_Line</DataField>
-        </Field>
-        <Field Name="VATIdentifier_Line_Lbl">
-          <DataField>VATIdentifier_Line_Lbl</DataField>
-        </Field>
-        <Field Name="VATPct_Line">
-          <DataField>VATPct_Line</DataField>
-        </Field>
-        <Field Name="VATPct_Line_Lbl">
-          <DataField>VATPct_Line_Lbl</DataField>
-        </Field>
-        <Field Name="TransHeaderAmount">
-          <DataField>TransHeaderAmount</DataField>
-        </Field>
-        <Field Name="TransHeaderAmountFormat">
-          <DataField>TransHeaderAmountFormat</DataField>
-        </Field>
-        <Field Name="DocumentNo_ShipmentLine">
-          <DataField>DocumentNo_ShipmentLine</DataField>
-        </Field>
-        <Field Name="PostingDate_ShipmentLine">
-          <DataField>PostingDate_ShipmentLine</DataField>
-        </Field>
-        <Field Name="PostingDate_ShipmentLine_Lbl">
-          <DataField>PostingDate_ShipmentLine_Lbl</DataField>
-        </Field>
-        <Field Name="Quantity_ShipmentLine">
-          <DataField>Quantity_ShipmentLine</DataField>
-        </Field>
-        <Field Name="Quantity_ShipmentLineFormat">
-          <DataField>Quantity_ShipmentLineFormat</DataField>
-        </Field>
-        <Field Name="Quantity_ShipmentLine_Lbl">
-          <DataField>Quantity_ShipmentLine_Lbl</DataField>
-        </Field>
-        <Field Name="LineNo_AssemblyLine">
-          <DataField>LineNo_AssemblyLine</DataField>
-        </Field>
-        <Field Name="Description_AssemblyLine">
-          <DataField>Description_AssemblyLine</DataField>
-        </Field>
-        <Field Name="Quantity_AssemblyLine">
-          <DataField>Quantity_AssemblyLine</DataField>
-        </Field>
-        <Field Name="Quantity_AssemblyLineFormat">
-          <DataField>Quantity_AssemblyLineFormat</DataField>
-        </Field>
-        <Field Name="UnitOfMeasure_AssemblyLine">
-          <DataField>UnitOfMeasure_AssemblyLine</DataField>
-        </Field>
-        <Field Name="VariantCode_AssemblyLine">
-          <DataField>VariantCode_AssemblyLine</DataField>
-        </Field>
-        <Field Name="WorkDescriptionLineNumber">
-          <DataField>WorkDescriptionLineNumber</DataField>
-        </Field>
-        <Field Name="WorkDescriptionLine">
-          <DataField>WorkDescriptionLine</DataField>
-        </Field>
-        <Field Name="InvoiceDiscountAmount_VATAmountLine">
-          <DataField>InvoiceDiscountAmount_VATAmountLine</DataField>
-        </Field>
-        <Field Name="InvoiceDiscountAmount_VATAmountLineFormat">
-          <DataField>InvoiceDiscountAmount_VATAmountLineFormat</DataField>
-        </Field>
-        <Field Name="InvoiceDiscountAmount_VATAmountLine_Lbl">
-          <DataField>InvoiceDiscountAmount_VATAmountLine_Lbl</DataField>
-        </Field>
-        <Field Name="InvoiceDiscountBaseAmount_VATAmountLine">
-          <DataField>InvoiceDiscountBaseAmount_VATAmountLine</DataField>
-        </Field>
-        <Field Name="InvoiceDiscountBaseAmount_VATAmountLineFormat">
-          <DataField>InvoiceDiscountBaseAmount_VATAmountLineFormat</DataField>
-        </Field>
-        <Field Name="InvoiceDiscountBaseAmount_VATAmountLine_Lbl">
-          <DataField>InvoiceDiscountBaseAmount_VATAmountLine_Lbl</DataField>
-        </Field>
-        <Field Name="LineAmount_VatAmountLine">
-          <DataField>LineAmount_VatAmountLine</DataField>
-        </Field>
-        <Field Name="LineAmount_VatAmountLineFormat">
-          <DataField>LineAmount_VatAmountLineFormat</DataField>
-        </Field>
-        <Field Name="LineAmount_VatAmountLine_Lbl">
-          <DataField>LineAmount_VatAmountLine_Lbl</DataField>
-        </Field>
-        <Field Name="VATAmount_VatAmountLine">
-          <DataField>VATAmount_VatAmountLine</DataField>
-        </Field>
-        <Field Name="VATAmount_VatAmountLineFormat">
-          <DataField>VATAmount_VatAmountLineFormat</DataField>
-        </Field>
-        <Field Name="VATAmount_VatAmountLine_Lbl">
-          <DataField>VATAmount_VatAmountLine_Lbl</DataField>
-        </Field>
-        <Field Name="VATAmountLCY_VATAmountLine">
-          <DataField>VATAmountLCY_VATAmountLine</DataField>
-        </Field>
-        <Field Name="VATAmountLCY_VATAmountLineFormat">
-          <DataField>VATAmountLCY_VATAmountLineFormat</DataField>
-        </Field>
-        <Field Name="VATAmountLCY_VATAmountLine_Lbl">
-          <DataField>VATAmountLCY_VATAmountLine_Lbl</DataField>
-        </Field>
-        <Field Name="VATBase_VatAmountLine">
-          <DataField>VATBase_VatAmountLine</DataField>
-        </Field>
-        <Field Name="VATBase_VatAmountLineFormat">
-          <DataField>VATBase_VatAmountLineFormat</DataField>
-        </Field>
-        <Field Name="VATBase_VatAmountLine_Lbl">
-          <DataField>VATBase_VatAmountLine_Lbl</DataField>
-        </Field>
-        <Field Name="VATBaseLCY_VATAmountLine">
-          <DataField>VATBaseLCY_VATAmountLine</DataField>
-        </Field>
-        <Field Name="VATBaseLCY_VATAmountLineFormat">
-          <DataField>VATBaseLCY_VATAmountLineFormat</DataField>
-        </Field>
-        <Field Name="VATBaseLCY_VATAmountLine_Lbl">
-          <DataField>VATBaseLCY_VATAmountLine_Lbl</DataField>
-        </Field>
-        <Field Name="VATIdentifier_VatAmountLine">
-          <DataField>VATIdentifier_VatAmountLine</DataField>
-        </Field>
-        <Field Name="VATIdentifier_VatAmountLine_Lbl">
-          <DataField>VATIdentifier_VatAmountLine_Lbl</DataField>
-        </Field>
-        <Field Name="VATPct_VatAmountLine">
-          <DataField>VATPct_VatAmountLine</DataField>
-        </Field>
-        <Field Name="VATPct_VatAmountLineFormat">
-          <DataField>VATPct_VatAmountLineFormat</DataField>
-        </Field>
-        <Field Name="VATPct_VatAmountLine_Lbl">
-          <DataField>VATPct_VatAmountLine_Lbl</DataField>
-        </Field>
-        <Field Name="NoOfVATIdentifiers">
-          <DataField>NoOfVATIdentifiers</DataField>
-        </Field>
-        <Field Name="VATIdentifier_VATClauseLine">
-          <DataField>VATIdentifier_VATClauseLine</DataField>
-        </Field>
-        <Field Name="Code_VATClauseLine">
-          <DataField>Code_VATClauseLine</DataField>
-        </Field>
-        <Field Name="Code_VATClauseLine_Lbl">
-          <DataField>Code_VATClauseLine_Lbl</DataField>
-        </Field>
-        <Field Name="Description_VATClauseLine">
-          <DataField>Description_VATClauseLine</DataField>
-        </Field>
-        <Field Name="Description2_VATClauseLine">
-          <DataField>Description2_VATClauseLine</DataField>
-        </Field>
-        <Field Name="VATAmount_VATClauseLine">
-          <DataField>VATAmount_VATClauseLine</DataField>
-        </Field>
-        <Field Name="VATAmount_VATClauseLineFormat">
-          <DataField>VATAmount_VATClauseLineFormat</DataField>
-        </Field>
-        <Field Name="NoOfVATClauses">
-          <DataField>NoOfVATClauses</DataField>
-        </Field>
-        <Field Name="Description_ReportTotalsLine">
-          <DataField>Description_ReportTotalsLine</DataField>
-        </Field>
-        <Field Name="Amount_ReportTotalsLine">
-          <DataField>Amount_ReportTotalsLine</DataField>
-        </Field>
-        <Field Name="Amount_ReportTotalsLineFormat">
-          <DataField>Amount_ReportTotalsLineFormat</DataField>
-        </Field>
-        <Field Name="AmountFormatted_ReportTotalsLine">
-          <DataField>AmountFormatted_ReportTotalsLine</DataField>
-        </Field>
-        <Field Name="FontBold_ReportTotalsLine">
-          <DataField>FontBold_ReportTotalsLine</DataField>
-        </Field>
-        <Field Name="FontUnderline_ReportTotalsLine">
-          <DataField>FontUnderline_ReportTotalsLine</DataField>
-        </Field>
-        <Field Name="GreetingText">
-          <DataField>GreetingText</DataField>
-        </Field>
-        <Field Name="BodyText">
-          <DataField>BodyText</DataField>
-        </Field>
-        <Field Name="ClosingText">
-          <DataField>ClosingText</DataField>
-        </Field>
-        <Field Name="TotalNetAmount">
-          <DataField>TotalNetAmount</DataField>
-        </Field>
-        <Field Name="TotalVATBaseLCY">
-          <DataField>TotalVATBaseLCY</DataField>
-        </Field>
-        <Field Name="TotalVATBaseLCYFormat">
-          <DataField>TotalVATBaseLCYFormat</DataField>
-        </Field>
-        <Field Name="TotalAmountIncludingVAT">
-          <DataField>TotalAmountIncludingVAT</DataField>
-        </Field>
-        <Field Name="TotalVATAmount">
-          <DataField>TotalVATAmount</DataField>
-        </Field>
-        <Field Name="TotalVATAmountLCY">
-          <DataField>TotalVATAmountLCY</DataField>
-        </Field>
-        <Field Name="TotalVATAmountLCYFormat">
-          <DataField>TotalVATAmountLCYFormat</DataField>
-        </Field>
-        <Field Name="TotalInvoiceDiscountAmount">
-          <DataField>TotalInvoiceDiscountAmount</DataField>
-        </Field>
-        <Field Name="TotalPaymentDiscountOnVAT">
-          <DataField>TotalPaymentDiscountOnVAT</DataField>
-        </Field>
-        <Field Name="TotalPaymentDiscountOnVATFormat">
-          <DataField>TotalPaymentDiscountOnVATFormat</DataField>
-        </Field>
-        <Field Name="TotalVATAmountText">
-          <DataField>TotalVATAmountText</DataField>
-        </Field>
-        <Field Name="TotalExcludingVATText">
-          <DataField>TotalExcludingVATText</DataField>
-        </Field>
-        <Field Name="TotalIncludingVATText">
-          <DataField>TotalIncludingVATText</DataField>
-        </Field>
-        <Field Name="TotalSubTotal">
-          <DataField>TotalSubTotal</DataField>
-        </Field>
-        <Field Name="TotalSubTotalMinusInvoiceDiscount">
-          <DataField>TotalSubTotalMinusInvoiceDiscount</DataField>
-        </Field>
-        <Field Name="TotalText">
-          <DataField>TotalText</DataField>
-        </Field>
-        <Field Name="CurrencyCode">
-          <DataField>CurrencyCode</DataField>
-        </Field>
-        <Field Name="CurrencySymbol">
-          <DataField>CurrencySymbol</DataField>
-        </Field>
-        <Field Name="Direct_Shipping_Code">
-          <Value>Direct_Shipping_Code</Value>
-        </Field>
-        <Field Name="CompanyName">
-          <Value>CompanyName</Value>
-        </Field>
-        <Field Name="CompanyAddress">
-          <Value>CompanyAddress</Value>
-        </Field>
-        <Field Name="CompanyCity">
-          <Value>CompanyCity</Value>
-        </Field>
-        <Field Name="CompanyPostCode">
-          <Value>CompanyPostCode</Value>
-        </Field>
-        <Field Name="CompanyFaxNo">
-          <Value>CompanyFaxNo</Value>
-        </Field>
-        <Field Name="PostingDate">
-          <Value>PostingDate</Value>
-        </Field>
-        <Field Name="DirectShippingName">
-          <Value>DirectShippingName</Value>
-        </Field>
-      </Fields>
-    </DataSet>
-  </DataSets>
   <ReportSections>
     <ReportSection>
       <Body>
@@ -822,16 +77,16 @@
                         <Value>="(" + Fields!BillToCustomerNo.Value + ")"</Value>
                         <Style>
                           <FontFamily>MS UI Gothic</FontFamily>
-                          <FontSize>8pt</FontSize>
+                          <FontSize>9pt</FontSize>
                         </Style>
                       </TextRun>
                     </TextRuns>
                     <Style />
                   </Paragraph>
                 </Paragraphs>
-                <Top>1.08689cm</Top>
+                <Top>1.01633cm</Top>
                 <Left>7.98194cm</Left>
-                <Height>0.41655cm</Height>
+                <Height>0.48711cm</Height>
                 <Width>2.5cm</Width>
                 <ZIndex>1</ZIndex>
                 <Style>
@@ -855,7 +110,7 @@
                         <Value>="〒 " +Fields!BillToPostCode.Value</Value>
                         <Style>
                           <FontFamily>MS UI Gothic</FontFamily>
-                          <FontSize>8pt</FontSize>
+                          <FontSize>9pt</FontSize>
                         </Style>
                       </TextRun>
                     </TextRuns>
@@ -864,7 +119,7 @@
                 </Paragraphs>
                 <Top>1.50344cm</Top>
                 <Left>0.14181cm</Left>
-                <Height>0.4476cm</Height>
+                <Height>0.51816cm</Height>
                 <Width>10.34013cm</Width>
                 <ZIndex>2</ZIndex>
                 <Style>
@@ -888,16 +143,16 @@
                         <Value>=Fields!BillToAddress.Value</Value>
                         <Style>
                           <FontFamily>MS UI Gothic</FontFamily>
-                          <FontSize>8pt</FontSize>
+                          <FontSize>9pt</FontSize>
                         </Style>
                       </TextRun>
                     </TextRuns>
                     <Style />
                   </Paragraph>
                 </Paragraphs>
-                <Top>1.95104cm</Top>
+                <Top>2.0216cm</Top>
                 <Left>0.14181cm</Left>
-                <Height>0.43067cm</Height>
+                <Height>0.45354cm</Height>
                 <Width>10.34013cm</Width>
                 <ZIndex>3</ZIndex>
                 <Style>
@@ -921,16 +176,16 @@
                         <Value>=Fields!BillToAddress2.Value</Value>
                         <Style>
                           <FontFamily>MS UI Gothic</FontFamily>
-                          <FontSize>8pt</FontSize>
+                          <FontSize>9pt</FontSize>
                         </Style>
                       </TextRun>
                     </TextRuns>
                     <Style />
                   </Paragraph>
                 </Paragraphs>
-                <Top>2.38171cm</Top>
+                <Top>2.54569cm</Top>
                 <Left>0.14181cm</Left>
-                <Height>0.41373cm</Height>
+                <Height>0.45184cm</Height>
                 <Width>10.34013cm</Width>
                 <ZIndex>4</ZIndex>
                 <Style>
@@ -954,17 +209,16 @@
                         <Value>=Fields!CompanyName.Value</Value>
                         <Style>
                           <FontFamily>MS UI Gothic</FontFamily>
-                          <FontWeight>Bold</FontWeight>
                         </Style>
                       </TextRun>
                     </TextRuns>
                     <Style />
                   </Paragraph>
                 </Paragraphs>
-                <Top>0.72791cm</Top>
-                <Left>17.696cm</Left>
-                <Height>0.77553cm</Height>
-                <Width>6.5132cm</Width>
+                <Top>0.32828cm</Top>
+                <Left>18.39137cm</Left>
+                <Height>0.58222cm</Height>
+                <Width>6.50418cm</Width>
                 <ZIndex>5</ZIndex>
                 <Style>
                   <Border>
@@ -990,17 +244,17 @@
                         <Value>=Fields!CompanyAddress.Value</Value>
                         <Style>
                           <FontFamily>MS UI Gothic</FontFamily>
-                          <FontSize>8pt</FontSize>
+                          <FontSize>9pt</FontSize>
                         </Style>
                       </TextRun>
                     </TextRuns>
                     <Style />
                   </Paragraph>
                 </Paragraphs>
-                <Top>1.82236cm</Top>
-                <Left>17.70502cm</Left>
-                <Height>0.43066cm</Height>
-                <Width>6.5132cm</Width>
+                <Top>1.64175cm</Top>
+                <Left>18.39137cm</Left>
+                <Height>0.46736cm</Height>
+                <Width>6.50418cm</Width>
                 <ZIndex>6</ZIndex>
                 <Style>
                   <Border>
@@ -1023,17 +277,17 @@
                         <Value>=Fields!CompanyAddress2.Value</Value>
                         <Style>
                           <FontFamily>MS UI Gothic</FontFamily>
-                          <FontSize>8pt</FontSize>
+                          <FontSize>9pt</FontSize>
                         </Style>
                       </TextRun>
                     </TextRuns>
                     <Style />
                   </Paragraph>
                 </Paragraphs>
-                <Top>2.25302cm</Top>
-                <Left>17.70502cm</Left>
+                <Top>2.14438cm</Top>
+                <Left>18.39137cm</Left>
                 <Height>0.4843cm</Height>
-                <Width>6.5132cm</Width>
+                <Width>6.50418cm</Width>
                 <ZIndex>7</ZIndex>
                 <Style>
                   <Border>
@@ -1053,19 +307,19 @@
                   <Paragraph>
                     <TextRuns>
                       <TextRun>
-                        <Value>="電話番号："＆Fields!CompanyPhoneNo.Value</Value>
+                        <Value>="TEL : " + Fields!CompanyPhoneNo.Value</Value>
                         <Style>
                           <FontFamily>MS UI Gothic</FontFamily>
-                          <FontSize>8pt</FontSize>
+                          <FontSize>9pt</FontSize>
                         </Style>
                       </TextRun>
                     </TextRuns>
                     <Style />
                   </Paragraph>
                 </Paragraphs>
-                <Top>2.73732cm</Top>
-                <Left>17.71404cm</Left>
-                <Height>0.41965cm</Height>
+                <Top>2.69924cm</Top>
+                <Left>18.39137cm</Left>
+                <Height>0.47186cm</Height>
                 <Width>6.50418cm</Width>
                 <ZIndex>8</ZIndex>
                 <Style>
@@ -1169,7 +423,7 @@
                                       <Value>品番</Value>
                                       <Style>
                                         <FontFamily>MS UI Gothic</FontFamily>
-                                        <FontSize>8pt</FontSize>
+                                        <FontSize>9pt</FontSize>
                                         <FontWeight>Bold</FontWeight>
                                       </Style>
                                     </TextRun>
@@ -1225,7 +479,7 @@
                                       <Value>品名</Value>
                                       <Style>
                                         <FontFamily>MS UI Gothic</FontFamily>
-                                        <FontSize>8pt</FontSize>
+                                        <FontSize>9pt</FontSize>
                                         <FontWeight>Bold</FontWeight>
                                       </Style>
                                     </TextRun>
@@ -1282,7 +536,7 @@
                                       <Style>
                                         <FontStyle>Normal</FontStyle>
                                         <FontFamily>MS UI Gothic</FontFamily>
-                                        <FontSize>8pt</FontSize>
+                                        <FontSize>9pt</FontSize>
                                         <FontWeight>Bold</FontWeight>
                                         <TextDecoration>None</TextDecoration>
                                         <Color>#000000</Color>
@@ -1341,7 +595,7 @@
                                       <Style>
                                         <FontStyle>Normal</FontStyle>
                                         <FontFamily>MS UI Gothic</FontFamily>
-                                        <FontSize>8pt</FontSize>
+                                        <FontSize>9pt</FontSize>
                                         <FontWeight>Bold</FontWeight>
                                         <TextDecoration>None</TextDecoration>
                                         <Color>#000000</Color>
@@ -1400,7 +654,7 @@
                                       <Style>
                                         <FontStyle>Normal</FontStyle>
                                         <FontFamily>MS UI Gothic</FontFamily>
-                                        <FontSize>8pt</FontSize>
+                                        <FontSize>9pt</FontSize>
                                         <FontWeight>Bold</FontWeight>
                                         <TextDecoration>None</TextDecoration>
                                         <Color>#000000</Color>
@@ -1459,7 +713,7 @@
                                       <Style>
                                         <FontStyle>Normal</FontStyle>
                                         <FontFamily>MS UI Gothic</FontFamily>
-                                        <FontSize>8pt</FontSize>
+                                        <FontSize>9pt</FontSize>
                                         <FontWeight>Bold</FontWeight>
                                         <TextDecoration>None</TextDecoration>
                                         <Color>#000000</Color>
@@ -1518,7 +772,7 @@
                                       <Style>
                                         <FontStyle>Normal</FontStyle>
                                         <FontFamily>MS UI Gothic</FontFamily>
-                                        <FontSize>8pt</FontSize>
+                                        <FontSize>9pt</FontSize>
                                         <FontWeight>Bold</FontWeight>
                                         <TextDecoration>None</TextDecoration>
                                         <Color>#000000</Color>
@@ -1577,7 +831,7 @@
                                       <Style>
                                         <FontStyle>Normal</FontStyle>
                                         <FontFamily>MS UI Gothic</FontFamily>
-                                        <FontSize>8pt</FontSize>
+                                        <FontSize>9pt</FontSize>
                                         <FontWeight>Bold</FontWeight>
                                         <TextDecoration>None</TextDecoration>
                                         <Color>#000000</Color>
@@ -1635,7 +889,7 @@
                                       <Value />
                                       <Style>
                                         <FontFamily>MS UI Gothic</FontFamily>
-                                        <FontSize>8pt</FontSize>
+                                        <FontSize>9pt</FontSize>
                                         <FontWeight>Bold</FontWeight>
                                       </Style>
                                     </TextRun>
@@ -1688,7 +942,7 @@
                                       <Value />
                                       <Style>
                                         <FontFamily>MS UI Gothic</FontFamily>
-                                        <FontSize>8pt</FontSize>
+                                        <FontSize>9pt</FontSize>
                                         <FontWeight>Bold</FontWeight>
                                       </Style>
                                     </TextRun>
@@ -1742,7 +996,7 @@
                                       <Style>
                                         <FontStyle>Normal</FontStyle>
                                         <FontFamily>MS UI Gothic</FontFamily>
-                                        <FontSize>8pt</FontSize>
+                                        <FontSize>9pt</FontSize>
                                         <FontWeight>Bold</FontWeight>
                                         <TextDecoration>None</TextDecoration>
                                         <Color>#000000</Color>
@@ -1790,6 +1044,329 @@
                       </TablixCells>
                     </TablixRow>
                     <TablixRow>
+                      <Height>0.6cm</Height>
+                      <TablixCells>
+                        <TablixCell>
+                          <CellContents>
+                            <Textbox Name="Textbox35">
+                              <rd:DefaultName>Textbox35</rd:DefaultName>
+                              <CanGrow>true</CanGrow>
+                              <KeepTogether>true</KeepTogether>
+                              <Paragraphs>
+                                <Paragraph>
+                                  <TextRuns>
+                                    <TextRun>
+                                      <Value />
+                                      <Style>
+                                        <FontFamily>MS UI Gothic</FontFamily>
+                                        <FontSize>9pt</FontSize>
+                                      </Style>
+                                    </TextRun>
+                                  </TextRuns>
+                                  <Style>
+                                    <TextAlign>Right</TextAlign>
+                                  </Style>
+                                </Paragraph>
+                              </Paragraphs>
+                              <Style>
+                                <Border>
+                                  <Style>None</Style>
+                                </Border>
+                                <VerticalAlign>Middle</VerticalAlign>
+                                <PaddingLeft>2pt</PaddingLeft>
+                                <PaddingRight>2pt</PaddingRight>
+                                <PaddingTop>2pt</PaddingTop>
+                                <PaddingBottom>2pt</PaddingBottom>
+                              </Style>
+                            </Textbox>
+                          </CellContents>
+                        </TablixCell>
+                        <TablixCell>
+                          <CellContents>
+                            <Textbox Name="Textbox36">
+                              <rd:DefaultName>Textbox36</rd:DefaultName>
+                              <CanGrow>true</CanGrow>
+                              <KeepTogether>true</KeepTogether>
+                              <Paragraphs>
+                                <Paragraph>
+                                  <TextRuns>
+                                    <TextRun>
+                                      <Value>=Fields!Description_Line.Value</Value>
+                                      <Style>
+                                        <FontFamily>MS UI Gothic</FontFamily>
+                                        <FontSize>9pt</FontSize>
+                                      </Style>
+                                    </TextRun>
+                                  </TextRuns>
+                                  <Style>
+                                    <TextAlign>Left</TextAlign>
+                                  </Style>
+                                </Paragraph>
+                              </Paragraphs>
+                              <Style>
+                                <Border>
+                                  <Style>None</Style>
+                                </Border>
+                                <VerticalAlign>Top</VerticalAlign>
+                                <PaddingLeft>2pt</PaddingLeft>
+                                <PaddingRight>2pt</PaddingRight>
+                                <PaddingTop>2pt</PaddingTop>
+                                <PaddingBottom>2pt</PaddingBottom>
+                              </Style>
+                            </Textbox>
+                            <ColSpan>3</ColSpan>
+                          </CellContents>
+                        </TablixCell>
+                        <TablixCell />
+                        <TablixCell />
+                        <TablixCell>
+                          <CellContents>
+                            <Textbox Name="Textbox8">
+                              <rd:DefaultName>Textbox8</rd:DefaultName>
+                              <CanGrow>true</CanGrow>
+                              <KeepTogether>true</KeepTogether>
+                              <Paragraphs>
+                                <Paragraph>
+                                  <TextRuns>
+                                    <TextRun>
+                                      <Value />
+                                      <Style>
+                                        <FontFamily>MS UI Gothic</FontFamily>
+                                        <FontSize>9pt</FontSize>
+                                      </Style>
+                                    </TextRun>
+                                  </TextRuns>
+                                  <Style>
+                                    <TextAlign>Left</TextAlign>
+                                  </Style>
+                                </Paragraph>
+                              </Paragraphs>
+                              <Style>
+                                <Border>
+                                  <Style>None</Style>
+                                </Border>
+                                <VerticalAlign>Top</VerticalAlign>
+                                <PaddingLeft>2pt</PaddingLeft>
+                                <PaddingRight>2pt</PaddingRight>
+                                <PaddingTop>2pt</PaddingTop>
+                                <PaddingBottom>2pt</PaddingBottom>
+                              </Style>
+                            </Textbox>
+                          </CellContents>
+                        </TablixCell>
+                        <TablixCell>
+                          <CellContents>
+                            <Textbox Name="Textbox9">
+                              <rd:DefaultName>Textbox9</rd:DefaultName>
+                              <CanGrow>true</CanGrow>
+                              <KeepTogether>true</KeepTogether>
+                              <Paragraphs>
+                                <Paragraph>
+                                  <TextRuns>
+                                    <TextRun>
+                                      <Value />
+                                      <Style>
+                                        <FontFamily>MS UI Gothic</FontFamily>
+                                        <FontSize>9pt</FontSize>
+                                      </Style>
+                                    </TextRun>
+                                  </TextRuns>
+                                  <Style>
+                                    <TextAlign>Left</TextAlign>
+                                  </Style>
+                                </Paragraph>
+                              </Paragraphs>
+                              <Style>
+                                <Border>
+                                  <Style>None</Style>
+                                </Border>
+                                <VerticalAlign>Top</VerticalAlign>
+                                <PaddingLeft>2pt</PaddingLeft>
+                                <PaddingRight>2pt</PaddingRight>
+                                <PaddingTop>2pt</PaddingTop>
+                                <PaddingBottom>2pt</PaddingBottom>
+                              </Style>
+                            </Textbox>
+                          </CellContents>
+                        </TablixCell>
+                        <TablixCell>
+                          <CellContents>
+                            <Textbox Name="Textbox10">
+                              <rd:DefaultName>Textbox10</rd:DefaultName>
+                              <CanGrow>true</CanGrow>
+                              <KeepTogether>true</KeepTogether>
+                              <Paragraphs>
+                                <Paragraph>
+                                  <TextRuns>
+                                    <TextRun>
+                                      <Value />
+                                      <Style>
+                                        <FontFamily>MS UI Gothic</FontFamily>
+                                        <FontSize>9pt</FontSize>
+                                      </Style>
+                                    </TextRun>
+                                  </TextRuns>
+                                  <Style>
+                                    <TextAlign>Left</TextAlign>
+                                  </Style>
+                                </Paragraph>
+                              </Paragraphs>
+                              <Style>
+                                <Border>
+                                  <Style>None</Style>
+                                </Border>
+                                <VerticalAlign>Top</VerticalAlign>
+                                <PaddingLeft>2pt</PaddingLeft>
+                                <PaddingRight>2pt</PaddingRight>
+                                <PaddingTop>2pt</PaddingTop>
+                                <PaddingBottom>2pt</PaddingBottom>
+                              </Style>
+                            </Textbox>
+                          </CellContents>
+                        </TablixCell>
+                        <TablixCell>
+                          <CellContents>
+                            <Textbox Name="Textbox11">
+                              <rd:DefaultName>Textbox11</rd:DefaultName>
+                              <CanGrow>true</CanGrow>
+                              <KeepTogether>true</KeepTogether>
+                              <Paragraphs>
+                                <Paragraph>
+                                  <TextRuns>
+                                    <TextRun>
+                                      <Value />
+                                      <Style>
+                                        <FontFamily>MS UI Gothic</FontFamily>
+                                        <FontSize>9pt</FontSize>
+                                      </Style>
+                                    </TextRun>
+                                  </TextRuns>
+                                  <Style>
+                                    <TextAlign>Left</TextAlign>
+                                  </Style>
+                                </Paragraph>
+                              </Paragraphs>
+                              <Style>
+                                <Border>
+                                  <Style>None</Style>
+                                </Border>
+                                <VerticalAlign>Top</VerticalAlign>
+                                <PaddingLeft>2pt</PaddingLeft>
+                                <PaddingRight>2pt</PaddingRight>
+                                <PaddingTop>2pt</PaddingTop>
+                                <PaddingBottom>2pt</PaddingBottom>
+                              </Style>
+                            </Textbox>
+                          </CellContents>
+                        </TablixCell>
+                        <TablixCell>
+                          <CellContents>
+                            <Textbox Name="Textbox12">
+                              <rd:DefaultName>Textbox12</rd:DefaultName>
+                              <CanGrow>true</CanGrow>
+                              <KeepTogether>true</KeepTogether>
+                              <Paragraphs>
+                                <Paragraph>
+                                  <TextRuns>
+                                    <TextRun>
+                                      <Value />
+                                      <Style>
+                                        <FontFamily>MS UI Gothic</FontFamily>
+                                        <FontSize>9pt</FontSize>
+                                      </Style>
+                                    </TextRun>
+                                  </TextRuns>
+                                  <Style>
+                                    <TextAlign>Left</TextAlign>
+                                  </Style>
+                                </Paragraph>
+                              </Paragraphs>
+                              <Style>
+                                <Border>
+                                  <Style>None</Style>
+                                </Border>
+                                <VerticalAlign>Top</VerticalAlign>
+                                <PaddingLeft>2pt</PaddingLeft>
+                                <PaddingRight>2pt</PaddingRight>
+                                <PaddingTop>2pt</PaddingTop>
+                                <PaddingBottom>2pt</PaddingBottom>
+                              </Style>
+                            </Textbox>
+                          </CellContents>
+                        </TablixCell>
+                        <TablixCell>
+                          <CellContents>
+                            <Textbox Name="Textbox13">
+                              <rd:DefaultName>Textbox13</rd:DefaultName>
+                              <CanGrow>true</CanGrow>
+                              <KeepTogether>true</KeepTogether>
+                              <Paragraphs>
+                                <Paragraph>
+                                  <TextRuns>
+                                    <TextRun>
+                                      <Value />
+                                      <Style>
+                                        <FontFamily>MS UI Gothic</FontFamily>
+                                        <FontSize>9pt</FontSize>
+                                      </Style>
+                                    </TextRun>
+                                  </TextRuns>
+                                  <Style>
+                                    <TextAlign>Left</TextAlign>
+                                  </Style>
+                                </Paragraph>
+                              </Paragraphs>
+                              <Style>
+                                <Border>
+                                  <Style>None</Style>
+                                </Border>
+                                <VerticalAlign>Top</VerticalAlign>
+                                <PaddingLeft>2pt</PaddingLeft>
+                                <PaddingRight>2pt</PaddingRight>
+                                <PaddingTop>2pt</PaddingTop>
+                                <PaddingBottom>2pt</PaddingBottom>
+                              </Style>
+                            </Textbox>
+                          </CellContents>
+                        </TablixCell>
+                        <TablixCell>
+                          <CellContents>
+                            <Textbox Name="Textbox14">
+                              <rd:DefaultName>Textbox14</rd:DefaultName>
+                              <CanGrow>true</CanGrow>
+                              <KeepTogether>true</KeepTogether>
+                              <Paragraphs>
+                                <Paragraph>
+                                  <TextRuns>
+                                    <TextRun>
+                                      <Value />
+                                      <Style>
+                                        <FontFamily>MS UI Gothic</FontFamily>
+                                        <FontSize>9pt</FontSize>
+                                      </Style>
+                                    </TextRun>
+                                  </TextRuns>
+                                  <Style>
+                                    <TextAlign>Left</TextAlign>
+                                  </Style>
+                                </Paragraph>
+                              </Paragraphs>
+                              <Style>
+                                <Border>
+                                  <Style>None</Style>
+                                </Border>
+                                <VerticalAlign>Top</VerticalAlign>
+                                <PaddingLeft>2pt</PaddingLeft>
+                                <PaddingRight>2pt</PaddingRight>
+                                <PaddingTop>2pt</PaddingTop>
+                                <PaddingBottom>2pt</PaddingBottom>
+                              </Style>
+                            </Textbox>
+                          </CellContents>
+                        </TablixCell>
+                      </TablixCells>
+                    </TablixRow>
+                    <TablixRow>
                       <Height>0.67408cm</Height>
                       <TablixCells>
                         <TablixCell>
@@ -1805,12 +1382,12 @@
                                       <Value>=Fields!ItemNo_Line.Value</Value>
                                       <Style>
                                         <FontFamily>MS UI Gothic</FontFamily>
-                                        <FontSize>8pt</FontSize>
+                                        <FontSize>9pt</FontSize>
                                       </Style>
                                     </TextRun>
                                   </TextRuns>
                                   <Style>
-                                    <TextAlign>Right</TextAlign>
+                                    <TextAlign>Left</TextAlign>
                                   </Style>
                                 </Paragraph>
                               </Paragraphs>
@@ -1818,7 +1395,7 @@
                                 <Border>
                                   <Style>None</Style>
                                 </Border>
-                                <VerticalAlign>Middle</VerticalAlign>
+                                <VerticalAlign>Top</VerticalAlign>
                                 <PaddingLeft>2pt</PaddingLeft>
                                 <PaddingRight>2pt</PaddingRight>
                                 <PaddingTop>2pt</PaddingTop>
@@ -1840,12 +1417,12 @@
                                       <Value>=Fields!Description_Line.Value</Value>
                                       <Style>
                                         <FontFamily>MS UI Gothic</FontFamily>
-                                        <FontSize>8pt</FontSize>
+                                        <FontSize>9pt</FontSize>
                                       </Style>
                                     </TextRun>
                                   </TextRuns>
                                   <Style>
-                                    <TextAlign>Right</TextAlign>
+                                    <TextAlign>Left</TextAlign>
                                   </Style>
                                 </Paragraph>
                               </Paragraphs>
@@ -1853,7 +1430,7 @@
                                 <Border>
                                   <Style>None</Style>
                                 </Border>
-                                <VerticalAlign>Middle</VerticalAlign>
+                                <VerticalAlign>Top</VerticalAlign>
                                 <PaddingLeft>2pt</PaddingLeft>
                                 <PaddingRight>2pt</PaddingRight>
                                 <PaddingTop>2pt</PaddingTop>
@@ -1875,7 +1452,7 @@
                                       <Value>=Fields!Quantity_Line.Value</Value>
                                       <Style>
                                         <FontFamily>MS UI Gothic</FontFamily>
-                                        <FontSize>8pt</FontSize>
+                                        <FontSize>9pt</FontSize>
                                       </Style>
                                     </TextRun>
                                   </TextRuns>
@@ -1888,7 +1465,7 @@
                                 <Border>
                                   <Style>None</Style>
                                 </Border>
-                                <VerticalAlign>Middle</VerticalAlign>
+                                <VerticalAlign>Top</VerticalAlign>
                                 <PaddingLeft>2pt</PaddingLeft>
                                 <PaddingRight>2pt</PaddingRight>
                                 <PaddingTop>2pt</PaddingTop>
@@ -1910,7 +1487,7 @@
                                       <Value>=Fields!UnitPrice.Value</Value>
                                       <Style>
                                         <FontFamily>MS UI Gothic</FontFamily>
-                                        <FontSize>8pt</FontSize>
+                                        <FontSize>9pt</FontSize>
                                       </Style>
                                     </TextRun>
                                   </TextRuns>
@@ -1923,7 +1500,7 @@
                                 <Border>
                                   <Style>None</Style>
                                 </Border>
-                                <VerticalAlign>Middle</VerticalAlign>
+                                <VerticalAlign>Top</VerticalAlign>
                                 <PaddingLeft>2pt</PaddingLeft>
                                 <PaddingRight>2pt</PaddingRight>
                                 <PaddingTop>2pt</PaddingTop>
@@ -1945,7 +1522,7 @@
                                       <Value>=IIF ( Fields!LineDiscountPercent_Line.Value = 0, 0.0, 100 - Fields!LineDiscountPercent_Line.Value)</Value>
                                       <Style>
                                         <FontFamily>MS UI Gothic</FontFamily>
-                                        <FontSize>8pt</FontSize>
+                                        <FontSize>9pt</FontSize>
                                       </Style>
                                     </TextRun>
                                   </TextRuns>
@@ -1958,7 +1535,7 @@
                                 <Border>
                                   <Style>None</Style>
                                 </Border>
-                                <VerticalAlign>Middle</VerticalAlign>
+                                <VerticalAlign>Top</VerticalAlign>
                                 <PaddingLeft>2pt</PaddingLeft>
                                 <PaddingRight>2pt</PaddingRight>
                                 <PaddingTop>2pt</PaddingTop>
@@ -1977,10 +1554,10 @@
                                 <Paragraph>
                                   <TextRuns>
                                     <TextRun>
-                                      <Value>=Fields!NetUnitPrice.Value</Value>
+                                      <Value>=- 1 * (Fields!NetUnitPrice.Value)</Value>
                                       <Style>
                                         <FontFamily>MS UI Gothic</FontFamily>
-                                        <FontSize>8pt</FontSize>
+                                        <FontSize>9pt</FontSize>
                                       </Style>
                                     </TextRun>
                                   </TextRuns>
@@ -1993,7 +1570,7 @@
                                 <Border>
                                   <Style>None</Style>
                                 </Border>
-                                <VerticalAlign>Middle</VerticalAlign>
+                                <VerticalAlign>Top</VerticalAlign>
                                 <PaddingLeft>2pt</PaddingLeft>
                                 <PaddingRight>2pt</PaddingRight>
                                 <PaddingTop>2pt</PaddingTop>
@@ -2004,18 +1581,18 @@
                         </TablixCell>
                         <TablixCell>
                           <CellContents>
-                            <Textbox Name="Textbox118">
-                              <rd:DefaultName>Textbox118</rd:DefaultName>
+                            <Textbox Name="Textbox3">
+                              <rd:DefaultName>Textbox3</rd:DefaultName>
                               <CanGrow>true</CanGrow>
                               <KeepTogether>true</KeepTogether>
                               <Paragraphs>
                                 <Paragraph>
                                   <TextRuns>
                                     <TextRun>
-                                      <Value>=- 1 * (Fields!SalesLineAmtExclVATAmount.Value - Fields!SalesLineAmtAfterLineDisc.Value)</Value>
+                                      <Value>= -1 * (Fields!AmountIncludingVAT_Line.Value - Fields!LineAmountExclVAT.Value)</Value>
                                       <Style>
                                         <FontFamily>MS UI Gothic</FontFamily>
-                                        <FontSize>8pt</FontSize>
+                                        <FontSize>9pt</FontSize>
                                       </Style>
                                     </TextRun>
                                   </TextRuns>
@@ -2028,7 +1605,7 @@
                                 <Border>
                                   <Style>None</Style>
                                 </Border>
-                                <VerticalAlign>Middle</VerticalAlign>
+                                <VerticalAlign>Top</VerticalAlign>
                                 <PaddingLeft>2pt</PaddingLeft>
                                 <PaddingRight>2pt</PaddingRight>
                                 <PaddingTop>2pt</PaddingTop>
@@ -2047,10 +1624,10 @@
                                 <Paragraph>
                                   <TextRuns>
                                     <TextRun>
-                                      <Value>=Fields!AmountExcludingVAT_LineFormat</Value>
+                                      <Value>= -1 * (Fields!LineAmountExclVAT.value)</Value>
                                       <Style>
                                         <FontFamily>MS UI Gothic</FontFamily>
-                                        <FontSize>8pt</FontSize>
+                                        <FontSize>9pt</FontSize>
                                       </Style>
                                     </TextRun>
                                   </TextRuns>
@@ -2063,7 +1640,7 @@
                                 <Border>
                                   <Style>None</Style>
                                 </Border>
-                                <VerticalAlign>Middle</VerticalAlign>
+                                <VerticalAlign>Top</VerticalAlign>
                                 <PaddingLeft>2pt</PaddingLeft>
                                 <PaddingRight>2pt</PaddingRight>
                                 <PaddingTop>2pt</PaddingTop>
@@ -2083,7 +1660,10 @@
                                   <TextRuns>
                                     <TextRun>
                                       <Value />
-                                      <Style />
+                                      <Style>
+                                        <FontFamily>MS UI Gothic</FontFamily>
+                                        <FontSize>9pt</FontSize>
+                                      </Style>
                                     </TextRun>
                                   </TextRuns>
                                   <Style />
@@ -2112,7 +1692,10 @@
                                   <TextRuns>
                                     <TextRun>
                                       <Value />
-                                      <Style />
+                                      <Style>
+                                        <FontFamily>MS UI Gothic</FontFamily>
+                                        <FontSize>9pt</FontSize>
+                                      </Style>
                                     </TextRun>
                                   </TextRuns>
                                   <Style />
@@ -2143,7 +1726,7 @@
                                       <Value>=Fields!ExternalDocumentNo.Value</Value>
                                       <Style>
                                         <FontFamily>MS UI Gothic</FontFamily>
-                                        <FontSize>8pt</FontSize>
+                                        <FontSize>9pt</FontSize>
                                       </Style>
                                     </TextRun>
                                   </TextRuns>
@@ -2156,7 +1739,7 @@
                                 <Border>
                                   <Style>None</Style>
                                 </Border>
-                                <VerticalAlign>Middle</VerticalAlign>
+                                <VerticalAlign>Top</VerticalAlign>
                                 <PaddingLeft>2pt</PaddingLeft>
                                 <PaddingRight>2pt</PaddingRight>
                                 <PaddingTop>2pt</PaddingTop>
@@ -2181,7 +1764,9 @@
                                   <TextRuns>
                                     <TextRun>
                                       <Value />
-                                      <Style />
+                                      <Style>
+                                        <FontSize>9pt</FontSize>
+                                      </Style>
                                     </TextRun>
                                   </TextRuns>
                                   <Style />
@@ -2201,25 +1786,31 @@
                         </TablixCell>
                         <TablixCell>
                           <CellContents>
-                            <Textbox Name="Textbox91">
-                              <rd:DefaultName>Textbox91</rd:DefaultName>
+                            <Textbox Name="StorageTemprature">
+                              <rd:DefaultName>StorageTemprature</rd:DefaultName>
                               <CanGrow>true</CanGrow>
                               <KeepTogether>true</KeepTogether>
                               <Paragraphs>
                                 <Paragraph>
                                   <TextRuns>
                                     <TextRun>
-                                      <Value />
-                                      <Style />
+                                      <Value>="保管温度：" &amp; Fields!StorageTemprature.Value</Value>
+                                      <Style>
+                                        <FontFamily>MS UI Gothic</FontFamily>
+                                        <FontSize>9pt</FontSize>
+                                      </Style>
                                     </TextRun>
                                   </TextRuns>
-                                  <Style />
+                                  <Style>
+                                    <TextAlign>Left</TextAlign>
+                                  </Style>
                                 </Paragraph>
                               </Paragraphs>
                               <Style>
                                 <Border>
                                   <Style>None</Style>
                                 </Border>
+                                <VerticalAlign>Top</VerticalAlign>
                                 <PaddingLeft>2pt</PaddingLeft>
                                 <PaddingRight>2pt</PaddingRight>
                                 <PaddingTop>2pt</PaddingTop>
@@ -2239,7 +1830,9 @@
                                   <TextRuns>
                                     <TextRun>
                                       <Value />
-                                      <Style />
+                                      <Style>
+                                        <FontSize>9pt</FontSize>
+                                      </Style>
                                     </TextRun>
                                   </TextRuns>
                                   <Style />
@@ -2268,7 +1861,9 @@
                                   <TextRuns>
                                     <TextRun>
                                       <Value />
-                                      <Style />
+                                      <Style>
+                                        <FontSize>9pt</FontSize>
+                                      </Style>
                                     </TextRun>
                                   </TextRuns>
                                   <Style />
@@ -2297,7 +1892,9 @@
                                   <TextRuns>
                                     <TextRun>
                                       <Value />
-                                      <Style />
+                                      <Style>
+                                        <FontSize>9pt</FontSize>
+                                      </Style>
                                     </TextRun>
                                   </TextRuns>
                                   <Style />
@@ -2326,7 +1923,9 @@
                                   <TextRuns>
                                     <TextRun>
                                       <Value />
-                                      <Style />
+                                      <Style>
+                                        <FontSize>9pt</FontSize>
+                                      </Style>
                                     </TextRun>
                                   </TextRuns>
                                   <Style />
@@ -2355,7 +1954,9 @@
                                   <TextRuns>
                                     <TextRun>
                                       <Value />
-                                      <Style />
+                                      <Style>
+                                        <FontSize>9pt</FontSize>
+                                      </Style>
                                     </TextRun>
                                   </TextRuns>
                                   <Style />
@@ -2384,7 +1985,9 @@
                                   <TextRuns>
                                     <TextRun>
                                       <Value />
-                                      <Style />
+                                      <Style>
+                                        <FontSize>9pt</FontSize>
+                                      </Style>
                                     </TextRun>
                                   </TextRuns>
                                   <Style />
@@ -2413,7 +2016,9 @@
                                   <TextRuns>
                                     <TextRun>
                                       <Value />
-                                      <Style />
+                                      <Style>
+                                        <FontSize>9pt</FontSize>
+                                      </Style>
                                     </TextRun>
                                   </TextRuns>
                                   <Style />
@@ -2442,7 +2047,9 @@
                                   <TextRuns>
                                     <TextRun>
                                       <Value />
-                                      <Style />
+                                      <Style>
+                                        <FontSize>9pt</FontSize>
+                                      </Style>
                                     </TextRun>
                                   </TextRuns>
                                   <Style />
@@ -2471,7 +2078,9 @@
                                   <TextRuns>
                                     <TextRun>
                                       <Value />
-                                      <Style />
+                                      <Style>
+                                        <FontSize>9pt</FontSize>
+                                      </Style>
                                     </TextRun>
                                   </TextRuns>
                                   <Style />
@@ -2492,7 +2101,7 @@
                       </TablixCells>
                     </TablixRow>
                     <TablixRow>
-                      <Height>0.67408cm</Height>
+                      <Height>0.58941cm</Height>
                       <TablixCells>
                         <TablixCell>
                           <CellContents>
@@ -2505,7 +2114,10 @@
                                   <TextRuns>
                                     <TextRun>
                                       <Value />
-                                      <Style />
+                                      <Style>
+                                        <FontFamily>MS UI Gothic</FontFamily>
+                                        <FontSize>9pt</FontSize>
+                                      </Style>
                                     </TextRun>
                                   </TextRuns>
                                   <Style />
@@ -2533,17 +2145,23 @@
                                 <Paragraph>
                                   <TextRuns>
                                     <TextRun>
-                                      <Value />
-                                      <Style />
+                                      <Value>=Fields!EU_Description.Value + Fields!EU_Division_1.Value</Value>
+                                      <Style>
+                                        <FontFamily>MS UI Gothic</FontFamily>
+                                        <FontSize>9pt</FontSize>
+                                      </Style>
                                     </TextRun>
                                   </TextRuns>
-                                  <Style />
+                                  <Style>
+                                    <TextAlign>Left</TextAlign>
+                                  </Style>
                                 </Paragraph>
                               </Paragraphs>
                               <Style>
                                 <Border>
                                   <Style>None</Style>
                                 </Border>
+                                <VerticalAlign>Top</VerticalAlign>
                                 <PaddingLeft>2pt</PaddingLeft>
                                 <PaddingRight>2pt</PaddingRight>
                                 <PaddingTop>2pt</PaddingTop>
@@ -2563,7 +2181,10 @@
                                   <TextRuns>
                                     <TextRun>
                                       <Value />
-                                      <Style />
+                                      <Style>
+                                        <FontFamily>MS UI Gothic</FontFamily>
+                                        <FontSize>9pt</FontSize>
+                                      </Style>
                                     </TextRun>
                                   </TextRuns>
                                   <Style />
@@ -2592,7 +2213,10 @@
                                   <TextRuns>
                                     <TextRun>
                                       <Value />
-                                      <Style />
+                                      <Style>
+                                        <FontFamily>MS UI Gothic</FontFamily>
+                                        <FontSize>9pt</FontSize>
+                                      </Style>
                                     </TextRun>
                                   </TextRuns>
                                   <Style />
@@ -2621,7 +2245,10 @@
                                   <TextRuns>
                                     <TextRun>
                                       <Value />
-                                      <Style />
+                                      <Style>
+                                        <FontFamily>MS UI Gothic</FontFamily>
+                                        <FontSize>9pt</FontSize>
+                                      </Style>
                                     </TextRun>
                                   </TextRuns>
                                   <Style />
@@ -2650,7 +2277,10 @@
                                   <TextRuns>
                                     <TextRun>
                                       <Value />
-                                      <Style />
+                                      <Style>
+                                        <FontFamily>MS UI Gothic</FontFamily>
+                                        <FontSize>9pt</FontSize>
+                                      </Style>
                                     </TextRun>
                                   </TextRuns>
                                   <Style />
@@ -2679,7 +2309,10 @@
                                   <TextRuns>
                                     <TextRun>
                                       <Value />
-                                      <Style />
+                                      <Style>
+                                        <FontFamily>MS UI Gothic</FontFamily>
+                                        <FontSize>9pt</FontSize>
+                                      </Style>
                                     </TextRun>
                                   </TextRuns>
                                   <Style />
@@ -2708,7 +2341,10 @@
                                   <TextRuns>
                                     <TextRun>
                                       <Value />
-                                      <Style />
+                                      <Style>
+                                        <FontFamily>MS UI Gothic</FontFamily>
+                                        <FontSize>9pt</FontSize>
+                                      </Style>
                                     </TextRun>
                                   </TextRuns>
                                   <Style />
@@ -2737,7 +2373,10 @@
                                   <TextRuns>
                                     <TextRun>
                                       <Value />
-                                      <Style />
+                                      <Style>
+                                        <FontFamily>MS UI Gothic</FontFamily>
+                                        <FontSize>9pt</FontSize>
+                                      </Style>
                                     </TextRun>
                                   </TextRuns>
                                   <Style />
@@ -2766,7 +2405,10 @@
                                   <TextRuns>
                                     <TextRun>
                                       <Value />
-                                      <Style />
+                                      <Style>
+                                        <FontFamily>MS UI Gothic</FontFamily>
+                                        <FontSize>9pt</FontSize>
+                                      </Style>
                                     </TextRun>
                                   </TextRuns>
                                   <Style />
@@ -2795,7 +2437,10 @@
                                   <TextRuns>
                                     <TextRun>
                                       <Value />
-                                      <Style />
+                                      <Style>
+                                        <FontFamily>MS UI Gothic</FontFamily>
+                                        <FontSize>9pt</FontSize>
+                                      </Style>
                                     </TextRun>
                                   </TextRuns>
                                   <Style />
@@ -2805,6 +2450,432 @@
                                 <Border>
                                   <Style>None</Style>
                                 </Border>
+                                <PaddingLeft>2pt</PaddingLeft>
+                                <PaddingRight>2pt</PaddingRight>
+                                <PaddingTop>2pt</PaddingTop>
+                                <PaddingBottom>2pt</PaddingBottom>
+                              </Style>
+                            </Textbox>
+                          </CellContents>
+                        </TablixCell>
+                      </TablixCells>
+                    </TablixRow>
+                    <TablixRow>
+                      <Height>0.6cm</Height>
+                      <TablixCells>
+                        <TablixCell>
+                          <CellContents>
+                            <Textbox Name="Textbox124">
+                              <rd:DefaultName>Textbox124</rd:DefaultName>
+                              <CanGrow>true</CanGrow>
+                              <KeepTogether>true</KeepTogether>
+                              <Paragraphs>
+                                <Paragraph>
+                                  <TextRuns>
+                                    <TextRun>
+                                      <Value />
+                                      <Style>
+                                        <FontFamily>MS UI Gothic</FontFamily>
+                                        <FontSize>9pt</FontSize>
+                                      </Style>
+                                    </TextRun>
+                                  </TextRuns>
+                                  <Style />
+                                </Paragraph>
+                              </Paragraphs>
+                              <Style>
+                                <Border>
+                                  <Color>LightGrey</Color>
+                                  <Style>None</Style>
+                                </Border>
+                                <BottomBorder>
+                                  <Color>Black</Color>
+                                  <Style>Solid</Style>
+                                  <Width>1pt</Width>
+                                </BottomBorder>
+                                <PaddingLeft>2pt</PaddingLeft>
+                                <PaddingRight>2pt</PaddingRight>
+                                <PaddingTop>2pt</PaddingTop>
+                                <PaddingBottom>2pt</PaddingBottom>
+                              </Style>
+                            </Textbox>
+                          </CellContents>
+                        </TablixCell>
+                        <TablixCell>
+                          <CellContents>
+                            <Textbox Name="Textbox125">
+                              <rd:DefaultName>Textbox125</rd:DefaultName>
+                              <CanGrow>true</CanGrow>
+                              <KeepTogether>true</KeepTogether>
+                              <Paragraphs>
+                                <Paragraph>
+                                  <TextRuns>
+                                    <TextRun>
+                                      <Value>=Fields!Bikou_Description.Value</Value>
+                                      <Style>
+                                        <FontFamily>MS UI Gothic</FontFamily>
+                                        <FontSize>9pt</FontSize>
+                                      </Style>
+                                    </TextRun>
+                                  </TextRuns>
+                                  <Style>
+                                    <TextAlign>Left</TextAlign>
+                                  </Style>
+                                </Paragraph>
+                              </Paragraphs>
+                              <Style>
+                                <Border>
+                                  <Color>LightGrey</Color>
+                                  <Style>None</Style>
+                                </Border>
+                                <BottomBorder>
+                                  <Color>Black</Color>
+                                  <Style>Solid</Style>
+                                  <Width>1pt</Width>
+                                </BottomBorder>
+                                <VerticalAlign>Top</VerticalAlign>
+                                <PaddingLeft>2pt</PaddingLeft>
+                                <PaddingRight>2pt</PaddingRight>
+                                <PaddingTop>2pt</PaddingTop>
+                                <PaddingBottom>2pt</PaddingBottom>
+                              </Style>
+                            </Textbox>
+                          </CellContents>
+                        </TablixCell>
+                        <TablixCell>
+                          <CellContents>
+                            <Textbox Name="Textbox126">
+                              <rd:DefaultName>Textbox126</rd:DefaultName>
+                              <CanGrow>true</CanGrow>
+                              <KeepTogether>true</KeepTogether>
+                              <Paragraphs>
+                                <Paragraph>
+                                  <TextRuns>
+                                    <TextRun>
+                                      <Value />
+                                      <Style>
+                                        <FontFamily>MS UI Gothic</FontFamily>
+                                        <FontSize>9pt</FontSize>
+                                      </Style>
+                                    </TextRun>
+                                  </TextRuns>
+                                  <Style />
+                                </Paragraph>
+                              </Paragraphs>
+                              <Style>
+                                <Border>
+                                  <Color>LightGrey</Color>
+                                  <Style>None</Style>
+                                </Border>
+                                <BottomBorder>
+                                  <Color>Black</Color>
+                                  <Style>Solid</Style>
+                                  <Width>1pt</Width>
+                                </BottomBorder>
+                                <PaddingLeft>2pt</PaddingLeft>
+                                <PaddingRight>2pt</PaddingRight>
+                                <PaddingTop>2pt</PaddingTop>
+                                <PaddingBottom>2pt</PaddingBottom>
+                              </Style>
+                            </Textbox>
+                          </CellContents>
+                        </TablixCell>
+                        <TablixCell>
+                          <CellContents>
+                            <Textbox Name="Textbox127">
+                              <rd:DefaultName>Textbox127</rd:DefaultName>
+                              <CanGrow>true</CanGrow>
+                              <KeepTogether>true</KeepTogether>
+                              <Paragraphs>
+                                <Paragraph>
+                                  <TextRuns>
+                                    <TextRun>
+                                      <Value />
+                                      <Style>
+                                        <FontFamily>MS UI Gothic</FontFamily>
+                                        <FontSize>9pt</FontSize>
+                                      </Style>
+                                    </TextRun>
+                                  </TextRuns>
+                                  <Style />
+                                </Paragraph>
+                              </Paragraphs>
+                              <Style>
+                                <Border>
+                                  <Color>LightGrey</Color>
+                                  <Style>None</Style>
+                                </Border>
+                                <BottomBorder>
+                                  <Color>Black</Color>
+                                  <Style>Solid</Style>
+                                  <Width>1pt</Width>
+                                </BottomBorder>
+                                <PaddingLeft>2pt</PaddingLeft>
+                                <PaddingRight>2pt</PaddingRight>
+                                <PaddingTop>2pt</PaddingTop>
+                                <PaddingBottom>2pt</PaddingBottom>
+                              </Style>
+                            </Textbox>
+                          </CellContents>
+                        </TablixCell>
+                        <TablixCell>
+                          <CellContents>
+                            <Textbox Name="Textbox128">
+                              <rd:DefaultName>Textbox128</rd:DefaultName>
+                              <CanGrow>true</CanGrow>
+                              <KeepTogether>true</KeepTogether>
+                              <Paragraphs>
+                                <Paragraph>
+                                  <TextRuns>
+                                    <TextRun>
+                                      <Value />
+                                      <Style>
+                                        <FontFamily>MS UI Gothic</FontFamily>
+                                        <FontSize>9pt</FontSize>
+                                      </Style>
+                                    </TextRun>
+                                  </TextRuns>
+                                  <Style />
+                                </Paragraph>
+                              </Paragraphs>
+                              <Style>
+                                <Border>
+                                  <Color>LightGrey</Color>
+                                  <Style>None</Style>
+                                </Border>
+                                <BottomBorder>
+                                  <Color>Black</Color>
+                                  <Style>Solid</Style>
+                                  <Width>1pt</Width>
+                                </BottomBorder>
+                                <PaddingLeft>2pt</PaddingLeft>
+                                <PaddingRight>2pt</PaddingRight>
+                                <PaddingTop>2pt</PaddingTop>
+                                <PaddingBottom>2pt</PaddingBottom>
+                              </Style>
+                            </Textbox>
+                          </CellContents>
+                        </TablixCell>
+                        <TablixCell>
+                          <CellContents>
+                            <Textbox Name="Textbox129">
+                              <rd:DefaultName>Textbox129</rd:DefaultName>
+                              <CanGrow>true</CanGrow>
+                              <KeepTogether>true</KeepTogether>
+                              <Paragraphs>
+                                <Paragraph>
+                                  <TextRuns>
+                                    <TextRun>
+                                      <Value />
+                                      <Style>
+                                        <FontFamily>MS UI Gothic</FontFamily>
+                                        <FontSize>9pt</FontSize>
+                                      </Style>
+                                    </TextRun>
+                                  </TextRuns>
+                                  <Style />
+                                </Paragraph>
+                              </Paragraphs>
+                              <Style>
+                                <Border>
+                                  <Color>LightGrey</Color>
+                                  <Style>None</Style>
+                                </Border>
+                                <BottomBorder>
+                                  <Color>Black</Color>
+                                  <Style>Solid</Style>
+                                  <Width>1pt</Width>
+                                </BottomBorder>
+                                <PaddingLeft>2pt</PaddingLeft>
+                                <PaddingRight>2pt</PaddingRight>
+                                <PaddingTop>2pt</PaddingTop>
+                                <PaddingBottom>2pt</PaddingBottom>
+                              </Style>
+                            </Textbox>
+                          </CellContents>
+                        </TablixCell>
+                        <TablixCell>
+                          <CellContents>
+                            <Textbox Name="Textbox130">
+                              <rd:DefaultName>Textbox130</rd:DefaultName>
+                              <CanGrow>true</CanGrow>
+                              <KeepTogether>true</KeepTogether>
+                              <Paragraphs>
+                                <Paragraph>
+                                  <TextRuns>
+                                    <TextRun>
+                                      <Value />
+                                      <Style>
+                                        <FontFamily>MS UI Gothic</FontFamily>
+                                        <FontSize>9pt</FontSize>
+                                      </Style>
+                                    </TextRun>
+                                  </TextRuns>
+                                  <Style />
+                                </Paragraph>
+                              </Paragraphs>
+                              <Style>
+                                <Border>
+                                  <Color>LightGrey</Color>
+                                  <Style>None</Style>
+                                </Border>
+                                <BottomBorder>
+                                  <Color>Black</Color>
+                                  <Style>Solid</Style>
+                                  <Width>1pt</Width>
+                                </BottomBorder>
+                                <PaddingLeft>2pt</PaddingLeft>
+                                <PaddingRight>2pt</PaddingRight>
+                                <PaddingTop>2pt</PaddingTop>
+                                <PaddingBottom>2pt</PaddingBottom>
+                              </Style>
+                            </Textbox>
+                          </CellContents>
+                        </TablixCell>
+                        <TablixCell>
+                          <CellContents>
+                            <Textbox Name="Textbox131">
+                              <rd:DefaultName>Textbox131</rd:DefaultName>
+                              <CanGrow>true</CanGrow>
+                              <KeepTogether>true</KeepTogether>
+                              <Paragraphs>
+                                <Paragraph>
+                                  <TextRuns>
+                                    <TextRun>
+                                      <Value />
+                                      <Style>
+                                        <FontFamily>MS UI Gothic</FontFamily>
+                                        <FontSize>9pt</FontSize>
+                                      </Style>
+                                    </TextRun>
+                                  </TextRuns>
+                                  <Style />
+                                </Paragraph>
+                              </Paragraphs>
+                              <Style>
+                                <Border>
+                                  <Color>LightGrey</Color>
+                                  <Style>None</Style>
+                                </Border>
+                                <BottomBorder>
+                                  <Color>Black</Color>
+                                  <Style>Solid</Style>
+                                  <Width>1pt</Width>
+                                </BottomBorder>
+                                <PaddingLeft>2pt</PaddingLeft>
+                                <PaddingRight>2pt</PaddingRight>
+                                <PaddingTop>2pt</PaddingTop>
+                                <PaddingBottom>2pt</PaddingBottom>
+                              </Style>
+                            </Textbox>
+                          </CellContents>
+                        </TablixCell>
+                        <TablixCell>
+                          <CellContents>
+                            <Textbox Name="Textbox132">
+                              <rd:DefaultName>Textbox132</rd:DefaultName>
+                              <CanGrow>true</CanGrow>
+                              <KeepTogether>true</KeepTogether>
+                              <Paragraphs>
+                                <Paragraph>
+                                  <TextRuns>
+                                    <TextRun>
+                                      <Value />
+                                      <Style>
+                                        <FontFamily>MS UI Gothic</FontFamily>
+                                        <FontSize>9pt</FontSize>
+                                      </Style>
+                                    </TextRun>
+                                  </TextRuns>
+                                  <Style />
+                                </Paragraph>
+                              </Paragraphs>
+                              <Style>
+                                <Border>
+                                  <Color>LightGrey</Color>
+                                  <Style>None</Style>
+                                </Border>
+                                <BottomBorder>
+                                  <Color>Black</Color>
+                                  <Style>Solid</Style>
+                                  <Width>1pt</Width>
+                                </BottomBorder>
+                                <PaddingLeft>2pt</PaddingLeft>
+                                <PaddingRight>2pt</PaddingRight>
+                                <PaddingTop>2pt</PaddingTop>
+                                <PaddingBottom>2pt</PaddingBottom>
+                              </Style>
+                            </Textbox>
+                          </CellContents>
+                        </TablixCell>
+                        <TablixCell>
+                          <CellContents>
+                            <Textbox Name="Textbox133">
+                              <rd:DefaultName>Textbox133</rd:DefaultName>
+                              <CanGrow>true</CanGrow>
+                              <KeepTogether>true</KeepTogether>
+                              <Paragraphs>
+                                <Paragraph>
+                                  <TextRuns>
+                                    <TextRun>
+                                      <Value />
+                                      <Style>
+                                        <FontFamily>MS UI Gothic</FontFamily>
+                                        <FontSize>9pt</FontSize>
+                                      </Style>
+                                    </TextRun>
+                                  </TextRuns>
+                                  <Style />
+                                </Paragraph>
+                              </Paragraphs>
+                              <Style>
+                                <Border>
+                                  <Color>LightGrey</Color>
+                                  <Style>None</Style>
+                                </Border>
+                                <BottomBorder>
+                                  <Color>Black</Color>
+                                  <Style>Solid</Style>
+                                  <Width>1pt</Width>
+                                </BottomBorder>
+                                <PaddingLeft>2pt</PaddingLeft>
+                                <PaddingRight>2pt</PaddingRight>
+                                <PaddingTop>2pt</PaddingTop>
+                                <PaddingBottom>2pt</PaddingBottom>
+                              </Style>
+                            </Textbox>
+                          </CellContents>
+                        </TablixCell>
+                        <TablixCell>
+                          <CellContents>
+                            <Textbox Name="Textbox134">
+                              <rd:DefaultName>Textbox134</rd:DefaultName>
+                              <CanGrow>true</CanGrow>
+                              <KeepTogether>true</KeepTogether>
+                              <Paragraphs>
+                                <Paragraph>
+                                  <TextRuns>
+                                    <TextRun>
+                                      <Value />
+                                      <Style>
+                                        <FontFamily>MS UI Gothic</FontFamily>
+                                        <FontSize>9pt</FontSize>
+                                      </Style>
+                                    </TextRun>
+                                  </TextRuns>
+                                  <Style />
+                                </Paragraph>
+                              </Paragraphs>
+                              <Style>
+                                <Border>
+                                  <Color>LightGrey</Color>
+                                  <Style>None</Style>
+                                </Border>
+                                <BottomBorder>
+                                  <Color>Black</Color>
+                                  <Style>Solid</Style>
+                                  <Width>1pt</Width>
+                                </BottomBorder>
                                 <PaddingLeft>2pt</PaddingLeft>
                                 <PaddingRight>2pt</PaddingRight>
                                 <PaddingTop>2pt</PaddingTop>
@@ -2838,8 +2909,27 @@
                       <KeepWithGroup>After</KeepWithGroup>
                     </TablixMember>
                     <TablixMember>
-                      <Group Name="Details" />
+                      <Group Name="Group1">
+                        <GroupExpressions>
+                          <GroupExpression>=Fields!ItemNo_Line.Value</GroupExpression>
+                        </GroupExpressions>
+                      </Group>
+                      <SortExpressions>
+                        <SortExpression>
+                          <Value>No_SalesHdr</Value>
+                        </SortExpression>
+                      </SortExpressions>
                       <TablixMembers>
+                        <TablixMember>
+                          <Visibility>
+                            <Hidden>true</Hidden>
+                          </Visibility>
+                        </TablixMember>
+                        <TablixMember>
+                          <Visibility>
+                            <Hidden>=IIf(Fields!TypeInt.Value &gt; 0, False, True)</Hidden>
+                          </Visibility>
+                        </TablixMember>
                         <TablixMember />
                         <TablixMember />
                         <TablixMember />
@@ -2847,10 +2937,11 @@
                     </TablixMember>
                   </TablixMembers>
                 </TablixRowHierarchy>
+                <RepeatRowHeaders>true</RepeatRowHeaders>
                 <DataSetName>DataSet_Result</DataSetName>
                 <Top>5.64324cm</Top>
                 <Left>0.24764cm</Left>
-                <Height>2.69633cm</Height>
+                <Height>3.81165cm</Height>
                 <Width>26.35918cm</Width>
                 <ZIndex>10</ZIndex>
                 <Style>
@@ -2871,7 +2962,7 @@
                         <Style>
                           <FontStyle>Normal</FontStyle>
                           <FontFamily>MS UI Gothic</FontFamily>
-                          <FontSize>8pt</FontSize>
+                          <FontSize>9pt</FontSize>
                           <FontWeight>Normal</FontWeight>
                           <TextDecoration>None</TextDecoration>
                           <Color>#000000</Color>
@@ -2885,8 +2976,8 @@
                 </Paragraphs>
                 <Top>5.04324cm</Top>
                 <Left>0.24764cm</Left>
-                <Height>0.6cm</Height>
-                <Width>1.41733cm</Width>
+                <Height>0.52944cm</Height>
+                <Width>1.7066cm</Width>
                 <ZIndex>11</ZIndex>
                 <Style>
                   <Border>
@@ -2910,7 +3001,7 @@
                         <Value>="直送情報: " &amp; First(Fields!Direct_Shipping_Code.Value,"DataSet_Result")</Value>
                         <Style>
                           <FontFamily>MS UI Gothic</FontFamily>
-                          <FontSize>8pt</FontSize>
+                          <FontSize>9pt</FontSize>
                         </Style>
                       </TextRun>
                     </TextRuns>
@@ -2920,7 +3011,7 @@
                 <Top>5.04324cm</Top>
                 <Left>9.99442cm</Left>
                 <Height>0.6cm</Height>
-                <Width>9.48046cm</Width>
+                <Width>9.04211cm</Width>
                 <ZIndex>12</ZIndex>
                 <Style>
                   <Border>
@@ -2954,9 +3045,9 @@
                     <Style />
                   </Paragraph>
                 </Paragraphs>
-                <Top>8.33957cm</Top>
+                <Top>9.63128cm</Top>
                 <Left>9.99442cm</Left>
-                <Height>0.76086cm</Height>
+                <Height>0.50686cm</Height>
                 <Width>3.20646cm</Width>
                 <ZIndex>13</ZIndex>
                 <Style>
@@ -2977,14 +3068,14 @@
                   <Paragraph>
                     <TextRuns>
                       <TextRun>
-                        <Value>=-1*(IIf(
-Last(Fields!CurrencyCode.Value, "DataSet_Result") = "JPY",
-    FormatNumber(Last(Fields!TotalSubTotal.Value, "DataSet_Result"), 0),
-    FormatNumber(Last(Fields!TotalSubTotal.Value, "DataSet_Result"), 2)
-))</Value>
+                        <Value>=IIf(
+    First(Fields!CurrencyCode.Value, "DataSet_Result") = "JPY",
+    FormatNumber(Sum(-1 * Fields!TotalAmountExclVAT.Value, "DataSet_Result"), 0),
+    FormatNumber(Sum(-1 * Fields!TotalAmountExclVAT.Value, "DataSet_Result"), 2)
+)</Value>
                         <Style>
                           <FontFamily>MS UI Gothic</FontFamily>
-                          <FontSize>8pt</FontSize>
+                          <FontSize>9pt</FontSize>
                         </Style>
                       </TextRun>
                     </TextRuns>
@@ -2993,16 +3084,16 @@ Last(Fields!CurrencyCode.Value, "DataSet_Result") = "JPY",
                     </Style>
                   </Paragraph>
                 </Paragraphs>
-                <Top>8.33957cm</Top>
+                <Top>9.63128cm</Top>
                 <Left>13.34199cm</Left>
-                <Height>0.76086cm</Height>
+                <Height>0.50686cm</Height>
                 <Width>3.26997cm</Width>
                 <ZIndex>14</ZIndex>
                 <Style>
                   <Border>
                     <Style>None</Style>
                   </Border>
-                  <VerticalAlign>Middle</VerticalAlign>
+                  <VerticalAlign>Top</VerticalAlign>
                   <PaddingLeft>2pt</PaddingLeft>
                   <PaddingRight>2pt</PaddingRight>
                   <PaddingTop>2pt</PaddingTop>
@@ -3017,19 +3108,19 @@ Last(Fields!CurrencyCode.Value, "DataSet_Result") = "JPY",
                   <Paragraph>
                     <TextRuns>
                       <TextRun>
-                        <Value>="Fax番号："&amp; Fields!CompanyFaxNo.Value</Value>
+                        <Value>="Fax："&amp; Fields!CompanyFaxNo.Value</Value>
                         <Style>
                           <FontFamily>MS UI Gothic</FontFamily>
-                          <FontSize>8pt</FontSize>
+                          <FontSize>9pt</FontSize>
                         </Style>
                       </TextRun>
                     </TextRuns>
                     <Style />
                   </Paragraph>
                 </Paragraphs>
-                <Top>3.15697cm</Top>
-                <Left>17.71404cm</Left>
-                <Height>0.43067cm</Height>
+                <Top>3.20638cm</Top>
+                <Left>18.39137cm</Left>
+                <Height>0.45184cm</Height>
                 <Width>6.50418cm</Width>
                 <ZIndex>15</ZIndex>
                 <Style>
@@ -3053,7 +3144,7 @@ Last(Fields!CurrencyCode.Value, "DataSet_Result") = "JPY",
                         <Value>=Fields!No_SalesHdr.Value</Value>
                         <Style>
                           <FontFamily>MS UI Gothic</FontFamily>
-                          <FontSize>8pt</FontSize>
+                          <FontSize>9pt</FontSize>
                         </Style>
                       </TextRun>
                     </TextRuns>
@@ -3063,9 +3154,9 @@ Last(Fields!CurrencyCode.Value, "DataSet_Result") = "JPY",
                   </Paragraph>
                 </Paragraphs>
                 <Top>5.04324cm</Top>
-                <Left>1.7708cm</Left>
-                <Height>0.6cm</Height>
-                <Width>2.5cm</Width>
+                <Left>1.95424cm</Left>
+                <Height>0.52944cm</Height>
+                <Width>2.31656cm</Width>
                 <ZIndex>16</ZIndex>
                 <Style>
                   <Border>
@@ -3078,13 +3169,46 @@ Last(Fields!CurrencyCode.Value, "DataSet_Result") = "JPY",
                   <PaddingBottom>2pt</PaddingBottom>
                 </Style>
               </Textbox>
+              <Textbox Name="Textbox123">
+                <rd:DefaultName>Textbox123</rd:DefaultName>
+                <CanGrow>true</CanGrow>
+                <KeepTogether>true</KeepTogether>
+                <Paragraphs>
+                  <Paragraph>
+                    <TextRuns>
+                      <TextRun>
+                        <Value>="〒 " + Fields!CompanyPostCode.Value</Value>
+                        <Style>
+                          <FontFamily>MS UI Gothic</FontFamily>
+                          <FontSize>9pt</FontSize>
+                        </Style>
+                      </TextRun>
+                    </TextRuns>
+                    <Style />
+                  </Paragraph>
+                </Paragraphs>
+                <Top>1.12155cm</Top>
+                <Left>18.39137cm</Left>
+                <Height>0.41436cm</Height>
+                <Width>6.50418cm</Width>
+                <ZIndex>17</ZIndex>
+                <Style>
+                  <Border>
+                    <Style>None</Style>
+                  </Border>
+                  <PaddingLeft>2pt</PaddingLeft>
+                  <PaddingRight>2pt</PaddingRight>
+                  <PaddingTop>2pt</PaddingTop>
+                  <PaddingBottom>2pt</PaddingBottom>
+                </Style>
+              </Textbox>
             </ReportItems>
             <KeepTogether>true</KeepTogether>
             <OmitBorderOnPageBreak>true</OmitBorderOnPageBreak>
-            <Top>0.52917cm</Top>
+            <Top>0.21167cm</Top>
             <Left>0.0497cm</Left>
-            <Height>9.46356cm</Height>
-            <Width>26.78457cm</Width>
+            <Height>10.53008cm</Height>
+            <Width>27.03857cm</Width>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -3092,13 +3216,13 @@ Last(Fields!CurrencyCode.Value, "DataSet_Result") = "JPY",
             </Style>
           </Rectangle>
         </ReportItems>
-        <Height>10.14908cm</Height>
+        <Height>10.74175cm</Height>
         <Style />
       </Body>
-      <Width>26.83427cm</Width>
+      <Width>27.08827cm</Width>
       <Page>
         <PageHeader>
-          <Height>2.5812cm</Height>
+          <Height>2.59531cm</Height>
           <PrintOnFirstPage>true</PrintOnFirstPage>
           <PrintOnLastPage>true</PrintOnLastPage>
           <ReportItems>
@@ -3149,7 +3273,7 @@ Last(Fields!CurrencyCode.Value, "DataSet_Result") = "JPY",
                       <Value>=Format(Fields!PostingDate.Value, "yyyy/MM/dd")</Value>
                       <Style>
                         <FontFamily>MS UI Gothic</FontFamily>
-                        <FontSize>8pt</FontSize>
+                        <FontSize>9pt</FontSize>
                       </Style>
                     </TextRun>
                   </TextRuns>
@@ -3160,7 +3284,7 @@ Last(Fields!CurrencyCode.Value, "DataSet_Result") = "JPY",
               </Paragraphs>
               <Top>1.9812cm</Top>
               <Left>23.90987cm</Left>
-              <Height>0.42361cm</Height>
+              <Height>0.43772cm</Height>
               <Width>2.64082cm</Width>
               <ZIndex>1</ZIndex>
               <Style>
@@ -3184,7 +3308,7 @@ Last(Fields!CurrencyCode.Value, "DataSet_Result") = "JPY",
                       <Value>=Globals!PageNumber</Value>
                       <Style>
                         <FontFamily>MS UI Gothic</FontFamily>
-                        <FontSize>8pt</FontSize>
+                        <FontSize>9pt</FontSize>
                       </Style>
                     </TextRun>
                   </TextRuns>
@@ -3220,7 +3344,7 @@ Last(Fields!CurrencyCode.Value, "DataSet_Result") = "JPY",
                       <Value>ページ</Value>
                       <Style>
                         <FontFamily>MS UI Gothic</FontFamily>
-                        <FontSize>8pt</FontSize>
+                        <FontSize>9pt</FontSize>
                       </Style>
                     </TextRun>
                   </TextRuns>
@@ -3229,10 +3353,10 @@ Last(Fields!CurrencyCode.Value, "DataSet_Result") = "JPY",
                   </Style>
                 </Paragraph>
               </Paragraphs>
-              <Top>1.45402cm</Top>
-              <Left>22.92212cm</Left>
-              <Height>0.42134cm</Height>
-              <Width>0.88191cm</Width>
+              <Top>1.4893cm</Top>
+              <Left>22.73162cm</Left>
+              <Height>0.38606cm</Height>
+              <Width>1.07241cm</Width>
               <ZIndex>3</ZIndex>
               <Style>
                 <Border>
@@ -3256,7 +3380,7 @@ Last(Fields!CurrencyCode.Value, "DataSet_Result") = "JPY",
                       <Value>受注日：</Value>
                       <Style>
                         <FontFamily>MS UI Gothic</FontFamily>
-                        <FontSize>8pt</FontSize>
+                        <FontSize>9pt</FontSize>
                       </Style>
                     </TextRun>
                   </TextRuns>
@@ -3267,7 +3391,7 @@ Last(Fields!CurrencyCode.Value, "DataSet_Result") = "JPY",
               </Paragraphs>
               <Top>1.9812cm</Top>
               <Left>22.35062cm</Left>
-              <Height>0.42361cm</Height>
+              <Height>0.43772cm</Height>
               <Width>1.45341cm</Width>
               <ZIndex>4</ZIndex>
               <Style>
@@ -3304,12 +3428,6 @@ Last(Fields!CurrencyCode.Value, "DataSet_Result") = "JPY",
       </Page>
     </ReportSection>
   </ReportSections>
-  <ReportParametersLayout>
-    <GridLayoutDefinition>
-      <NumberOfColumns>4</NumberOfColumns>
-      <NumberOfRows>2</NumberOfRows>
-    </GridLayoutDefinition>
-  </ReportParametersLayout>
   <Code>Public Function BlankZero(ByVal Value As Decimal)
     if Value = 0 then
         Return ""
@@ -3347,4 +3465,143 @@ End Function
 </Code>
   <Language>=User!Language</Language>
   <ConsumeContainerWhitespace>true</ConsumeContainerWhitespace>
+  <DataSets>
+    <DataSet Name="DataSet_Result">
+      <Fields>
+        <Field Name="No_SalesHdr">
+          <DataField>No_SalesHdr</DataField>
+        </Field>
+        <Field Name="DocumentDate">
+          <DataField>DocumentDate</DataField>
+        </Field>
+        <Field Name="BillToName">
+          <DataField>BillToName</DataField>
+        </Field>
+        <Field Name="BillToName2">
+          <DataField>BillToName2</DataField>
+        </Field>
+        <Field Name="BillToAddress">
+          <DataField>BillToAddress</DataField>
+        </Field>
+        <Field Name="BillToAddress2">
+          <DataField>BillToAddress2</DataField>
+        </Field>
+        <Field Name="BillToPostCode">
+          <DataField>BillToPostCode</DataField>
+        </Field>
+        <Field Name="BillToCity">
+          <DataField>BillToCity</DataField>
+        </Field>
+        <Field Name="BillToCustomerNo">
+          <DataField>BillToCustomerNo</DataField>
+        </Field>
+        <Field Name="Direct_Shipping_Code">
+          <DataField>Direct_Shipping_Code</DataField>
+        </Field>
+        <Field Name="PostingDate">
+          <DataField>PostingDate</DataField>
+        </Field>
+        <Field Name="CurrencyCode">
+          <DataField>CurrencyCode</DataField>
+        </Field>
+        <Field Name="CompanyName">
+          <DataField>CompanyName</DataField>
+        </Field>
+        <Field Name="CompanyAddress">
+          <DataField>CompanyAddress</DataField>
+        </Field>
+        <Field Name="CompanyAddress2">
+          <DataField>CompanyAddress2</DataField>
+        </Field>
+        <Field Name="CompanyCity">
+          <DataField>CompanyCity</DataField>
+        </Field>
+        <Field Name="CompanyPostCode">
+          <DataField>CompanyPostCode</DataField>
+        </Field>
+        <Field Name="CompanyFaxNo">
+          <DataField>CompanyFaxNo</DataField>
+        </Field>
+        <Field Name="CompanyPhoneNo">
+          <DataField>CompanyPhoneNo</DataField>
+        </Field>
+        <Field Name="ItemNo_Line">
+          <DataField>ItemNo_Line</DataField>
+        </Field>
+        <Field Name="Document_No_">
+          <DataField>Document_No_</DataField>
+        </Field>
+        <Field Name="Description_Line">
+          <DataField>Description_Line</DataField>
+        </Field>
+        <Field Name="EU_Description">
+          <DataField>EU_Description</DataField>
+        </Field>
+        <Field Name="Bikou_Description">
+          <DataField>Bikou_Description</DataField>
+        </Field>
+        <Field Name="EU_Division_1">
+          <DataField>EU_Division_1</DataField>
+        </Field>
+        <Field Name="Quantity_Line">
+          <DataField>Quantity_Line</DataField>
+        </Field>
+        <Field Name="Quantity_LineFormat">
+          <DataField>Quantity_LineFormat</DataField>
+        </Field>
+        <Field Name="UnitPrice">
+          <DataField>UnitPrice</DataField>
+        </Field>
+        <Field Name="UnitPriceFormat">
+          <DataField>UnitPriceFormat</DataField>
+        </Field>
+        <Field Name="LineDiscountPercent_Line">
+          <DataField>LineDiscountPercent_Line</DataField>
+        </Field>
+        <Field Name="LineDiscountPercent_LineFormat">
+          <DataField>LineDiscountPercent_LineFormat</DataField>
+        </Field>
+        <Field Name="AmountIncludingVAT_Line">
+          <DataField>AmountIncludingVAT_Line</DataField>
+        </Field>
+        <Field Name="AmountIncludingVAT_LineFormat">
+          <DataField>AmountIncludingVAT_LineFormat</DataField>
+        </Field>
+        <Field Name="LineAmountExclVAT">
+          <DataField>LineAmountExclVAT</DataField>
+        </Field>
+        <Field Name="LineAmountExclVATFormat">
+          <DataField>LineAmountExclVATFormat</DataField>
+        </Field>
+        <Field Name="NetUnitPrice">
+          <DataField>NetUnitPrice</DataField>
+        </Field>
+        <Field Name="NetUnitPriceFormat">
+          <DataField>NetUnitPriceFormat</DataField>
+        </Field>
+        <Field Name="StorageTemprature">
+          <DataField>StorageTemprature</DataField>
+        </Field>
+        <Field Name="ExternalDocumentNo">
+          <DataField>ExternalDocumentNo</DataField>
+        </Field>
+        <Field Name="TotalAmountExclVAT">
+          <DataField>TotalAmountExclVAT</DataField>
+        </Field>
+        <Field Name="TotalAmountExclVATFormat">
+          <DataField>TotalAmountExclVATFormat</DataField>
+        </Field>
+        <Field Name="LineTypeTxt">
+          <DataField>LineTypeTxt</DataField>
+        </Field>
+        <Field Name="TypeInt">
+          <DataField>TypeInt</DataField>
+        </Field>
+      </Fields>
+      <Query>
+        <DataSourceName>DataSource</DataSourceName>
+        <CommandText />
+      </Query>
+    </DataSet>
+  </DataSets>
 </Report>

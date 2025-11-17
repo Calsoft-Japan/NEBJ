@@ -967,7 +967,7 @@ page 50019 "Sales Inquiry Subform"
                 EnterCell(RowNo, 16, Format(Rec."Ship-to Name"), false, false, false, '@');
                 EnterCell(RowNo, 17, Format(Rec."Ship-to Address"), false, false, false, '@');
                 EnterCell(RowNo, 18, Format(Rec."Ship-to Post Code"), false, false, false, '@');
-                EnterCell(RowNo, 10, Format(Rec."Line No."), false, false, false, '');
+                EnterCell(RowNo, 19, Format(Rec."Line No."), false, false, false, '');
                 EnterCell(RowNo, 20, Format(Rec.Type), false, false, false, '');
                 EnterCell(RowNo, 21, Format(Rec."Item No."), false, false, false, '@');//"Item No."
                 EnterCell(RowNo, 22, Format(Rec."Location Code"), false, false, false, '@');

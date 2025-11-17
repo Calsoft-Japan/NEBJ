@@ -46,6 +46,7 @@ report 50001 "NEBJ Sales Cr. Memo Conf."
                 DataItemLink = "Document Type" = FIELD("Document Type"), "Document No." = FIELD("No.");
                 column(ItemNo_Line; "No.") { }
                 column(Document_No_; "Document No.") { }
+                column(LineNo_Line; "Line No.") { }
                 column(Description_Line; Description) { }
                 column(EU_Description; "EU Description") { }
                 column(Bikou_Description; "Description(Bikou)") { }
@@ -59,8 +60,11 @@ report 50001 "NEBJ Sales Cr. Memo Conf."
                 column(StorageTemprature; "StorageTemprature") { }
                 column(ExternalDocumentNo; "ExternaDocumentNo.") { }
                 column(TotalAmountExclVAT; Amount) { }
+                column(TypeInt; Type) { }
                 column(LineTypeTxt; Format(Type)) { }  // returns "Comment", "Item", etc.
+
                 column(Type_Line; Type) { }// returns integer value of Type enum
+                //column(ItemDescFromItem_Line; ItemDescFromItemTxt) { }
 
 
                 trigger OnAfterGetRecord()

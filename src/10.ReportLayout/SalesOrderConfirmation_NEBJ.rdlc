@@ -11,7 +11,7 @@
       <am:Name>MSRB</am:Name>
       <am:Version>15.1.30001.02</am:Version>
     </am:UpdatedBy>
-    <am:LastModifiedTimestamp>2025-11-14T08:55:51.4203908Z</am:LastModifiedTimestamp>
+    <am:LastModifiedTimestamp>2025-11-17T07:35:45.9122402Z</am:LastModifiedTimestamp>
   </am:AuthoringMetadata>
   <AutoRefresh>0</AutoRefresh>
   <DataSources>
@@ -747,9 +747,6 @@
         </Field>
         <Field Name="TotalText">
           <DataField>TotalText</DataField>
-        </Field>
-        <Field Name="CurrencyCode">
-          <DataField>CurrencyCode</DataField>
         </Field>
         <Field Name="CurrencySymbol">
           <DataField>CurrencySymbol</DataField>
@@ -3743,11 +3740,9 @@ First(Fields!DirectShippingAddress.Value, "DataSet_Result")</Value>
                                   <TextRuns>
                                     <TextRun>
                                       <Value>=IIf(
-(Fields!Currency_Code.Value, "DataSet_Result") = "JPY",
-    
-FormatNumber((Fields!TotalSubTotal.Value, "DataSet_Result"), 0),
-   
-FormatNumber((Fields!TotalSubTotal.Value, "DataSet_Result"), 2)
+Last(Fields!Currency_Code.Value, "DataSet_Result") = "JPY",
+    FormatNumber(Last(Fields!TotalSubTotal.Value, "DataSet_Result"), 0),
+    FormatNumber(Last(Fields!TotalSubTotal.Value, "DataSet_Result"), 2)
 )</Value>
                                       <Style>
                                         <FontFamily>MS UI Gothic</FontFamily>
@@ -3761,9 +3756,9 @@ FormatNumber((Fields!TotalSubTotal.Value, "DataSet_Result"), 2)
                                 </Paragraph>
                               </Paragraphs>
                               <Top>9.45353cm</Top>
-                              <Left>16.60893cm</Left>
+                              <Left>16.1997cm</Left>
                               <Height>0.60705cm</Height>
-                              <Width>2.40161cm</Width>
+                              <Width>2.81084cm</Width>
                               <ZIndex>15</ZIndex>
                               <Style>
                                 <Border>
@@ -3775,15 +3770,15 @@ FormatNumber((Fields!TotalSubTotal.Value, "DataSet_Result"), 2)
                                 <PaddingBottom>2pt</PaddingBottom>
                               </Style>
                             </Textbox>
-                            <Textbox Name="Textbox105">
-                              <rd:DefaultName>Textbox104</rd:DefaultName>
+                            <Textbox Name="Textbox13">
+                              <rd:DefaultName>Textbox13</rd:DefaultName>
                               <CanGrow>true</CanGrow>
                               <KeepTogether>true</KeepTogether>
                               <Paragraphs>
                                 <Paragraph>
                                   <TextRuns>
                                     <TextRun>
-                                      <Value>="合計 " &amp; IIf(Fields!Currency_Code.Value="", "JPY", Fields!Currency_Code.Value)</Value>
+                                      <Value>=IIf(Fields!Currency_Code.Value = "" Or Fields!Currency_Code.Value = "JPY", "消費税抜合計JPY", "合計 " &amp; Fields!Currency_Code.Value)</Value>
                                       <Style>
                                         <FontFamily>MS UI Gothic</FontFamily>
                                       </Style>
@@ -3795,14 +3790,15 @@ FormatNumber((Fields!TotalSubTotal.Value, "DataSet_Result"), 2)
                                 </Paragraph>
                               </Paragraphs>
                               <Top>9.45353cm</Top>
-                              <Left>13.82443cm</Left>
+                              <Left>12.24371cm</Left>
                               <Height>0.60705cm</Height>
-                              <Width>2.7845cm</Width>
+                              <Width>3.95599cm</Width>
                               <ZIndex>16</ZIndex>
                               <Style>
                                 <Border>
                                   <Style>None</Style>
                                 </Border>
+                                <VerticalAlign>Top</VerticalAlign>
                                 <PaddingLeft>2pt</PaddingLeft>
                                 <PaddingRight>2pt</PaddingRight>
                                 <PaddingTop>2pt</PaddingTop>

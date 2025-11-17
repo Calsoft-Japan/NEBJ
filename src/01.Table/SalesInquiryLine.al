@@ -110,7 +110,7 @@ table 50000 "Sales Inquiry Line"
         {
             Caption = 'Description';
         }
-        field(148; "Description 2"; Text[50])//Can find in FDD106
+        field(148; "Description 2"; Text[100])//Can find in FDD106
         {
             Caption = 'Description 2';
         }

@@ -358,11 +358,7 @@ page 50019 "Sales Inquiry Subform"
         BilltoCustomerFilter: Text;
         PostingDateFilter: Text;
         OrderDateFilter: Text;
-        GLAccFilter: Text;
         ItemFilter: Text;
-        ResourceFilter: Text;
-        FAFilter: Text;
-        ItemChargeFilter: Text;
         ShowDummyLine: Boolean;
         NoFilterCount: Integer;
         TotalQty: Decimal;
@@ -376,7 +372,6 @@ page 50019 "Sales Inquiry Subform"
         PostedSalesInvoice: Boolean;
         PostedSalesCrMemo: Boolean;
         ShortcutDimCode: array[8] of Code[20];
-        AmtRoundPrecision: Decimal;
         Text000: Label 'Please specify the search criteria.';
 
     procedure ControlShowMode(ShowMode: Option "Header + Line","Header Only","Line Only");
@@ -420,13 +415,9 @@ page 50019 "Sales Inquiry Subform"
         OrderDateFilter := NewOrderDateFilter;
     end;
 
-    procedure SetLineFilter(NewGLAccFilter: Text; NewItemFilter: Text; NewResourceFilter: Text; NewFAFilter: Text; NewItemChargeFilter: Text; NewShowDummyLine: Boolean);
+    procedure SetLineFilter(NewItemFilter: Text; NewShowDummyLine: Boolean);
     begin
-        GLAccFilter := NewGLAccFilter;
         ItemFilter := NewItemFilter;
-        ResourceFilter := NewResourceFilter;
-        FAFilter := NewFAFilter;
-        ItemChargeFilter := NewItemChargeFilter;
         ShowDummyLine := NewShowDummyLine;
     end;
 
@@ -449,28 +440,6 @@ page 50019 "Sales Inquiry Subform"
         RtnTotalQty := TotalQty;
         RtnTotalAmount := TotalAmount;
         RtnTotalAmountInclVAT := TotalAmountInclVAT;
-    end;
-
-    procedure GetRoundingPrecision(CurrencyCode: Code[10]): Decimal;
-    var
-        Currency: Record "Currency";
-    begin
-        if CurrencyCode <> '' then
-            if Currency.Get(CurrencyCode) then
-                if Currency."Amount Rounding Precision" <> 0 then
-                    exit(Currency."Amount Rounding Precision");
-        if GLSetup."Amount Rounding Precision" <> 0 then
-            exit(GLSetup."Amount Rounding Precision")
-        else
-            exit(0.01);
-    end;
-
-    procedure GetCDate(Date: Date): Date;
-    begin
-        if Date <> 0D then
-            exit(Date)
-        else
-            exit(WorkDate());
     end;
 
     procedure SetFixedFields(CurrGUID: Guid);
@@ -537,15 +506,7 @@ page 50019 "Sales Inquiry Subform"
                 exit;
             end;
         NoFilterCount := 0;
-        if GLAccFilter <> '' then
-            NoFilterCount += 1;
         if ItemFilter <> '' then
-            NoFilterCount += 1;
-        if ResourceFilter <> '' then
-            NoFilterCount += 1;
-        if FAFilter <> '' then
-            NoFilterCount += 1;
-        if ItemChargeFilter <> '' then
             NoFilterCount += 1;
 
         if DocFilter = '' then
@@ -573,25 +534,9 @@ page 50019 "Sales Inquiry Subform"
                 if not ShowDummyLine then
                     SalesLine.SetFilter(Amount, '<>0');
                 if NoFilterCount = 1 then begin
-                    if GLAccFilter <> '' then begin
-                        SalesLine.SetRange(Type, SalesLine.Type::"G/L Account");
-                        SalesLine.SetFilter("No.", GLAccFilter);
-                    end;
                     if ItemFilter <> '' then begin
                         SalesLine.SetRange(Type, SalesLine.Type::Item);
                         SalesLine.SetFilter("No.", ItemFilter);
-                    end;
-                    if ResourceFilter <> '' then begin
-                        SalesLine.SetRange(Type, SalesLine.Type::Resource);
-                        SalesLine.SetFilter("No.", ResourceFilter);
-                    end;
-                    if FAFilter <> '' then begin
-                        SalesLine.SetRange(Type, SalesLine.Type::"Fixed Asset");
-                        SalesLine.SetFilter("No.", FAFilter);
-                    end;
-                    if ItemChargeFilter <> '' then begin
-                        SalesLine.SetRange(Type, SalesLine.Type::"Charge (Item)");
-                        SalesLine.SetFilter("No.", ItemChargeFilter);
                     end;
                 end;
 
@@ -599,56 +544,12 @@ page 50019 "Sales Inquiry Subform"
                     Repeat
                         Found := false;
                         if NoFilterCount > 1 then begin
-                            if (GLAccFilter <> '') and
-                               (SalesLine.Type = SalesLine.Type::"G/L Account") then begin
-                                SalesLine2.Copy(SalesLine);
-                                SalesLine2.SetRange(Type, SalesLine2.Type::"G/L Account");
-                                SalesLine2.FilterGroup(2);
-                                SalesLine2.SetFilter("No.", GLAccFilter);
-                                SalesLine2.FilterGroup(0);
-                                SalesLine2.SetRange("No.", SalesLine."No.");
-                                if not SalesLine2.IsEmpty then
-                                    Found := true;
-                            end;
                             if (ItemFilter <> '') and
                                (SalesLine.Type = SalesLine.Type::Item) then begin
                                 SalesLine2.Copy(SalesLine);
                                 SalesLine2.SetRange(Type, SalesLine2.Type::Item);
                                 SalesLine2.FilterGroup(2);
                                 SalesLine2.SetFilter("No.", ItemFilter);
-                                SalesLine2.FilterGroup(0);
-                                SalesLine2.SetRange("No.", SalesLine."No.");
-                                if not SalesLine2.IsEmpty then
-                                    Found := true;
-                            end;
-                            if (ResourceFilter <> '') and
-                               (SalesLine.Type = SalesLine.Type::Resource) then begin
-                                SalesLine2.Copy(SalesLine);
-                                SalesLine2.SetRange(Type, SalesLine2.Type::Resource);
-                                SalesLine2.FilterGroup(2);
-                                SalesLine2.SetFilter("No.", ResourceFilter);
-                                SalesLine2.FilterGroup(0);
-                                SalesLine2.SetRange("No.", SalesLine."No.");
-                                if not SalesLine2.IsEmpty then
-                                    Found := true;
-                            end;
-                            if (FAFilter <> '') and
-                               (SalesLine.Type = SalesLine.Type::"Fixed Asset") then begin
-                                SalesLine2.Copy(SalesLine);
-                                SalesLine2.SetRange(Type, SalesLine2.Type::"Fixed Asset");
-                                SalesLine2.FilterGroup(2);
-                                SalesLine2.SetFilter("No.", FAFilter);
-                                SalesLine2.FilterGroup(0);
-                                SalesLine2.SetRange("No.", SalesLine."No.");
-                                if not SalesLine2.IsEmpty then
-                                    Found := true;
-                            end;
-                            if (ItemChargeFilter <> '') and
-                               (SalesLine.Type = SalesLine.Type::"Charge (Item)") then begin
-                                SalesLine2.Copy(SalesLine);
-                                SalesLine2.SetRange(Type, SalesLine2.Type::"Charge (Item)");
-                                SalesLine2.FilterGroup(2);
-                                SalesLine2.SetFilter("No.", ItemChargeFilter);
                                 SalesLine2.FilterGroup(0);
                                 SalesLine2.SetRange("No.", SalesLine."No.");
                                 if not SalesLine2.IsEmpty then
@@ -665,7 +566,7 @@ page 50019 "Sales Inquiry Subform"
                             Rec.Init();
                             Rec.TransferFields(SalesHdr);
                             SetFixedFields(CurrGUID);
-
+                            Rec."Document No." := SalesLine."Document No.";
                             Rec."Line No." := SalesLine."Line No.";
                             Rec.Type := SalesLine.Type;
                             Rec."Item No." := SalesLine."No.";
@@ -746,25 +647,9 @@ page 50019 "Sales Inquiry Subform"
                 if not ShowDummyLine then
                     SalesInvLine.SetFilter(Amount, '<>0');
                 if NoFilterCount = 1 then begin
-                    if GLAccFilter <> '' then begin
-                        SalesInvLine.SetRange(Type, SalesInvLine.Type::"G/L Account");
-                        SalesInvLine.SetFilter("No.", GLAccFilter);
-                    end;
                     if ItemFilter <> '' then begin
                         SalesInvLine.SetRange(Type, SalesInvLine.Type::Item);
                         SalesInvLine.SetFilter("No.", ItemFilter);
-                    end;
-                    if ResourceFilter <> '' then begin
-                        SalesInvLine.SetRange(Type, SalesInvLine.Type::Resource);
-                        SalesInvLine.SetFilter("No.", ResourceFilter);
-                    end;
-                    if FAFilter <> '' then begin
-                        SalesInvLine.SetRange(Type, SalesInvLine.Type::"Fixed Asset");
-                        SalesInvLine.SetFilter("No.", FAFilter);
-                    end;
-                    if ItemChargeFilter <> '' then begin
-                        SalesInvLine.SetRange(Type, SalesInvLine.Type::"Charge (Item)");
-                        SalesInvLine.SetFilter("No.", ItemChargeFilter);
                     end;
                 end;
 
@@ -772,56 +657,12 @@ page 50019 "Sales Inquiry Subform"
                     Repeat
                         Found := false;
                         if NoFilterCount > 1 then begin
-                            if (GLAccFilter <> '') and
-                               (SalesInvLine.Type = SalesInvLine.Type::"G/L Account") then begin
-                                SalesInvLine2.Copy(SalesInvLine);
-                                SalesInvLine2.SetRange(Type, SalesInvLine2.Type::"G/L Account");
-                                SalesInvLine2.FilterGroup(2);
-                                SalesInvLine2.SetFilter("No.", GLAccFilter);
-                                SalesInvLine2.FilterGroup(0);
-                                SalesInvLine2.SetRange("No.", SalesLine."No.");
-                                if not SalesInvLine2.IsEmpty then
-                                    Found := true;
-                            end;
                             if (ItemFilter <> '') and
                                (SalesInvLine.Type = SalesInvLine.Type::Item) then begin
                                 SalesInvLine2.Copy(SalesInvLine);
                                 SalesInvLine2.SetRange(Type, SalesInvLine2.Type::Item);
                                 SalesInvLine2.FilterGroup(2);
                                 SalesInvLine2.SetFilter("No.", ItemFilter);
-                                SalesInvLine2.FilterGroup(0);
-                                SalesInvLine2.SetRange("No.", SalesLine."No.");
-                                if not SalesInvLine2.IsEmpty then
-                                    Found := true;
-                            end;
-                            if (ResourceFilter <> '') and
-                               (SalesInvLine.Type = SalesInvLine.Type::Resource) then begin
-                                SalesInvLine2.Copy(SalesInvLine);
-                                SalesInvLine2.SetRange(Type, SalesInvLine2.Type::Resource);
-                                SalesInvLine2.FilterGroup(2);
-                                SalesInvLine2.SetFilter("No.", ResourceFilter);
-                                SalesInvLine2.FilterGroup(0);
-                                SalesInvLine2.SetRange("No.", SalesLine."No.");
-                                if not SalesInvLine2.IsEmpty then
-                                    Found := true;
-                            end;
-                            if (FAFilter <> '') and
-                               (SalesInvLine.Type = SalesInvLine.Type::"Fixed Asset") then begin
-                                SalesInvLine2.Copy(SalesInvLine);
-                                SalesInvLine2.SetRange(Type, SalesInvLine2.Type::"Fixed Asset");
-                                SalesInvLine2.FilterGroup(2);
-                                SalesInvLine2.SetFilter("No.", FAFilter);
-                                SalesInvLine2.FilterGroup(0);
-                                SalesInvLine2.SetRange("No.", SalesLine."No.");
-                                if not SalesInvLine2.IsEmpty then
-                                    Found := true;
-                            end;
-                            if (ItemChargeFilter <> '') and
-                               (SalesInvLine.Type = SalesInvLine.Type::"Charge (Item)") then begin
-                                SalesInvLine2.Copy(SalesInvLine);
-                                SalesInvLine2.SetRange(Type, SalesInvLine2.Type::"Charge (Item)");
-                                SalesInvLine2.FilterGroup(2);
-                                SalesInvLine2.SetFilter("No.", ItemChargeFilter);
                                 SalesInvLine2.FilterGroup(0);
                                 SalesInvLine2.SetRange("No.", SalesLine."No.");
                                 if not SalesInvLine2.IsEmpty then
@@ -834,10 +675,9 @@ page 50019 "Sales Inquiry Subform"
                             Rec.Init();
                             Rec.TransferFields(SalesInvHdr);
                             SetFixedFields(CurrGUID);
-
                             Rec."User ID" := SalesInvHdr."User ID";
-
                             Rec."Document Type" := Rec."Document Type"::"Posted Invoice";
+                            Rec."Document No." := SalesInvLine."Document No.";
                             Rec."Line No." := SalesInvLine."Line No.";
                             Rec.Type := SalesInvLine.Type;
                             Rec."Item No." := SalesInvLine."No.";
@@ -926,25 +766,9 @@ page 50019 "Sales Inquiry Subform"
                 if not ShowDummyLine then
                     SalesCrMemoLine.SetFilter(Amount, '<>0');
                 if NoFilterCount = 1 then begin
-                    if GLAccFilter <> '' then begin
-                        SalesCrMemoLine.SetRange(Type, SalesCrMemoLine.Type::"G/L Account");
-                        SalesCrMemoLine.SetFilter("No.", GLAccFilter);
-                    end;
                     if ItemFilter <> '' then begin
                         SalesCrMemoLine.SetRange(Type, SalesCrMemoLine.Type::Item);
                         SalesCrMemoLine.SetFilter("No.", ItemFilter);
-                    end;
-                    if ResourceFilter <> '' then begin
-                        SalesCrMemoLine.SetRange(Type, SalesCrMemoLine.Type::Resource);
-                        SalesCrMemoLine.SetFilter("No.", ResourceFilter);
-                    end;
-                    if FAFilter <> '' then begin
-                        SalesCrMemoLine.SetRange(Type, SalesCrMemoLine.Type::"Fixed Asset");
-                        SalesCrMemoLine.SetFilter("No.", FAFilter);
-                    end;
-                    if ItemChargeFilter <> '' then begin
-                        SalesCrMemoLine.SetRange(Type, SalesCrMemoLine.Type::"Charge (Item)");
-                        SalesCrMemoLine.SetFilter("No.", ItemChargeFilter);
                     end;
                 end;
 
@@ -952,56 +776,12 @@ page 50019 "Sales Inquiry Subform"
                     Repeat
                         Found := false;
                         if NoFilterCount > 1 then begin
-                            if (GLAccFilter <> '') and
-                               (SalesCrMemoLine.Type = SalesCrMemoLine.Type::"G/L Account") then begin
-                                SalesCrMemoLine2.Copy(SalesCrMemoLine);
-                                SalesCrMemoLine2.SetRange(Type, SalesCrMemoLine2.Type::"G/L Account");
-                                SalesCrMemoLine2.FilterGroup(2);
-                                SalesCrMemoLine2.SetFilter("No.", GLAccFilter);
-                                SalesCrMemoLine2.FilterGroup(0);
-                                SalesCrMemoLine2.SetRange("No.", SalesLine."No.");
-                                if not SalesCrMemoLine2.IsEmpty then
-                                    Found := true;
-                            end;
                             if (ItemFilter <> '') and
                                (SalesCrMemoLine.Type = SalesCrMemoLine.Type::Item) then begin
                                 SalesCrMemoLine2.Copy(SalesCrMemoLine);
                                 SalesCrMemoLine2.SetRange(Type, SalesCrMemoLine2.Type::Item);
                                 SalesCrMemoLine2.FilterGroup(2);
                                 SalesCrMemoLine2.SetFilter("No.", ItemFilter);
-                                SalesCrMemoLine2.FilterGroup(0);
-                                SalesCrMemoLine2.SetRange("No.", SalesLine."No.");
-                                if not SalesCrMemoLine2.IsEmpty then
-                                    Found := true;
-                            end;
-                            if (ResourceFilter <> '') and
-                               (SalesCrMemoLine.Type = SalesCrMemoLine.Type::Resource) then begin
-                                SalesCrMemoLine2.Copy(SalesCrMemoLine);
-                                SalesCrMemoLine2.SetRange(Type, SalesCrMemoLine2.Type::Resource);
-                                SalesCrMemoLine2.FilterGroup(2);
-                                SalesCrMemoLine2.SetFilter("No.", ResourceFilter);
-                                SalesCrMemoLine2.FilterGroup(0);
-                                SalesCrMemoLine2.SetRange("No.", SalesLine."No.");
-                                if not SalesCrMemoLine2.IsEmpty then
-                                    Found := true;
-                            end;
-                            if (FAFilter <> '') and
-                               (SalesCrMemoLine.Type = SalesCrMemoLine.Type::"Fixed Asset") then begin
-                                SalesCrMemoLine2.Copy(SalesCrMemoLine);
-                                SalesCrMemoLine2.SetRange(Type, SalesCrMemoLine2.Type::"Fixed Asset");
-                                SalesCrMemoLine2.FilterGroup(2);
-                                SalesCrMemoLine2.SetFilter("No.", FAFilter);
-                                SalesCrMemoLine2.FilterGroup(0);
-                                SalesCrMemoLine2.SetRange("No.", SalesLine."No.");
-                                if not SalesCrMemoLine2.IsEmpty then
-                                    Found := true;
-                            end;
-                            if (ItemChargeFilter <> '') and
-                               (SalesCrMemoLine.Type = SalesCrMemoLine.Type::"Charge (Item)") then begin
-                                SalesCrMemoLine2.Copy(SalesCrMemoLine);
-                                SalesCrMemoLine2.SetRange(Type, SalesCrMemoLine2.Type::"Charge (Item)");
-                                SalesCrMemoLine2.FilterGroup(2);
-                                SalesCrMemoLine2.SetFilter("No.", ItemChargeFilter);
                                 SalesCrMemoLine2.FilterGroup(0);
                                 SalesCrMemoLine2.SetRange("No.", SalesLine."No.");
                                 if not SalesCrMemoLine2.IsEmpty then
@@ -1017,6 +797,7 @@ page 50019 "Sales Inquiry Subform"
 
                             Rec."User ID" := SalesCrMemoHdr."User ID";
                             Rec."Document Type" := Rec."Document Type"::"Posted Credit Memo";
+                            Rec."Document No." := SalesCrMemoLine."Document No.";
                             Rec."Line No." := SalesCrMemoLine."Line No.";
                             Rec.Type := SalesCrMemoLine.Type;
                             Rec."Item No." := SalesCrMemoLine."No.";
@@ -1186,7 +967,7 @@ page 50019 "Sales Inquiry Subform"
                 EnterCell(RowNo, 16, Format(Rec."Ship-to Name"), false, false, false, '@');
                 EnterCell(RowNo, 17, Format(Rec."Ship-to Address"), false, false, false, '@');
                 EnterCell(RowNo, 18, Format(Rec."Ship-to Post Code"), false, false, false, '@');
-                EnterCell(RowNo, 10, Format(Rec."Line No."), false, false, false, '');
+                EnterCell(RowNo, 19, Format(Rec."Line No."), false, false, false, '');
                 EnterCell(RowNo, 20, Format(Rec.Type), false, false, false, '');
                 EnterCell(RowNo, 21, Format(Rec."Item No."), false, false, false, '@');//"Item No."
                 EnterCell(RowNo, 22, Format(Rec."Location Code"), false, false, false, '@');
@@ -1399,68 +1180,6 @@ page 50019 "Sales Inquiry Subform"
         TempExcelBuffer.Underline := UnderLine;
         TempExcelBuffer.NumberFormat := NumberFormat;
         TempExcelBuffer.Insert();
-    end;
-
-    procedure LookupShortcutDimCode(FieldNumber: Integer; var ShortcutDimCode: Code[20]);
-    begin
-        DimMgt.LookupDimValueCode(FieldNumber, ShortcutDimCode);
-    end;
-
-    procedure ExportSFDataToExcel(ShowTrackingInfo: Boolean);
-    var
-        RowNo: Integer;
-    begin
-        TempExcelBuffer.DeleteAll();
-        Clear(TempExcelBuffer);
-
-        RowNo := 1;
-        TempExcelBuffer.CreateNewBook('Sales Inquiry');
-        EnterCell(RowNo, 1, '出荷日', true, false, false, '@');
-        EnterCell(RowNo, 2, '受注伝票番号', true, false, false, '@');
-        EnterCell(RowNo, 3, 'ｱｲﾃﾑ番号', true, false, false, '@');
-        EnterCell(RowNo, 4, 'ｱｲﾃﾑ名', true, false, false, '@');
-        EnterCell(RowNo, 5, '顧客ｺｰﾄﾞ', true, false, false, '@');
-        EnterCell(RowNo, 6, '会社グループ', true, false, false, '@');
-        EnterCell(RowNo, 7, '（顧客/企業）', true, false, false, '@');
-        EnterCell(RowNo, 8, '顧客　アカデミア', true, false, false, '@');
-        EnterCell(RowNo, 9, '所属', true, false, false, '@');
-        EnterCell(RowNo, 10, '得意先ｺｰﾄﾞ', true, false, false, '@');
-        EnterCell(RowNo, 11, '得意先', true, false, false, '@');
-        EnterCell(RowNo, 12, '支店・営業所', true, false, false, '@');
-        EnterCell(RowNo, 13, '受注伝票説明', true, false, false, '@');
-        EnterCell(RowNo, 14, '外部参照情報', true, false, false, '@');
-        EnterCell(RowNo, 15, '売上数量', true, false, false, '@');
-        EnterCell(RowNo, 16, '売上金額', true, false, false, '@');
-        EnterCell(RowNo, 17, 'アイテムグループ', true, false, false, '@');
-        EnterCell(RowNo, 18, 'アイテムグループ2', true, false, false, '@');
-        EnterCell(RowNo, 19, 'ｼﾘｱﾙNoﾀｲﾌﾟ', true, false, false, '@');
-        EnterCell(RowNo, 20, '保管温度', true, false, false, '@');
-        EnterCell(RowNo, 21, '社員名', true, false, false, '@');
-        EnterCell(RowNo, 22, '得意先・会社ｸﾞﾙｰﾌﾟ', true, false, false, '@');
-        EnterCell(RowNo, 23, '医療用外毒物', true, false, false, '@');
-        EnterCell(RowNo, 24, '指示欄', true, false, false, '@');
-        EnterCell(RowNo, 25, '定価', true, false, false, '@');
-        EnterCell(RowNo, 26, '出荷日・年', true, false, false, '@');
-        EnterCell(RowNo, 27, '出荷日・月', true, false, false, '@');
-        EnterCell(RowNo, 28, '出荷日・四半期', true, false, false, '@');
-        EnterCell(RowNo, 29, '出荷日・四半期・年', true, false, false, '@');
-        if Rec.FindSet() then
-            Repeat
-                RowNo += 1;
-                EnterCell(RowNo, 1, Format(Rec."Posting Date"), false, false, false, '@');
-                EnterCell(RowNo, 2, Format(Rec."Document No."), false, false, false, '@');
-                EnterCell(RowNo, 3, Format(Rec."Item No."), false, false, false, '');//"Item No."
-                EnterCell(RowNo, 4, Format(Rec."Sell-to Customer No."), false, false, false, '@');//"Customer No."
-                EnterCell(RowNo, 5, Format(Rec."Sell-to Customer Name"), false, false, false, '@');//"Customer Name"
-                EnterCell(RowNo, 6, Format(Rec.Quantity), false, false, false, '');
-                EnterCell(RowNo, 7, Format(Rec.Amount, 0, 1), false, false, false, '@');
-                EnterCell(RowNo, 8, Format(Rec."User ID"), false, false, false, '@');
-                EnterCell(RowNo, 9, Format(Rec."Unit Price", 0, 1), false, false, false, '@');
-            until Rec.Next() = 0;
-        this.TempExcelBuffer.WriteSheet('Sales Inquiry', CompanyName, UserId);
-        this.TempExcelBuffer.CloseBook();
-        this.TempExcelBuffer.SetFriendlyFilename(StrSubstNo('Sales Inquiry', CurrentDateTime, UserId));
-        this.TempExcelBuffer.OpenExcel();
     end;
 
     procedure RetrieveILEFromShptRcpt(var TempItemLedgEntry: Record "Item Ledger Entry" temporary; Type: Integer; Subtype: Integer; ID: Code[20]; BatchName: Code[10]; ProdOrderLine: Integer; RefNo: Integer);

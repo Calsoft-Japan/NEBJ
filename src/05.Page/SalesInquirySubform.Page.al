@@ -566,7 +566,7 @@ page 50019 "Sales Inquiry Subform"
                             Rec.Init();
                             Rec.TransferFields(SalesHdr);
                             SetFixedFields(CurrGUID);
-
+                            Rec."Document No." := SalesLine."Document No.";
                             Rec."Line No." := SalesLine."Line No.";
                             Rec.Type := SalesLine.Type;
                             Rec."Item No." := SalesLine."No.";

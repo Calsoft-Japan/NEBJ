@@ -11,7 +11,7 @@
       <am:Name>MSRB</am:Name>
       <am:Version>15.1.30001.02</am:Version>
     </am:UpdatedBy>
-    <am:LastModifiedTimestamp>2025-11-17T07:35:45.9122402Z</am:LastModifiedTimestamp>
+    <am:LastModifiedTimestamp>2025-11-17T09:23:41.0831000Z</am:LastModifiedTimestamp>
   </am:AuthoringMetadata>
   <AutoRefresh>0</AutoRefresh>
   <DataSources>
@@ -2104,10 +2104,7 @@
                                               <Paragraph>
                                                 <TextRuns>
                                                   <TextRun>
-                                                    <Value>=IIF(Last(Fields!CurrencyCode.Value) = "", 
-                                                      FormatNumber(Fields!UnitPrice.Value, 0),
-                                                      FormatNumber(Fields!UnitPrice.Value, 2))
-                                                    </Value>
+                                                    <Value>=FormatNumber(Fields!UnitPrice.Value, 0)</Value>
                                                     <Style>
                                                       <FontFamily>MS UI Gothic</FontFamily>
                                                       <FontSize>8pt</FontSize>
@@ -2166,6 +2163,7 @@
                                       </TablixCell>
                                       <TablixCell>
                                         <CellContents>
+                                          <rd:Selected>true</rd:Selected>
                                           <Textbox Name="NetUnitPrice_Line">
                                             <rd:DefaultName>NetUnitPrice_Line</rd:DefaultName>
                                             <CanGrow>true</CanGrow>
@@ -2174,7 +2172,7 @@
                                               <Paragraph>
                                                 <TextRuns>
                                                   <TextRun>
-                                                    <Value>=Fields!NetUnitPrice_Line.Value</Value>
+                                                    <Value>=FormatNumber(Fields!NetUnitPrice_Line.Value, 0)</Value>
                                                     <Style>
                                                       <FontFamily>MS UI Gothic</FontFamily>
                                                       <FontSize>8pt</FontSize>
@@ -2207,9 +2205,7 @@
                                               <Paragraph>
                                                 <TextRuns>
                                                   <TextRun>
-                                                    <Value>=IIF(Last(Fields!CurrencyCode.Value) = "",
-     FormatNumber(Fields!AmountExcludingVAT_Line.value, 0),
-     FormatNumber(Fields!AmountExcludingVAT_Line.value, 2))</Value>
+                                                    <Value>= FormatNumber(Fields!AmountExcludingVAT_Line.value, 0)</Value>
                                                     <Style>
                                                       <FontFamily>MS UI Gothic</FontFamily>
                                                       <FontSize>8pt</FontSize>
@@ -3740,9 +3736,9 @@ First(Fields!DirectShippingAddress.Value, "DataSet_Result")</Value>
                                   <TextRuns>
                                     <TextRun>
                                       <Value>=IIf(
-Last(Fields!Currency_Code.Value, "DataSet_Result") = "JPY",
-    FormatNumber(Last(Fields!TotalSubTotal.Value, "DataSet_Result"), 0),
-    FormatNumber(Last(Fields!TotalSubTotal.Value, "DataSet_Result"), 2)
+    Fields!Currency_Code.Value = "JPY" OR Fields!Currency_Code.Value = "",
+    FormatNumber(Sum(Fields!TotalSubTotal.Value), 0),
+    FormatNumber(Sum(Fields!TotalSubTotal.Value), 2)
 )</Value>
                                       <Style>
                                         <FontFamily>MS UI Gothic</FontFamily>

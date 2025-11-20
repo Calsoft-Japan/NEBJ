@@ -7,16 +7,10 @@ pageextension 56508 "Lot No. Information List Ext" extends "Lot No. Information 
             field("Inspection Passed Date"; Rec."Inspection Passed Date")
             {
                 ApplicationArea = All;
-
             }
 
-            //field("Expiration Date"; Rec."Expiration Date")
-            //{
-            //    ApplicationArea = All;
-            //}
             field("First Receiving Date"; Rec."First Receiving Date")
             {
-                Caption = '検査合格日';
                 ApplicationArea = All;
             }
         }

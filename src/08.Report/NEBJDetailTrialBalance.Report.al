@@ -7,7 +7,7 @@ report 50003 "NEBJ Detail Trial Balance"
     ApplicationArea = Basic, Suite;
     Caption = 'NEBJ Detail Trial Balance';
     PreviewMode = PrintLayout;
-    UsageCategory = ReportsAndAnalysis;
+    UsageCategory = None;
     DataAccessIntent = ReadOnly;
 
     dataset

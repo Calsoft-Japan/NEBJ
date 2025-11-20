@@ -6,7 +6,7 @@ pageextension 50097 "Sales Credit Memo" extends "Sales Credit Memo"
         {
             action(Print)
             {
-                Caption = '印刷';
+                Caption = 'Print';
                 Ellipsis = true;
                 Image = Print;
                 ApplicationArea = All;

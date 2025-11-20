@@ -8,16 +8,8 @@ tableextension 56505 "Lot No. Information Ext" extends "Lot No. Information"
         {
             Caption = '有効期限日付';
             FieldClass = FlowField;
-            CalcFormula =
-        Max("Item Ledger Entry"."Expiration Date"
-            WHERE(
-                Positive = CONST(true),
-                "Item No." = FIELD("Item No."),
-                "Variant Code" = FIELD("Variant Code"),
-                "Lot No." = FIELD("Lot No."),
-                "Location Code" = FIELD("Location Filter")
-            )
-        );
+            CalcFormula = Max("Item Ledger Entry"."Expiration Date" where(Positive = const(true), "Item No." = field("Item No."),
+                              "Variant Code" = field("Variant Code"), "Lot No." = field("Lot No."), "Location Code" = field("Location Filter")));
         }
     }
 }

@@ -11,7 +11,7 @@
       <am:Name>MSRB</am:Name>
       <am:Version>15.1.30001.02</am:Version>
     </am:UpdatedBy>
-    <am:LastModifiedTimestamp>2025-11-14T08:47:05.6902218Z</am:LastModifiedTimestamp>
+    <am:LastModifiedTimestamp>2025-11-17T22:52:34.4873700Z</am:LastModifiedTimestamp>
   </am:AuthoringMetadata>
   <AutoRefresh>0</AutoRefresh>
   <DataSources>
@@ -94,6 +94,9 @@
         <Field Name="Document_No_">
           <DataField>Document_No_</DataField>
         </Field>
+        <Field Name="LineNo_Line">
+          <DataField>LineNo_Line</DataField>
+        </Field>
         <Field Name="Description_Line">
           <DataField>Description_Line</DataField>
         </Field>
@@ -154,14 +157,14 @@
         <Field Name="TotalAmountExclVATFormat">
           <DataField>TotalAmountExclVATFormat</DataField>
         </Field>
-        <Field Name="LineTypeTxt">
-          <DataField>LineTypeTxt</DataField>
-        </Field>
         <Field Name="TypeInt">
           <DataField>TypeInt</DataField>
         </Field>
+        <Field Name="LineTypeTxt">
+          <DataField>LineTypeTxt</DataField>
+        </Field>
         <Field Name="Type_Line">
-          <Value>Type_Line</Value>
+          <DataField>Type_Line</DataField>
         </Field>
       </Fields>
     </DataSet>
@@ -511,7 +514,7 @@
                   <PaddingBottom>2pt</PaddingBottom>
                 </Style>
               </Textbox>
-              <Tablix Name="LineTable">
+              <Tablix Name="TableLine">
                 <TablixBody>
                   <TablixColumns>
                     <TablixColumn>
@@ -1214,6 +1217,9 @@
                                 <Border>
                                   <Style>None</Style>
                                 </Border>
+                                <TopBorder>
+                                  <Color>Black</Color>
+                                </TopBorder>
                                 <VerticalAlign>Middle</VerticalAlign>
                                 <PaddingLeft>2pt</PaddingLeft>
                                 <PaddingRight>2pt</PaddingRight>
@@ -1249,6 +1255,9 @@
                                 <Border>
                                   <Style>None</Style>
                                 </Border>
+                                <TopBorder>
+                                  <Color>Black</Color>
+                                </TopBorder>
                                 <VerticalAlign>Top</VerticalAlign>
                                 <PaddingLeft>2pt</PaddingLeft>
                                 <PaddingRight>2pt</PaddingRight>
@@ -1287,6 +1296,9 @@
                                 <Border>
                                   <Style>None</Style>
                                 </Border>
+                                <TopBorder>
+                                  <Color>Black</Color>
+                                </TopBorder>
                                 <VerticalAlign>Top</VerticalAlign>
                                 <PaddingLeft>2pt</PaddingLeft>
                                 <PaddingRight>2pt</PaddingRight>
@@ -1322,6 +1334,9 @@
                                 <Border>
                                   <Style>None</Style>
                                 </Border>
+                                <TopBorder>
+                                  <Color>Black</Color>
+                                </TopBorder>
                                 <VerticalAlign>Top</VerticalAlign>
                                 <PaddingLeft>2pt</PaddingLeft>
                                 <PaddingRight>2pt</PaddingRight>
@@ -1357,6 +1372,9 @@
                                 <Border>
                                   <Style>None</Style>
                                 </Border>
+                                <TopBorder>
+                                  <Color>Black</Color>
+                                </TopBorder>
                                 <VerticalAlign>Top</VerticalAlign>
                                 <PaddingLeft>2pt</PaddingLeft>
                                 <PaddingRight>2pt</PaddingRight>
@@ -1392,6 +1410,9 @@
                                 <Border>
                                   <Style>None</Style>
                                 </Border>
+                                <TopBorder>
+                                  <Color>Black</Color>
+                                </TopBorder>
                                 <VerticalAlign>Top</VerticalAlign>
                                 <PaddingLeft>2pt</PaddingLeft>
                                 <PaddingRight>2pt</PaddingRight>
@@ -1427,6 +1448,9 @@
                                 <Border>
                                   <Style>None</Style>
                                 </Border>
+                                <TopBorder>
+                                  <Color>Black</Color>
+                                </TopBorder>
                                 <VerticalAlign>Top</VerticalAlign>
                                 <PaddingLeft>2pt</PaddingLeft>
                                 <PaddingRight>2pt</PaddingRight>
@@ -1462,6 +1486,9 @@
                                 <Border>
                                   <Style>None</Style>
                                 </Border>
+                                <TopBorder>
+                                  <Color>Black</Color>
+                                </TopBorder>
                                 <VerticalAlign>Top</VerticalAlign>
                                 <PaddingLeft>2pt</PaddingLeft>
                                 <PaddingRight>2pt</PaddingRight>
@@ -1497,6 +1524,9 @@
                                 <Border>
                                   <Style>None</Style>
                                 </Border>
+                                <TopBorder>
+                                  <Color>Black</Color>
+                                </TopBorder>
                                 <VerticalAlign>Top</VerticalAlign>
                                 <PaddingLeft>2pt</PaddingLeft>
                                 <PaddingRight>2pt</PaddingRight>
@@ -1548,8 +1578,8 @@
                         </TablixCell>
                         <TablixCell>
                           <CellContents>
-                            <Textbox Name="Textbox71">
-                              <rd:DefaultName>Textbox71</rd:DefaultName>
+                            <Textbox Name="ItemDescFromItem_Line">
+                              <rd:DefaultName>ItemDescFromItem_Line</rd:DefaultName>
                               <CanGrow>true</CanGrow>
                               <KeepTogether>true</KeepTogether>
                               <Paragraphs>
@@ -1626,7 +1656,7 @@
                                 <Paragraph>
                                   <TextRuns>
                                     <TextRun>
-                                      <Value>=Fields!UnitPrice.Value</Value>
+                                      <Value>=FormatNumber(Fields!UnitPrice.Value, 0)</Value>
                                       <Style>
                                         <FontFamily>MS UI Gothic</FontFamily>
                                         <FontSize>9pt</FontSize>
@@ -1696,7 +1726,7 @@
                                 <Paragraph>
                                   <TextRuns>
                                     <TextRun>
-                                      <Value>=- 1 * (Fields!NetUnitPrice.Value)</Value>
+                                      <Value>=FormatNumber(- 1 * Fields!NetUnitPrice.Value, 0)</Value>
                                       <Style>
                                         <FontFamily>MS UI Gothic</FontFamily>
                                         <FontSize>9pt</FontSize>
@@ -1731,7 +1761,7 @@
                                 <Paragraph>
                                   <TextRuns>
                                     <TextRun>
-                                      <Value>= -1 * (Fields!AmountIncludingVAT_Line.Value - Fields!LineAmountExclVAT.Value)</Value>
+                                      <Value>=FormatNumber(-1 * (Fields!AmountIncludingVAT_Line.Value - Fields!LineAmountExclVAT.Value), 0)</Value>
                                       <Style>
                                         <FontFamily>MS UI Gothic</FontFamily>
                                         <FontSize>9pt</FontSize>
@@ -1766,7 +1796,7 @@
                                 <Paragraph>
                                   <TextRuns>
                                     <TextRun>
-                                      <Value>= -1 * (Fields!LineAmountExclVAT.value)</Value>
+                                      <Value>=FormatNumber( -1 * Fields!LineAmountExclVAT.value, 0)</Value>
                                       <Style>
                                         <FontFamily>MS UI Gothic</FontFamily>
                                         <FontSize>9pt</FontSize>
@@ -3053,12 +3083,13 @@
                     <TablixMember>
                       <Group Name="Group1">
                         <GroupExpressions>
-                          <GroupExpression>=Fields!ItemNo_Line.Value</GroupExpression>
+                          <GroupExpression>=Fields!LineNo_Line.Value</GroupExpression>
+                          <GroupExpression>=Fields!Document_No_.Value</GroupExpression>
                         </GroupExpressions>
                       </Group>
                       <SortExpressions>
                         <SortExpression>
-                          <Value>No_SalesHdr</Value>
+                          <Value>=Fields!No_SalesHdr.Value</Value>
                         </SortExpression>
                       </SortExpressions>
                       <TablixMembers>
@@ -3067,10 +3098,26 @@
                             <Hidden>=Fields!Type_Line.Value &lt;&gt; " "</Hidden>
                           </Visibility>
                         </TablixMember>
-                        <TablixMember />
-                        <TablixMember />
-                        <TablixMember />
-                        <TablixMember />
+                        <TablixMember>
+                          <Visibility>
+                            <Hidden>=Fields!Type_Line.Value = " "</Hidden>
+                          </Visibility>
+                        </TablixMember>
+                        <TablixMember>
+                          <Visibility>
+                            <Hidden>=Fields!Type_Line.Value = " "</Hidden>
+                          </Visibility>
+                        </TablixMember>
+                        <TablixMember>
+                          <Visibility>
+                            <Hidden>=Fields!Type_Line.Value = " "</Hidden>
+                          </Visibility>
+                        </TablixMember>
+                        <TablixMember>
+                          <Visibility>
+                            <Hidden>=Fields!Type_Line.Value = " "</Hidden>
+                          </Visibility>
+                        </TablixMember>
                       </TablixMembers>
                     </TablixMember>
                   </TablixMembers>
@@ -3169,7 +3216,7 @@
                   <Paragraph>
                     <TextRuns>
                       <TextRun>
-                        <Value>="消費税抜合計" &amp; IIf(Fields!CurrencyCode.Value="", "JPY", Fields!CurrencyCode.Value)</Value>
+                        <Value>=IIf(Fields!CurrencyCode.Value = "" Or Fields!CurrencyCode.Value = "JPY", "消費税抜合計JPY", "合計 " &amp; Fields!CurrencyCode.Value)</Value>
                         <Style>
                           <FontStyle>Normal</FontStyle>
                           <FontFamily>MS UI Gothic</FontFamily>

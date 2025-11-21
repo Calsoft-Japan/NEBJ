@@ -1090,7 +1090,6 @@ page 50019 "Sales Inquiry Subform"
 
     procedure ExportDataToExcel(ShowTrackingInfo: Boolean);
     var
-        RecRef: RecordRef;
         SalesLine: Record "Sales Line";
         ReservEntry: Record "Reservation Entry";
         ShipmentLine: Record "Sales Shipment Line";
@@ -1098,11 +1097,8 @@ page 50019 "Sales Inquiry Subform"
         SalesCrMemoLine: Record "Sales Cr.Memo Line";
         ItemLedgerEntry: Record "Item Ledger Entry";
         TempItemLedgEntry: Record "Item Ledger Entry" temporary;
-        ReservMgmt: Codeunit "Reservation Management";
-        ReservEngineMgt: Codeunit "Reservation Engine Mgt.";
         ItemTrackingMgmt: Codeunit "Item Tracking Management";
         RowNo: Integer;
-        DirEnum: Enum "Transfer Direction";
     begin
         TempExcelBuffer.DeleteAll();
         Clear(TempExcelBuffer);
@@ -1264,35 +1260,38 @@ page 50019 "Sales Inquiry Subform"
                         Rec."Document Type"::"Credit Memo":
                             begin
                                 if SalesLine.Get(Rec."Document Type", Rec."Document No.", Rec."Line No.") then begin
-                                    ReservEngineMgt.InitFilterAndSortingLookupFor(ReservEntry, true);
-                                    RecRef.GetTable(Rec);
-                                    ReservMgmt.FilterReservFor(RecRef, ReservEntry, DirEnum::Outbound);
-                                    //ReserveSalesOrderLine.FilterReservFor(ReservEntry, SalesLine);
-                                    ReservEntry.SetRange("Reservation Status");
-                                    if ReservEntry.FindSet() then
-                                        Repeat
-                                            if (ReservEntry."Serial No." <> '') or (ReservEntry."Lot No." <> '') then begin
-                                                RowNo += 1;
-                                                if ReservEntry."Serial No." <> '' then
-                                                    EnterCell(RowNo, 70, Format(ReservEntry."Serial No."), false, false, false, '@');
-                                                if ReservEntry."Lot No." <> '' then
-                                                    EnterCell(RowNo, 71, Format(ReservEntry."Lot No."), false, false, false, '@');
-                                                if ReservEntry."Expiration Date" <> 0D then
-                                                    EnterCell(RowNo, 72, Format(ReservEntry."Expiration Date"), false, false, false, '')
-                                                else begin
-                                                    ItemLedgerEntry.Reset();
-                                                    ItemLedgerEntry.SetRange("Item No.", ReservEntry."Item No.");
-                                                    ItemLedgerEntry.SetRange("Variant Code", ReservEntry."Variant Code");
-                                                    ItemLedgerEntry.SetRange("Lot No.", ReservEntry."Lot No.");
-                                                    ItemLedgerEntry.SetRange("Serial No.", ReservEntry."Serial No.");
-                                                    if ItemLedgerEntry.FindFirst() then begin
-                                                        if ItemLedgerEntry."Expiration Date" <> 0D then
-                                                            EnterCell(RowNo, 72, Format(ItemLedgerEntry."Expiration Date"), false, false, false, '')
+                                    if SalesLine.ReservEntryExist() then begin
+                                        ReservEntry.Reset();
+                                        ReservEntry.SetCurrentKey("Source Type", "Source Subtype", "Source ID", "Source Ref. No.");
+                                        ReservEntry.SetRange("Source Type", Database::"Sales Line");
+                                        ReservEntry.SetRange("Source Subtype", SalesLine."Document Type".AsInteger());
+                                        ReservEntry.SetRange("Source ID", SalesLine."Document No.");
+                                        ReservEntry.SetRange("Source Ref. No.", SalesLine."Line No.");
+                                        if ReservEntry.FindSet() then
+                                            Repeat
+                                                if (ReservEntry."Serial No." <> '') or (ReservEntry."Lot No." <> '') then begin
+                                                    RowNo += 1;
+                                                    if ReservEntry."Serial No." <> '' then
+                                                        EnterCell(RowNo, 70, Format(ReservEntry."Serial No."), false, false, false, '@');
+                                                    if ReservEntry."Lot No." <> '' then
+                                                        EnterCell(RowNo, 71, Format(ReservEntry."Lot No."), false, false, false, '@');
+                                                    if ReservEntry."Expiration Date" <> 0D then
+                                                        EnterCell(RowNo, 72, Format(ReservEntry."Expiration Date"), false, false, false, '')
+                                                    else begin
+                                                        ItemLedgerEntry.Reset();
+                                                        ItemLedgerEntry.SetRange("Item No.", ReservEntry."Item No.");
+                                                        ItemLedgerEntry.SetRange("Variant Code", ReservEntry."Variant Code");
+                                                        ItemLedgerEntry.SetRange("Lot No.", ReservEntry."Lot No.");
+                                                        ItemLedgerEntry.SetRange("Serial No.", ReservEntry."Serial No.");
+                                                        if ItemLedgerEntry.FindFirst() then begin
+                                                            if ItemLedgerEntry."Expiration Date" <> 0D then
+                                                                EnterCell(RowNo, 72, Format(ItemLedgerEntry."Expiration Date"), false, false, false, '')
+                                                        end;
                                                     end;
+                                                    EnterCell(RowNo, 73, Format(-ReservEntry.Quantity), false, false, false, '');
                                                 end;
-                                                EnterCell(RowNo, 73, Format(-ReservEntry.Quantity), false, false, false, '');
-                                            end;
-                                        until ReservEntry.Next() = 0;
+                                            until ReservEntry.Next() = 0;
+                                    end;
                                     ShipmentLine.Reset();
                                     ShipmentLine.SetCurrentKey("Order No.", "Order Line No.");
                                     ShipmentLine.SetRange("Order No.", Rec."Document No.");

@@ -2,7 +2,7 @@ tableextension 56505 "Lot No. Information Ext" extends "Lot No. Information"
 {
     fields
     {
-        field(50001; "First Receiving Date"; Date) { Caption = '初期入荷日'; }
+        field(50001; "First Receiving Date"; Date) { Caption = '入荷検品日'; }
         field(50002; "Inspection Passed Date"; Date) { Caption = 'アッセイデート'; }
         field(50003; "Expiration Date"; Date)
         {

@@ -12,7 +12,7 @@ pageextension 56508 "Lot No. Information List Ext" extends "Lot No. Information 
             //field("Expiration Date"; Rec."Expiration Date")
             //{
             //    ApplicationArea = All;
-        }
+
             field("First Receiving Date"; Rec."First Receiving Date")
             {
                 ApplicationArea = All;

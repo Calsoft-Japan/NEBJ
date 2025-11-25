@@ -135,10 +135,10 @@ page 50019 "Sales Inquiry Subform"
                 {
                     Visible = ShowLine;
                 }
-                /* field("ExternaDocumentNo."; Rec."ExternalDocumentNo.")
+                field("ExternaDocumentNo."; Rec."ExternalDocumentNo.")
                 {
                     Visible = ShowLine;
-                } */
+                }
                 field("Amount"; Rec."Amount")
                 {
                     Visible = ShowLine;
@@ -156,10 +156,6 @@ page 50019 "Sales Inquiry Subform"
                     Visible = ShowLine;
                 }
                 field("SerialNoType"; Rec."SerialNoType")
-                {
-                    Visible = ShowLine;
-                }
-                field("StorageTemprature"; Rec."StorageTemprature")
                 {
                     Visible = ShowLine;
                 }
@@ -385,6 +381,10 @@ page 50019 "Sales Inquiry Subform"
                 {
                     Visible = ShowLine;
                 }
+                field(StorageTemprature; Rec.StorageTemprature)
+                {
+                    Visible = ShowLine;
+                }
                 field("Item Category Code"; Rec."Item Category Code")
                 {
                     Visible = ShowLine;
@@ -414,6 +414,10 @@ page 50019 "Sales Inquiry Subform"
                     Visible = ShowLine;
                 }
                 field("External Document No."; Rec."External Document No.")
+                {
+                    Visible = ShowLine;
+                }
+                field("Qty. to Ship"; Rec."Qty. to Ship")
                 {
                     Visible = ShowLine;
                 }
@@ -680,7 +684,8 @@ page 50019 "Sales Inquiry Subform"
                             Rec."EndUser" := SalesLine.EndUser;
                             Rec."Description(Bikou)" := SalesLine."Description(Bikou)";
                             Rec.StorageTemprature := SalesLine.StorageTemprature;
-                            Rec."External Document No." := SalesLine."ExternaDocumentNo.";
+                            Rec."External Document No." := SalesHdr."External Document No.";
+                            Rec."ExternalDocumentNo." := SalesLine."ExternaDocumentNo.";
                             Rec."EU Description" := SalesLine."EU Description";
                             Rec."EU Division 1" := SalesLine."EU Division 1";
                             Rec."EU Division 2" := SalesLine."EU Division 2";
@@ -841,7 +846,8 @@ page 50019 "Sales Inquiry Subform"
                             Rec."EndUser" := SalesInvLine.EndUser;
                             Rec."Description(Bikou)" := SalesInvLine."Description(Bikou)";
                             Rec.StorageTemprature := SalesInvLine.StorageTemprature;
-                            Rec."External Document No." := SalesInvLine."ExternaDocumentNo.";
+                            Rec."External Document No." := SalesInvHdr."External Document No.";
+                            Rec."ExternalDocumentNo." := SalesInvLine."ExternaDocumentNo.";
                             Rec."EU Description" := SalesInvLine."EU Description";
                             Rec."EU Division 1" := SalesInvLine."EU Division 1";
                             Rec."EU Division 2" := SalesInvLine."EU Division 2";
@@ -1003,7 +1009,8 @@ page 50019 "Sales Inquiry Subform"
                             Rec.EndUser := SalesCrMemoLine.EndUser;
                             Rec."Description(Bikou)" := SalesCrMemoLine."Description(Bikou)";
                             Rec.StorageTemprature := SalesCrMemoLine.StorageTemprature;
-                            Rec."External Document No." := SalesCrMemoLine."ExternaDocumentNo.";
+                            Rec."External Document No." := SalesCrMemoHdr."External Document No.";
+                            Rec."ExternalDocumentNo." := SalesCrMemoLine."ExternaDocumentNo.";
                             Rec."EU Description" := SalesCrMemoLine."EU Description";
                             Rec."EU Division 1" := SalesCrMemoLine."EU Division 1";
                             Rec."EU Division 2" := SalesCrMemoLine."EU Division 2";

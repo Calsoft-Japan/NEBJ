@@ -298,10 +298,10 @@ table 50000 "Sales Inquiry Line"
         {
             Caption = 'Storage Temprature';
         }
-        /* field(330; "ExternalDocumentNo."; Text[50])Dublicate same as 68 field
+        field(330; "ExternalDocumentNo."; Text[50])//Can find in FDD106
         {
             Caption = 'External Document No.';
-        } */
+        }
         field(332; "EU Description"; Text[50])//Can find in FDD106
         {
             Caption = 'EU Description';

@@ -15,7 +15,7 @@ report 50001 "NEBJ Sales Cr. Memo Conf."
             DataItemTableView = SORTING("Document Type", "No.")
                                 WHERE("Document Type" = CONST("Credit Memo"));
 
-            RequestFilterFields = "Document Type", "No.", "Bill-to Customer No.", "Sell-to Customer No.", "No. Printed";
+            RequestFilterFields = "No.", "Sell-to Customer No.", "No. Printed";
             RequestFilterHeading = 'Sales Credit Memos';
 
             // Header columns

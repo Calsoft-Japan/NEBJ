@@ -185,6 +185,12 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Table Sales Inquiry Line - Field External Document No. - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Table 3898327129 - Field 347343743 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>External Document No.</source>
+          <target>外部文書番号</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Sales Inquiry Line - Field ExternalDocumentNo. - Property Caption</note>
+        </trans-unit>
         <trans-unit id="Table 3898327129 - Field 633819257 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Gen. Bus. Posting Group</source>
           <target>一般ビジネス転記グループ</target>

@@ -25,4 +25,21 @@ pageextension 50042 "Sales Order Ext" extends "Sales Order"
             }
         }
     }
+    /* actions
+    {
+        addafter(GetRecurringSalesLines_Promoted)
+        {
+            actionref(SalesOrderImport_Promoted; SalesOrderImport) { }
+        }
+        addafter(GetRecurringSalesLines)
+        {
+            action(SalesOrderImport)
+            {
+                ApplicationArea = All;
+                Caption = 'Import Sales Order';
+                Image = Import;
+                RunObject = Report "Sales Order Import";
+            }
+        }
+    } */
 }

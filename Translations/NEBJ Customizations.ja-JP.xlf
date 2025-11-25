@@ -71,6 +71,24 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Table Sales Inquiry Line - Field Currency Code - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Table 3898327129 - Field 475748445 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Customer Group</source>
+          <target>顧客グループコード</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Sales Inquiry Line - Field Customer Group - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 3898327129 - Field 955411112 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Customer Group Name</source>
+          <target>顧客グループ名</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Sales Inquiry Line - Field Customer Group Name - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 3898327129 - Field 1092441323 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Customer Name 2</source>
+          <target>得先名２</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Sales Inquiry Line - Field Customer Name 2 - Property Caption</note>
+        </trans-unit>
         <trans-unit id="Table 3898327129 - Field 410940989 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Customer Posting Group</source>
           <target>得意先転記グループ</target>
@@ -88,6 +106,12 @@
           <target>説明 2</target>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Table Sales Inquiry Line - Field Description 2 - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 3898327129 - Field 237914495 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Description (Bikou)</source>
+          <target>備考</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Sales Inquiry Line - Field Description(Bikou) - Property Caption</note>
         </trans-unit>
         <trans-unit id="Table 3898327129 - Field 580412389 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Document Date</source>
@@ -113,11 +137,59 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Table Sales Inquiry Line - Field Due Date - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Table 3898327129 - Field 1031163474 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>EndUser</source>
+          <target>エンドユーザー</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Sales Inquiry Line - Field EndUser - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 3898327129 - Field 1711302123 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>EndUser Group</source>
+          <target>エンドユーザー区分</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Sales Inquiry Line - Field EndUser Group - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 3898327129 - Field 928684266 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>EndUser Group Name</source>
+          <target>エンドユーザー区分名</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Sales Inquiry Line - Field EndUser Group Name - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 3898327129 - Field 4034694730 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>EU Description</source>
+          <target>エンドユーザー名</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Sales Inquiry Line - Field EU Description - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 3898327129 - Field 1512411244 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>EU Division 1</source>
+          <target>エンドユーザ所属1</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Sales Inquiry Line - Field EU Division 1 - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 3898327129 - Field 2150107861 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>EU Division 2</source>
+          <target>エンドユーザ所属2</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Sales Inquiry Line - Field EU Division 2 - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 3898327129 - Field 2787804478 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>EU Division 3</source>
+          <target>エンドユーザ所属3</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Sales Inquiry Line - Field EU Division 3 - Property Caption</note>
+        </trans-unit>
         <trans-unit id="Table 3898327129 - Field 1527563463 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>External Document No.</source>
           <target>外部文書番号</target>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Table Sales Inquiry Line - Field External Document No. - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 3898327129 - Field 347343743 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>External Document No.</source>
+          <target>外部文書番号</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Sales Inquiry Line - Field ExternalDocumentNo. - Property Caption</note>
         </trans-unit>
         <trans-unit id="Table 3898327129 - Field 633819257 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Gen. Bus. Posting Group</source>
@@ -155,11 +227,29 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Table Sales Inquiry Line - Field Item Category Code - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Table 3898327129 - Field 870702173 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Item Category Description</source>
+          <target>品目カテゴリー名</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Sales Inquiry Line - Field Item Category Description - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 3898327129 - Field 2842094365 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Item Description</source>
+          <target>品目名称</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Sales Inquiry Line - Field Item Description - Property Caption</note>
+        </trans-unit>
         <trans-unit id="Table 3898327129 - Field 568743302 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Item No.</source>
           <target>品目番号</target>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Table Sales Inquiry Line - Field Item No. - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 3898327129 - Field 3563803069 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Item Toxic KBN</source>
+          <target>医療用毒劇物</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Sales Inquiry Line - Field ItemToxicKBN - Property Caption</note>
         </trans-unit>
         <trans-unit id="Table 3898327129 - Field 1908272084 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Job No.</source>
@@ -203,6 +293,12 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Table Sales Inquiry Line - Field Order Date - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Table 3898327129 - Field 4145127342 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Order Status</source>
+          <target>ステータス</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Sales Inquiry Line - Field Order Status - Property Caption</note>
+        </trans-unit>
         <trans-unit id="Table 3898327129 - Field 3260337296 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Planned Delivery Date</source>
           <target>納品予定日</target>
@@ -233,6 +329,12 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Table Sales Inquiry Line - Field Product Group Code - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Table 3898327129 - Field 3861951422 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Product Group Description</source>
+          <target>品目グループ名</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Sales Inquiry Line - Field Product Group Description - Property Caption</note>
+        </trans-unit>
         <trans-unit id="Table 3898327129 - Field 309263357 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Profit %</source>
           <target>利益率</target>
@@ -250,6 +352,12 @@
           <target>請求数量</target>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Table Sales Inquiry Line - Field Qty. to Invoice - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 3898327129 - Field 1128541325 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Qty. to Ship</source>
+          <target>出荷数量</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Sales Inquiry Line - Field Qty. to Ship - Property Caption</note>
         </trans-unit>
         <trans-unit id="Table 3898327129 - Field 2704404533 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Quantity</source>
@@ -293,11 +401,29 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Table Sales Inquiry Line - Field Responsibility Center - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Table 3898327129 - Field 3468190356 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Sales Month</source>
+          <target>売上月</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Sales Inquiry Line - Field SalesMonth - Property Caption</note>
+        </trans-unit>
         <trans-unit id="Table 3898327129 - Field 553464652 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Salesperson Code</source>
           <target>販売担当者コード</target>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Table Sales Inquiry Line - Field Salesperson Code - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 3898327129 - Field 3526240506 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Sales Quater</source>
+          <target>売上四半期</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Sales Inquiry Line - Field SalesQuater - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 3898327129 - Field 1144107793 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Sales Year</source>
+          <target>売上年</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Sales Inquiry Line - Field SalesYear - Property Caption</note>
         </trans-unit>
         <trans-unit id="Table 3898327129 - Field 1474036805 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Sell-to Customer Name</source>
@@ -310,6 +436,12 @@
           <target>販売先得意先番号</target>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Table Sales Inquiry Line - Field Sell-to Customer No. - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 3898327129 - Field 3061307251 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Serial No. Type</source>
+          <target>シリアルNo.タイプ</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Sales Inquiry Line - Field SerialNoType - Property Caption</note>
         </trans-unit>
         <trans-unit id="Table 3898327129 - Field 1187003046 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Ship-to Address</source>
@@ -388,6 +520,12 @@
           <target>ショートカット分析項目8 コード</target>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Table Sales Inquiry Line - Field Shortcut Dimension 8 Code - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 3898327129 - Field 716134892 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Storage Temprature</source>
+          <target>保管温度</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Sales Inquiry Line - Field StorageTemprature - Property Caption</note>
         </trans-unit>
         <trans-unit id="Table 3898327129 - Field 1878130204 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Type</source>
@@ -669,12 +807,6 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page Purchase Order Import - Control FileName - Property Caption</note>
         </trans-unit>
-        <trans-unit id="Page 3305963972 - Control 3201496503 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Import</source>
-          <target>インポート</target>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page Purchase Order Import - Control Import - Property Caption</note>
-        </trans-unit>
         <trans-unit id="Page 3305963972 - Action 155853105 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Execute</source>
           <target>Execute</target>
@@ -789,35 +921,11 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page Sales Inquiry Card - Control Line Field Filter - Property Caption</note>
         </trans-unit>
-        <trans-unit id="Page 4165833255 - Control 4261085857 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Fixed Asset Filter</source>
-          <target>固定資産フィルター</target>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page Sales Inquiry Card - Control FAFilter - Property Caption</note>
-        </trans-unit>
-        <trans-unit id="Page 4165833255 - Control 3932929510 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>G/L Account Filter</source>
-          <target>勘定科目フィルター</target>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page Sales Inquiry Card - Control GLAccFilter - Property Caption</note>
-        </trans-unit>
-        <trans-unit id="Page 4165833255 - Control 3011638017 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Item Charge Filter</source>
-          <target>費用項目フィルター</target>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page Sales Inquiry Card - Control ItemChargeFilter - Property Caption</note>
-        </trans-unit>
         <trans-unit id="Page 4165833255 - Control 1553686271 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Item Filter</source>
           <target>品目フィルター</target>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page Sales Inquiry Card - Control ItemFilter - Property Caption</note>
-        </trans-unit>
-        <trans-unit id="Page 4165833255 - Control 4150322462 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Resource Filter</source>
-          <target>リソースフィルター</target>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page Sales Inquiry Card - Control ResourceFilter - Property Caption</note>
         </trans-unit>
         <trans-unit id="Page 4165833255 - Control 4005280567 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Show Zero Amount Line</source>
@@ -855,41 +963,11 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page Sales Inquiry Card - Action Functions - Property Caption</note>
         </trans-unit>
-        <trans-unit id="Page 4165833255 - Action 1758329763 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Clear Data</source>
-          <target>データ消去</target>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page Sales Inquiry Card - Action ClearData - Property Caption</note>
-        </trans-unit>
-        <trans-unit id="Page 4165833255 - Action 2427105420 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Deselect All</source>
-          <target>検索対象全消去</target>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page Sales Inquiry Card - Action DeselectAll - Property Caption</note>
-        </trans-unit>
         <trans-unit id="Page 4165833255 - Action 2453998267 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Export Data with LN/SN/Expiration Date</source>
           <target>ロット/シリアル/有効期限付きエクスポート</target>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page Sales Inquiry Card - Action ExportDatawithLot - Property Caption</note>
-        </trans-unit>
-        <trans-unit id="Page 4165833255 - Action 2973610849 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Export Data without LN/SN</source>
-          <target>ロット/シリアル番号なしでエクスポート</target>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page Sales Inquiry Card - Action ExportDatawithoutLot - Property Caption</note>
-        </trans-unit>
-        <trans-unit id="Page 4165833255 - Action 1410040836 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Sales Force Import Data</source>
-          <target>Sales Force取り込み用データエクスポート</target>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page Sales Inquiry Card - Action SalesForceImportData - Property Caption</note>
-        </trans-unit>
-        <trans-unit id="Page 4165833255 - Action 2223207931 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Select All</source>
-          <target>検索対象全設定</target>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page Sales Inquiry Card - Action SelectAll - Property Caption</note>
         </trans-unit>
         <trans-unit id="Page 4165833255 - Action 88470173 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Show Data</source>
@@ -908,6 +986,12 @@
           <target>検索対象を指定して下さい。</target>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page Sales Inquiry Subform - NamedType Text000</note>
+        </trans-unit>
+        <trans-unit id="Page 4139010253 - Control 3751160641 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Amount Including VAT - Amount</source>
+          <target>消費税込金額-金額</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Sales Inquiry Subform - Control Amount Including VAT - Amount - Property Caption</note>
         </trans-unit>
         <trans-unit id="Page 1232259966 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Sales Order Import Result</source>
@@ -945,11 +1029,11 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Report Import Goods Rcpt. Insp. Data - NamedType ImpMsg</note>
         </trans-unit>
-        <trans-unit id="Report 2188769160 - Method 856207895 - NamedType 3347522258" size-unit="char" translate="yes" xml:space="preserve">
+        <trans-unit id="Report 2188769160 - Method 3339030699 - NamedType 3347522258" size-unit="char" translate="yes" xml:space="preserve">
           <source>Reading Text File...\\</source>
           <target>Reading Text File...\\</target>
           <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Report Import Goods Rcpt. Insp. Data - Method ReadTextFileNew - NamedType ReadFileLbl</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Import Goods Rcpt. Insp. Data - Method ReadTextFile - NamedType ReadFileLbl</note>
         </trans-unit>
         <trans-unit id="Report 2188769160 - Control 828292189 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Option</source>
@@ -968,6 +1052,204 @@
           <target>バッチ名</target>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Report Import Goods Rcpt. Insp. Data - Control ReqBatchName - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Report 3766024618 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>NEBJ Detail Trial Balance</source>
+          <target>NEBJ 詳細試算表</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report NEBJ Detail Trial Balance - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Report 3766024618 - Property 3863440606" size-unit="char" translate="yes" xml:space="preserve">
+          <source>payment due,order status</source>
+          <target>支払期日,注文状態</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report NEBJ Detail Trial Balance - Property AdditionalSearchTerms</note>
+        </trans-unit>
+        <trans-unit id="Report 3766024618 - NamedType 1872015239" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Net Change (Add-Currency)</source>
+          <target>追加通貨変動額</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report NEBJ Detail Trial Balance - NamedType AddCurrAmtLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 3766024618 - NamedType 2436034533" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Bal. Account Name</source>
+          <target>相手勘定科目名</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report NEBJ Detail Trial Balance - NamedType BalAccNameLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 3766024618 - NamedType 2970795863" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Bal. Account No.</source>
+          <target>相手勘定科目番号</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report NEBJ Detail Trial Balance - NamedType BalAccNoLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 3766024618 - NamedType 1653612302" size-unit="char" translate="yes" xml:space="preserve">
+          <source>This also includes general ledger accounts that only have a balance.</source>
+          <target>これは残高のみのG/L勘定も含みます。</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report NEBJ Detail Trial Balance - NamedType BalanceCaptionLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 3766024618 - NamedType 3050590124" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Detail Trial Balance</source>
+          <target>試算表詳細</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report NEBJ Detail Trial Balance - NamedType DetailTrialBalCaptionLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 3766024618 - NamedType 4271586908" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Balance</source>
+          <target>残高</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report NEBJ Detail Trial Balance - NamedType GLBalCaptionLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 3766024618 - NamedType 4073918050" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Credit</source>
+          <target>貸方</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report NEBJ Detail Trial Balance - NamedType GLEntryCreditAmtCaptionLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 3766024618 - NamedType 1557897815" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Debit</source>
+          <target>借方</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report NEBJ Detail Trial Balance - NamedType GLEntryDebitAmtCaptionLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 3766024618 - NamedType 2171017903" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Net Change</source>
+          <target>正味変化</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report NEBJ Detail Trial Balance - NamedType NetChangeCaptionLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 3766024618 - NamedType 3034285687" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Only corrections are included.</source>
+          <target>訂正のみ含まれています。</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report NEBJ Detail Trial Balance - NamedType OnlyCorrectionsCaptionLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 3766024618 - NamedType 650077689" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Page</source>
+          <target>ページ</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report NEBJ Detail Trial Balance - NamedType PageCaptionLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 3766024618 - NamedType 2716332507" size-unit="char" translate="yes" xml:space="preserve">
+          <source>This report also includes closing entries within the period.</source>
+          <target>この報告は期間内のクローズ明細も含みます。</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report NEBJ Detail Trial Balance - NamedType PeriodCaptionLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 3766024618 - NamedType 2476940767" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Period: %1</source>
+          <target>期間: %1</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report NEBJ Detail Trial Balance - NamedType Text000</note>
+        </trans-unit>
+        <trans-unit id="Report 3766024618 - ReportLabel 567180089" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Description</source>
+          <target>説明</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report NEBJ Detail Trial Balance - ReportLabel DescCaption</note>
+        </trans-unit>
+        <trans-unit id="Report 3766024618 - ReportLabel 4204010505" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Document No.</source>
+          <target>伝票番号</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report NEBJ Detail Trial Balance - ReportLabel DocNoCaption</note>
+        </trans-unit>
+        <trans-unit id="Report 3766024618 - ReportLabel 326179949" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Entry No.</source>
+          <target>明細番号</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report NEBJ Detail Trial Balance - ReportLabel EntryNoCaption</note>
+        </trans-unit>
+        <trans-unit id="Report 3766024618 - ReportLabel 2020178030" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Posting Date</source>
+          <target>転記日付</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report NEBJ Detail Trial Balance - ReportLabel PostingDateCaption</note>
+        </trans-unit>
+        <trans-unit id="Report 3766024618 - ReportLabel 3822561807" size-unit="char" translate="yes" xml:space="preserve">
+          <source>VAT Amount</source>
+          <target>消費税金額</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report NEBJ Detail Trial Balance - ReportLabel VATAmtCaption</note>
+        </trans-unit>
+        <trans-unit id="Report 3766024618 - RequestPage 2516438534 - Property 1064389655" size-unit="char" translate="yes" xml:space="preserve">
+          <source>About Detail Trial Balance</source>
+          <target>「詳細試算表」について</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report NEBJ Detail Trial Balance - RequestPage RequestOptionsPage - Property AboutTitle</note>
+        </trans-unit>
+        <trans-unit id="Report 3766024618 - RequestPage 2516438534 - Property 247559172" size-unit="char" translate="yes" xml:space="preserve">
+          <source>View bank account balances at the end of the period, including the opening balance, each transaction within the period, and the closing balance grouped by bank. View a running balance and reconciled entries.</source>
+          <target>期間末の銀行口座残高を表示します。銀行別にグループ化しての、開始残、期間中の各取引、および、終了残、を含みます。現在残および照合済明細を表示します。</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report NEBJ Detail Trial Balance - RequestPage RequestOptionsPage - Property AboutText</note>
+        </trans-unit>
+        <trans-unit id="Report 3766024618 - Control 2346885236 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Options</source>
+          <target>オプション</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report NEBJ Detail Trial Balance - Control Options - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Report 3766024618 - Control 3183705145 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies if you do not want the report to include entries for G/L accounts that have a balance but do not have a net change during the selected time period.</source>
+          <target>残高があるが、選択された期間に正味変更がない G/L勘定の明細をレポートに含めないようにするかどうかを指定しています。</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report NEBJ Detail Trial Balance - Control ExcludeGLAccsHaveBalanceOnly - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Report 3766024618 - Control 3183705145 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Exclude G/L Accs. That Have a Balance Only</source>
+          <target>残高のみのG/L勘定を除外</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report NEBJ Detail Trial Balance - Control ExcludeGLAccsHaveBalanceOnly - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Report 3766024618 - Control 3201262307 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies if you want the report to include closing entries. This is useful if the report covers an entire fiscal year. Closing entries are listed on a fictitious date between the last day of one fiscal year and the first day of the next one. They have a C before the date, such as C123194. If you do not select this field, no closing entries are shown.</source>
+          <target>レポートに決算明細を含めるかどうかを指定しています。これは、レポートが会計年度全体をカバーしている場合に便利です。決算明細は、一つの会計年度の末日から次の会計年度の初日までの架空の日付と共に一覧表示されます。C123194 のように、日付の前に C が付いています。このフィールドが選択されていない場合、決算明細は表示されません。</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report NEBJ Detail Trial Balance - Control InclClosingEntriesWithinPeriod - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Report 3766024618 - Control 3201262307 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Include Closing Entries Within the Period</source>
+          <target>期間内決算明細を含める</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report NEBJ Detail Trial Balance - Control InclClosingEntriesWithinPeriod - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Report 3766024618 - Control 3414096222 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies if you want to include reversed entries in the report.</source>
+          <target>反転表示された明細をレポートに含めるかどうかを指定しています。</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report NEBJ Detail Trial Balance - Control IncludeReversedEntries - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Report 3766024618 - Control 3414096222 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Include Reversed Entries</source>
+          <target>逆仕訳済明細を含める</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report NEBJ Detail Trial Balance - Control IncludeReversedEntries - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Report 3766024618 - Control 3214291206 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies if each G/L account information is printed on a new page if you have chosen two or more G/L accounts to be included in the report.</source>
+          <target>二つ以上の G/L勘定がレポートに含まれることを選択した場合、各勘定情報を新しいページに印刷するかどうかを指定しています。</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report NEBJ Detail Trial Balance - Control NewPageperGLAcc - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Report 3766024618 - Control 3214291206 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>New Page per G/L Acc.</source>
+          <target>G/L勘定毎に改ページ</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report NEBJ Detail Trial Balance - Control NewPageperGLAcc - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Report 3766024618 - Control 4258595164 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies if you want the report to show only the entries that have been reversed and their matching correcting entries.</source>
+          <target>取り消された項目と、一致した訂正明細だけをレポートに表示する場合に指定しています。</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report NEBJ Detail Trial Balance - Control PrintCorrectionsOnly - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Report 3766024618 - Control 4258595164 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Print Corrections Only</source>
+          <target>訂正のみを印刷</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report NEBJ Detail Trial Balance - Control PrintCorrectionsOnly - Property Caption</note>
         </trans-unit>
         <trans-unit id="Report 4268876869 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Sales Order Import</source>
@@ -1139,11 +1421,11 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">PageExtension Sales Cr. Memo Subform Ext - Control ExternaDocumentNo. - Property Caption</note>
         </trans-unit>
-        <trans-unit id="PageExtension 1633892545 - Action 824813397 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 1673401186">
-          <source>Import Sales Order</source>
-          <target>受注取込</target>
+        <trans-unit id="PageExtension 1708100201 - Action 1002420131 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 1708100201">
+          <source>Print</source>
+          <target>印刷</target>
           <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">PageExtension Sales Order Ext - Action SalesOrderImport - Property Caption</note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension Sales Credit Memo - Action Print - Property Caption</note>
         </trans-unit>
         <trans-unit id="PageExtension 1633892545 - Control 1942762401 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 1673401186">
           <source>納品書備考</source>

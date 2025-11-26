@@ -9,6 +9,7 @@ table 50000 "Sales Inquiry Line"
         {
             Caption = 'Document Type';
             OptionMembers = Quote,Order,Invoice,"Credit Memo","Blanket Order","Return Order","Posted Invoice","Posted Credit Memo";
+            OptionCaption = 'Quote,Order,Invoice,Credit Memo,Blanket Order,Return Order,Posted Invoice,Posted Credit Memo';
         }
         field(2; "Document No."; Code[20])//Can find in FDD106
         {
@@ -125,6 +126,10 @@ table 50000 "Sales Inquiry Line"
         field(152; "Qty. to Invoice"; Decimal)//Can find in FDD106
         {
             Caption = 'Qty. to Invoice';
+        }
+        field(153; "Qty. to Ship"; Decimal)//Can find in FDD106
+        {
+            Caption = 'Qty. to Ship';
         }
         field(154; "Unit Price"; Decimal)//Can find in FDD106
         {
@@ -286,13 +291,101 @@ table 50000 "Sales Inquiry Line"
             Caption = 'Shortcut Dimension 8 Code';
             CaptionClass = '1,2,8';
         }
+        field(328; "Description(Bikou)"; Text[200])//Can find in FDD106
+        {
+            Caption = 'Description (Bikou)';
+        }
+        field(329; "StorageTemprature"; Text[20])//Can find in FDD106
+        {
+            Caption = 'Storage Temprature';
+        }
+        field(330; "ExternalDocumentNo."; Text[50])//Can find in FDD106
+        {
+            Caption = 'External Document No.';
+        }
+        field(332; "EU Description"; Text[50])//Can find in FDD106
+        {
+            Caption = 'EU Description';
+        }
+        field(335; "EU Division 1"; Text[100])//Can find in FDD106
+        {
+            Caption = 'EU Division 1';
+        }
+        field(336; "EU Division 2"; Text[100])//Can find in FDD106
+        {
+            Caption = 'EU Division 2';
+        }
+        field(337; "EU Division 3"; Text[100])//Can find in FDD106
+        {
+            Caption = 'EU Division 3';
+        }
+        field(338; "Customer Name 2"; Text[50])//Can find in FDD106
+        {
+            Caption = 'Customer Name 2';
+        }
+        field(339; "Item Category Description"; Text[50])//Can find in FDD106
+        {
+            Caption = 'Item Category Description';
+        }
+        field(340; "Product Group Description"; Text[50])//Can find in FDD106
+        {
+            Caption = 'Product Group Description';
+        }
+        field(341; "Customer Group"; Text[20])//Can find in FDD106
+        {
+            Caption = 'Customer Group';
+        }
+        field(342; "Customer Group Name"; Text[50])//Can find in FDD106
+        {
+            Caption = 'Customer Group Name';
+        }
+        field(343; "SerialNoType"; Text[10])//Can find in FDD106
+        {
+            Caption = 'Serial No. Type';
+        }
+        field(344; "SalesYear"; Integer)//Can find in FDD106
+        {
+            Caption = 'Sales Year';
+        }
+        field(345; "SalesMonth"; Integer)//Can find in FDD106
+        {
+            Caption = 'Sales Month';
+        }
+        field(346; "SalesQuater"; Text[10])//Can find in FDD106
+        {
+            Caption = 'Sales Quater';
+        }
+        field(347; "ItemToxicKBN"; Text[12])//Can find in FDD106
+        {
+            Caption = 'Item Toxic KBN';
+        }
+        field(348; "EndUser Group"; Text[30])//Can find in FDD106
+        {
+            Caption = 'EndUser Group';
+        }
+        field(349; "EndUser Group Name"; Text[50])//Can find in FDD106
+        {
+            Caption = 'EndUser Group Name';
+        }
+        field(351; "Item Description"; Text[100])//Can find in FDD106
+        {
+            Caption = 'Item Description';
+        }
+        field(350; "Creation Date"; Date)//New Field
+        {
+            Caption = 'Creation Date';
+        }
+        field(352; "EndUser"; Code[20])//Can find in FDD106
+        {
+            Caption = 'EndUser';
+        }
+        field(353; "Order Status"; Enum "Sales Document Status")//Can find in FDD106
+        {
+            Caption = 'Order Status';
+        }
         field(355; GUID; GUID) //New Field
         {
             Caption = 'GUID';
-        }
-        field(356; "Creation Date"; Date)//New Field
-        {
-            Caption = 'Creation Date';
         }
     }
     keys
@@ -303,4 +396,3 @@ table 50000 "Sales Inquiry Line"
         }
     }
 }
-

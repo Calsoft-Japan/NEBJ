@@ -107,6 +107,12 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Table Sales Inquiry Line - Field Document Type - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Table 3898327129 - Field 2363328873 - Property 62802879" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Quote,Order,Invoice,Credit Memo,Blanket Order,Return Order,Posted Invoice,Posted Credit Memo</source>
+          <target>見積,注文,請求,クレジットメモ,総括注文,返品注文,転記済売上請求,転記済売上クレジットメモ</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Sales Inquiry Line - Field Document Type - Property OptionCaption</note>
+        </trans-unit>
         <trans-unit id="Table 3898327129 - Field 4085727052 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Due Date</source>
           <target>期日</target>

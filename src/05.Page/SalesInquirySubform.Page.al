@@ -680,8 +680,27 @@ page 50019 "Sales Inquiry Subform"
                             if CustomerType.Get(Rec."EndUser Group") then
                                 Rec."EndUser Group Name" := CustomerType."Customer Type Name";
 
+                            Rec."Sell-to Customer Name" := SalesHdr."Sell-to Customer Name";
                             Rec."Customer Name 2" := SalesHdr."Sell-to Customer Name 2";
                             Rec."EndUser" := SalesLine.EndUser;
+                            Rec."Posting Date" := SalesHdr."Posting Date";
+                            Rec."Document Date" := SalesHdr."Document Date";
+                            Rec."Order Date" := SalesHdr."Order Date";
+                            Rec."Due Date" := SalesHdr."Due Date";
+                            Rec."Ship-to Code" := SalesHdr."Ship-to Code";
+                            Rec."Ship-to Name" := SalesHdr."Ship-to Name";
+                            Rec."Ship-to Address" := SalesHdr."Ship-to Address";
+                            Rec."Ship-to Post Code" := SalesHdr."Ship-to Post Code";
+                            Rec."Posting Description" := SalesHdr."Posting Description";
+                            Rec."Salesperson Code" := SalesHdr."Salesperson Code";
+                            Rec."Bill-to Customer No." := SalesHdr."Bill-to Customer No.";
+                            Rec."Bill-to Name" := SalesHdr."Bill-to Name";
+                            Rec."Customer Posting Group" := SalesHdr."Customer Posting Group";
+                            if Item.Get(SalesLine."No.") then;
+                            Rec."Item Description" := Item.Description;
+                            Rec."Profit %" := SalesLine."Profit %";
+                            Rec."Item Category Code" := SalesLine."Item Category Code";
+
                             Rec."Description(Bikou)" := SalesLine."Description(Bikou)";
                             Rec.StorageTemprature := SalesLine.StorageTemprature;
                             Rec."External Document No." := SalesHdr."External Document No.";
@@ -690,7 +709,7 @@ page 50019 "Sales Inquiry Subform"
                             Rec."EU Division 1" := SalesLine."EU Division 1";
                             Rec."EU Division 2" := SalesLine."EU Division 2";
                             Rec."EU Division 3" := SalesLine."EU Division 3";
-                            if Item.Get(SalesLine."No.") then;
+
                             ItemCategoryCodeSearch(Item."Item Category Code", Rec."Item Category Code", Rec."Item Category Description");
                             Rec."Product Group Code" := Item."Item Category Code";
                             if ItemCategory.Get(Item."Item Category Code") then
@@ -842,7 +861,26 @@ page 50019 "Sales Inquiry Subform"
                             if CustomerType.Get(Rec."EndUser Group") then
                                 Rec."EndUser Group Name" := CustomerType."Customer Type Name";
 
+                            Rec."Sell-to Customer Name" := SalesInvHdr."Sell-to Customer Name";
                             Rec."Customer Name 2" := SalesInvHdr."Sell-to Customer Name 2";
+                            Rec."Posting Date" := SalesInvHdr."Posting Date";
+                            Rec."Document Date" := SalesInvHdr."Document Date";
+                            Rec."Order Date" := SalesInvHdr."Order Date";
+                            Rec."Due Date" := SalesInvHdr."Due Date";
+                            Rec."Ship-to Code" := SalesInvHdr."Ship-to Code";
+                            Rec."Ship-to Name" := SalesInvHdr."Ship-to Name";
+                            Rec."Ship-to Address" := SalesInvHdr."Ship-to Address";
+                            Rec."Ship-to Post Code" := SalesInvHdr."Ship-to Post Code";
+                            Rec."Posting Description" := SalesInvHdr."Posting Description";
+                            Rec."Salesperson Code" := SalesInvHdr."Salesperson Code";
+                            Rec."Bill-to Customer No." := SalesInvHdr."Bill-to Customer No.";
+                            Rec."Bill-to Name" := SalesInvHdr."Bill-to Name";
+                            Rec."Customer Posting Group" := SalesInvHdr."Customer Posting Group";
+                            if Item.Get(SalesInvLine."No.") then;
+                            Rec."Item Description" := Item.Description;
+                            //Rec."Profit %" := SalesInvLine."Profit %";
+                            Rec."Item Category Code" := SalesInvLine."Item Category Code";
+
                             Rec."EndUser" := SalesInvLine.EndUser;
                             Rec."Description(Bikou)" := SalesInvLine."Description(Bikou)";
                             Rec.StorageTemprature := SalesInvLine.StorageTemprature;
@@ -852,7 +890,6 @@ page 50019 "Sales Inquiry Subform"
                             Rec."EU Division 1" := SalesInvLine."EU Division 1";
                             Rec."EU Division 2" := SalesInvLine."EU Division 2";
                             Rec."EU Division 3" := SalesInvLine."EU Division 3";
-                            if Item.Get(SalesInvLine."No.") then;
                             ItemCategoryCodeSearch(Item."Item Category Code", Rec."Item Category Code", Rec."Item Category Description");
                             Rec."Product Group Code" := Item."Item Category Code";
                             if ItemCategory.Get(Item."Item Category Code") then
@@ -1005,8 +1042,26 @@ page 50019 "Sales Inquiry Subform"
                             if CustomerType.Get(Rec."EndUser Group") then
                                 Rec."EndUser Group Name" := CustomerType."Customer Type Name";
 
+                            Rec."Sell-to Customer Name" := SalesCrMemoHdr."Sell-to Customer Name";
                             Rec."Customer Name 2" := SalesCrMemoHdr."Sell-to Customer Name 2";
-                            Rec.EndUser := SalesCrMemoLine.EndUser;
+                            Rec."Posting Date" := SalesCrMemoHdr."Posting Date";
+                            Rec."Document Date" := SalesCrMemoHdr."Document Date";
+                            //Rec."Order Date" := SalesCrMemoHdr."Order Date";
+                            Rec."Due Date" := SalesCrMemoHdr."Due Date";
+                            Rec."Ship-to Code" := SalesCrMemoHdr."Ship-to Code";
+                            Rec."Ship-to Name" := SalesCrMemoHdr."Ship-to Name";
+                            Rec."Ship-to Address" := SalesCrMemoHdr."Ship-to Address";
+                            Rec."Ship-to Post Code" := SalesCrMemoHdr."Ship-to Post Code";
+                            Rec."Posting Description" := SalesCrMemoHdr."Posting Description";
+                            Rec."Salesperson Code" := SalesCrMemoHdr."Salesperson Code";
+                            Rec."Bill-to Customer No." := SalesCrMemoHdr."Bill-to Customer No.";
+                            Rec."Bill-to Name" := SalesCrMemoHdr."Bill-to Name";
+                            Rec."Customer Posting Group" := SalesCrMemoHdr."Customer Posting Group";
+                            if Item.Get(SalesCrMemoLine."No.") then;
+                            Rec."Item Description" := Item.Description;
+                            //Rec."Profit %" := SalesCrMemoLine."Profit %";
+                            Rec."Item Category Code" := SalesCrMemoLine."Item Category Code";
+
                             Rec."Description(Bikou)" := SalesCrMemoLine."Description(Bikou)";
                             Rec.StorageTemprature := SalesCrMemoLine.StorageTemprature;
                             Rec."External Document No." := SalesCrMemoHdr."External Document No.";

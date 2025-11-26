@@ -11,7 +11,7 @@
       <am:Name>MSRB</am:Name>
       <am:Version>15.1.30001.02</am:Version>
     </am:UpdatedBy>
-    <am:LastModifiedTimestamp>2025-11-17T22:52:34.4873700Z</am:LastModifiedTimestamp>
+    <am:LastModifiedTimestamp>2025-11-25T07:17:48.7510181Z</am:LastModifiedTimestamp>
   </am:AuthoringMetadata>
   <AutoRefresh>0</AutoRefresh>
   <DataSources>
@@ -1621,7 +1621,7 @@
                                 <Paragraph>
                                   <TextRuns>
                                     <TextRun>
-                                      <Value>=Fields!Quantity_Line.Value</Value>
+                                      <Value>=-Fields!Quantity_Line.Value</Value>
                                       <Style>
                                         <FontFamily>MS UI Gothic</FontFamily>
                                         <FontSize>9pt</FontSize>
@@ -3253,11 +3253,7 @@
                   <Paragraph>
                     <TextRuns>
                       <TextRun>
-                        <Value>=IIf(
-First(Fields!CurrencyCode.Value, "DataSet_Result") = "JPY",
-    FormatNumber(Sum(-1 * Fields!TotalAmountExclVAT.Value, "DataSet_Result"), 0),
-    FormatNumber(Sum(-1 * Fields!TotalAmountExclVAT.Value, "DataSet_Result"), 2)
-)</Value>
+                        <Value>=-Sum(Fields!TotalAmountExclVAT.Value)</Value>
                         <Style>
                           <FontFamily>MS UI Gothic</FontFamily>
                           <FontSize>9pt</FontSize>
@@ -3562,7 +3558,7 @@ First(Fields!CurrencyCode.Value, "DataSet_Result") = "JPY",
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value>受注日：</Value>
+                      <Value>訂正日：</Value>
                       <Style>
                         <FontFamily>MS UI Gothic</FontFamily>
                         <FontSize>9pt</FontSize>

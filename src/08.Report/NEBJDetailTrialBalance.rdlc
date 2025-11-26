@@ -7241,23 +7241,23 @@ Fields!EntryNo.Value&lt;=0 or
       </DefaultValue>
       <Prompt>EntryNoCaption</Prompt>
     </ReportParameter>
-    <ReportParameter Name="VATAmount_GLEntryCaption">
+    <ReportParameter Name="VATAmt_GLEntryCaption">
       <DataType>String</DataType>
       <DefaultValue>
         <Values>
-          <Value>VATAmount_GLEntryCaption</Value>
+          <Value>VATAmt_GLEntryCaption</Value>
         </Values>
       </DefaultValue>
-      <Prompt>VATAmount_GLEntryCaption</Prompt>
+      <Prompt>VATAmt_GLEntryCaption</Prompt>
     </ReportParameter>
-    <ReportParameter Name="ExtDocNo_GLEntryCaption">
+    <ReportParameter Name="ExtDocNoCaption">
       <DataType>String</DataType>
       <DefaultValue>
         <Values>
-          <Value>ExtDocNo_GLEntryCaption</Value>
+          <Value>ExtDocNoCaption</Value>
         </Values>
       </DefaultValue>
-      <Prompt>ExtDocNo_GLEntryCaption</Prompt>
+      <Prompt>ExtDocNoCaption</Prompt>
     </ReportParameter>
   </ReportParameters>
   <ReportParametersLayout>
@@ -7293,12 +7293,12 @@ Fields!EntryNo.Value&lt;=0 or
         <CellDefinition>
           <ColumnIndex>0</ColumnIndex>
           <RowIndex>5</RowIndex>
-          <ParameterName>VATAmount_GLEntryCaption</ParameterName>
+          <ParameterName>VATAmt_GLEntryCaption</ParameterName>
         </CellDefinition>
         <CellDefinition>
           <ColumnIndex>0</ColumnIndex>
           <RowIndex>6</RowIndex>
-          <ParameterName>ExtDocNo_GLEntryCaption</ParameterName>
+          <ParameterName>ExtDocNoCaption</ParameterName>
         </CellDefinition>
       </CellDefinitions>
     </GridLayoutDefinition>
@@ -7355,8 +7355,44 @@ End Function</Code>
   <DataSets>
     <DataSet Name="DataSet_Result">
       <Fields>
-        <Field Name="PeriodGLDtFilter">
-          <DataField>PeriodGLDtFilter</DataField>
+        <Field Name="RepCaption">
+          <DataField>RepCaption</DataField>
+        </Field>
+        <Field Name="PageCaption">
+          <DataField>PageCaption</DataField>
+        </Field>
+        <Field Name="BalanceLbl">
+          <DataField>BalanceLbl</DataField>
+        </Field>
+        <Field Name="PeriodLbl">
+          <DataField>PeriodLbl</DataField>
+        </Field>
+        <Field Name="OnlyCorrectionLbl">
+          <DataField>OnlyCorrectionLbl</DataField>
+        </Field>
+        <Field Name="NetChangeLbl">
+          <DataField>NetChangeLbl</DataField>
+        </Field>
+        <Field Name="DrAmtLbl">
+          <DataField>DrAmtLbl</DataField>
+        </Field>
+        <Field Name="CrAmtLbl">
+          <DataField>CrAmtLbl</DataField>
+        </Field>
+        <Field Name="GLBalLbl">
+          <DataField>GLBalLbl</DataField>
+        </Field>
+        <Field Name="AddCurrAmtLbl">
+          <DataField>AddCurrAmtLbl</DataField>
+        </Field>
+        <Field Name="BalAccNoLbl">
+          <DataField>BalAccNoLbl</DataField>
+        </Field>
+        <Field Name="BalAccNameLbl">
+          <DataField>BalAccNameLbl</DataField>
+        </Field>
+        <Field Name="PeriodDateFilter">
+          <DataField>PeriodDateFilter</DataField>
         </Field>
         <Field Name="CompanyName">
           <DataField>CompanyName</DataField>
@@ -7379,47 +7415,20 @@ End Function</Code>
         <Field Name="PrintOnlyCorrections">
           <DataField>PrintOnlyCorrections</DataField>
         </Field>
-        <Field Name="GLAccTableCaption">
-          <DataField>GLAccTableCaption</DataField>
+        <Field Name="GLAccTblCaption">
+          <DataField>GLAccTblCaption</DataField>
         </Field>
         <Field Name="GLFilter">
           <DataField>GLFilter</DataField>
         </Field>
+        <Field Name="GLAccNo">
+          <DataField>GLAccNo</DataField>
+        </Field>
         <Field Name="EmptyString">
           <DataField>EmptyString</DataField>
         </Field>
-        <Field Name="No_GLAcc">
-          <DataField>No_GLAcc</DataField>
-        </Field>
-        <Field Name="DetailTrialBalCaption">
-          <DataField>DetailTrialBalCaption</DataField>
-        </Field>
-        <Field Name="PageCaption">
-          <DataField>PageCaption</DataField>
-        </Field>
-        <Field Name="BalanceCaption">
-          <DataField>BalanceCaption</DataField>
-        </Field>
-        <Field Name="PeriodCaption">
-          <DataField>PeriodCaption</DataField>
-        </Field>
-        <Field Name="OnlyCorrectionsCaption">
-          <DataField>OnlyCorrectionsCaption</DataField>
-        </Field>
-        <Field Name="NetChangeCaption">
-          <DataField>NetChangeCaption</DataField>
-        </Field>
-        <Field Name="GLEntryDebitAmtCaption">
-          <DataField>GLEntryDebitAmtCaption</DataField>
-        </Field>
-        <Field Name="GLEntryCreditAmtCaption">
-          <DataField>GLEntryCreditAmtCaption</DataField>
-        </Field>
-        <Field Name="GLBalCaption">
-          <DataField>GLBalCaption</DataField>
-        </Field>
-        <Field Name="Name_GLAcc">
-          <DataField>Name_GLAcc</DataField>
+        <Field Name="GLAccName">
+          <DataField>GLAccName</DataField>
         </Field>
         <Field Name="StartBalance">
           <DataField>StartBalance</DataField>
@@ -7427,35 +7436,47 @@ End Function</Code>
         <Field Name="StartBalanceFormat">
           <DataField>StartBalanceFormat</DataField>
         </Field>
-        <Field Name="VATAmount_GLEntry">
-          <DataField>VATAmount_GLEntry</DataField>
+        <Field Name="StartBalAddCurr">
+          <DataField>StartBalAddCurr</DataField>
         </Field>
-        <Field Name="VATAmount_GLEntryFormat">
-          <DataField>VATAmount_GLEntryFormat</DataField>
+        <Field Name="StartBalAddCurrFormat">
+          <DataField>StartBalAddCurrFormat</DataField>
         </Field>
-        <Field Name="DebitAmount_GLEntry">
-          <DataField>DebitAmount_GLEntry</DataField>
+        <Field Name="VATAmt_GLEntry">
+          <DataField>VATAmt_GLEntry</DataField>
         </Field>
-        <Field Name="DebitAmount_GLEntryFormat">
-          <DataField>DebitAmount_GLEntryFormat</DataField>
+        <Field Name="VATAmt_GLEntryFormat">
+          <DataField>VATAmt_GLEntryFormat</DataField>
         </Field>
-        <Field Name="CreditAmount_GLEntry">
-          <DataField>CreditAmount_GLEntry</DataField>
+        <Field Name="DrAmt">
+          <DataField>DrAmt</DataField>
         </Field>
-        <Field Name="CreditAmount_GLEntryFormat">
-          <DataField>CreditAmount_GLEntryFormat</DataField>
+        <Field Name="DrAmtFormat">
+          <DataField>DrAmtFormat</DataField>
         </Field>
-        <Field Name="PostingDate_GLEntry">
-          <DataField>PostingDate_GLEntry</DataField>
+        <Field Name="CrAmt">
+          <DataField>CrAmt</DataField>
         </Field>
-        <Field Name="DocumentNo_GLEntry">
-          <DataField>DocumentNo_GLEntry</DataField>
+        <Field Name="CrAmtFormat">
+          <DataField>CrAmtFormat</DataField>
         </Field>
-        <Field Name="ExtDocNo_GLEntry">
-          <DataField>ExtDocNo_GLEntry</DataField>
+        <Field Name="PostDate">
+          <DataField>PostDate</DataField>
         </Field>
-        <Field Name="Description_GLEntry">
-          <DataField>Description_GLEntry</DataField>
+        <Field Name="DocNo">
+          <DataField>DocNo</DataField>
+        </Field>
+        <Field Name="BalAccNo">
+          <DataField>BalAccNo</DataField>
+        </Field>
+        <Field Name="BalAccName">
+          <DataField>BalAccName</DataField>
+        </Field>
+        <Field Name="ExtDocNo">
+          <DataField>ExtDocNo</DataField>
+        </Field>
+        <Field Name="EntryDesc">
+          <DataField>EntryDesc</DataField>
         </Field>
         <Field Name="GLBalance">
           <DataField>GLBalance</DataField>
@@ -7463,14 +7484,32 @@ End Function</Code>
         <Field Name="GLBalanceFormat">
           <DataField>GLBalanceFormat</DataField>
         </Field>
-        <Field Name="EntryNo_GLEntry">
-          <DataField>EntryNo_GLEntry</DataField>
+        <Field Name="EntryNo">
+          <DataField>EntryNo</DataField>
         </Field>
-        <Field Name="ClosingEntry">
-          <DataField>ClosingEntry</DataField>
+        <Field Name="CloseEntry">
+          <DataField>CloseEntry</DataField>
         </Field>
-        <Field Name="Reversed_GLEntry">
-          <DataField>Reversed_GLEntry</DataField>
+        <Field Name="Reversed">
+          <DataField>Reversed</DataField>
+        </Field>
+        <Field Name="GLBalAddCurr">
+          <DataField>GLBalAddCurr</DataField>
+        </Field>
+        <Field Name="GLBalAddCurrFormat">
+          <DataField>GLBalAddCurrFormat</DataField>
+        </Field>
+        <Field Name="DrAmt_AddCurr">
+          <DataField>DrAmt_AddCurr</DataField>
+        </Field>
+        <Field Name="DrAmt_AddCurrFormat">
+          <DataField>DrAmt_AddCurrFormat</DataField>
+        </Field>
+        <Field Name="CrAmt_AddCurr">
+          <DataField>CrAmt_AddCurr</DataField>
+        </Field>
+        <Field Name="CrAmt_AddCurrFormat">
+          <DataField>CrAmt_AddCurrFormat</DataField>
         </Field>
       </Fields>
       <Query>

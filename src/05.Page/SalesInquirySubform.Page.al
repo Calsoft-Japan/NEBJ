@@ -696,11 +696,7 @@ page 50019 "Sales Inquiry Subform"
                             Rec."Bill-to Customer No." := SalesHdr."Bill-to Customer No.";
                             Rec."Bill-to Name" := SalesHdr."Bill-to Name";
                             Rec."Customer Posting Group" := SalesHdr."Customer Posting Group";
-                            if Item.Get(SalesLine."No.") then;
-                            Rec."Item Description" := Item.Description;
                             Rec."Profit %" := SalesLine."Profit %";
-                            Rec."Item Category Code" := SalesLine."Item Category Code";
-
                             Rec."Description(Bikou)" := SalesLine."Description(Bikou)";
                             Rec.StorageTemprature := SalesLine.StorageTemprature;
                             Rec."External Document No." := SalesHdr."External Document No.";
@@ -710,10 +706,12 @@ page 50019 "Sales Inquiry Subform"
                             Rec."EU Division 2" := SalesLine."EU Division 2";
                             Rec."EU Division 3" := SalesLine."EU Division 3";
 
-                            ItemCategoryCodeSearch(Item."Item Category Code", Rec."Item Category Code", Rec."Item Category Description");
-                            Rec."Product Group Code" := Item."Item Category Code";
-                            if ItemCategory.Get(Item."Item Category Code") then
-                                Rec."Product Group Description" := ItemCategory.Code + ItemCategory.Description;
+                            if Item.Get(SalesLine."No.") then;
+                            Rec."Item Description" := Item.Description;
+                            Rec."Item Category Code" := SalesLine."Item Category Code";
+                            if ItemCategory.Get(Rec."Item Category Code") then;
+                            Rec."Item Category Description" := ItemCategory.Code + ItemCategory.Description;
+                            ItemCategoryCodeSearch(Item."Item Category Code", Rec."Product Group Code", Rec."Product Group Description");
 
                             if Item.Get(SalesLine."No.") then
                                 Rec.StorageTemprature := Item.StorageTemp;
@@ -876,10 +874,8 @@ page 50019 "Sales Inquiry Subform"
                             Rec."Bill-to Customer No." := SalesInvHdr."Bill-to Customer No.";
                             Rec."Bill-to Name" := SalesInvHdr."Bill-to Name";
                             Rec."Customer Posting Group" := SalesInvHdr."Customer Posting Group";
-                            if Item.Get(SalesInvLine."No.") then;
-                            Rec."Item Description" := Item.Description;
+
                             //Rec."Profit %" := SalesInvLine."Profit %";
-                            Rec."Item Category Code" := SalesInvLine."Item Category Code";
 
                             Rec."EndUser" := SalesInvLine.EndUser;
                             Rec."Description(Bikou)" := SalesInvLine."Description(Bikou)";
@@ -890,10 +886,14 @@ page 50019 "Sales Inquiry Subform"
                             Rec."EU Division 1" := SalesInvLine."EU Division 1";
                             Rec."EU Division 2" := SalesInvLine."EU Division 2";
                             Rec."EU Division 3" := SalesInvLine."EU Division 3";
-                            ItemCategoryCodeSearch(Item."Item Category Code", Rec."Item Category Code", Rec."Item Category Description");
-                            Rec."Product Group Code" := Item."Item Category Code";
-                            if ItemCategory.Get(Item."Item Category Code") then
-                                Rec."Product Group Description" := ItemCategory.Code + ItemCategory.Description;
+
+                            if Item.Get(SalesInvLine."No.") then;
+                            Rec."Item Description" := Item.Description;
+                            Rec."Item Category Code" := SalesInvLine."Item Category Code";
+                            if ItemCategory.Get(Rec."Item Category Code") then;
+                            Rec."Item Category Description" := ItemCategory.Code + ItemCategory.Description;
+                            ItemCategoryCodeSearch(Item."Item Category Code", Rec."Product Group Code", Rec."Product Group Description");
+
                             if Item.Get(SalesInvLine."No.") then
                                 Rec.StorageTemprature := Item.StorageTemp;
                             if Item.Get(SalesInvLine."No.") then
@@ -1057,10 +1057,8 @@ page 50019 "Sales Inquiry Subform"
                             Rec."Bill-to Customer No." := SalesCrMemoHdr."Bill-to Customer No.";
                             Rec."Bill-to Name" := SalesCrMemoHdr."Bill-to Name";
                             Rec."Customer Posting Group" := SalesCrMemoHdr."Customer Posting Group";
-                            if Item.Get(SalesCrMemoLine."No.") then;
-                            Rec."Item Description" := Item.Description;
+
                             //Rec."Profit %" := SalesCrMemoLine."Profit %";
-                            Rec."Item Category Code" := SalesCrMemoLine."Item Category Code";
 
                             Rec."Description(Bikou)" := SalesCrMemoLine."Description(Bikou)";
                             Rec.StorageTemprature := SalesCrMemoLine.StorageTemprature;
@@ -1070,11 +1068,14 @@ page 50019 "Sales Inquiry Subform"
                             Rec."EU Division 1" := SalesCrMemoLine."EU Division 1";
                             Rec."EU Division 2" := SalesCrMemoLine."EU Division 2";
                             Rec."EU Division 3" := SalesCrMemoLine."EU Division 3";
+
                             if Item.Get(SalesCrMemoLine."No.") then;
-                            ItemCategoryCodeSearch(Item."Item Category Code", Rec."Item Category Code", Rec."Item Category Description");
-                            Rec."Product Group Code" := Item."Item Category Code";
-                            if ItemCategory.Get(Item."Item Category Code") then
-                                Rec."Product Group Description" := ItemCategory.Code + ItemCategory.Description;
+                            Rec."Item Description" := Item.Description;
+                            Rec."Item Category Code" := SalesCrMemoLine."Item Category Code";
+                            if ItemCategory.Get(Rec."Item Category Code") then;
+                            Rec."Item Category Description" := ItemCategory.Code + ItemCategory.Description;
+                            ItemCategoryCodeSearch(Item."Item Category Code", Rec."Product Group Code", Rec."Product Group Description");
+
                             if Item.Get(SalesCrMemoLine."No.") then
                                 Rec.StorageTemprature := Item.StorageTemp;
                             if Item.Get(SalesCrMemoLine."No.") then

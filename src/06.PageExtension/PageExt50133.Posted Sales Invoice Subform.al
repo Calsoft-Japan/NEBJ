@@ -14,6 +14,11 @@ pageextension 50133 "PostedSalesInvoiceSubform Ext" extends "Posted Sales Invoic
                 ApplicationArea = All;
                 Caption = '保管温度';
             }
+            field("ExternaDocumentNo."; Rec."ExternaDocumentNo.")
+            {
+                ApplicationArea = All;
+                Caption = '外部文書番号';
+            }
         }
         addafter("Unit of Measure Code")
         {

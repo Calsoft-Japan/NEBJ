@@ -5,6 +5,7 @@ tableextension 50000 "Price List Line Ext" extends "Price List Line"
         field(50000; EndUser; Code[20])
         {
             Caption = 'EndUser';
+            TableRelation = Customer;
         }
     }
 }

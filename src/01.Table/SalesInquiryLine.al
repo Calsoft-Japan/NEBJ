@@ -192,6 +192,7 @@ table 50000 "Sales Inquiry Line"
         field(179; "Profit %"; Decimal)//Can find in FDD106
         {
             Caption = 'Profit %';
+            DecimalPlaces = 0 : 5;
         }
         field(180; "Inv. Discount Amount"; Decimal)//Can find in FDD106
         {

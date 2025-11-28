@@ -779,7 +779,7 @@ page 50019 "Sales Inquiry Subform"
                             Rec."Shortcut Dimension 7 Code" := ShortcutDimCode[7];
                             Rec."Shortcut Dimension 8 Code" := ShortcutDimCode[8];
                             TotalQty += Rec.Quantity;
-                            TotalAmount += Rec."Unit Price";
+                            TotalAmount += Rec.Amount;
                             TotalAmountInclVAT += Rec."Amount Including VAT";
                             Rec.Insert();
                         end;
@@ -961,7 +961,7 @@ page 50019 "Sales Inquiry Subform"
                             Rec."Shortcut Dimension 7 Code" := ShortcutDimCode[7];
                             Rec."Shortcut Dimension 8 Code" := ShortcutDimCode[8];
                             TotalQty += Rec.Quantity;
-                            TotalAmount += Rec."Unit Price";
+                            TotalAmount += Rec.Amount;
                             TotalAmountInclVAT += Rec."Amount Including VAT";
                             Rec.Insert();
                         end;
@@ -1143,7 +1143,7 @@ page 50019 "Sales Inquiry Subform"
                             Rec."Shortcut Dimension 7 Code" := ShortcutDimCode[7];
                             Rec."Shortcut Dimension 8 Code" := ShortcutDimCode[8];
                             TotalQty += Rec.Quantity;
-                            TotalAmount += Rec."Unit Price";
+                            TotalAmount += Rec.Amount;
                             TotalAmountInclVAT += Rec."Amount Including VAT";
                             Rec.Insert();
                         end;

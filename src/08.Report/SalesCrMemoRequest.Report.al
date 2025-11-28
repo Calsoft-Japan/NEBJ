@@ -6,16 +6,16 @@ report 50001 "NEBJ Sales Cr. Memo Conf."
     PreviewMode = PrintLayout;
 
     DefaultLayout = RDLC;
-    //RDLCLayout = 'src\10.ReportLayout\SalesCreditMemoConfirmation_NEBJ.rdlc';
+    RDLCLayout = 'src\10.ReportLayout\SalesCreditMemoConfirmation_NEBJ.rdlc';
 
     dataset
     {
         dataitem(SH; "Sales Header")
         {
-            DataItemTableView = SORTING("Document Type", "No.")
+            DataItemTableView = SORTING("No.")
                                 WHERE("Document Type" = CONST("Credit Memo"));
 
-            RequestFilterFields = "No.", "Sell-to Customer No.", "No. Printed";
+            RequestFilterFields = "No.", "Bill-to Customer No.", "No. Printed";
             RequestFilterHeading = 'Sales Credit Memos';
 
             // Header columns
@@ -41,6 +41,9 @@ report 50001 "NEBJ Sales Cr. Memo Conf."
             column(CompanyFaxNo; CompanyInfo."Fax No.") { }
             column(CompanyPhoneNo; CompanyInfo."Phone No.") { }
 
+            //Direct Shipping Info
+            column(DirectShippingInfo; DirectShippingInfoTxt) { }
+
             dataitem(Line; "Sales Line")
             {
                 DataItemLink = "Document Type" = FIELD("Document Type"), "Document No." = FIELD("No.");
@@ -51,6 +54,8 @@ report 50001 "NEBJ Sales Cr. Memo Conf."
                 column(EU_Description; "EU Description") { }
                 column(Bikou_Description; "Description(Bikou)") { }
                 column(EU_Division_1; "EU Division 1") { }
+                column(EU_Division_2; "EU Division 2") { }
+                column(EU_Division_3; "EU Division 3") { }
                 column(Quantity_Line; Quantity) { }
                 column(UnitPrice; "Unit Price") { }
                 column(LineDiscountPercent_Line; "Line Discount %") { }
@@ -74,11 +79,25 @@ report 50001 "NEBJ Sales Cr. Memo Conf."
                         NetUnitPriceTxt := ("Line"."Line Amount" / "Line".Quantity)
                     else
                         NetUnitPriceTxt := 0;
-
-                    // --- Assign Line Amount Excl. VAT to GetLineAmountExclVATTxt ---
-                    //GetLineAmountExclVATTxt := Amount;
                 end;
             }
+            trigger OnAfterGetRecord()
+            begin
+                // --- Get Direct Shipping Info ---
+                Clear(DirectShippingInfoTxt);
+
+                if SH."Direct Shipping Code" <> '' then begin
+
+                    if Customer2.Get("Direct Shipping Code") then begin
+
+                        DirectShippingInfoTxt :=
+                          Customer2.Name + ' ' +
+                          Customer2."Name 2" + ' ' +
+                          Customer2.Address + ' ' +
+                          Customer2."Address 2";
+                    end;
+                end;
+            end;
         }
     }
 
@@ -105,10 +124,12 @@ report 50001 "NEBJ Sales Cr. Memo Conf."
         NetUnitPriceTxt: Decimal;
         CompanyInfo: Record "Company Information";
         LogInteraction: Boolean;
+        DirectShippingInfoTxt: Text[250];
+        Customer2: Record Customer;
 
     trigger OnPreReport()
     begin
         // Initialize Company Information
-        CompanyInfo.Get();
+        CompanyInfo.Get()
     end;
 }

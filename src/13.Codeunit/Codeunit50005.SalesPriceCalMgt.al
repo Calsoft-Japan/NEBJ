@@ -46,5 +46,4 @@
     var
         QtyValue: Decimal;
         QtyPerUOMValue: Decimal;
-
 } */

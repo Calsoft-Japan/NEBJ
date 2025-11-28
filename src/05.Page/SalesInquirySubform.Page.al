@@ -771,7 +771,6 @@ page 50019 "Sales Inquiry Subform"
                             Rec."Variant Code" := SalesLine."Variant Code";
                             Rec."Bin Code" := SalesLine."Bin Code";
                             Rec."Unit of Measure Code" := SalesLine."Unit of Measure Code";
-                            Rec."Item Category Code" := SalesLine."Item Category Code";
                             Rec."Requested Delivery Date" := SalesLine."Requested Delivery Date";
                             Rec."Promised Delivery Date" := SalesLine."Promised Delivery Date";
                             Rec."Planned Delivery Date" := SalesLine."Planned Delivery Date";
@@ -893,10 +892,15 @@ page 50019 "Sales Inquiry Subform"
 
                             if Item.Get(SalesInvLine."No.") then;
                             Rec."Item Description" := Item.Description;
-                            Rec."Item Category Code" := SalesInvLine."Item Category Code";
+                            /* Rec."Item Category Code" := SalesInvLine."Item Category Code";
                             if ItemCategory.Get(Rec."Item Category Code") then;
-                            Rec."Item Category Description" := ItemCategory.Code + ItemCategory.Description;
-                            ItemCategoryCodeSearch(Rec."Item Category Code", Rec."Product Group Code", Rec."Product Group Description");
+                            Rec."Item Category Description" := ItemCategory.Code + ItemCategory.Description; */
+                            //ItemCategoryCodeSearch(Rec."Item Category Code", Rec."Product Group Code", Rec."Product Group Description");
+
+                            ItemCategoryCodeSearch(Item."Item Category Code", Rec."Item Category Code", Rec."Item Category Description");
+                            Rec."Product Group Code" := Item."Item Category Code";
+                            if ItemCategory.Get(Item."Item Category Code") then;
+                            Rec."Product Group Description" := ItemCategory.Code + ItemCategory.Description;
 
                             if Item.Get(SalesInvLine."No.") then
                                 Rec.StorageTemprature := Item.StorageTemp;
@@ -1074,10 +1078,14 @@ page 50019 "Sales Inquiry Subform"
 
                             if Item.Get(SalesCrMemoLine."No.") then;
                             Rec."Item Description" := Item.Description;
-                            Rec."Item Category Code" := SalesCrMemoLine."Item Category Code";
+                            /* Rec."Item Category Code" := SalesCrMemoLine."Item Category Code";
                             if ItemCategory.Get(Rec."Item Category Code") then;
                             Rec."Item Category Description" := ItemCategory.Code + ItemCategory.Description;
-                            ItemCategoryCodeSearch(Rec."Item Category Code", Rec."Product Group Code", Rec."Product Group Description");
+                            ItemCategoryCodeSearch(Rec."Item Category Code", Rec."Product Group Code", Rec."Product Group Description"); */
+                            ItemCategoryCodeSearch(Item."Item Category Code", Rec."Item Category Code", Rec."Item Category Description");
+                            Rec."Product Group Code" := Item."Item Category Code";
+                            if ItemCategory.Get(Item."Item Category Code") then;
+                            Rec."Product Group Description" := ItemCategory.Code + ItemCategory.Description;
 
                             if Item.Get(SalesCrMemoLine."No.") then
                                 Rec.StorageTemprature := Item.StorageTemp;

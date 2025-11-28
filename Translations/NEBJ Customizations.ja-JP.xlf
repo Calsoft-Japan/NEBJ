@@ -2112,6 +2112,12 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">TableExtension Item Ext - Field WorkLaw - Property Caption</note>
         </trans-unit>
+        <trans-unit id="TableExtension 61345188 - Field 1031163474 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Table 2964960979">
+          <source>EndUser</source>
+          <target>エンドユーザー</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">TableExtension Price List Line Ext - Field EndUser - Property Caption</note>
+        </trans-unit>
         <trans-unit id="TableExtension 1971182185 - Field 1493633075 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Table 1052755578">
           <source>CI Number</source>
           <note from="Developer" annotates="general" priority="2"></note>
@@ -2687,6 +2693,18 @@
           <target>出荷のみ</target> 
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Enum Block Option - EnumValue Shiponly - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="EnumExtension 4004915659 - EnumValue 188861471 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Enum 3543273655">
+          <source>Item Discount Group 2</source>
+          <target>品目割引グループ2</target> 
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">EnumExtension Asset Type Ext - EnumValue Item Discount Group 2 - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="EnumExtension 4004915659 - EnumValue 826558088 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Enum 3543273655">
+          <source>Item Discount Group 3</source>
+          <target>品目割引グループ3</target> 
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">EnumExtension Asset Type Ext - EnumValue Item Discount Group 3 - Property Caption</note>
         </trans-unit>
       </group>
     </body>

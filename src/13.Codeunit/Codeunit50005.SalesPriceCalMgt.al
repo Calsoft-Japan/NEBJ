@@ -1,6 +1,6 @@
 codeunit 50005 "Sales Price Cal. Mgt."
 {
-    [EventSubscriber(ObjectType::Codeunit, Codeunit::"Sales Price Calc. Mgt.", 'OnFindSalesLineLineDiscOnBeforeCalcLineDisc', '', true, true)]
+    /* [EventSubscriber(ObjectType::Codeunit, Codeunit::"Sales Price Calc. Mgt.", 'OnFindSalesLineLineDiscOnBeforeCalcLineDisc', '', true, true)]
     procedure UpdateAfterUoMandQty(Qty: Decimal; QtyPerUOM: Decimal; var TempSalesLineDiscount: Record "Sales Line Discount" temporary; var IsHandled: Boolean)
     begin
         QtyValue := Qty;
@@ -41,7 +41,7 @@ codeunit 50005 "Sales Price Cal. Mgt."
         if UoMCode = '' then
             exit(MinQty <= QtyPerUOMValue * QtyValue);
         exit(MinQty <= QtyValue);
-    end;
+    end; */
 
     /* procedure EXT_FindSalesLineDisc(VAR ToSalesLineDisc: Record "Sales Line Discount"; CustNo: Code[20]; ContNo: Code[20]; CustDiscGrCode: Code[20]; CampaignNo: Code[20]; ItemNo: Code[20]; ItemDiscGrCode: Code[20]; VariantCode: Code[10]; UOM: code[10]; CurrencyCode: code[10]; StartingDate: Date; ShowAll: Boolean; p_EndUser: code[10]; P_Dealer1: code[10]; p_Dealer2: code[10]; p_Dealer3: code[10]; ItemDiscGrCode2: code[10]; ItemDiscGrCode3: code[10])
     var

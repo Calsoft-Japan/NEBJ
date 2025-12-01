@@ -720,17 +720,18 @@ page 50019 "Sales Inquiry Subform"
                                     Rec.ItemToxicKBN := '医療用毒劇物';
 
                             Rec.SerialNoType := 'ﾊﾞｯﾁ';
-                            Rec.SalesMonth := Date2DMY(SalesHdr."Posting Date", 2);
-                            Rec.SalesYear := Date2DMY(SalesHdr."Posting Date", 3);
-                            if (Rec.SalesMonth = 1) or (Rec.SalesMonth = 2) or (Rec.SalesMonth = 3) then
-                                Rec.SalesQuater := '第1四半期';
-                            if (Rec.SalesMonth = 4) or (Rec.SalesMonth = 5) or (Rec.SalesMonth = 6) then
-                                Rec.SalesQuater := '第2四半期';
-                            if (Rec.SalesMonth = 7) or (Rec.SalesMonth = 8) or (Rec.SalesMonth = 9) then
-                                Rec.SalesQuater := '第3四半期';
-                            if (Rec.SalesMonth = 10) or (Rec.SalesMonth = 11) or (Rec.SalesMonth = 12) then
-                                Rec.SalesQuater := '第4四半期';
-
+                            if Rec."Posting Date" <> 0D then begin
+                                Rec.SalesMonth := Date2DMY(SalesHdr."Posting Date", 2);
+                                Rec.SalesYear := Date2DMY(SalesHdr."Posting Date", 3);
+                                if (Rec.SalesMonth = 1) or (Rec.SalesMonth = 2) or (Rec.SalesMonth = 3) then
+                                    Rec.SalesQuater := '第1四半期';
+                                if (Rec.SalesMonth = 4) or (Rec.SalesMonth = 5) or (Rec.SalesMonth = 6) then
+                                    Rec.SalesQuater := '第2四半期';
+                                if (Rec.SalesMonth = 7) or (Rec.SalesMonth = 8) or (Rec.SalesMonth = 9) then
+                                    Rec.SalesQuater := '第3四半期';
+                                if (Rec.SalesMonth = 10) or (Rec.SalesMonth = 11) or (Rec.SalesMonth = 12) then
+                                    Rec.SalesQuater := '第4四半期';
+                            end;
                             Rec."Order Status" := SalesHdr.Status;
                             Rec.Type := SalesLine.Type;
                             Rec."Item No." := SalesLine."No.";

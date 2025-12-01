@@ -11,7 +11,7 @@
       <am:Name>MSRB</am:Name>
       <am:Version>15.1.30001.02</am:Version>
     </am:UpdatedBy>
-    <am:LastModifiedTimestamp>2025-11-28T00:48:21.2677780Z</am:LastModifiedTimestamp>
+    <am:LastModifiedTimestamp>2025-12-01T08:05:28.5967072Z</am:LastModifiedTimestamp>
   </am:AuthoringMetadata>
   <AutoRefresh>0</AutoRefresh>
   <DataSources>
@@ -1546,10 +1546,21 @@
                                 <Paragraph>
                                   <TextRuns>
                                     <TextRun>
-                                      <Value>=FormatNumber(IIF(Fields!LineDiscountPercent_Line.Value = 0,
-                  0.0,
-                  100 - Fields!LineDiscountPercent_Line.Value),
-              1)</Value>
+                                      <Value>=IIF(
+    (Fields!CurrencyCode.Value &lt;&gt; "" AND
+     Fields!CurrencyCode.Value &lt;&gt; "JPY" AND
+     Fields!LineDiscountPercent_Line.Value = 0 AND
+     (Fields!AmountIncludingVAT_Line.Value - Fields!LineAmountExclVAT.Value) = 0),
+
+    "",
+
+    FormatNumber(
+        IIF(Fields!LineDiscountPercent_Line.Value = 0,
+            0.0,
+            100 - Fields!LineDiscountPercent_Line.Value),
+        1
+    )
+)</Value>
                                       <Style>
                                         <FontFamily>MS UI Gothic</FontFamily>
                                         <FontSize>9pt</FontSize>
@@ -1584,7 +1595,16 @@
                                 <Paragraph>
                                   <TextRuns>
                                     <TextRun>
-                                      <Value>=FormatNumber(- 1 * Fields!NetUnitPrice.Value, 0)</Value>
+                                      <Value>=IIF(
+    (Fields!CurrencyCode.Value &lt;&gt; "" AND
+     Fields!CurrencyCode.Value &lt;&gt; "JPY" AND
+     Fields!LineDiscountPercent_Line.Value = 0 AND
+     (Fields!AmountIncludingVAT_Line.Value - Fields!LineAmountExclVAT.Value) = 0),
+
+    FormatNumber(Abs(Fields!UnitPrice.Value), 2),
+
+    FormatNumber(-1 * Fields!NetUnitPrice.Value, 0)
+)</Value>
                                       <Style>
                                         <FontFamily>MS UI Gothic</FontFamily>
                                         <FontSize>9pt</FontSize>
@@ -1619,7 +1639,19 @@
                                 <Paragraph>
                                   <TextRuns>
                                     <TextRun>
-                                      <Value>=FormatNumber(-1 * (Fields!AmountIncludingVAT_Line.Value - Fields!LineAmountExclVAT.Value), 0)</Value>
+                                      <Value>=IIF(
+    (Fields!CurrencyCode.Value &lt;&gt; "" AND
+     Fields!CurrencyCode.Value &lt;&gt; "JPY" AND
+     Fields!LineDiscountPercent_Line.Value = 0 AND
+     (Fields!AmountIncludingVAT_Line.Value - Fields!LineAmountExclVAT.Value) = 0),
+
+    "",
+
+    FormatNumber(
+        -1 * (Fields!AmountIncludingVAT_Line.Value - Fields!LineAmountExclVAT.Value),
+        0
+    )
+)</Value>
                                       <Style>
                                         <FontFamily>MS UI Gothic</FontFamily>
                                         <FontSize>9pt</FontSize>
@@ -1654,7 +1686,16 @@
                                 <Paragraph>
                                   <TextRuns>
                                     <TextRun>
-                                      <Value>=FormatNumber( -1 * Fields!LineAmountExclVAT.value, 0)</Value>
+                                      <Value>=IIF(
+    (Fields!CurrencyCode.Value &lt;&gt; "" AND
+     Fields!CurrencyCode.Value &lt;&gt; "JPY" AND
+     Fields!LineDiscountPercent_Line.Value = 0 AND
+     (Fields!AmountIncludingVAT_Line.Value - Fields!LineAmountExclVAT.Value) = 0),
+
+    FormatNumber(-1 * Fields!LineAmountExclVAT.Value, 2),
+
+    FormatNumber(-1 * Fields!LineAmountExclVAT.Value, 0)
+)</Value>
                                       <Style>
                                         <FontFamily>MS UI Gothic</FontFamily>
                                         <FontSize>9pt</FontSize>
@@ -3556,7 +3597,7 @@ CStr(Fields!EU_Division_3.Value)</Value>
                   <Paragraph>
                     <TextRuns>
                       <TextRun>
-                        <Value>=FormatNumber(-Sum(Fields!TotalAmountExclVAT.Value), 0)</Value>
+                        <Value>=IIF(Fields!CurrencyCode.Value &lt;&gt; "" AND Fields!CurrencyCode.Value &lt;&gt; "JPY", FormatNumber(Abs(Sum(Fields!TotalAmountExclVAT.Value)), 2), FormatNumber(-Sum(Fields!TotalAmountExclVAT.Value), 0))</Value>
                         <Style>
                           <FontFamily>MS UI Gothic</FontFamily>
                           <FontSize>9pt</FontSize>

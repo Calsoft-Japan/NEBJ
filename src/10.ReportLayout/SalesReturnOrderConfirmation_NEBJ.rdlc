@@ -1835,7 +1835,9 @@
                                 <Paragraph>
                                   <TextRuns>
                                     <TextRun>
-                                      <Value>=- 1 * Fields!UnitPrice_SalesLine.Value</Value>
+                                      <Value>=IIF(Fields!CurrencyCode.Value &lt;&gt; "" AND Fields!CurrencyCode.Value &lt;&gt; "JPY" AND Fields!LineDisc_SalesLine.Value = 0 AND (Fields!SalesLineAmtExclVATAmount.Value - Fields!SalesLineAmtAfterLineDisc.Value) = 0,
+     FormatNumber(-1 * Fields!UnitPrice_SalesLine.Value, 2),
+     FormatNumber(-1 * Fields!UnitPrice_SalesLine.Value, 0))</Value>
                                       <Style>
                                         <FontFamily>MS UI Gothic</FontFamily>
                                         <FontSize>9pt</FontSize>
@@ -1932,6 +1934,7 @@
                         </TablixCell>
                         <TablixCell>
                           <CellContents>
+                            <rd:Selected>true</rd:Selected>
                             <Textbox Name="Textbox51">
                               <rd:DefaultName>Textbox22</rd:DefaultName>
                               <CanGrow>true</CanGrow>
@@ -1940,7 +1943,9 @@
                                 <Paragraph>
                                   <TextRuns>
                                     <TextRun>
-                                      <Value>=- 1 * (Fields!SalesLineAmtExclVATAmount.Value - Fields!SalesLineAmtAfterLineDisc.Value)</Value>
+                                      <Value>=IIF(Fields!CurrencyCode.Value &lt;&gt; "" AND Fields!CurrencyCode.Value &lt;&gt; "JPY",
+     FormatNumber(Abs(Sum(Fields!SalesLineLineAmt.Value)), 2),
+     FormatNumber(-Sum(Fields!SalesLineLineAmt.Value), 0))</Value>
                                       <Style>
                                         <FontFamily>MS UI Gothic</FontFamily>
                                         <FontSize>9pt</FontSize>
@@ -3665,7 +3670,11 @@ CStr(Fields!EU_Division_3.Value)</Value>
                   <Paragraph>
                     <TextRuns>
                       <TextRun>
-                        <Value>="税抜き合計 " &amp; IIf(Fields!CurrencyCode.Value="", "JPY", Fields!CurrencyCode.Value)</Value>
+                        <Value>=IIF(
+    Fields!CurrencyCode.Value = "" OR Fields!CurrencyCode.Value = "JPY",
+    "消費税抜合計JPY",
+    "合計" &amp; Fields!CurrencyCode.Value
+)</Value>
                         <Style>
                           <FontStyle>Normal</FontStyle>
                           <FontFamily>MS UI Gothic</FontFamily>
@@ -3705,8 +3714,8 @@ CStr(Fields!EU_Division_3.Value)</Value>
                     <TextRuns>
                       <TextRun>
                         <Value>=IIF(Fields!CurrencyCode.Value &lt;&gt; "" AND Fields!CurrencyCode.Value &lt;&gt; "JPY",
-     FormatNumber(Abs(Sum(Fields!SalesLineLineAmt.Value)), 2),
-     FormatNumber(-Sum(Fields!SalesLineLineAmt.Value), 0))</Value>
+     FormatNumber(Abs(Sum(Fields!VATAmount.Value)), 2),
+     FormatNumber(-Sum(Fields!VATAmount.Value), 0))</Value>
                         <Style>
                           <FontFamily>MS UI Gothic</FontFamily>
                           <Format>n0</Format>

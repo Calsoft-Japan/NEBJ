@@ -48,6 +48,9 @@ reportextension 56631 "SalesReturnOrdConfirmation Ext" extends "Return Order Con
             column(NetUnitPrice; NetUnitPriceTxt) { }// 
             column(LineNo_; "Sales Line"."Line No.") { }//
             column(Type_Line; "Sales Line".Type) { }
+
+            // Amount Including VAT - Line Amount (excl. tax)
+            column(VATAmount_Line; VATAmountLine) { }
         }
 
         modify(RoundLoop)
@@ -61,6 +64,10 @@ reportextension 56631 "SalesReturnOrdConfirmation Ext" extends "Return Order Con
                     NetUnitPriceTxt := -1 * ("Sales Line"."Line Amount" / "Sales Line".Quantity)
                 else
                     NetUnitPriceTxt := 0;
+
+                // --- Calculate line VAT amount (消費税) ---
+                // 消費税 = Amount Including VAT - Line Amount (tax excl.)
+                VATAmountLine := "Sales Line"."Amount Including VAT" - "Sales Line"."Line Amount";
             end;
         }
     }
@@ -68,6 +75,7 @@ reportextension 56631 "SalesReturnOrdConfirmation Ext" extends "Return Order Con
         ReturnReason: Record "Return Reason";
         ReturnReasonDescTxt: Text[250];
         NetUnitPriceTxt: Decimal;// (3) Net Unit Price
+        VATAmountLine: Decimal; // Added to fix missing variable error
 
     local procedure FillReturnReasonDescOnly()
     begin

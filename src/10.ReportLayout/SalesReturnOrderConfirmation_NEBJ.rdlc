@@ -11,7 +11,7 @@
       <am:Name>MSRB</am:Name>
       <am:Version>15.1.30001.02</am:Version>
     </am:UpdatedBy>
-    <am:LastModifiedTimestamp>2025-12-01T23:56:14.1782829Z</am:LastModifiedTimestamp>
+    <am:LastModifiedTimestamp>2025-12-02T03:55:28.2126948Z</am:LastModifiedTimestamp>
   </am:AuthoringMetadata>
   <AutoRefresh>0</AutoRefresh>
   <DataSources>
@@ -621,6 +621,9 @@
         </Field>
         <Field Name="Type_Line">
           <DataField>Type_Line</DataField>
+        </Field>
+        <Field Name="VATAmount_Line">
+          <Value>VATAmount_Line</Value>
         </Field>
       </Fields>
     </DataSet>
@@ -1943,9 +1946,7 @@
                                 <Paragraph>
                                   <TextRuns>
                                     <TextRun>
-                                      <Value>=IIF(Fields!CurrencyCode.Value &lt;&gt; "" AND Fields!CurrencyCode.Value &lt;&gt; "JPY",
-     FormatNumber(Abs(Sum(Fields!SalesLineLineAmt.Value)), 2),
-     FormatNumber(-Sum(Fields!SalesLineLineAmt.Value), 0))</Value>
+                                      <Value>=IIF(Fields!VATAmount_Line.Value = 0, "", FormatNumber(-1 * Fields!VATAmount_Line.Value, 0))</Value>
                                       <Style>
                                         <FontFamily>MS UI Gothic</FontFamily>
                                         <FontSize>9pt</FontSize>
@@ -1980,9 +1981,7 @@
                                 <Paragraph>
                                   <TextRuns>
                                     <TextRun>
-                                      <Value>=IIF(Fields!CurrencyCode.Value &lt;&gt; "" AND Fields!CurrencyCode.Value &lt;&gt; "JPY" AND Fields!LineDisc_SalesLine.Value = 0 AND (Fields!SalesLineAmtExclVATAmount.Value - Fields!SalesLineAmtAfterLineDisc.Value) = 0,
-     FormatNumber(-1 * Fields!SalesLineLineAmt.Value, 2),
-     FormatNumber(-1 * Fields!SalesLineLineAmt.Value, 0))</Value>
+                                      <Value>=IIF(Fields!CurrencyCode.Value &lt;&gt; "" AND Fields!CurrencyCode.Value &lt;&gt; "JPY" AND Fields!LineDisc_SalesLine.Value = 0 AND Fields!VATAmount_Line.Value = 0, FormatNumber(-1 * Fields!SalesLineLineAmt.Value, 2), FormatNumber(-1 * Fields!SalesLineLineAmt.Value, 0))</Value>
                                       <Style>
                                         <FontFamily>MS UI Gothic</FontFamily>
                                         <FontSize>9pt</FontSize>
@@ -3672,7 +3671,7 @@ CStr(Fields!EU_Division_3.Value)</Value>
                       <TextRun>
                         <Value>=IIF(
     Fields!CurrencyCode.Value = "" OR Fields!CurrencyCode.Value = "JPY",
-    "消費税抜合計JPY",
+    "税抜合計JPY",
     "合計" &amp; Fields!CurrencyCode.Value
 )</Value>
                         <Style>
@@ -3713,9 +3712,7 @@ CStr(Fields!EU_Division_3.Value)</Value>
                   <Paragraph>
                     <TextRuns>
                       <TextRun>
-                        <Value>=IIF(Fields!CurrencyCode.Value &lt;&gt; "" AND Fields!CurrencyCode.Value &lt;&gt; "JPY",
-     FormatNumber(Abs(Sum(Fields!VATAmount.Value)), 2),
-     FormatNumber(-Sum(Fields!VATAmount.Value), 0))</Value>
+                        <Value>=IIF(Fields!CurrencyCode.Value &lt;&gt; "" AND Fields!CurrencyCode.Value &lt;&gt; "JPY", FormatNumber(Abs(Sum(Fields!SalesLineLineAmt.Value)), 2), FormatNumber(-Sum(Fields!SalesLineLineAmt.Value), 0))</Value>
                         <Style>
                           <FontFamily>MS UI Gothic</FontFamily>
                           <Format>n0</Format>

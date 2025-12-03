@@ -384,9 +384,21 @@ table 50000 "Sales Inquiry Line"
         {
             Caption = 'Order Status';
         }
-        field(355; GUID; GUID) //New Field
+        field(355; GUID; GUID) //For Internal Logic
         {
             Caption = 'GUID';
+        }
+        field(400; "Total Qty. (Base)"; Decimal)//For Internal Logic
+        {
+            Caption = 'Total Qty. (Base)', Locked = true;
+        }
+        field(401; "Total Amount (LCY)"; Decimal)//For Internal Logic
+        {
+            Caption = 'Total Amount (LCY)', Locked = true;
+        }
+        field(402; "Total Amount Incl. VAT (LCY)"; Decimal)//For Internal Logic
+        {
+            Caption = 'Total Amount Incl. VAT (LCY)', Locked = true;
         }
     }
     keys

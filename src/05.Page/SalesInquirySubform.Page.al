@@ -1270,7 +1270,7 @@ page 50019 "Sales Inquiry Subform"
                     TempSalesLine."Amount Including VAT" := CalcAmountInclVAT[2] - CalcAmountInclVAT[3];
                     CalcAmount[3] += TempSalesLine.Amount;
                     CalcAmountInclVAT[3] += TempSalesLine."Amount Including VAT";
-                    TempSalesLine.Next();
+                    TempSalesLine.Insert();
                 end;
             until CalcSalesLine.Next() = 0;
 
@@ -1352,7 +1352,7 @@ page 50019 "Sales Inquiry Subform"
                     TempSalesCrMLine."Amount Including VAT" := CalcAmountInclVAT[2] - CalcAmountInclVAT[3];
                     CalcAmount[3] += TempSalesCrMLine.Amount;
                     CalcAmountInclVAT[3] += TempSalesCrMLine."Amount Including VAT";
-                    TempSalesCrMLine.Next();
+                    TempSalesCrMLine.Insert();
                 end;
             until CalcSalesCrMLine.Next() = 0;
 

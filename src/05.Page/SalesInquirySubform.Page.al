@@ -381,7 +381,7 @@ page 50019 "Sales Inquiry Subform"
                 {
                     Visible = ShowLine;
                 }
-                field(StorageTemprature; Rec.StorageTemprature)
+                field(StoraGetemprature; Rec.StoraGetemprature)
                 {
                     Visible = ShowLine;
                 }
@@ -574,6 +574,7 @@ page 50019 "Sales Inquiry Subform"
         ItemCategory: Record "Item Category";
         SalesLine2: Record "Sales Line";
         DocFilter: Text;
+        AmtRoundPrecision: Decimal;
         Found: Boolean;
     begin
         DocFilter := '';
@@ -698,7 +699,7 @@ page 50019 "Sales Inquiry Subform"
                             Rec."Customer Posting Group" := SalesHdr."Customer Posting Group";
                             Rec."Profit %" := SalesLine."Profit %";
                             Rec."Description(Bikou)" := SalesLine."Description(Bikou)";
-                            Rec.StorageTemprature := SalesLine.StorageTemprature;
+                            Rec.StoraGetemprature := SalesLine.StoraGetemprature;
                             Rec."External Document No." := SalesHdr."External Document No.";
                             Rec."ExternalDocumentNo." := SalesLine."ExternaDocumentNo.";
                             Rec."EU Description" := SalesLine."EU Description";
@@ -714,7 +715,7 @@ page 50019 "Sales Inquiry Subform"
                             Rec."Product Group Description" := ItemCategory.Code + ItemCategory.Description;
 
                             if Item.Get(SalesLine."No.") then
-                                Rec.StorageTemprature := Item.StorageTemp;
+                                Rec.StoraGetemprature := Item.StoraGetemp;
                             if Item.Get(SalesLine."No.") then
                                 if Item."Toxic-KBN" = true then
                                     Rec.ItemToxicKBN := '医療用毒劇物';
@@ -779,9 +780,34 @@ page 50019 "Sales Inquiry Subform"
                             Rec."Shortcut Dimension 6 Code" := ShortcutDimCode[6];
                             Rec."Shortcut Dimension 7 Code" := ShortcutDimCode[7];
                             Rec."Shortcut Dimension 8 Code" := ShortcutDimCode[8];
-                            TotalQty += Rec.Quantity;
-                            TotalAmount += Rec.Amount;
-                            TotalAmountInclVAT += Rec."Amount Including VAT";
+                            if Rec."Currency Code" = '' then begin
+                                AmtRoundPrecision := GetRoundingPrecision(Rec."Currency Code");
+                                if SalesHdr."Prices Including VAT" then begin
+                                    Rec."Total Amount (LCY)" := Round((SalesLine."Line Amount" - SalesLine."Inv. Discount Amount") /
+                                                                ((100 + SalesLine."VAT %") / 100), AmtRoundPrecision, VATRoundingDirection());
+                                    Rec."Total Amount Incl. VAT (LCY)" := SalesLine."Line Amount" - SalesLine."Inv. Discount Amount";
+                                end else begin
+                                    Rec."Total Amount (LCY)" := SalesLine."Line Amount" - SalesLine."Inv. Discount Amount";
+                                    Rec."Total Amount Incl. VAT (LCY)" :=
+                                      Round((SalesLine."Line Amount" - SalesLine."Inv. Discount Amount") * ((100 + SalesLine."VAT %") / 100),
+                                      AmtRoundPrecision, VATRoundingDirection());
+                                end;
+                            end else begin
+                                SOCalcLCYAmounts(SalesLine, SalesHdr, VATRoundingDirection(), Rec."Currency Code");
+                                Rec."Total Amount (LCY)" := SalesLine.Amount;
+                                Rec."Total Amount Incl. VAT (LCY)" := SalesLine."Amount Including VAT";
+                            end;
+                            if Rec."VAT %" = 0 then
+                                Rec."Total Amount Incl. VAT (LCY)" := Rec."Total Amount (LCY)";
+                            if Rec."Document Type" IN [Rec."Document Type"::"Credit Memo", Rec."Document Type"::"Return Order"] then begin
+                                Rec."Total Qty. (Base)" := -Rec."Quantity";
+                                Rec."Total Amount (LCY)" := -Rec."Total Amount (LCY)";
+                                Rec."Total Amount Incl. VAT (LCY)" := -Rec."Total Amount Incl. VAT (LCY)";
+                            end else
+                                Rec."Total Qty. (Base)" := Rec."Quantity";
+                            TotalQty += Rec."Total Qty. (Base)";
+                            TotalAmount += Rec."Total Amount (LCY)";
+                            TotalAmountInclVAT += Rec."Total Amount Incl. VAT (LCY)";
                             Rec.Insert();
                         end;
                     until SalesLine.Next() = 0;
@@ -879,7 +905,7 @@ page 50019 "Sales Inquiry Subform"
                             Rec."Customer Posting Group" := SalesInvHdr."Customer Posting Group";
                             Rec."EndUser" := SalesInvLine.EndUser;
                             Rec."Description(Bikou)" := SalesInvLine."Description(Bikou)";
-                            Rec.StorageTemprature := SalesInvLine.StorageTemprature;
+                            Rec.StoraGetemprature := SalesInvLine.StoraGetemprature;
                             Rec."External Document No." := SalesInvHdr."External Document No.";
                             Rec."ExternalDocumentNo." := SalesInvLine."ExternaDocumentNo.";
                             Rec."EU Description" := SalesInvLine."EU Description";
@@ -895,7 +921,7 @@ page 50019 "Sales Inquiry Subform"
                             Rec."Product Group Description" := ItemCategory.Code + ItemCategory.Description;
 
                             if Item.Get(SalesInvLine."No.") then
-                                Rec.StorageTemprature := Item.StorageTemp;
+                                Rec.StoraGetemprature := Item.StoraGetemp;
                             if Item.Get(SalesInvLine."No.") then
                                 if Item."Toxic-KBN" = true then
                                     Rec.ItemToxicKBN := '医療用毒劇物';
@@ -937,8 +963,7 @@ page 50019 "Sales Inquiry Subform"
                             if Rec."Currency Code" = '' then
                                 AmountLCY := SalesInvLine.Amount
                             else
-                                AmountLCY :=
-                                  CurrExchRate.ExchangeAmtFCYToLCY(WorkDate(), Rec."Currency Code", SalesInvLine.Amount, SalesInvHdr."Currency Factor");
+                                AmountLCY := CurrExchRate.ExchangeAmtFCYToLCY(WorkDate(), Rec."Currency Code", SalesInvLine.Amount, SalesInvHdr."Currency Factor");
 
                             ProfitLCY := AmountLCY - Rec."Unit Cost (LCY)" * SalesInvLine.Quantity;
                             if AmountLCY <> 0 then
@@ -961,9 +986,20 @@ page 50019 "Sales Inquiry Subform"
                             Rec."Shortcut Dimension 6 Code" := ShortcutDimCode[6];
                             Rec."Shortcut Dimension 7 Code" := ShortcutDimCode[7];
                             Rec."Shortcut Dimension 8 Code" := ShortcutDimCode[8];
-                            TotalQty += Rec.Quantity;
-                            TotalAmount += Rec.Amount;
-                            TotalAmountInclVAT += Rec."Amount Including VAT";
+
+                            Rec."Total Qty. (Base)" := Rec.Quantity;
+                            Rec."Total Amount (LCY)" := Rec.Amount;
+                            Rec."Total Amount Incl. VAT (LCY)" := Rec."Amount Including VAT";
+                            if Rec."Currency Code" <> '' then begin
+                                PSICalcLCYAmounts(SalesInvLine, SalesInvHdr, Rec."Currency Code");
+                                Rec."Total Amount (LCY)" := SalesInvLine.Amount;
+                                Rec."Total Amount Incl. VAT (LCY)" := SalesInvLine."Amount Including VAT";
+                            end;
+                            if Rec."VAT %" = 0 then
+                                Rec."Total Amount Incl. VAT (LCY)" := Rec."Total Amount (LCY)";
+                            TotalQty += Rec."Total Qty. (Base)";
+                            TotalAmount += Rec."Total Amount (LCY)";
+                            TotalAmountInclVAT += Rec."Total Amount Incl. VAT (LCY)";
                             Rec.Insert();
                         end;
                     until SalesInvLine.Next() = 0;
@@ -1059,7 +1095,7 @@ page 50019 "Sales Inquiry Subform"
                             Rec."Bill-to Name" := SalesCrMemoHdr."Bill-to Name";
                             Rec."Customer Posting Group" := SalesCrMemoHdr."Customer Posting Group";
                             Rec."Description(Bikou)" := SalesCrMemoLine."Description(Bikou)";
-                            Rec.StorageTemprature := SalesCrMemoLine.StorageTemprature;
+                            Rec.StoraGetemprature := SalesCrMemoLine.StoraGetemprature;
                             Rec."External Document No." := SalesCrMemoHdr."External Document No.";
                             Rec."ExternalDocumentNo." := SalesCrMemoLine."ExternaDocumentNo.";
                             Rec."EU Description" := SalesCrMemoLine."EU Description";
@@ -1075,7 +1111,7 @@ page 50019 "Sales Inquiry Subform"
                             Rec."Product Group Description" := ItemCategory.Code + ItemCategory.Description;
 
                             if Item.Get(SalesCrMemoLine."No.") then
-                                Rec.StorageTemprature := Item.StorageTemp;
+                                Rec.StoraGetemprature := Item.StoraGetemp;
                             if Item.Get(SalesCrMemoLine."No.") then
                                 if Item."Toxic-KBN" = true then
                                     Rec.ItemToxicKBN := '医療用毒劇物';
@@ -1143,13 +1179,198 @@ page 50019 "Sales Inquiry Subform"
                             Rec."Shortcut Dimension 6 Code" := ShortcutDimCode[6];
                             Rec."Shortcut Dimension 7 Code" := ShortcutDimCode[7];
                             Rec."Shortcut Dimension 8 Code" := ShortcutDimCode[8];
-                            TotalQty += Rec.Quantity;
-                            TotalAmount += Rec.Amount;
-                            TotalAmountInclVAT += Rec."Amount Including VAT";
+
+                            Rec."Total Qty. (Base)" := -Rec.Quantity;
+                            Rec."Total Amount (LCY)" := Rec.Amount;
+                            Rec."Total Amount Incl. VAT (LCY)" := Rec."Amount Including VAT";
+                            if Rec."Currency Code" <> '' then begin
+                                PSCCalcLCYAmounts(SalesCrMemoLine, SalesCrMemoHdr, Rec."Currency Code");
+                                Rec."Total Amount (LCY)" := SalesCrMemoLine.Amount;
+                                Rec."Total Amount Incl. VAT (LCY)" := SalesCrMemoLine."Amount Including VAT";
+                            end;
+                            if Rec."VAT %" = 0 then
+                                Rec."Total Amount Incl. VAT (LCY)" := Rec."Total Amount (LCY)";
+                            TotalQty += Rec."Total Qty. (Base)";
+                            TotalAmount += Rec."Total Amount (LCY)";
+                            TotalAmountInclVAT += Rec."Total Amount Incl. VAT (LCY)";
                             Rec.Insert();
                         end;
                     until SalesCrMemoLine.Next() = 0;
             until SalesCrMemoHdr.Next() = 0;
+    end;
+
+    procedure GetRoundingPrecision(CurrencyCode: Code[10]): Decimal;
+    var
+        Currency: Record "Currency";
+    begin
+        if CurrencyCode <> '' then
+            if Currency.Get(CurrencyCode) then
+                if Currency."Amount Rounding Precision" <> 0 then
+                    exit(Currency."Amount Rounding Precision");
+        if GLSetup."Amount Rounding Precision" <> 0 then
+            exit(GLSetup."Amount Rounding Precision")
+        else
+            exit(0.01);
+    end;
+
+    local procedure VATRoundingDirection(): Text[1]
+    var
+    begin
+        case GLSetup."VAT Rounding Type" of
+            GLSetup."VAT Rounding Type"::Nearest:
+                exit('=');
+            GLSetup."VAT Rounding Type"::Up:
+                exit('>');
+            GLSetup."VAT Rounding Type"::Down:
+                exit('<');
+        end;
+    end;
+
+    procedure SOCalcLCYAmounts(var InqSalesLine: Record "Sales Line"; SalesHdr: Record "Sales Header"; RoundType: Text[1]; CurrencyCode: Code[10]);
+    var
+        CalcSalesLine: Record "Sales Line";
+        TempSalesLine: Record "Sales Line" temporary;
+        CalcAmount: array[3] of Decimal;
+        CalcAmountInclVAT: array[3] of Decimal;
+        AmtRoundPrecision: Decimal;
+    begin
+        AmtRoundPrecision := GetRoundingPrecision(CurrencyCode);
+        TempSalesLine.Reset();
+        TempSalesLine.DeleteAll();
+        CalcSalesLine.SetRange("Document Type", InqSalesLine."Document Type");
+        CalcSalesLine.SetRange("Document No.", InqSalesLine."Document No.");
+        if CalcSalesLine.FindSet() then
+            repeat
+                if CalcSalesLine."Line Amount" - CalcSalesLine."Inv. Discount Amount" <> 0 then begin
+                    TempSalesLine.Init();
+                    TempSalesLine."Document Type" := CalcSalesLine."Document Type";
+                    TempSalesLine."Document No." := CalcSalesLine."Document No.";
+                    TempSalesLine."Line No." := CalcSalesLine."Line No.";
+                    if SalesHdr."Prices Including VAT" then begin
+                        TempSalesLine.Amount := Round((CalcSalesLine."Line Amount" - CalcSalesLine."Inv. Discount Amount") /
+                                                     ((100 + CalcSalesLine."VAT %") / 100), AmtRoundPrecision, RoundType);
+                        TempSalesLine."Amount Including VAT" := CalcSalesLine."Line Amount" - CalcSalesLine."Inv. Discount Amount";
+                    end else begin
+                        TempSalesLine.Amount := CalcSalesLine."Line Amount" - CalcSalesLine."Inv. Discount Amount";
+                        TempSalesLine."Amount Including VAT" := Round((CalcSalesLine."Line Amount" - CalcSalesLine."Inv. Discount Amount") *
+                                                                     ((100 + CalcSalesLine."VAT %") / 100), AmtRoundPrecision, RoundType);
+                    end;
+                    CalcAmount[1] += TempSalesLine.Amount;
+                    CalcAmountInclVAT[1] += TempSalesLine."Amount Including VAT";
+                    CalcAmount[2] :=
+                      Round(CurrExchRate.ExchangeAmtFCYToLCY(GetCDate(CalcSalesLine."Posting Date"), CurrencyCode,
+                            CalcAmount[1], SalesHdr."Currency Factor"));
+                    if CalcSalesLine.Amount <> CalcSalesLine."Amount Including VAT" then
+                        CalcAmountInclVAT[2] :=
+                          Round(CurrExchRate.ExchangeAmtFCYToLCY(GetCDate(CalcSalesLine."Posting Date"), CurrencyCode,
+                                CalcAmountInclVAT[1], SalesHdr."Currency Factor"))
+                    else
+                        CalcAmountInclVAT[2] := CalcAmount[2];
+                    TempSalesLine.Amount := CalcAmount[2] - CalcAmount[3];
+                    TempSalesLine."Amount Including VAT" := CalcAmountInclVAT[2] - CalcAmountInclVAT[3];
+                    CalcAmount[3] += TempSalesLine.Amount;
+                    CalcAmountInclVAT[3] += TempSalesLine."Amount Including VAT";
+                    TempSalesLine.Insert();
+                end;
+            until CalcSalesLine.Next() = 0;
+
+        if TempSalesLine.Get(InqSalesLine."Document Type", InqSalesLine."Document No.", InqSalesLine."Line No.") then begin
+            InqSalesLine.Amount := TempSalesLine.Amount;
+            InqSalesLine."Amount Including VAT" := TempSalesLine."Amount Including VAT";
+        end else begin
+            InqSalesLine.Amount := 0;
+            InqSalesLine."Amount Including VAT" := 0;
+        end;
+    end;
+
+    procedure PSICalcLCYAmounts(var InqSalesInvLine: Record "Sales Invoice Line"; SalesInvHdr: Record "Sales Invoice Header"; CurrencyCode: Code[10]): Decimal;
+    var
+        CalcSalesInvLine: Record "Sales Invoice Line";
+        TempSalesInvLine: Record "Sales Invoice Line" temporary;
+        CalcAmount: array[3] of Decimal;
+        CalcAmountInclVAT: array[3] of Decimal;
+    begin
+        TempSalesInvLine.Reset();
+        TempSalesInvLine.DeleteAll();
+        CalcSalesInvLine.SetRange("Document No.", InqSalesInvLine."Document No.");
+        if CalcSalesInvLine.FindSet() then
+            repeat
+                if CalcSalesInvLine.Amount <> 0 then begin
+                    TempSalesInvLine.Init();
+                    TempSalesInvLine."Document No." := CalcSalesInvLine."Document No.";
+                    TempSalesInvLine."Line No." := CalcSalesInvLine."Line No.";
+                    CalcAmount[1] += CalcSalesInvLine.Amount;
+                    CalcAmountInclVAT[1] += CalcSalesInvLine."Amount Including VAT";
+                    CalcAmount[2] := Round(CurrExchRate.ExchangeAmtFCYToLCY(GetCDate(CalcSalesInvLine."Posting Date"), CurrencyCode, CalcAmount[1], SalesInvHdr."Currency Factor"));
+                    if CalcSalesInvLine.Amount <> CalcSalesInvLine."Amount Including VAT" then
+                        CalcAmountInclVAT[2] := Round(CurrExchRate.ExchangeAmtFCYToLCY(GetCDate(CalcSalesInvLine."Posting Date"), CurrencyCode, CalcAmountInclVAT[1], SalesInvHdr."Currency Factor"))
+                    else
+                        CalcAmountInclVAT[2] := CalcAmount[2];
+                    TempSalesInvLine.Amount := CalcAmount[2] - CalcAmount[3];
+                    TempSalesInvLine."Amount Including VAT" := CalcAmountInclVAT[2] - CalcAmountInclVAT[3];
+                    CalcAmount[3] += TempSalesInvLine.Amount;
+                    CalcAmountInclVAT[3] += TempSalesInvLine."Amount Including VAT";
+                    TempSalesInvLine.Insert();
+                end;
+            until CalcSalesInvLine.Next() = 0;
+
+        if TempSalesInvLine.Get(InqSalesInvLine."Document No.", InqSalesInvLine."Line No.") then begin
+            InqSalesInvLine.Amount := TempSalesInvLine.Amount;
+            InqSalesInvLine."Amount Including VAT" := TempSalesInvLine."Amount Including VAT";
+        end else begin
+            InqSalesInvLine.Amount := 0;
+            InqSalesInvLine."Amount Including VAT" := 0;
+        end;
+    end;
+
+    procedure PSCCalcLCYAmounts(var InqSalesCrMLine: Record "Sales Cr.Memo Line"; SalesCrMHdr: Record "Sales Cr.Memo Header"; CurrencyCode: Code[10]);
+    var
+        CalcSalesCrMLine: Record "Sales Cr.Memo Line";
+        TempSalesCrMLine: Record "Sales Cr.Memo Line" temporary;
+        CalcAmount: array[3] of Decimal;
+        CalcAmountInclVAT: array[3] of Decimal;
+    begin
+        TempSalesCrMLine.Reset();
+        TempSalesCrMLine.DeleteAll();
+        CalcSalesCrMLine.SetRange("Document No.", InqSalesCrMLine."Document No.");
+        if CalcSalesCrMLine.FindSet() then
+            repeat
+                if CalcSalesCrMLine.Amount <> 0 then begin
+                    TempSalesCrMLine.Init();
+                    TempSalesCrMLine."Document No." := CalcSalesCrMLine."Document No.";
+                    TempSalesCrMLine."Line No." := CalcSalesCrMLine."Line No.";
+                    CalcAmount[1] += CalcSalesCrMLine.Amount;
+                    CalcAmountInclVAT[1] += CalcSalesCrMLine."Amount Including VAT";
+                    CalcAmount[2] := Round(CurrExchRate.ExchangeAmtFCYToLCY(GetCDate(CalcSalesCrMLine."Posting Date"), CurrencyCode, CalcAmount[1],
+                                                                            SalesCrMHdr."Currency Factor"));
+                    if CalcSalesCrMLine.Amount <> CalcSalesCrMLine."Amount Including VAT" then
+                        CalcAmountInclVAT[2] := Round(CurrExchRate.ExchangeAmtFCYToLCY(GetCDate(CalcSalesCrMLine."Posting Date"), CurrencyCode,
+                                                      CalcAmountInclVAT[1], SalesCrMHdr."Currency Factor"))
+                    else
+                        CalcAmountInclVAT[2] := CalcAmount[2];
+                    TempSalesCrMLine.Amount := CalcAmount[2] - CalcAmount[3];
+                    TempSalesCrMLine."Amount Including VAT" := CalcAmountInclVAT[2] - CalcAmountInclVAT[3];
+                    CalcAmount[3] += TempSalesCrMLine.Amount;
+                    CalcAmountInclVAT[3] += TempSalesCrMLine."Amount Including VAT";
+                    TempSalesCrMLine.Insert();
+                end;
+            until CalcSalesCrMLine.Next() = 0;
+
+        if TempSalesCrMLine.Get(InqSalesCrMLine."Document No.", InqSalesCrMLine."Line No.") then begin
+            InqSalesCrMLine.Amount := -TempSalesCrMLine.Amount;
+            InqSalesCrMLine."Amount Including VAT" := -TempSalesCrMLine."Amount Including VAT";
+        end else begin
+            InqSalesCrMLine.Amount := 0;
+            InqSalesCrMLine."Amount Including VAT" := 0;
+        end;
+    end;
+
+    procedure GetCDate(Date: Date): Date;
+    begin
+        if Date <> 0D then
+            exit(Date)
+        else
+            exit(Workdate());
     end;
 
     procedure ExportDataToExcel(ShowTrackingInfo: Boolean);

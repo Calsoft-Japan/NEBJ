@@ -11,7 +11,7 @@
       <am:Name>MSRB</am:Name>
       <am:Version>15.1.30001.02</am:Version>
     </am:UpdatedBy>
-    <am:LastModifiedTimestamp>2025-12-02T23:39:48.1995060Z</am:LastModifiedTimestamp>
+    <am:LastModifiedTimestamp>2025-12-04T01:24:46.9903210Z</am:LastModifiedTimestamp>
   </am:AuthoringMetadata>
   <AutoRefresh>0</AutoRefresh>
   <DataSources>
@@ -307,7 +307,7 @@
                   <Paragraph>
                     <TextRuns>
                       <TextRun>
-                        <Value>="TEL : " + Fields!CompanyPhoneNo.Value</Value>
+                        <Value>=Fields!CompanyPhoneNo.Value</Value>
                         <Style>
                           <FontFamily>MS UI Gothic</FontFamily>
                           <FontSize>9pt</FontSize>
@@ -1503,7 +1503,6 @@
                         </TablixCell>
                         <TablixCell>
                           <CellContents>
-                            <rd:Selected>true</rd:Selected>
                             <Textbox Name="Textbox75">
                               <rd:DefaultName>Textbox75</rd:DefaultName>
                               <CanGrow>true</CanGrow>
@@ -3634,7 +3633,7 @@ CStr(Fields!EU_Division_3.Value)</Value>
                   <Paragraph>
                     <TextRuns>
                       <TextRun>
-                        <Value>="Fax："&amp; Fields!CompanyFaxNo.Value</Value>
+                        <Value>=Fields!CompanyFaxNo.Value</Value>
                         <Style>
                           <FontFamily>MS UI Gothic</FontFamily>
                           <FontSize>9pt</FontSize>

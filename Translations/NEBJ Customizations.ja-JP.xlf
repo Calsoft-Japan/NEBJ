@@ -1872,6 +1872,12 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">TableExtension G/L Account Ext - Field Name 2 - Property Caption</note>
         </trans-unit>
+        <trans-unit id="TableExtension 1490448424 - Field 3806390053 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Table 4274826855">
+          <source>Show FCY Amount</source>
+          <target>追加通貨額を表示</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">TableExtension G/L Account Ext - Field Show FCY Amount - Property Caption</note>
+        </trans-unit>
         <trans-unit id="TableExtension 2502354840 - Field 1713889359 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Table 1806786327">
           <source>Name2</source>
           <note from="Developer" annotates="general" priority="2"></note>

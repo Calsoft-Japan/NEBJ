@@ -122,50 +122,66 @@ table 50000 "Sales Inquiry Line"
         field(150; "Quantity"; Decimal)//Can find in FDD106
         {
             Caption = 'Quantity';
+            DecimalPlaces = 0 : 5;
         }
         field(152; "Qty. to Invoice"; Decimal)//Can find in FDD106
         {
             Caption = 'Qty. to Invoice';
+            DecimalPlaces = 0 : 5;
         }
         field(153; "Qty. to Ship"; Decimal)//Can find in FDD106
         {
             Caption = 'Qty. to Ship';
+            DecimalPlaces = 0 : 5;
         }
         field(154; "Unit Price"; Decimal)//Can find in FDD106
         {
             Caption = 'Unit Price';
+            AutoFormatExpression = Rec."Currency Code";
+            AutoFormatType = 2;
         }
         field(155; "Unit Cost (LCY)"; Decimal)//Can find in FDD106
         {
             Caption = 'Unit Cost (LCY)';
+            AutoFormatType = 2;
         }
         field(156; "VAT %"; Decimal)//Can find in FDD106
         {
             Caption = 'VAT %';
+            DecimalPlaces = 0 : 5;
         }
         field(157; "Line Discount %"; Decimal)//Can find in FDD106
         {
             Caption = 'Line Discount %';
+            DecimalPlaces = 0 : 5;
         }
         field(158; "Line Discount Amount"; Decimal)//Can find in FDD106
         {
             Caption = 'Line Discount Amount';
+            AutoFormatExpression = Rec."Currency Code";
+            AutoFormatType = 1;
         }
         field(159; "Amount"; Decimal)//Can find in FDD106
         {
             Caption = 'Amount';
+            AutoFormatExpression = Rec."Currency Code";
+            AutoFormatType = 1;
         }
         field(160; "Amount Including VAT"; Decimal)//Can find in FDD106
         {
             Caption = 'Amount Including VAT';
+            AutoFormatExpression = Rec."Currency Code";
+            AutoFormatType = 1;
         }
         field(162; "Gross Weight"; Decimal)//Can find in FDD106
         {
             Caption = 'Gross Weight';
+            DecimalPlaces = 0 : 5;
         }
         field(163; "Net Weight"; Decimal)//Can find in FDD106
         {
             Caption = 'Net Weight';
+            DecimalPlaces = 0 : 5;
         }
         field(167; "Shortcut Dimension 1 Code"; Code[20])//Can find in FDD106
         {
@@ -184,10 +200,12 @@ table 50000 "Sales Inquiry Line"
         field(175; "Quantity Shipped"; Decimal)//Can find in FDD106
         {
             Caption = 'Quantity Shipped';
+            DecimalPlaces = 0 : 5;
         }
         field(176; "Quantity Invoiced"; Decimal)//Can find in FDD106
         {
             Caption = 'Quantity Invoiced';
+            DecimalPlaces = 0 : 5;
         }
         field(179; "Profit %"; Decimal)//Can find in FDD106
         {
@@ -197,6 +215,8 @@ table 50000 "Sales Inquiry Line"
         field(180; "Inv. Discount Amount"; Decimal)//Can find in FDD106
         {
             Caption = 'Inv. Discount Amount';
+            AutoFormatExpression = Rec."Currency Code";
+            AutoFormatType = 1;
         }
         field(184; "Gen. Bus. Posting Group"; Code[20])//Can find in FDD106
         {
@@ -221,6 +241,7 @@ table 50000 "Sales Inquiry Line"
         field(201; "Reserved Quantity"; Decimal)//Can find in FDD106
         {
             Caption = 'Reserved Quantity';
+            DecimalPlaces = 0 : 5;
         }
         field(243; "Variant Code"; Code[10])//Can find in FDD106
         {

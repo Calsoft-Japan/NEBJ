@@ -112,7 +112,12 @@ report 50003 "NEBJ Detail Trial Balance"
                         end;
 
                         GLBalance := GLBalance + Amount;
-                        GLBalAddCurr := GLBalAddCurr + "Additional-Currency Amount";
+                        if "G/L Account"."Show FCY Amount" = false then begin
+                            "Add.-Currency Debit Amount" := 0;
+                            "Add.-Currency Credit Amount" := 0;
+                            "Additional-Currency Amount" := 0;
+                        end else
+                            GLBalAddCurr := GLBalAddCurr + "Additional-Currency Amount";
                         if ("Posting Date" = ClosingDate("Posting Date")) and
                            not PrintClosingEntries
                         then begin
@@ -133,7 +138,11 @@ report 50003 "NEBJ Detail Trial Balance"
                     trigger OnPreDataItem()
                     begin
                         GLBalance := StartBalance;
-                        GLBalAddCurr := StartBalAddCurr;
+                        if "G/L Account"."Show FCY Amount" = false then begin
+                            StartBalAddCurr := 0;
+                            GLBalAddCurr := 0
+                        end else
+                            GLBalAddCurr := StartBalAddCurr;
 
                         OnAfterOnPreDataItemGLEntry("G/L Entry");
                     end;

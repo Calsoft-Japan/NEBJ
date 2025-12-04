@@ -10,172 +10,6 @@
       <rd:DataSourceID>48c3a1ab-1e95-4db8-95f3-c597b39fa4f3</rd:DataSourceID>
     </DataSource>
   </DataSources>
-  <DataSets>
-    <DataSet Name="DataSet_Result">
-      <Query>
-        <DataSourceName>DataSource</DataSourceName>
-        <CommandText />
-      </Query>
-      <Fields>
-        <Field Name="RepCaption">
-          <DataField>RepCaption</DataField>
-        </Field>
-        <Field Name="PageCaption">
-          <DataField>PageCaption</DataField>
-        </Field>
-        <Field Name="BalanceLbl">
-          <DataField>BalanceLbl</DataField>
-        </Field>
-        <Field Name="PeriodLbl">
-          <DataField>PeriodLbl</DataField>
-        </Field>
-        <Field Name="OnlyCorrectionLbl">
-          <DataField>OnlyCorrectionLbl</DataField>
-        </Field>
-        <Field Name="NetChangeLbl">
-          <DataField>NetChangeLbl</DataField>
-        </Field>
-        <Field Name="DrAmtLbl">
-          <DataField>DrAmtLbl</DataField>
-        </Field>
-        <Field Name="CrAmtLbl">
-          <DataField>CrAmtLbl</DataField>
-        </Field>
-        <Field Name="GLBalLbl">
-          <DataField>GLBalLbl</DataField>
-        </Field>
-        <Field Name="AddCurrAmtLbl">
-          <DataField>AddCurrAmtLbl</DataField>
-        </Field>
-        <Field Name="BalAccNoLbl">
-          <DataField>BalAccNoLbl</DataField>
-        </Field>
-        <Field Name="BalAccNameLbl">
-          <DataField>BalAccNameLbl</DataField>
-        </Field>
-        <Field Name="PeriodDateFilter">
-          <DataField>PeriodDateFilter</DataField>
-        </Field>
-        <Field Name="CompanyName">
-          <DataField>CompanyName</DataField>
-        </Field>
-        <Field Name="ExcludeBalanceOnly">
-          <DataField>ExcludeBalanceOnly</DataField>
-        </Field>
-        <Field Name="PrintReversedEntries">
-          <DataField>PrintReversedEntries</DataField>
-        </Field>
-        <Field Name="PageGroupNo">
-          <DataField>PageGroupNo</DataField>
-        </Field>
-        <Field Name="PrintOnlyOnePerPage">
-          <DataField>PrintOnlyOnePerPage</DataField>
-        </Field>
-        <Field Name="PrintClosingEntries">
-          <DataField>PrintClosingEntries</DataField>
-        </Field>
-        <Field Name="PrintOnlyCorrections">
-          <DataField>PrintOnlyCorrections</DataField>
-        </Field>
-        <Field Name="GLAccTblCaption">
-          <DataField>GLAccTblCaption</DataField>
-        </Field>
-        <Field Name="GLFilter">
-          <DataField>GLFilter</DataField>
-        </Field>
-        <Field Name="GLAccNo">
-          <DataField>GLAccNo</DataField>
-        </Field>
-        <Field Name="EmptyString">
-          <DataField>EmptyString</DataField>
-        </Field>
-        <Field Name="GLAccName">
-          <DataField>GLAccName</DataField>
-        </Field>
-        <Field Name="StartBalance">
-          <DataField>StartBalance</DataField>
-        </Field>
-        <Field Name="StartBalanceFormat">
-          <DataField>StartBalanceFormat</DataField>
-        </Field>
-        <Field Name="StartBalAddCurr">
-          <DataField>StartBalAddCurr</DataField>
-        </Field>
-        <Field Name="StartBalAddCurrFormat">
-          <DataField>StartBalAddCurrFormat</DataField>
-        </Field>
-        <Field Name="VATAmt_GLEntry">
-          <DataField>VATAmt_GLEntry</DataField>
-        </Field>
-        <Field Name="VATAmt_GLEntryFormat">
-          <DataField>VATAmt_GLEntryFormat</DataField>
-        </Field>
-        <Field Name="DrAmt">
-          <DataField>DrAmt</DataField>
-        </Field>
-        <Field Name="DrAmtFormat">
-          <DataField>DrAmtFormat</DataField>
-        </Field>
-        <Field Name="CrAmt">
-          <DataField>CrAmt</DataField>
-        </Field>
-        <Field Name="CrAmtFormat">
-          <DataField>CrAmtFormat</DataField>
-        </Field>
-        <Field Name="PostDate">
-          <DataField>PostDate</DataField>
-        </Field>
-        <Field Name="DocNo">
-          <DataField>DocNo</DataField>
-        </Field>
-        <Field Name="BalAccNo">
-          <DataField>BalAccNo</DataField>
-        </Field>
-        <Field Name="BalAccName">
-          <DataField>BalAccName</DataField>
-        </Field>
-        <Field Name="ExtDocNo">
-          <DataField>ExtDocNo</DataField>
-        </Field>
-        <Field Name="EntryDesc">
-          <DataField>EntryDesc</DataField>
-        </Field>
-        <Field Name="GLBalance">
-          <DataField>GLBalance</DataField>
-        </Field>
-        <Field Name="GLBalanceFormat">
-          <DataField>GLBalanceFormat</DataField>
-        </Field>
-        <Field Name="EntryNo">
-          <DataField>EntryNo</DataField>
-        </Field>
-        <Field Name="CloseEntry">
-          <DataField>CloseEntry</DataField>
-        </Field>
-        <Field Name="Reversed">
-          <DataField>Reversed</DataField>
-        </Field>
-        <Field Name="GLBalAddCurr">
-          <DataField>GLBalAddCurr</DataField>
-        </Field>
-        <Field Name="GLBalAddCurrFormat">
-          <DataField>GLBalAddCurrFormat</DataField>
-        </Field>
-        <Field Name="DrAmt_AddCurr">
-          <DataField>DrAmt_AddCurr</DataField>
-        </Field>
-        <Field Name="DrAmt_AddCurrFormat">
-          <DataField>DrAmt_AddCurrFormat</DataField>
-        </Field>
-        <Field Name="CrAmt_AddCurr">
-          <DataField>CrAmt_AddCurr</DataField>
-        </Field>
-        <Field Name="CrAmt_AddCurrFormat">
-          <DataField>CrAmt_AddCurrFormat</DataField>
-        </Field>
-      </Fields>
-    </DataSet>
-  </DataSets>
   <ReportSections>
     <ReportSection>
       <Body>
@@ -7518,4 +7352,170 @@ End Function</Code>
   <ConsumeContainerWhitespace>true</ConsumeContainerWhitespace>
   <rd:ReportUnitType>Cm</rd:ReportUnitType>
   <rd:ReportID>f315acfc-f20c-4f13-97b8-0d74fe732f9a</rd:ReportID>
+  <DataSets>
+    <DataSet Name="DataSet_Result">
+      <Fields>
+        <Field Name="RepCaption">
+          <DataField>RepCaption</DataField>
+        </Field>
+        <Field Name="PageCaption">
+          <DataField>PageCaption</DataField>
+        </Field>
+        <Field Name="BalanceLbl">
+          <DataField>BalanceLbl</DataField>
+        </Field>
+        <Field Name="PeriodLbl">
+          <DataField>PeriodLbl</DataField>
+        </Field>
+        <Field Name="OnlyCorrectionLbl">
+          <DataField>OnlyCorrectionLbl</DataField>
+        </Field>
+        <Field Name="NetChangeLbl">
+          <DataField>NetChangeLbl</DataField>
+        </Field>
+        <Field Name="DrAmtLbl">
+          <DataField>DrAmtLbl</DataField>
+        </Field>
+        <Field Name="CrAmtLbl">
+          <DataField>CrAmtLbl</DataField>
+        </Field>
+        <Field Name="GLBalLbl">
+          <DataField>GLBalLbl</DataField>
+        </Field>
+        <Field Name="AddCurrAmtLbl">
+          <DataField>AddCurrAmtLbl</DataField>
+        </Field>
+        <Field Name="BalAccNoLbl">
+          <DataField>BalAccNoLbl</DataField>
+        </Field>
+        <Field Name="BalAccNameLbl">
+          <DataField>BalAccNameLbl</DataField>
+        </Field>
+        <Field Name="PeriodDateFilter">
+          <DataField>PeriodDateFilter</DataField>
+        </Field>
+        <Field Name="CompanyName">
+          <DataField>CompanyName</DataField>
+        </Field>
+        <Field Name="ExcludeBalanceOnly">
+          <DataField>ExcludeBalanceOnly</DataField>
+        </Field>
+        <Field Name="PrintReversedEntries">
+          <DataField>PrintReversedEntries</DataField>
+        </Field>
+        <Field Name="PageGroupNo">
+          <DataField>PageGroupNo</DataField>
+        </Field>
+        <Field Name="PrintOnlyOnePerPage">
+          <DataField>PrintOnlyOnePerPage</DataField>
+        </Field>
+        <Field Name="PrintClosingEntries">
+          <DataField>PrintClosingEntries</DataField>
+        </Field>
+        <Field Name="PrintOnlyCorrections">
+          <DataField>PrintOnlyCorrections</DataField>
+        </Field>
+        <Field Name="GLAccTblCaption">
+          <DataField>GLAccTblCaption</DataField>
+        </Field>
+        <Field Name="GLFilter">
+          <DataField>GLFilter</DataField>
+        </Field>
+        <Field Name="GLAccNo">
+          <DataField>GLAccNo</DataField>
+        </Field>
+        <Field Name="EmptyString">
+          <DataField>EmptyString</DataField>
+        </Field>
+        <Field Name="GLAccName">
+          <DataField>GLAccName</DataField>
+        </Field>
+        <Field Name="StartBalance">
+          <DataField>StartBalance</DataField>
+        </Field>
+        <Field Name="StartBalanceFormat">
+          <DataField>StartBalanceFormat</DataField>
+        </Field>
+        <Field Name="StartBalAddCurr">
+          <DataField>StartBalAddCurr</DataField>
+        </Field>
+        <Field Name="StartBalAddCurrFormat">
+          <DataField>StartBalAddCurrFormat</DataField>
+        </Field>
+        <Field Name="VATAmt_GLEntry">
+          <DataField>VATAmt_GLEntry</DataField>
+        </Field>
+        <Field Name="VATAmt_GLEntryFormat">
+          <DataField>VATAmt_GLEntryFormat</DataField>
+        </Field>
+        <Field Name="DrAmt">
+          <DataField>DrAmt</DataField>
+        </Field>
+        <Field Name="DrAmtFormat">
+          <DataField>DrAmtFormat</DataField>
+        </Field>
+        <Field Name="CrAmt">
+          <DataField>CrAmt</DataField>
+        </Field>
+        <Field Name="CrAmtFormat">
+          <DataField>CrAmtFormat</DataField>
+        </Field>
+        <Field Name="PostDate">
+          <DataField>PostDate</DataField>
+        </Field>
+        <Field Name="DocNo">
+          <DataField>DocNo</DataField>
+        </Field>
+        <Field Name="BalAccNo">
+          <DataField>BalAccNo</DataField>
+        </Field>
+        <Field Name="BalAccName">
+          <DataField>BalAccName</DataField>
+        </Field>
+        <Field Name="ExtDocNo">
+          <DataField>ExtDocNo</DataField>
+        </Field>
+        <Field Name="EntryDesc">
+          <DataField>EntryDesc</DataField>
+        </Field>
+        <Field Name="GLBalance">
+          <DataField>GLBalance</DataField>
+        </Field>
+        <Field Name="GLBalanceFormat">
+          <DataField>GLBalanceFormat</DataField>
+        </Field>
+        <Field Name="EntryNo">
+          <DataField>EntryNo</DataField>
+        </Field>
+        <Field Name="CloseEntry">
+          <DataField>CloseEntry</DataField>
+        </Field>
+        <Field Name="Reversed">
+          <DataField>Reversed</DataField>
+        </Field>
+        <Field Name="GLBalAddCurr">
+          <DataField>GLBalAddCurr</DataField>
+        </Field>
+        <Field Name="GLBalAddCurrFormat">
+          <DataField>GLBalAddCurrFormat</DataField>
+        </Field>
+        <Field Name="DrAmt_AddCurr">
+          <DataField>DrAmt_AddCurr</DataField>
+        </Field>
+        <Field Name="DrAmt_AddCurrFormat">
+          <DataField>DrAmt_AddCurrFormat</DataField>
+        </Field>
+        <Field Name="CrAmt_AddCurr">
+          <DataField>CrAmt_AddCurr</DataField>
+        </Field>
+        <Field Name="CrAmt_AddCurrFormat">
+          <DataField>CrAmt_AddCurrFormat</DataField>
+        </Field>
+      </Fields>
+      <Query>
+        <DataSourceName>DataSource</DataSourceName>
+        <CommandText />
+      </Query>
+    </DataSet>
+  </DataSets>
 </Report>

@@ -116,8 +116,17 @@ report 50003 "NEBJ Detail Trial Balance"
                             "Add.-Currency Debit Amount" := 0;
                             "Add.-Currency Credit Amount" := 0;
                             "Additional-Currency Amount" := 0;
-                        end else
-                            GLBalAddCurr := GLBalAddCurr + "Additional-Currency Amount";
+                        end else begin
+                            if "G/L Entry"."Bal. Account Type" = "G/L Entry"."Bal. Account Type"::"G/L Account" then begin
+                                if IsBalAccMatchFound("G/L Entry"."Bal. Account No.") then begin
+                                    "Add.-Currency Debit Amount" := 0;
+                                    "Add.-Currency Credit Amount" := 0;
+                                    "Additional-Currency Amount" := 0;
+                                end else
+                                    GLBalAddCurr := GLBalAddCurr + "Additional-Currency Amount";
+                            end else
+                                GLBalAddCurr := GLBalAddCurr + "Additional-Currency Amount";
+                        end;
                         if ("Posting Date" = ClosingDate("Posting Date")) and
                            not PrintClosingEntries
                         then begin
@@ -303,6 +312,28 @@ report 50003 "NEBJ Detail Trial Balance"
         NumberOfGLEntryLines: Integer;
         StartDateTime: DateTime;
         FinishDateTime: DateTime;
+
+
+
+    procedure IsBalAccMatchFound(BalAccount: Code[20]): Boolean
+    var
+        Currency: Record Currency;
+    begin
+        if BalAccount <> '' then begin
+            if Currency.FindSet() then
+                repeat
+                    if (Currency."Realized Gains Acc." <> '') and (BalAccount = Currency."Realized Gains Acc.") then
+                        exit(true);
+                    if (Currency."Realized Losses Acc." <> '') and (BalAccount = Currency."Realized Losses Acc.") then
+                        exit(true);
+                    if (Currency."Unrealized Gains Acc." <> '') and (BalAccount = Currency."Unrealized Gains Acc.") then
+                        exit(true);
+                    if (Currency."Unrealized Losses Acc." <> '') and (BalAccount = Currency."Unrealized Losses Acc.") then
+                        exit(true);
+                until Currency.Next() = 0;
+            exit(false);
+        end;
+    end;
 
     procedure InitializeRequest(NewPrintOnlyOnePerPage: Boolean; NewExcludeBalanceOnly: Boolean; NewPrintClosingEntries: Boolean; NewPrintReversedEntries: Boolean; NewPrintOnlyCorrections: Boolean)
     begin

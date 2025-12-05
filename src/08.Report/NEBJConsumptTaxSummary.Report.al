@@ -25,7 +25,7 @@ report 50004 "NEBJ Consumpt Tax Summary"
             column(NonTaxAmtLbl; NonTaxAmtLbl) { }
             column(SaleRcvdCTaxLbl; SaleRcvdCTaxLbl) { }
             column(SusPaidCTaxLbl; SusPaidCTaxLbl) { }
-            column(CompanyInfo_Name; CompInfo.Name) { }
+            column(CompName; CompInfo.Name) { }
             column(DontPrint; DontPrint) { }
             column(RepGLFilters; GLAccCapLbl + ': ' + GLFilter) { }
             column(RepVATFilters; VatGroupLbl + ': ' + VATFilter) { }
@@ -38,20 +38,20 @@ report 50004 "NEBJ Consumpt Tax Summary"
                 column(GLVBPG; "VAT Bus. Posting Group") { }
                 column(GLVPPG; "VAT Prod. Posting Group") { }
                 column(NetAmt; NetAmount) { AutoFormatType = 1; }
-                column(TaxAmt; TaxableAmount) { AutoFormatType = 1; }
-                column(NonTaxAmt; NonTaxableAmount) { AutoFormatType = 1; }
-                column(SalesTaxAmt; TaxAmountSale) { AutoFormatType = 1; }
-                column(PurchTaxAmt; TaxAmountPurch) { AutoFormatType = 1; }
+                column(TaxAmt; TaxAmount) { AutoFormatType = 1; }
+                column(NonTaxAmt; NonTaxAmt) { AutoFormatType = 1; }
+                column(SalesTaxAmt; SaleTaxAmt) { AutoFormatType = 1; }
+                column(PurchTaxAmt; PurchTaxAmt) { AutoFormatType = 1; }
                 column(TaxPer; "VAT Posting Setup"."VAT %") { DecimalPlaces = 0 : 2; }
                 column(PerString; PercentLbl) { }
                 trigger OnAfterGetRecord()
                 begin
-                    //"G/L Account".SETRANGE("Gen. Posting Type Filter TJP");
-                    //"G/L Account".SETRANGE("VAT BPG Filter TJP", "VAT Posting Setup"."VAT Bus. Posting Group");
-                    //"G/L Account".SETRANGE("VAT PPG Filter TJP", "VAT Posting Setup"."VAT Prod. Posting Group");
-                    Calculate();
-                    if (NetAmount = 0) and (TaxableAmount = 0) and (TaxAmountSale = 0) and
-                       (TaxAmountPurch = 0) and (NonTaxableAmount = 0) and DontPrint then
+                    "G/L Account".SetRange("Gen. Posting Type Filter");
+                    "G/L Account".SetRange("VAT BPG Filter", "VAT Posting Setup"."VAT Bus. Posting Group");
+                    "G/L Account".SetRange("VAT PPG Filter", "VAT Posting Setup"."VAT Prod. Posting Group");
+                    CalcAmounts();
+                    if (NetAmount = 0) and (TaxAmount = 0) and (SaleTaxAmt = 0) and
+                       (PurchTaxAmt = 0) and (NonTaxAmt = 0) and DontPrint then
                         CurrReport.Skip();
                 end;
             }
@@ -97,13 +97,12 @@ report 50004 "NEBJ Consumpt Tax Summary"
         AccDescription: Text[80];
         VATFilter: Text[250];
         NetAmount: Decimal;
-        TaxableAmount: Decimal;
-        NonTaxableAmount: Decimal;
-        TaxAmountSale: Decimal;
-        TaxAmountPurch: Decimal;
-        "Tax%": Decimal;
+        TaxAmount: Decimal;
+        NonTaxAmt: Decimal;
+        SaleTaxAmt: Decimal;
+        PurchTaxAmt: Decimal;
         DontPrint: Boolean;
-        RepCapLbl: label 'Consumption Tax Summary';
+        RepCapLbl: label 'Consumption Tax Sheet';
         GLAccCapLbl: label 'G/L Account';
         VatGroupLbl: label 'VAT Posting Setup';
         PageCapLbl: label 'Page';
@@ -117,44 +116,44 @@ report 50004 "NEBJ Consumpt Tax Summary"
         NonTaxAmtLbl: label 'NonTax Amt.';
         SaleRcvdCTaxLbl: label 'SaleRcvdCTax';
         SusPaidCTaxLbl: label 'SuspPaidCTax';
-        PercentLbl: label '%';
+        PercentLbl: label '%', Locked = true;
 
-    procedure Calculate()
+    procedure CalcAmounts()
     begin
         NetAmount := 0;
-        TaxableAmount := 0;
-        NonTaxableAmount := 0;
-        TaxAmountSale := 0;
-        TaxAmountPurch := 0;
+        TaxAmount := 0;
+        NonTaxAmt := 0;
+        SaleTaxAmt := 0;
+        PurchTaxAmt := 0;
 
-        /* "G/L Account".SETRANGE("Gen. Posting Type Filter TJP");
-        "G/L Account".CALCFIELDS("Amount (for Tax) TJP");
-        NetAmount := "G/L Account"."Amount (for Tax) TJP";
+        "G/L Account".SetRange("Gen. Posting Type Filter");
+        "G/L Account".CalcFields("Tax Amount");
+        NetAmount := "G/L Account"."Tax Amount";
 
-        "G/L Account".SETRANGE("Gen. Posting Type Filter TJP", "G/L Account"."Gen. Posting Type Filter TJP"::" ");
-        "G/L Account".CALCFIELDS("Non Amount (for Tax) TJP", "VAT Amount (for Tax) TJP");
-        NonTaxableAmount += "G/L Account"."Non Amount (for Tax) TJP";
+        "G/L Account".SetRange("Gen. Posting Type Filter", "G/L Account"."Gen. Posting Type Filter"::" ");
+        "G/L Account".CalcFields("NonTax Amount", "VAT Amount");
+        NonTaxAmt += "G/L Account"."NonTax Amount";
 
-        "G/L Account".SETRANGE("Gen. Posting Type Filter TJP", "G/L Account"."Gen. Posting Type Filter TJP"::Sale);
-        "G/L Account".CALCFIELDS("Non Amount (for Tax) TJP", "VAT Amount (for Tax) TJP");
-        NonTaxableAmount += "G/L Account"."Non Amount (for Tax) TJP";
-        TaxAmountSale := "G/L Account"."VAT Amount (for Tax) TJP";
+        "G/L Account".SetRange("Gen. Posting Type Filter", "G/L Account"."Gen. Posting Type Filter"::Sale);
+        "G/L Account".CalcFields("NonTax Amount", "VAT Amount");
+        NonTaxAmt += "G/L Account"."NonTax Amount";
+        SaleTaxAmt := "G/L Account"."VAT Amount";
 
-        "G/L Account".SETRANGE("Gen. Posting Type Filter TJP", "G/L Account"."Gen. Posting Type Filter TJP"::Purchase);
-        "G/L Account".CALCFIELDS("Non Amount (for Tax) TJP", "VAT Amount (for Tax) TJP");
-        NonTaxableAmount += "G/L Account"."Non Amount (for Tax) TJP";
-        TaxAmountPurch := "G/L Account"."VAT Amount (for Tax) TJP"; */
+        "G/L Account".SetRange("Gen. Posting Type Filter", "G/L Account"."Gen. Posting Type Filter"::Purchase);
+        "G/L Account".CalcFields("NonTax Amount", "VAT Amount");
+        NonTaxAmt += "G/L Account"."NonTax Amount";
+        PurchTaxAmt := "G/L Account"."VAT Amount";
 
-        TaxAmountPurch := AmountRounding(TaxAmountPurch);
-        TaxAmountSale := AmountRounding(TaxAmountSale);
+        PurchTaxAmt := AmountRounding(PurchTaxAmt);
+        SaleTaxAmt := AmountRounding(SaleTaxAmt);
         NetAmount := AmountRounding(NetAmount);
-        NonTaxableAmount := AmountRounding(NonTaxableAmount);
+        NonTaxAmt := AmountRounding(NonTaxAmt);
 
-        TaxableAmount := NetAmount - NonTaxableAmount;
-        if TaxableAmount <> 0 then
-            "Tax%" := Round((TaxAmountSale + TaxAmountPurch) / TaxableAmount * 100, 0.01, '=')
+        TaxAmount := NetAmount - NonTaxAmt;
+        /* if TaxAmount <> 0 then
+            TaxPer := Round((SaleTaxAmt + PurchTaxAmt) / TaxAmount * 100, 0.01, '=')
         else
-            "Tax%" := 0;
+            TaxPer := 0; */
     end;
 
     procedure AmountRounding(Amount: Decimal): Decimal

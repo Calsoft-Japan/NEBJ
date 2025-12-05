@@ -804,13 +804,13 @@
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="CompanyInfo_Name">
+                        <Textbox Name="CompName">
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Fields!CompanyInfo_Name.Value</Value>
+                                  <Value>=Fields!CompName.Value</Value>
                                   <Style>
                                     <Color>#ff0000</Color>
                                   </Style>
@@ -823,6 +823,9 @@
                             <Hidden>true</Hidden>
                           </Visibility>
                           <Style>
+                            <Border>
+                              <Style>None</Style>
+                            </Border>
                             <VerticalAlign>Middle</VerticalAlign>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
@@ -834,7 +837,7 @@
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="RepCaption1">
+                        <Textbox Name="RepCap">
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
@@ -853,6 +856,9 @@
                             <Hidden>true</Hidden>
                           </Visibility>
                           <Style>
+                            <Border>
+                              <Style>None</Style>
+                            </Border>
                             <VerticalAlign>Middle</VerticalAlign>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
@@ -1529,7 +1535,7 @@
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value>=ReportItems!PageCaption.Value</Value>
+                      <Value>=ReportItems!PageCapLbl.Value</Value>
                       <Style>
                         <FontSize>7pt</FontSize>
                       </Style>
@@ -1764,8 +1770,8 @@ End Function
         <Field Name="SusPaidCTaxLbl">
           <DataField>SusPaidCTaxLbl</DataField>
         </Field>
-        <Field Name="CompanyInfo_Name">
-          <DataField>CompanyInfo_Name</DataField>
+        <Field Name="CompName">
+          <DataField>CompName</DataField>
         </Field>
         <Field Name="DontPrint">
           <DataField>DontPrint</DataField>

@@ -1,7 +1,7 @@
-report 50004 "NEBJ Consumpt Tax Summary"
+report 50004 "NEBJ Consum. Tax Summary"
 {
     DefaultLayout = RDLC;
-    RDLCLayout = 'src\08.Report\NEBJConsumptTaxSummary.rdlc';
+    RDLCLayout = 'src\08.Report\NEBJConTaxSummary.rdlc';
     Caption = 'Consumption Tax Summary';
     PreviewMode = PrintLayout;
     UsageCategory = ReportsandAnalysis;
@@ -34,7 +34,7 @@ report 50004 "NEBJ Consumpt Tax Summary"
                 DataItemTableView = sorting("VAT Bus. Posting Group", "VAT Prod. Posting Group");
                 RequestFilterFields = "VAT Bus. Posting Group", "VAT Prod. Posting Group";
                 column(GLAccNo; "G/L Account"."No.") { }
-                column(GLAccName; AccDescription) { }
+                column(GLAccName; "G/L Account".Name) { }
                 column(GLVBPG; "VAT Bus. Posting Group") { }
                 column(GLVPPG; "VAT Prod. Posting Group") { }
                 column(NetAmt; NetAmount) { AutoFormatType = 1; }
@@ -86,8 +86,8 @@ report 50004 "NEBJ Consumpt Tax Summary"
 
     trigger OnPreReport()
     begin
-        GLFilter := copystr("G/L Account".GetFilters(), 1, MaxStrLen(GLFilter));
-        VATFilter := copystr("VAT Posting Setup".GetFilters(), 1, MaxStrLen(VATFilter));
+        GLFilter := CopyStr("G/L Account".GetFilters(), 1, MaxStrLen(GLFilter));
+        VATFilter := CopyStr("VAT Posting Setup".GetFilters(), 1, MaxStrLen(VATFilter));
     end;
 
     var

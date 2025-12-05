@@ -5439,7 +5439,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Fields!StartBalAddCurr.Value</Value>
+                                  <Value>=Code.BlankZero(Fields!StartBalAddCurr.Value)</Value>
                                   <Style>
                                     <FontStyle>Normal</FontStyle>
                                     <FontFamily>Segoe UI</FontFamily>
@@ -6761,7 +6761,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=IIF(Parameters!VATAmt_GLEntryCaption.Value &lt;&gt; "", Last(Fields!GLBalAddCurr.Value), Fields!StartBalAddCurr.Value)</Value>
+                                  <Value>=Code.BlankZero(iif(Parameters!VATAmt_GLEntryCaption.Value &lt;&gt; "", Last(Fields!GLBalAddCurr.Value), Fields!StartBalAddCurr.Value))</Value>
                                   <Style>
                                     <FontStyle>Normal</FontStyle>
                                     <FontFamily>Segoe UI</FontFamily>

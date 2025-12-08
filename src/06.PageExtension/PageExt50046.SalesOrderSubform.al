@@ -73,9 +73,9 @@ pageextension 50046 "Sales Order Subform EXT" extends "Sales Order Subform"
         TempLineStyle := 'Standard';
         QtyLineStyle := 'Standard';
 
-        //Storage Temperature = -80℃ -Yellow
+        //Storage Temperature = -80℃ 
         if (Rec.StorageTemprature = '-80℃') or (Rec.StorageTemprature = '-80') then
-            TempLineStyle := 'Ambiguous';
+            TempLineStyle := 'Attention';
 
         //Toxic-KBN = YES -Red
         if (Rec.Type = Rec.Type::Item) and ItemRec.Get(Rec."No.") then begin
@@ -83,7 +83,7 @@ pageextension 50046 "Sales Order Subform EXT" extends "Sales Order Subform"
                 NoLineStyle := 'Attention';
         end;
 
-        //Unassigned Lot -Red
+        //Unassigned Lot
         if (Rec.Type = Rec.Type::Item) and (Rec.Quantity <> 0) then begin
             AssignedQty := 0;
 

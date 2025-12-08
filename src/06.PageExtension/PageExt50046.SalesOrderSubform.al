@@ -36,13 +36,40 @@ pageextension 50046 "Sales Order Subform EXT" extends "Sales Order Subform"
             {
                 ApplicationArea = All;
                 Caption = '保管温度';
+                StyleExpr = LineStyle;
             }
             field("ExternaDocumentNo."; Rec."ExternaDocumentNo.")
             {
                 ApplicationArea = All;
                 Caption = '外部文書番号';
             }
+
         }
     }
+
+    trigger OnAfterGetRecord()
+    begin
+        SetLineStyle();
+    end;
+
+    local procedure SetLineStyle()
+    var
+        ItemRec: Record Item;
+    begin
+        LineStyle := 'Standard'; //Default
+
+        if (Rec.Type = Rec.Type::Item) and ItemRec.Get(Rec."No.") then begin
+
+            if ItemRec."Toxic-KBN" then
+                LineStyle := 'Attention';
+
+            if (Rec.StorageTemprature = '-80℃') or (Rec.StorageTemprature = '-80') then
+                LineStyle := 'Strong';
+        end;
+    end;
+
+    var
+        LineStyle: Text;
+
 }
 

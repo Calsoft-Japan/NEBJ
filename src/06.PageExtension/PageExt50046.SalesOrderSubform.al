@@ -2,6 +2,16 @@ pageextension 50046 "Sales Order Subform EXT" extends "Sales Order Subform"
 {
     layout
     {
+        modify("No.")
+        {
+            StyleExpr = NoLineStyle;
+        }
+
+        modify(Quantity)
+        {
+            StyleExpr = QtyLineStyle;
+        }
+
         addafter(ShortcutDimCode8)
         {
             field(EndUser; Rec.EndUser)
@@ -36,7 +46,7 @@ pageextension 50046 "Sales Order Subform EXT" extends "Sales Order Subform"
             {
                 ApplicationArea = All;
                 Caption = '保管温度';
-                StyleExpr = LineStyle;
+                StyleExpr = TempLineStyle;
             }
             field("ExternaDocumentNo."; Rec."ExternaDocumentNo.")
             {
@@ -55,21 +65,49 @@ pageextension 50046 "Sales Order Subform EXT" extends "Sales Order Subform"
     local procedure SetLineStyle()
     var
         ItemRec: Record Item;
+        ReservEntry: Record "Reservation Entry";
+        AssignedQty: Decimal;
     begin
-        LineStyle := 'Standard'; //Default
+        //Default
+        NoLineStyle := 'Standard';
+        TempLineStyle := 'Standard';
+        QtyLineStyle := 'Standard';
 
+        //Storage Temperature = -80℃ -Yellow
+        if (Rec.StorageTemprature = '-80℃') or (Rec.StorageTemprature = '-80') then
+            TempLineStyle := 'Ambiguous';
+
+        //Toxic-KBN = YES -Red
         if (Rec.Type = Rec.Type::Item) and ItemRec.Get(Rec."No.") then begin
-
             if ItemRec."Toxic-KBN" then
-                LineStyle := 'Attention';
+                NoLineStyle := 'Attention';
+        end;
 
-            if (Rec.StorageTemprature = '-80℃') or (Rec.StorageTemprature = '-80') then
-                LineStyle := 'Strong';
+        //Unassigned Lot -Red
+        if (Rec.Type = Rec.Type::Item) and (Rec.Quantity <> 0) then begin
+            AssignedQty := 0;
+
+            ReservEntry.Reset();
+            ReservEntry.SetRange("Source Type", DATABASE::"Sales Line");
+            ReservEntry.SetRange("Source Subtype", 1); // Sales Order
+            ReservEntry.SetRange("Source ID", Rec."Document No.");
+            ReservEntry.SetRange("Source Ref. No.", Rec."Line No.");
+            ReservEntry.SetRange("Item No.", Rec."No.");
+
+            if ReservEntry.FindSet() then
+                repeat
+                    AssignedQty += Abs(ReservEntry.Quantity);
+                until ReservEntry.Next() = 0;
+
+            if AssignedQty <> Abs(Rec.Quantity) then
+                QtyLineStyle := 'Attention';
         end;
     end;
 
     var
-        LineStyle: Text;
+        NoLineStyle: Text;
+        TempLineStyle: Text;
+        QtyLineStyle: Text;
 
 }
 

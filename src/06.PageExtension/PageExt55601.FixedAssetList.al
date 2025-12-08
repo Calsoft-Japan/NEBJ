@@ -4,7 +4,7 @@ pageextension 55600 "Fixed Asset Card Ext" extends "Fixed Asset Card"
     {
         addafter("Acquired")
         {
-            field("Acquired Date"; Rec."Acquired Date")
+            field("Acquisition Date"; Rec."Acquisition Date")
             {
                 ApplicationArea = All;
             }

@@ -4,7 +4,7 @@ pageextension 55601 "Fixed Asset List Ext" extends "Fixed Asset List"
     {
         addafter("Acquired")
         {
-            field("Acquired Date"; Rec."Acquired Date")
+            field("Acquisition Date"; Rec."Acquisition Date")
             {
                 ApplicationArea = All;
             }

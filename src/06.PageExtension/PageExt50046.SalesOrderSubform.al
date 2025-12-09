@@ -47,12 +47,6 @@ pageextension 50046 "Sales Order Subform EXT" extends "Sales Order Subform"
                 ApplicationArea = All;
                 Caption = '保管温度';
                 StyleExpr = TempLineStyle;
-
-                trigger OnValidate()
-                begin
-                    SetLineStyle();
-                    CurrPage.Update(false);
-                end;
             }
             field("ExternaDocumentNo."; Rec."ExternaDocumentNo.")
             {

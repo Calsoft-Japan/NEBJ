@@ -20,7 +20,7 @@ codeunit 50002 "Sales Enhancement"
             Message(Text50001 + '(' + Item.StorageTemp + ')');
 
         if Item."Toxic-KBN" then
-            Message(Text50002 + ' (Item No: ' + Item."No." + ')');
+            Message(Text50002);
     end;
 
 }

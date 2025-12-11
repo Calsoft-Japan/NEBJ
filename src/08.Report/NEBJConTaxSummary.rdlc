@@ -1561,14 +1561,14 @@
                   <TablixCells>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="textbox11">
+                        <Textbox Name="Textbox74">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Fields!TotalLbl.Value</Value>
+                                  <Value />
                                   <Style>
                                     <FontFamily>MS UI Gothic</FontFamily>
                                     <FontSize>9pt</FontSize>
@@ -1579,6 +1579,7 @@
                               <Style />
                             </Paragraph>
                           </Paragraphs>
+                          <rd:DefaultName>Textbox74</rd:DefaultName>
                           <Style>
                             <TopBorder>
                               <Color>Black</Color>
@@ -1969,9 +1970,10 @@
                             </Paragraph>
                           </Paragraphs>
                           <Style>
+                            <Border>
+                              <Style>None</Style>
+                            </Border>
                             <TopBorder>
-                              <Color>Black</Color>
-                              <Style>Solid</Style>
                               <Width>1pt</Width>
                             </TopBorder>
                             <VerticalAlign>Middle</VerticalAlign>
@@ -2909,7 +2911,6 @@
                             <PaddingBottom>1pt</PaddingBottom>
                           </Style>
                         </Textbox>
-                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                     <TablixCell>
@@ -2998,14 +2999,14 @@
                         </TablixMember>
                         <TablixMember>
                           <Visibility>
-                            <Hidden>=IIf(Fields!G_L_Entry__G_L_Account_No__.Value &lt;&gt; "" , False , True)</Hidden>
+                            <Hidden>=IIf(Fields!GLAccNo.Value &lt;&gt; "" , False , True)</Hidden>
                           </Visibility>
                           <KeepWithGroup>After</KeepWithGroup>
                           <KeepTogether>true</KeepTogether>
                         </TablixMember>
                         <TablixMember>
                           <Visibility>
-                            <Hidden>=IIf(Fields!G_L_Entry__G_L_Account_No__.Value &lt;&gt; "" , False , True)</Hidden>
+                            <Hidden>=IIf(Fields!GLAccNo.Value &lt;&gt; "" , False , True)</Hidden>
                           </Visibility>
                           <KeepWithGroup>After</KeepWithGroup>
                           <KeepTogether>true</KeepTogether>
@@ -3021,7 +3022,7 @@
                           <TablixMembers>
                             <TablixMember>
                               <Visibility>
-                                <Hidden>=IIf(Fields!G_L_Entry__G_L_Account_No__.Value &lt;&gt; "" , False , True)</Hidden>
+                                <Hidden>=IIf(Fields!GLAccNo.Value &lt;&gt; "" , False , True)</Hidden>
                               </Visibility>
                               <KeepWithGroup>Before</KeepWithGroup>
                               <KeepTogether>true</KeepTogether>
@@ -3642,7 +3643,7 @@
                   <TablixMembers>
                     <TablixMember>
                       <Visibility>
-                        <Hidden>=IIf(Fields!TotalBuffer__Gen__Posting_Type_.Value &lt;&gt; "" , False , True)</Hidden>
+                        <Hidden>=IIf(Fields!GenPostType.Value &lt;&gt; "" , False , True)</Hidden>
                       </Visibility>
                     </TablixMember>
                   </TablixMembers>

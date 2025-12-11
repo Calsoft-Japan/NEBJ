@@ -11,7 +11,8 @@ report 50004 "NEBJ Consum. Tax Summary"
     {
         dataitem("G/L Entry"; "G/L Entry")
         {
-            DataItemTableView = sorting("Posting Date", "G/L Account No.") where("Gen. Posting Type" = filter(Purchase | Sale));
+            DataItemTableView = sorting("Gen. Posting Type", "VAT Bus. Posting Group", "VAT Prod. Posting Group", "G/L Account No.", "Posting Date")
+                                where("Gen. Posting Type" = filter(Purchase | Sale));
             RequestFilterFields = "Posting Date";
             column(RepCapLbl; RepCapLbl) { }
             column(PageCapLbl; PageCapLbl) { }
@@ -46,8 +47,6 @@ report 50004 "NEBJ Consum. Tax Summary"
             begin
                 if GLAccount.Get("G/L Account No.") then;
                 if VATPostSetup.Get("VAT Bus. Posting Group", "VAT Prod. Posting Group") then;
-                //if "VAT Prod. Posting Group" = 'NOVAT' then begin
-                //end;
             end;
         }
     }
@@ -59,7 +58,7 @@ report 50004 "NEBJ Consum. Tax Summary"
 
     trigger OnPreReport()
     begin
-        DateFilter := CopyStr("G/L Entry".GetFilters(), 1, MaxStrLen(DateFilter));
+        DateFilter := "G/L Entry".GetFilter("Posting Date");
     end;
 
     var

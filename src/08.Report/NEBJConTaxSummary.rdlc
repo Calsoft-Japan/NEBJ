@@ -4044,9 +4044,6 @@ End Function</Code>
         <Field Name="VATPostGrps">
           <DataField>VATPostGrps</DataField>
         </Field>
-        <Field Name="GLPostType">
-          <DataField>GLPostType</DataField>
-        </Field>
         <Field Name="GLAccNo">
           <DataField>GLAccNo</DataField>
         </Field>

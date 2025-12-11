@@ -38,15 +38,40 @@ report 50004 "NEBJ Consum. Tax Summary"
             column(VATPostGrps; '(' + "VAT Bus. Posting Group" + '/' + "VAT Prod. Posting Group" + ')') { }
             column(GLAccNo; "G/L Account No.") { }
             column(GLAccName; GLAccount.Name) { }
-            column(TotAmount; Amount + "VAT Amount") { AutoFormatType = 1; }
+            column(TotAmount; TotAmt) { AutoFormatType = 1; }
             column(NonTaxAmt; NonTaxAmt) { AutoFormatType = 1; }
-            column(AmtIncVAT; Amount + "VAT Amount") { AutoFormatType = 1; }
-            column(AmtExclVAT; Amount) { AutoFormatType = 1; }
-            column(VATAmount; "VAT Amount") { AutoFormatType = 1; }
+            column(AmtIncVAT; AmtIncVAT) { AutoFormatType = 1; }
+            column(AmtExclVAT; AmtExclVAT) { AutoFormatType = 1; }
+            column(VATAmount; VATAmt) { AutoFormatType = 1; }
+            column(SumIncVAT; SumIncVAT) { AutoFormatType = 1; }
+            column(SumExclVAT; SumExclVAT) { AutoFormatType = 1; }
+            column(SumVATAmt; SumVATAmt) { AutoFormatType = 1; }
             trigger OnAfterGetRecord()
             begin
                 if GLAccount.Get("G/L Account No.") then;
                 if VATPostSetup.Get("VAT Bus. Posting Group", "VAT Prod. Posting Group") then;
+                if VATPostSetup."VAT %" = 0 then begin
+                    TotAmt := Amount;
+                    NonTaxAmt := Amount;
+                    SumIncVAT := Amount;
+                    SumExclVAT := Amount;
+                    SumVATAmt := 0;
+                    AmtExclVAT := 0;
+                    VATAmt := 0;
+                    AmtIncVAT := 0;
+                end else begin
+                    NonTaxAmt := 0;
+                    AmtExclVAT := Amount;
+                    VATAmt := "VAT Amount";
+                    if VATPostSetup."VAT %" = 100 then
+                        AmtIncVAT := Amount
+                    else
+                        AmtIncVAT := Amount + "VAT Amount";
+                    TotAmt := AmtIncVAT;
+                    SumIncVAT := AmtIncVAT;
+                    SumExclVAT := AmtExclVAT;
+                    SumVATAmt := VATAmt;
+                end;
             end;
         }
     }
@@ -54,6 +79,14 @@ report 50004 "NEBJ Consum. Tax Summary"
     trigger OnInitReport()
     begin
         GLSetup.Get();
+        TotAmt := 0;
+        NonTaxAmt := 0;
+        AmtExclVAT := 0;
+        AmtIncVAT := 0;
+        VATAmt := 0;
+        SumIncVAT := 0;
+        SumExclVAT := 0;
+        SumVATAmt := 0;
     end;
 
     trigger OnPreReport()
@@ -66,13 +99,14 @@ report 50004 "NEBJ Consum. Tax Summary"
         GLSetup: Record "General Ledger Setup";
         VATPostSetup: Record "VAT Posting Setup";
         DateFilter: Text[250];
-        VATSetupTxt: Text[250];
         TotAmt: Decimal;
         NonTaxAmt: Decimal;
         AmtIncVAT: Decimal;
         AmtExclVAT: Decimal;
-        VATAmount: Decimal;
-        DontPrint: Boolean;
+        VATAmt: Decimal;
+        SumIncVAT: Decimal;
+        SumExclVAT: Decimal;
+        SumVATAmt: Decimal;
         RepCapLbl: label 'Consumption Tax Report';
         PageCapLbl: label 'Page';
         OutDateLbl: Label 'Output Date';
@@ -81,7 +115,6 @@ report 50004 "NEBJ Consum. Tax Summary"
         VATIdfLbl: Label 'VAT Identifier';
         AccNoLbl: label 'Account No.';
         AccNameLbl: label 'Account Name';
-        VatGroupLbl: label 'VAT Posting Setup';
         TotAmtLbl: Label 'Total Amount';
         NonTaxAmtLbl: label 'Amt. Without Tax';
         AmtIncVATLbl: Label 'Amtount Inc. VAT';

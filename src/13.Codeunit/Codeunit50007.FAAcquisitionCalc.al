@@ -19,6 +19,8 @@ codeunit 50007 "FA Acquisition Calc"
         // 取得価額（Acquisition Cost）のみ対象
         FALedger.Reset();
         FALedger.SetRange("FA No.", FANo);
+        FALedger.SetRange("Depreciation Book Code", 'DEFAULT');
+        FALedger.SetRange("FA Posting Category", 0);
         FALedger.SetRange(
             "FA Posting Type",
             FALedger."FA Posting Type"::"Acquisition Cost");

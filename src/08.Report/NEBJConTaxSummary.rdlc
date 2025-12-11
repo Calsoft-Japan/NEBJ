@@ -3359,6 +3359,7 @@
                             <PaddingBottom>2pt</PaddingBottom>
                           </Style>
                         </Textbox>
+                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                     <TablixCell>
@@ -3469,7 +3470,6 @@
                             <PaddingBottom>2pt</PaddingBottom>
                           </Style>
                         </Textbox>
-                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                     <TablixCell>
@@ -3647,6 +3647,14 @@
                     </GroupExpressions>
                     <DataElementName>Detail</DataElementName>
                   </Group>
+                  <SortExpressions>
+                    <SortExpression>
+                      <Value>=Fields!GenPostType.Value</Value>
+                    </SortExpression>
+                    <SortExpression>
+                      <Value>=Fields!VATPerTxt.Value</Value>
+                    </SortExpression>
+                  </SortExpressions>
                   <TablixMembers>
                     <TablixMember>
                       <Visibility>

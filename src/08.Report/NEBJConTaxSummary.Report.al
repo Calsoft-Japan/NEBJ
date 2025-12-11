@@ -113,11 +113,11 @@ report 50004 "NEBJ Consum. Tax Summary"
         PeriodLbl: Label 'Period';
         PostTypeLbl: Label 'Gen. Posting Type';
         VATIdfLbl: Label 'VAT Identifier';
-        AccNoLbl: label 'Account No.';
-        AccNameLbl: label 'Account Name';
+        AccNoLbl: label 'G/L Account No.';
+        AccNameLbl: label 'G/L Account Name';
         TotAmtLbl: Label 'Total Amount';
-        NonTaxAmtLbl: label 'Amt. Without Tax';
-        AmtIncVATLbl: Label 'Amtount Inc. VAT';
+        NonTaxAmtLbl: label 'Amount without Tax';
+        AmtIncVATLbl: Label 'Amount Inc. VAT';
         AmtExclVATLbl: Label 'Amount Excl. VAT';
         VATAmountLbl: Label 'VAT Amount';
         TotalLbl: Label 'Total';

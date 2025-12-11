@@ -1059,113 +1059,113 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Report Import Goods Rcpt. Insp. Data - Control ReqBatchName - Property Caption</note>
         </trans-unit>
-        <trans-unit id="Report 4214942889 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Consumption Tax Summary</source>
-          <target>G/L勘定別消費税</target>
+        <trans-unit id="Report 411697655 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Consumption Tax Report</source>
+          <target>消費税科目明細書</target> 
           <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Report NEBJ Consumpt Tax Summary - Property Caption</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report NEBJ Consum. Tax Summary - Property Caption</note>
         </trans-unit>
-        <trans-unit id="Report 4214942889 - NamedType 1253499852" size-unit="char" translate="yes" xml:space="preserve">
-          <source>No.</source>
-          <target>番号</target>
+        <trans-unit id="Report 411697655 - NamedType 3708428512" size-unit="char" translate="yes" xml:space="preserve">
+          <source>G/L Account Name</source>
+          <target>勘定科目名称</target>
           <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Report NEBJ Consumpt Tax Summary - NamedType AccNoCapLbl</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report NEBJ Consum. Tax Summary - NamedType AccNameLbl</note>
         </trans-unit>
-        <trans-unit id="Report 4214942889 - NamedType 3563781846" size-unit="char" translate="yes" xml:space="preserve">
-          <source>G/L Account</source>
-          <target>G/L勘定</target>
+        <trans-unit id="Report 411697655 - NamedType 2511815438" size-unit="char" translate="yes" xml:space="preserve">
+          <source>G/L Account No.</source>
+          <target>勘定科目名称</target>
           <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Report NEBJ Consumpt Tax Summary - NamedType GLAccCapLbl</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report NEBJ Consum. Tax Summary - NamedType AccNoLbl</note>
         </trans-unit>
-        <trans-unit id="Report 4214942889 - NamedType 549069817" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Name</source>
-          <target>名前</target>
+        <trans-unit id="Report 411697655 - NamedType 2806941620" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Actual VAT %</source>
+          <target>実際消費税率</target>
           <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Report NEBJ Consumpt Tax Summary - NamedType NameCapLbl</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report NEBJ Consum. Tax Summary - NamedType ActVATPerLbl</note>
         </trans-unit>
-        <trans-unit id="Report 4214942889 - NamedType 3348704607" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Net Amount</source>
-          <target>総額</target>
+        <trans-unit id="Report 411697655 - NamedType 1732669797" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Amount Excl. VAT</source>
+          <target>税抜金額</target>
           <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Report NEBJ Consumpt Tax Summary - NamedType NetAmtLbl</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report NEBJ Consum. Tax Summary - NamedType AmtExclVATLbl</note>
         </trans-unit>
-        <trans-unit id="Report 4214942889 - NamedType 1771911484" size-unit="char" translate="yes" xml:space="preserve">
-          <source>NonTax Amt.</source>
-          <target>非課税金額</target>
+        <trans-unit id="Report 411697655 - NamedType 2132182343" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Amount Inc. VAT</source>
+          <target>消費税込金額</target>
           <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Report NEBJ Consumpt Tax Summary - NamedType NonTaxAmtLbl</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report NEBJ Consum. Tax Summary - NamedType AmtIncVATLbl</note>
         </trans-unit>
-        <trans-unit id="Report 4214942889 - NamedType 558298653" size-unit="char" translate="yes" xml:space="preserve">
+        <trans-unit id="Report 411697655 - NamedType 1771911484" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Amount without Tax</source>
+          <target>非/不課税金額</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report NEBJ Consum. Tax Summary - NamedType NonTaxAmtLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 411697655 - NamedType 3436496852" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Output Date</source>
+          <target>出力日</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report NEBJ Consum. Tax Summary - NamedType OutDateLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 411697655 - NamedType 558298653" size-unit="char" translate="yes" xml:space="preserve">
           <source>Page</source>
           <target>ページ</target>
           <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Report NEBJ Consumpt Tax Summary - NamedType PageCapLbl</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report NEBJ Consum. Tax Summary - NamedType PageCapLbl</note>
         </trans-unit>
-        <trans-unit id="Report 4214942889 - NamedType 576909742" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Rate</source>
-          <target>税率</target>
+        <trans-unit id="Report 411697655 - NamedType 894566561" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Period</source>
+          <target>集計期間</target>
           <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Report NEBJ Consumpt Tax Summary - NamedType RateCapLbl</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report NEBJ Consum. Tax Summary - NamedType PeriodLbl</note>
         </trans-unit>
-        <trans-unit id="Report 4214942889 - NamedType 954826001" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Consumption Tax Sheet</source>
-          <target>消費税ワークシート</target>
+        <trans-unit id="Report 411697655 - NamedType 1262848614" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Gen. Posting Type</source>
+          <target>一般転記タイプ</target>
           <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Report NEBJ Consumpt Tax Summary - NamedType RepCapLbl</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report NEBJ Consum. Tax Summary - NamedType PostTypeLbl</note>
         </trans-unit>
-        <trans-unit id="Report 4214942889 - NamedType 3714566352" size-unit="char" translate="yes" xml:space="preserve">
-          <source>SaleRcvdCTax</source>
-          <target>仮受消費税</target>
+        <trans-unit id="Report 411697655 - NamedType 954826001" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Consumption Tax Report</source>
+          <target>消費税科目明細書</target>
           <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Report NEBJ Consumpt Tax Summary - NamedType SaleRcvdCTaxLbl</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report NEBJ Consum. Tax Summary - NamedType RepCapLbl</note>
         </trans-unit>
-        <trans-unit id="Report 4214942889 - NamedType 2188781231" size-unit="char" translate="yes" xml:space="preserve">
-          <source>SuspPaidCTax</source>
-          <target>仮払消費税</target>
+        <trans-unit id="Report 411697655 - NamedType 2410138484" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Total</source>
+          <target>合計</target>
           <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Report NEBJ Consumpt Tax Summary - NamedType SusPaidCTaxLbl</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report NEBJ Consum. Tax Summary - NamedType TotalLbl</note>
         </trans-unit>
-        <trans-unit id="Report 4214942889 - NamedType 2800284753" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Tax Amt.</source>
-          <target>課税金額</target>
+        <trans-unit id="Report 411697655 - NamedType 2595174359" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Total Tax</source>
+          <target>消費税合計</target>
           <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Report NEBJ Consumpt Tax Summary - NamedType TaxAmtLbl</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report NEBJ Consum. Tax Summary - NamedType TotalTaxLbl</note>
         </trans-unit>
-        <trans-unit id="Report 4214942889 - NamedType 2256561066" size-unit="char" translate="yes" xml:space="preserve">
-          <source>VAT Posting Setup</source>
-          <target>消費税転記セットアップ</target>
+        <trans-unit id="Report 411697655 - NamedType 4161863951" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Total Amount</source>
+          <target>合計金額</target>
           <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Report NEBJ Consumpt Tax Summary - NamedType VatGroupLbl</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report NEBJ Consum. Tax Summary - NamedType TotAmtLbl</note>
         </trans-unit>
-        <trans-unit id="Report 4214942889 - NamedType 3156033685" size-unit="char" translate="yes" xml:space="preserve">
-          <source>B U S</source>
-          <target>ビ 転 グ</target>
+        <trans-unit id="Report 411697655 - NamedType 301924975" size-unit="char" translate="yes" xml:space="preserve">
+          <source>VAT Amount</source>
+          <target>消費税額</target> 
           <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Report NEBJ Consumpt Tax Summary - NamedType VBPGCapLbl</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report NEBJ Consum. Tax Summary - NamedType VATAmountLbl</note>
         </trans-unit>
-        <trans-unit id="Report 4214942889 - NamedType 2230234003" size-unit="char" translate="yes" xml:space="preserve">
-          <source>P R O</source>
-          <target>製 品</target>
+        <trans-unit id="Report 411697655 - NamedType 2998943430" size-unit="char" translate="yes" xml:space="preserve">
+          <source>VAT Identifier</source>
+          <target>消費税ID</target>
           <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Report NEBJ Consumpt Tax Summary - NamedType VPPGCapLbl</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report NEBJ Consum. Tax Summary - NamedType VATIdfLbl</note>
         </trans-unit>
-        <trans-unit id="Report 4214942889 - Control 2346885236 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Options</source>
-          <target>オプション</target>
+        <trans-unit id="Report 411697655 - NamedType 3651659586" size-unit="char" translate="yes" xml:space="preserve">
+          <source>VAT %</source>
+          <target></target>
           <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Report NEBJ Consumpt Tax Summary - Control Options - Property Caption</note>
-        </trans-unit>
-        <trans-unit id="Report 4214942889 - Control 2639081700 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Specifies for exclude zero lines</source>
-          <target>Specifies for Exclude Zero Lines</target>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Report NEBJ Consumpt Tax Summary - Control DontPrint - Property ToolTip</note>
-        </trans-unit>
-        <trans-unit id="Report 4214942889 - Control 2639081700 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>No Zero Lines</source>
-          <target>0金額非表示</target>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Report NEBJ Consumpt Tax Summary - Control DontPrint - Property Caption</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report NEBJ Consum. Tax Summary - NamedType VATPerLbl</note>
         </trans-unit>
         <trans-unit id="Report 3766024618 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>NEBJ Detail Trial Balance</source>

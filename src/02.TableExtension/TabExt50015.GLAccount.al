@@ -23,7 +23,7 @@ tableextension 50015 "G/L Account Ext" extends "G/L Account"
             FieldClass = FlowFilter;
             TableRelation = "VAT Product Posting Group".Code;
         }
-        field(50007; "Tax Amount"; Decimal) //For NEBJ Consumption Tax Report
+        field(50007; "Amt. Inc. VAT"; Decimal) //For NEBJ Consumption Tax Report
         {
             Caption = 'Tax Amoumt';
             FieldClass = FlowField;
@@ -34,16 +34,16 @@ tableextension 50015 "G/L Account Ext" extends "G/L Account"
         }
         field(50008; "VAT Amount"; Decimal) //For NEBJ Consumption Tax Report
         {
-            Caption = 'VAT Amount (for Tax)';
+            Caption = 'VAT Amount';
             FieldClass = FlowField;
             CalcFormula = sum("G/L Entry"."VAT Amount" where("G/L Account No." = field("No."), "G/L Account No." = field(filter(Totaling)),
                               "Gen. Posting Type" = field("Gen. Posting Type Filter"), "VAT Bus. Posting Group" = field("VAT BPG Filter"),
                               "VAT Prod. Posting Group" = field("VAT PPG Filter"), "Global Dimension 1 Code" = field("Global Dimension 1 Filter"),
                               "Global Dimension 2 Code" = field("Global Dimension 2 Filter"), "Posting Date" = field("Date Filter")));
         }
-        field(50009; "NonTax Amount"; Decimal) //For NEBJ Consumption Tax Report
+        field(50009; "Amt. Excl. VAT"; Decimal) //For NEBJ Consumption Tax Report
         {
-            Caption = 'Non Amount (for Tax)';
+            Caption = 'NonTax Amount';
             FieldClass = FlowField;
             CalcFormula = sum("G/L Entry".Amount where("G/L Account No." = field("No."), "G/L Account No." = field(filter(Totaling)),
                               "Gen. Posting Type" = field("Gen. Posting Type Filter"), "VAT Bus. Posting Group" = field("VAT BPG Filter"),

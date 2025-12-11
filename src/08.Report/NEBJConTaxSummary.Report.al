@@ -33,6 +33,7 @@ report 50004 "NEBJ Consum. Tax Summary"
             {
                 DataItemTableView = sorting("VAT Bus. Posting Group", "VAT Prod. Posting Group");
                 RequestFilterFields = "VAT Bus. Posting Group", "VAT Prod. Posting Group";
+                column(GLPostType; "G/L Account"."Gen. Posting Type") { }
                 column(GLAccNo; "G/L Account"."No.") { }
                 column(GLAccName; "G/L Account".Name) { }
                 column(GLVBPG; "VAT Bus. Posting Group") { }
@@ -127,21 +128,21 @@ report 50004 "NEBJ Consum. Tax Summary"
         PurchTaxAmt := 0;
 
         "G/L Account".SetRange("Gen. Posting Type Filter");
-        "G/L Account".CalcFields("Tax Amount");
-        NetAmount := "G/L Account"."Tax Amount";
+        "G/L Account".CalcFields("Amt. Inc. VAT");
+        NetAmount := "G/L Account"."Amt. Inc. VAT";
 
         "G/L Account".SetRange("Gen. Posting Type Filter", "G/L Account"."Gen. Posting Type Filter"::" ");
-        "G/L Account".CalcFields("NonTax Amount", "VAT Amount");
-        NonTaxAmt += "G/L Account"."NonTax Amount";
+        "G/L Account".CalcFields("Amt. Excl. VAT", "VAT Amount");
+        NonTaxAmt += "G/L Account"."Amt. Excl. VAT";
 
         "G/L Account".SetRange("Gen. Posting Type Filter", "G/L Account"."Gen. Posting Type Filter"::Sale);
-        "G/L Account".CalcFields("NonTax Amount", "VAT Amount");
-        NonTaxAmt += "G/L Account"."NonTax Amount";
+        "G/L Account".CalcFields("Amt. Excl. VAT", "VAT Amount");
+        NonTaxAmt += "G/L Account"."Amt. Excl. VAT";
         SaleTaxAmt := "G/L Account"."VAT Amount";
 
         "G/L Account".SetRange("Gen. Posting Type Filter", "G/L Account"."Gen. Posting Type Filter"::Purchase);
-        "G/L Account".CalcFields("NonTax Amount", "VAT Amount");
-        NonTaxAmt += "G/L Account"."NonTax Amount";
+        "G/L Account".CalcFields("Amt. Excl. VAT", "VAT Amount");
+        NonTaxAmt += "G/L Account"."Amt. Excl. VAT";
         PurchTaxAmt := "G/L Account"."VAT Amount";
 
         PurchTaxAmt := AmountRounding(PurchTaxAmt);

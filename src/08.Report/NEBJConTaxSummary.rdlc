@@ -3363,14 +3363,14 @@
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="Textbox50">
+                        <Textbox Name="VATPerTxt">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value />
+                                  <Value>=Fields!VATPerTxt.Value</Value>
                                   <Style>
                                     <FontFamily>MS UI Gothic</FontFamily>
                                     <FontSize>9pt</FontSize>
@@ -3382,7 +3382,7 @@
                               </Style>
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>Textbox50</rd:DefaultName>
+                          <rd:DefaultName>VATPerTxt</rd:DefaultName>
                           <Style>
                             <Border>
                               <Style>Solid</Style>
@@ -3444,10 +3444,11 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value />
+                                  <Value>=Sum(Fields!AmtIncVAT.Value)</Value>
                                   <Style>
                                     <FontFamily>MS UI Gothic</FontFamily>
                                     <FontSize>9pt</FontSize>
+                                    <Format>=Fields!AmtIncVATFormat.Value</Format>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -3468,6 +3469,7 @@
                             <PaddingBottom>2pt</PaddingBottom>
                           </Style>
                         </Textbox>
+                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                     <TablixCell>
@@ -3479,10 +3481,11 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value />
+                                  <Value>=Sum(Fields!AmtExclVAT.Value)</Value>
                                   <Style>
                                     <FontFamily>MS UI Gothic</FontFamily>
                                     <FontSize>9pt</FontSize>
+                                    <Format>=Fields!AmtExclVATFormat.Value</Format>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -3514,10 +3517,11 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value />
+                                  <Value>=Sum(Fields!VATAmount.Value)</Value>
                                   <Style>
                                     <FontFamily>MS UI Gothic</FontFamily>
                                     <FontSize>9pt</FontSize>
+                                    <Format>=Fields!VATAmountFormat.Value</Format>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -3542,14 +3546,14 @@
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="Textbox71">
+                        <Textbox Name="VATPerTxt1">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value />
+                                  <Value>=Fields!VATPerTxt.Value</Value>
                                   <Style>
                                     <FontFamily>MS UI Gothic</FontFamily>
                                     <FontSize>9pt</FontSize>
@@ -3561,7 +3565,7 @@
                               </Style>
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>Textbox71</rd:DefaultName>
+                          <rd:DefaultName>VATPerTxt1</rd:DefaultName>
                           <Style>
                             <Border>
                               <Style>Solid</Style>
@@ -3633,11 +3637,14 @@
             <TablixRowHierarchy>
               <TablixMembers>
                 <TablixMember>
-                  <KeepWithGroup>After</KeepWithGroup>
                   <KeepTogether>true</KeepTogether>
                 </TablixMember>
                 <TablixMember>
                   <Group Name="VATSummary">
+                    <GroupExpressions>
+                      <GroupExpression>=Fields!GenPostType.Value</GroupExpression>
+                      <GroupExpression>=Fields!VATPerTxt.Value</GroupExpression>
+                    </GroupExpressions>
                     <DataElementName>Detail</DataElementName>
                   </Group>
                   <TablixMembers>
@@ -3658,9 +3665,6 @@
             <Height>1.48148cm</Height>
             <Width>21.89304cm</Width>
             <ZIndex>2</ZIndex>
-            <Visibility>
-              <Hidden>true</Hidden>
-            </Visibility>
             <DataElementOutput>NoOutput</DataElementOutput>
             <Style>
               <Border>

@@ -11,7 +11,7 @@
       <am:Name>MSRB</am:Name>
       <am:Version>15.1.30001.02</am:Version>
     </am:UpdatedBy>
-    <am:LastModifiedTimestamp>2025-12-04T01:28:39.4114614Z</am:LastModifiedTimestamp>
+    <am:LastModifiedTimestamp>2025-12-11T01:03:42.3402584Z</am:LastModifiedTimestamp>
   </am:AuthoringMetadata>
   <AutoRefresh>0</AutoRefresh>
   <DataSources>
@@ -199,7 +199,7 @@
                   <Paragraph>
                     <TextRuns>
                       <TextRun>
-                        <Value>=Fields!BillToName.Value + "　" + "　御中"</Value>
+                        <Value>=Fields!BillToName.Value + Fields!BillToName2.Value + "　" + "　御中"</Value>
                         <Style>
                           <FontFamily>MS UI Gothic</FontFamily>
                           <FontSize>14pt</FontSize>
@@ -1234,9 +1234,17 @@
                                 <Paragraph>
                                   <TextRuns>
                                     <TextRun>
-                                      <Value>=IIF(Fields!CurrencyCode.Value &lt;&gt; "" AND Fields!CurrencyCode.Value &lt;&gt; "JPY" AND Fields!LineDisc_SalesLine.Value = 0 AND (Fields!SalesLineAmtExclVATAmount.Value - Fields!SalesLineAmtAfterLineDisc.Value) = 0,
-     FormatNumber(-1 * Fields!UnitPrice_SalesLine.Value, 2),
-     FormatNumber(-1 * Fields!UnitPrice_SalesLine.Value, 0))</Value>
+                                      <Value>=IIF(
+    Fields!CurrencyCode.Value &lt;&gt; "" 
+    AND Fields!CurrencyCode.Value &lt;&gt; "JPY"
+    AND Fields!LineDisc_SalesLine.Value = 0
+    AND (Fields!SalesLineAmtExclVATAmount.Value - Fields!SalesLineAmtAfterLineDisc.Value) = 0,
+    FormatNumber(0, 2),
+    FormatNumber(
+        -1 * Fields!UnitPrice_SalesLine.Value,
+        IIF(Fields!CurrencyCode.Value = "JPY", 0, 2)
+    )
+)</Value>
                                       <Style>
                                         <FontFamily>MS UI Gothic</FontFamily>
                                         <FontSize>9pt</FontSize>
@@ -1306,7 +1314,10 @@
                                 <Paragraph>
                                   <TextRuns>
                                     <TextRun>
-                                      <Value>=Fields!NetUnitPrice.Value</Value>
+                                      <Value>=FormatNumber(
+    -1 * Fields!NetUnitPrice.Value,
+    IIF(Fields!CurrencyCode.Value = "JPY", 0, 2)
+)</Value>
                                       <Style>
                                         <FontFamily>MS UI Gothic</FontFamily>
                                         <FontSize>9pt</FontSize>
@@ -1342,16 +1353,16 @@
                                   <TextRuns>
                                     <TextRun>
                                       <Value>=IIF(
-    Fields!CurrencyCode.Value&lt;&gt;"" AND 
-    Fields!CurrencyCode.Value&lt;&gt;"JPY" AND 
-    Fields!LineDisc_SalesLine.Value=0 AND
-    (Fields!SalesLineAmtExclVATAmount.Value - Fields!SalesLineAmtAfterLineDisc.Value)=0,
+    Fields!CurrencyCode.Value &lt;&gt; "" 
+    AND Fields!CurrencyCode.Value &lt;&gt; "JPY"
+    AND Fields!LineDisc_SalesLine.Value = 0
+    AND (Fields!SalesLineAmtExclVATAmount.Value - Fields!SalesLineAmtAfterLineDisc.Value) = 0,
 
-    "0",
+    FormatNumber(0, 2),
 
     FormatNumber(
         -1 * (Fields!SalesLineAmtExclVATAmount.Value - Fields!SalesLineAmtAfterLineDisc.Value),
-        0
+        IIF(Fields!CurrencyCode.Value = "JPY", 0, 2)
     )
 )</Value>
                                       <Style>
@@ -1388,7 +1399,19 @@
                                 <Paragraph>
                                   <TextRuns>
                                     <TextRun>
-                                      <Value>=IIF(Fields!CurrencyCode.Value &lt;&gt; "" AND Fields!CurrencyCode.Value &lt;&gt; "JPY" AND Fields!LineDisc_SalesLine.Value = 0 AND Fields!VATAmount_Line.Value = 0, FormatNumber(-1 * Fields!SalesLineLineAmt.Value, 2), FormatNumber(-1 * Fields!SalesLineLineAmt.Value, 0))</Value>
+                                      <Value>=IIF(
+    Fields!CurrencyCode.Value &lt;&gt; ""
+    AND Fields!CurrencyCode.Value &lt;&gt; "JPY"
+    AND Fields!LineDisc_SalesLine.Value = 0
+    AND Fields!VATAmount_Line.Value = 0,
+
+    FormatNumber(0, 2),
+
+    FormatNumber(
+        -1 * Fields!SalesLineLineAmt.Value,
+        IIF(Fields!CurrencyCode.Value = "JPY", 0, 2)
+    )
+)</Value>
                                       <Style>
                                         <FontFamily>MS UI Gothic</FontFamily>
                                         <FontSize>9pt</FontSize>
@@ -2169,7 +2192,7 @@ CStr(Fields!EU_Division_3.Value)</Value>
                       </TablixCells>
                     </TablixRow>
                     <TablixRow>
-                      <Height>0.473cm</Height>
+                      <Height>0.51533cm</Height>
                       <TablixCells>
                         <TablixCell>
                           <CellContents>
@@ -2192,14 +2215,7 @@ CStr(Fields!EU_Division_3.Value)</Value>
                                 </Paragraph>
                               </Paragraphs>
                               <Style>
-                                <Border>
-                                  <Color>White</Color>
-                                  <Style>None</Style>
-                                </Border>
-                                <BottomBorder>
-                                  <Style>Solid</Style>
-                                  <Width>1pt</Width>
-                                </BottomBorder>
+                                <Border />
                                 <PaddingLeft>2pt</PaddingLeft>
                                 <PaddingRight>2pt</PaddingRight>
                                 <PaddingTop>2pt</PaddingTop>
@@ -2229,14 +2245,7 @@ CStr(Fields!EU_Division_3.Value)</Value>
                                 </Paragraph>
                               </Paragraphs>
                               <Style>
-                                <Border>
-                                  <Color>White</Color>
-                                  <Style>None</Style>
-                                </Border>
-                                <BottomBorder>
-                                  <Style>Solid</Style>
-                                  <Width>1pt</Width>
-                                </BottomBorder>
+                                <Border />
                                 <PaddingLeft>2pt</PaddingLeft>
                                 <PaddingRight>2pt</PaddingRight>
                                 <PaddingTop>2pt</PaddingTop>
@@ -2268,14 +2277,7 @@ CStr(Fields!EU_Division_3.Value)</Value>
                                 </Paragraph>
                               </Paragraphs>
                               <Style>
-                                <Border>
-                                  <Color>White</Color>
-                                  <Style>None</Style>
-                                </Border>
-                                <BottomBorder>
-                                  <Style>Solid</Style>
-                                  <Width>1pt</Width>
-                                </BottomBorder>
+                                <Border />
                                 <PaddingLeft>2pt</PaddingLeft>
                                 <PaddingRight>2pt</PaddingRight>
                                 <PaddingTop>2pt</PaddingTop>
@@ -2307,14 +2309,7 @@ CStr(Fields!EU_Division_3.Value)</Value>
                                 </Paragraph>
                               </Paragraphs>
                               <Style>
-                                <Border>
-                                  <Color>White</Color>
-                                  <Style>None</Style>
-                                </Border>
-                                <BottomBorder>
-                                  <Style>Solid</Style>
-                                  <Width>1pt</Width>
-                                </BottomBorder>
+                                <Border />
                                 <PaddingLeft>2pt</PaddingLeft>
                                 <PaddingRight>2pt</PaddingRight>
                                 <PaddingTop>2pt</PaddingTop>
@@ -2346,14 +2341,7 @@ CStr(Fields!EU_Division_3.Value)</Value>
                                 </Paragraph>
                               </Paragraphs>
                               <Style>
-                                <Border>
-                                  <Color>White</Color>
-                                  <Style>None</Style>
-                                </Border>
-                                <BottomBorder>
-                                  <Style>Solid</Style>
-                                  <Width>1pt</Width>
-                                </BottomBorder>
+                                <Border />
                                 <PaddingLeft>2pt</PaddingLeft>
                                 <PaddingRight>2pt</PaddingRight>
                                 <PaddingTop>2pt</PaddingTop>
@@ -2385,14 +2373,7 @@ CStr(Fields!EU_Division_3.Value)</Value>
                                 </Paragraph>
                               </Paragraphs>
                               <Style>
-                                <Border>
-                                  <Color>White</Color>
-                                  <Style>None</Style>
-                                </Border>
-                                <BottomBorder>
-                                  <Style>Solid</Style>
-                                  <Width>1pt</Width>
-                                </BottomBorder>
+                                <Border />
                                 <PaddingLeft>2pt</PaddingLeft>
                                 <PaddingRight>2pt</PaddingRight>
                                 <PaddingTop>2pt</PaddingTop>
@@ -2424,14 +2405,7 @@ CStr(Fields!EU_Division_3.Value)</Value>
                                 </Paragraph>
                               </Paragraphs>
                               <Style>
-                                <Border>
-                                  <Color>White</Color>
-                                  <Style>None</Style>
-                                </Border>
-                                <BottomBorder>
-                                  <Style>Solid</Style>
-                                  <Width>1pt</Width>
-                                </BottomBorder>
+                                <Border />
                                 <PaddingLeft>2pt</PaddingLeft>
                                 <PaddingRight>2pt</PaddingRight>
                                 <PaddingTop>2pt</PaddingTop>
@@ -2463,14 +2437,7 @@ CStr(Fields!EU_Division_3.Value)</Value>
                                 </Paragraph>
                               </Paragraphs>
                               <Style>
-                                <Border>
-                                  <Color>White</Color>
-                                  <Style>None</Style>
-                                </Border>
-                                <BottomBorder>
-                                  <Style>Solid</Style>
-                                  <Width>1pt</Width>
-                                </BottomBorder>
+                                <Border />
                                 <PaddingLeft>2pt</PaddingLeft>
                                 <PaddingRight>2pt</PaddingRight>
                                 <PaddingTop>2pt</PaddingTop>
@@ -2502,14 +2469,7 @@ CStr(Fields!EU_Division_3.Value)</Value>
                                 </Paragraph>
                               </Paragraphs>
                               <Style>
-                                <Border>
-                                  <Color>White</Color>
-                                  <Style>None</Style>
-                                </Border>
-                                <BottomBorder>
-                                  <Style>Solid</Style>
-                                  <Width>1pt</Width>
-                                </BottomBorder>
+                                <Border />
                                 <PaddingLeft>2pt</PaddingLeft>
                                 <PaddingRight>2pt</PaddingRight>
                                 <PaddingTop>2pt</PaddingTop>
@@ -2541,14 +2501,7 @@ CStr(Fields!EU_Division_3.Value)</Value>
                                 </Paragraph>
                               </Paragraphs>
                               <Style>
-                                <Border>
-                                  <Color>White</Color>
-                                  <Style>None</Style>
-                                </Border>
-                                <BottomBorder>
-                                  <Style>Solid</Style>
-                                  <Width>1pt</Width>
-                                </BottomBorder>
+                                <Border />
                                 <PaddingLeft>2pt</PaddingLeft>
                                 <PaddingRight>2pt</PaddingRight>
                                 <PaddingTop>2pt</PaddingTop>
@@ -2560,7 +2513,7 @@ CStr(Fields!EU_Division_3.Value)</Value>
                       </TablixCells>
                     </TablixRow>
                     <TablixRow>
-                      <Height>0.12839cm</Height>
+                      <Height>0.1555cm</Height>
                       <TablixCells>
                         <TablixCell>
                           <CellContents>
@@ -2584,16 +2537,13 @@ CStr(Fields!EU_Division_3.Value)</Value>
                               </Paragraphs>
                               <Style>
                                 <Border>
-                                  <Color>LightGrey</Color>
                                   <Style>None</Style>
                                 </Border>
                                 <TopBorder>
                                   <Color>Black</Color>
                                   <Style>Solid</Style>
-                                </TopBorder>
-                                <BottomBorder>
                                   <Width>1pt</Width>
-                                </BottomBorder>
+                                </TopBorder>
                                 <PaddingLeft>2pt</PaddingLeft>
                                 <PaddingRight>2pt</PaddingRight>
                                 <PaddingTop>2pt</PaddingTop>
@@ -2624,16 +2574,13 @@ CStr(Fields!EU_Division_3.Value)</Value>
                               </Paragraphs>
                               <Style>
                                 <Border>
-                                  <Color>LightGrey</Color>
                                   <Style>None</Style>
                                 </Border>
                                 <TopBorder>
                                   <Color>Black</Color>
                                   <Style>Solid</Style>
-                                </TopBorder>
-                                <BottomBorder>
                                   <Width>1pt</Width>
-                                </BottomBorder>
+                                </TopBorder>
                                 <PaddingLeft>2pt</PaddingLeft>
                                 <PaddingRight>2pt</PaddingRight>
                                 <PaddingTop>2pt</PaddingTop>
@@ -2666,16 +2613,13 @@ CStr(Fields!EU_Division_3.Value)</Value>
                               </Paragraphs>
                               <Style>
                                 <Border>
-                                  <Color>LightGrey</Color>
                                   <Style>None</Style>
                                 </Border>
                                 <TopBorder>
                                   <Color>Black</Color>
                                   <Style>Solid</Style>
-                                </TopBorder>
-                                <BottomBorder>
                                   <Width>1pt</Width>
-                                </BottomBorder>
+                                </TopBorder>
                                 <PaddingLeft>2pt</PaddingLeft>
                                 <PaddingRight>2pt</PaddingRight>
                                 <PaddingTop>2pt</PaddingTop>
@@ -2708,16 +2652,13 @@ CStr(Fields!EU_Division_3.Value)</Value>
                               </Paragraphs>
                               <Style>
                                 <Border>
-                                  <Color>LightGrey</Color>
                                   <Style>None</Style>
                                 </Border>
                                 <TopBorder>
                                   <Color>Black</Color>
                                   <Style>Solid</Style>
-                                </TopBorder>
-                                <BottomBorder>
                                   <Width>1pt</Width>
-                                </BottomBorder>
+                                </TopBorder>
                                 <PaddingLeft>2pt</PaddingLeft>
                                 <PaddingRight>2pt</PaddingRight>
                                 <PaddingTop>2pt</PaddingTop>
@@ -2750,16 +2691,13 @@ CStr(Fields!EU_Division_3.Value)</Value>
                               </Paragraphs>
                               <Style>
                                 <Border>
-                                  <Color>LightGrey</Color>
                                   <Style>None</Style>
                                 </Border>
                                 <TopBorder>
                                   <Color>Black</Color>
                                   <Style>Solid</Style>
-                                </TopBorder>
-                                <BottomBorder>
                                   <Width>1pt</Width>
-                                </BottomBorder>
+                                </TopBorder>
                                 <PaddingLeft>2pt</PaddingLeft>
                                 <PaddingRight>2pt</PaddingRight>
                                 <PaddingTop>2pt</PaddingTop>
@@ -2792,16 +2730,13 @@ CStr(Fields!EU_Division_3.Value)</Value>
                               </Paragraphs>
                               <Style>
                                 <Border>
-                                  <Color>LightGrey</Color>
                                   <Style>None</Style>
                                 </Border>
                                 <TopBorder>
                                   <Color>Black</Color>
                                   <Style>Solid</Style>
-                                </TopBorder>
-                                <BottomBorder>
                                   <Width>1pt</Width>
-                                </BottomBorder>
+                                </TopBorder>
                                 <PaddingLeft>2pt</PaddingLeft>
                                 <PaddingRight>2pt</PaddingRight>
                                 <PaddingTop>2pt</PaddingTop>
@@ -2834,16 +2769,13 @@ CStr(Fields!EU_Division_3.Value)</Value>
                               </Paragraphs>
                               <Style>
                                 <Border>
-                                  <Color>LightGrey</Color>
                                   <Style>None</Style>
                                 </Border>
                                 <TopBorder>
                                   <Color>Black</Color>
                                   <Style>Solid</Style>
-                                </TopBorder>
-                                <BottomBorder>
                                   <Width>1pt</Width>
-                                </BottomBorder>
+                                </TopBorder>
                                 <PaddingLeft>2pt</PaddingLeft>
                                 <PaddingRight>2pt</PaddingRight>
                                 <PaddingTop>2pt</PaddingTop>
@@ -2876,16 +2808,13 @@ CStr(Fields!EU_Division_3.Value)</Value>
                               </Paragraphs>
                               <Style>
                                 <Border>
-                                  <Color>LightGrey</Color>
                                   <Style>None</Style>
                                 </Border>
                                 <TopBorder>
                                   <Color>Black</Color>
                                   <Style>Solid</Style>
-                                </TopBorder>
-                                <BottomBorder>
                                   <Width>1pt</Width>
-                                </BottomBorder>
+                                </TopBorder>
                                 <PaddingLeft>2pt</PaddingLeft>
                                 <PaddingRight>2pt</PaddingRight>
                                 <PaddingTop>2pt</PaddingTop>
@@ -2918,16 +2847,13 @@ CStr(Fields!EU_Division_3.Value)</Value>
                               </Paragraphs>
                               <Style>
                                 <Border>
-                                  <Color>LightGrey</Color>
                                   <Style>None</Style>
                                 </Border>
                                 <TopBorder>
                                   <Color>Black</Color>
                                   <Style>Solid</Style>
-                                </TopBorder>
-                                <BottomBorder>
                                   <Width>1pt</Width>
-                                </BottomBorder>
+                                </TopBorder>
                                 <PaddingLeft>2pt</PaddingLeft>
                                 <PaddingRight>2pt</PaddingRight>
                                 <PaddingTop>2pt</PaddingTop>
@@ -2960,16 +2886,13 @@ CStr(Fields!EU_Division_3.Value)</Value>
                               </Paragraphs>
                               <Style>
                                 <Border>
-                                  <Color>LightGrey</Color>
                                   <Style>None</Style>
                                 </Border>
                                 <TopBorder>
                                   <Color>Black</Color>
                                   <Style>Solid</Style>
-                                </TopBorder>
-                                <BottomBorder>
                                   <Width>1pt</Width>
-                                </BottomBorder>
+                                </TopBorder>
                                 <PaddingLeft>2pt</PaddingLeft>
                                 <PaddingRight>2pt</PaddingRight>
                                 <PaddingTop>2pt</PaddingTop>
@@ -3037,11 +2960,7 @@ CStr(Fields!EU_Division_3.Value)</Value>
                             <Hidden>=iif((Fields!TypeInt.Value=2) And (Fields!Description_Bikou.Value&lt;&gt;""),false,true)</Hidden>
                           </Visibility>
                         </TablixMember>
-                        <TablixMember>
-                          <Visibility>
-                            <Hidden>=IIF(Fields!Qty_SalesLine.Value = 0, True, False)</Hidden>
-                          </Visibility>
-                        </TablixMember>
+                        <TablixMember />
                       </TablixMembers>
                     </TablixMember>
                   </TablixMembers>
@@ -3059,7 +2978,7 @@ CStr(Fields!EU_Division_3.Value)</Value>
                 </Filters>
                 <Top>5.2816cm</Top>
                 <Left>0.44554cm</Left>
-                <Height>3.39871cm</Height>
+                <Height>3.46815cm</Height>
                 <Width>26.33571cm</Width>
                 <ZIndex>12</ZIndex>
                 <Style>
@@ -3095,8 +3014,8 @@ CStr(Fields!EU_Division_3.Value)</Value>
                     </Style>
                   </Paragraph>
                 </Paragraphs>
-                <Top>8.69303cm</Top>
-                <Left>13.71953cm</Left>
+                <Top>8.86375cm</Top>
+                <Left>11.18286cm</Left>
                 <Height>0.6cm</Height>
                 <Width>3.25563cm</Width>
                 <ZIndex>13</ZIndex>
@@ -3144,8 +3063,8 @@ CStr(Fields!EU_Division_3.Value)</Value>
                     </Style>
                   </Paragraph>
                 </Paragraphs>
-                <Top>8.69303cm</Top>
-                <Left>17.01044cm</Left>
+                <Top>8.86375cm</Top>
+                <Left>14.47377cm</Left>
                 <Height>0.6cm</Height>
                 <Width>2.52047cm</Width>
                 <ZIndex>14</ZIndex>
@@ -3199,13 +3118,18 @@ CStr(Fields!EU_Division_3.Value)</Value>
             </ReportItems>
             <KeepTogether>true</KeepTogether>
             <OmitBorderOnPageBreak>true</OmitBorderOnPageBreak>
-            <Top>0.41447cm</Top>
-            <Height>9.59155cm</Height>
+            <Top>0.25706cm</Top>
+            <Height>9.92498cm</Height>
             <Width>27.0376cm</Width>
             <Style>
               <Border>
                 <Style>None</Style>
               </Border>
+              <TopBorder>
+                <Color>Black</Color>
+                <Style>Solid</Style>
+                <Width>1pt</Width>
+              </TopBorder>
             </Style>
           </Rectangle>
         </ReportItems>
@@ -3215,7 +3139,7 @@ CStr(Fields!EU_Division_3.Value)</Value>
           <FontSize>8pt</FontSize>
         </Style>
       </Body>
-      <Width>27.0376cm</Width>
+      <Width>27.07357cm</Width>
       <Page>
         <PageHeader>
           <Height>2.24253cm</Height>
@@ -3243,7 +3167,7 @@ CStr(Fields!EU_Division_3.Value)</Value>
                 </Paragraph>
               </Paragraphs>
               <Top>0.84315cm</Top>
-              <Left>24.59313cm</Left>
+              <Left>24.6291cm</Left>
               <Height>11pt</Height>
               <Width>2.20323cm</Width>
               <Style>
@@ -3273,7 +3197,7 @@ CStr(Fields!EU_Division_3.Value)</Value>
                 </Paragraph>
               </Paragraphs>
               <Top>0.56806in</Top>
-              <Left>9.68233in</Left>
+              <Left>9.69649in</Left>
               <Height>14.06169pt</Height>
               <Width>0.86741in</Width>
               <ZIndex>1</ZIndex>
@@ -3311,7 +3235,7 @@ CStr(Fields!EU_Division_3.Value)</Value>
                 </Paragraph>
               </Paragraphs>
               <Top>0.21901cm</Top>
-              <Left>10.64178cm</Left>
+              <Left>10.67775cm</Left>
               <Height>0.7524cm</Height>
               <Width>6.29318cm</Width>
               <ZIndex>2</ZIndex>
@@ -3344,7 +3268,7 @@ CStr(Fields!EU_Division_3.Value)</Value>
                 </Paragraph>
               </Paragraphs>
               <Top>0.84315cm</Top>
-              <Left>23.32313cm</Left>
+              <Left>23.3591cm</Left>
               <Height>0.38805cm</Height>
               <Width>1.09361cm</Width>
               <ZIndex>3</ZIndex>
@@ -3379,7 +3303,7 @@ CStr(Fields!EU_Division_3.Value)</Value>
                 </Paragraph>
               </Paragraphs>
               <Top>1.44287cm</Top>
-              <Left>22.3526cm</Left>
+              <Left>22.38857cm</Left>
               <Height>0.53135cm</Height>
               <Width>2.06415cm</Width>
               <ZIndex>4</ZIndex>

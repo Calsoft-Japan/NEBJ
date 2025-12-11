@@ -11,7 +11,7 @@
       <am:Name>MSRB</am:Name>
       <am:Version>15.1.30001.02</am:Version>
     </am:UpdatedBy>
-    <am:LastModifiedTimestamp>2025-12-04T03:32:35.4167634Z</am:LastModifiedTimestamp>
+    <am:LastModifiedTimestamp>2025-12-08T23:55:28.1399925Z</am:LastModifiedTimestamp>
   </am:AuthoringMetadata>
   <AutoRefresh>0</AutoRefresh>
   <DataSources>
@@ -1587,6 +1587,7 @@
                         </TablixCell>
                         <TablixCell>
                           <CellContents>
+                            <rd:Selected>true</rd:Selected>
                             <Textbox Name="Textbox79">
                               <rd:DefaultName>Textbox79</rd:DefaultName>
                               <CanGrow>true</CanGrow>
@@ -1595,16 +1596,9 @@
                                 <Paragraph>
                                   <TextRuns>
                                     <TextRun>
-                                      <Value>=IIF(
-    (Fields!CurrencyCode.Value &lt;&gt; "" AND
-     Fields!CurrencyCode.Value &lt;&gt; "JPY" AND
-     Fields!LineDiscountPercent_Line.Value = 0 AND
-     (Fields!AmountIncludingVAT_Line.Value - Fields!LineAmountExclVAT.Value) = 0),
-
-    FormatNumber(Abs(Fields!UnitPrice.Value), 2),
-
-    FormatNumber(-1 * Fields!NetUnitPrice.Value, 0)
-)</Value>
+                                      <Value>=IIF(Fields!CurrencyCode.Value&lt;&gt;"" AND Fields!CurrencyCode.Value&lt;&gt;"JPY" AND Fields!LineDiscountPercent_Line.Value=0 AND (Fields!AmountIncludingVAT_Line.Value-Fields!LineAmountExclVAT.Value)=0,
+     FormatNumber(IIF(Fields!UnitPrice.Value&lt;0, -1*Fields!UnitPrice.Value, Fields!UnitPrice.Value), 2),
+     FormatNumber(IIF(Fields!NetUnitPrice.Value&gt;0, -1*Fields!NetUnitPrice.Value, Fields!NetUnitPrice.Value), 0))</Value>
                                       <Style>
                                         <FontFamily>MS UI Gothic</FontFamily>
                                         <FontSize>9pt</FontSize>

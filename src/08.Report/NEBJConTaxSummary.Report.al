@@ -2,124 +2,99 @@ report 50004 "NEBJ Consum. Tax Summary"
 {
     DefaultLayout = RDLC;
     RDLCLayout = 'src\08.Report\NEBJConTaxSummary.rdlc';
-    Caption = 'Consumption Tax Summary';
+    Caption = 'Consumption Tax Report';
     PreviewMode = PrintLayout;
     UsageCategory = ReportsandAnalysis;
     ApplicationArea = All;
 
     dataset
     {
-        dataitem("G/L Account"; "G/L Account")
+        dataitem("G/L Entry"; "G/L Entry")
         {
-            DataItemTableView = sorting("No.") where("Account Type" = const(Posting));
-            RequestFilterFields = "No.", "Date Filter", "VAT Bus. Posting Group", "VAT Prod. Posting Group", "Global Dimension 1 Filter", "Global Dimension 2 Filter";
+            DataItemTableView = sorting("Posting Date", "G/L Account No.") where("Gen. Posting Type" = filter(Purchase | Sale));
+            RequestFilterFields = "Posting Date";
             column(RepCapLbl; RepCapLbl) { }
             column(PageCapLbl; PageCapLbl) { }
-            column(RateCapLbl; RateCapLbl) { }
-            column(AccNoCapLbl; AccNoCapLbl) { }
-            column(NameCapLbl; NameCapLbl) { }
-            column(VBPGCapLbl; VBPGCapLbl) { }
-            column(VPPGCapLbl; VPPGCapLbl) { }
-            column(NetAmtLbl; NetAmtLbl) { }
-            column(TaxAmtLbl; TaxAmtLbl) { }
+            column(OutDateLbl; OutDateLbl) { }
+            column(PostTypeLbl; PostTypeLbl) { }
+            column(VATIdfLbl; VATIdfLbl) { }
+            column(AccNoLbl; AccNoLbl) { }
+            column(AccNameLbl; AccNameLbl) { }
+            column(TotAmtLbl; TotAmtLbl) { }
             column(NonTaxAmtLbl; NonTaxAmtLbl) { }
-            column(SaleRcvdCTaxLbl; SaleRcvdCTaxLbl) { }
-            column(SusPaidCTaxLbl; SusPaidCTaxLbl) { }
-            column(CompName; CompInfo.Name) { }
-            column(DontPrint; DontPrint) { }
-            column(RepGLFilters; GLAccCapLbl + ': ' + GLFilter) { }
-            column(RepVATFilters; VatGroupLbl + ': ' + VATFilter) { }
-            dataitem("VAT Posting Setup"; "VAT Posting Setup")
-            {
-                DataItemTableView = sorting("VAT Bus. Posting Group", "VAT Prod. Posting Group");
-                RequestFilterFields = "VAT Bus. Posting Group", "VAT Prod. Posting Group";
-                column(GLPostType; "G/L Account"."Gen. Posting Type") { }
-                column(GLAccNo; "G/L Account"."No.") { }
-                column(GLAccName; "G/L Account".Name) { }
-                column(GLVBPG; "VAT Bus. Posting Group") { }
-                column(GLVPPG; "VAT Prod. Posting Group") { }
-                column(NetAmt; NetAmount) { AutoFormatType = 1; }
-                column(TaxAmt; TaxAmount) { AutoFormatType = 1; }
-                column(NonTaxAmt; NonTaxAmt) { AutoFormatType = 1; }
-                column(SalesTaxAmt; SaleTaxAmt) { AutoFormatType = 1; }
-                column(PurchTaxAmt; PurchTaxAmt) { AutoFormatType = 1; }
-                column(TaxPer; "VAT Posting Setup"."VAT %") { DecimalPlaces = 0 : 2; }
-                column(PerString; PercentLbl) { }
-                trigger OnAfterGetRecord()
-                begin
-                    "G/L Account".SetRange("Gen. Posting Type Filter");
-                    "G/L Account".SetRange("VAT BPG Filter", "VAT Posting Setup"."VAT Bus. Posting Group");
-                    "G/L Account".SetRange("VAT PPG Filter", "VAT Posting Setup"."VAT Prod. Posting Group");
-                    CalcAmounts();
-                    if (NetAmount = 0) and (TaxAmount = 0) and (SaleTaxAmt = 0) and
-                       (PurchTaxAmt = 0) and (NonTaxAmt = 0) and DontPrint then
-                        CurrReport.Skip();
-                end;
-            }
-        }
-    }
-
-    requestpage
-    {
-        layout
-        {
-            area(content)
-            {
-                group(Options)
-                {
-                    Caption = 'Options';
-                    field(DontPrint; DontPrint)
-                    {
-                        ApplicationArea = All;
-                        Caption = 'No Zero Lines';
-                        ToolTip = 'Specifies for exclude zero lines';
-                    }
-                }
-            }
+            column(AmtIncVATLbl; AmtIncVATLbl) { }
+            column(AmtExclVATLbl; AmtExclVATLbl) { }
+            column(VATAmountLbl; VATAmountLbl) { }
+            column(TotalLbl; TotalLbl) { }
+            column(TotalTaxLbl; TotalTaxLbl) { }
+            column(VATPerLbl; VATPerLbl) { }
+            column(ActVATPerLbl; ActVATPerLbl) { }
+            column(PeriodTxt; PeriodLbl + ': ' + DateFilter) { }
+            column(GenPostType; "Gen. Posting Type") { }
+            column(VATIdfTxt; VATPostSetup."VAT Identifier") { }
+            column(VATPerTxt; VATPostSetup."VAT %") { DecimalPlaces = 0 : 2; }
+            column(PerString; PercentLbl) { }
+            column(VATPostGrps; '(' + "VAT Bus. Posting Group" + '/' + "VAT Prod. Posting Group" + ')') { }
+            column(GLAccNo; "G/L Account No.") { }
+            column(GLAccName; GLAccount.Name) { }
+            column(TotAmount; Amount + "VAT Amount") { AutoFormatType = 1; }
+            column(NonTaxAmt; NonTaxAmt) { AutoFormatType = 1; }
+            column(AmtIncVAT; Amount + "VAT Amount") { AutoFormatType = 1; }
+            column(AmtExclVAT; Amount) { AutoFormatType = 1; }
+            column(VATAmount; "VAT Amount") { AutoFormatType = 1; }
+            trigger OnAfterGetRecord()
+            begin
+                if GLAccount.Get("G/L Account No.") then;
+                if VATPostSetup.Get("VAT Bus. Posting Group", "VAT Prod. Posting Group") then;
+                //if "VAT Prod. Posting Group" = 'NOVAT' then begin
+                //end;
+            end;
         }
     }
 
     trigger OnInitReport()
     begin
         GLSetup.Get();
-        CompInfo.Get();
     end;
 
     trigger OnPreReport()
     begin
-        GLFilter := CopyStr("G/L Account".GetFilters(), 1, MaxStrLen(GLFilter));
-        VATFilter := CopyStr("VAT Posting Setup".GetFilters(), 1, MaxStrLen(VATFilter));
+        DateFilter := CopyStr("G/L Entry".GetFilters(), 1, MaxStrLen(DateFilter));
     end;
 
     var
+        GLAccount: Record "G/L Account";
         GLSetup: Record "General Ledger Setup";
-        CompInfo: Record "Company Information";
-        GLFilter: Text[250];
-        AccDescription: Text[80];
-        VATFilter: Text[250];
-        NetAmount: Decimal;
-        TaxAmount: Decimal;
+        VATPostSetup: Record "VAT Posting Setup";
+        DateFilter: Text[250];
+        VATSetupTxt: Text[250];
+        TotAmt: Decimal;
         NonTaxAmt: Decimal;
-        SaleTaxAmt: Decimal;
-        PurchTaxAmt: Decimal;
+        AmtIncVAT: Decimal;
+        AmtExclVAT: Decimal;
+        VATAmount: Decimal;
         DontPrint: Boolean;
-        RepCapLbl: label 'Consumption Tax Sheet';
-        GLAccCapLbl: label 'G/L Account';
-        VatGroupLbl: label 'VAT Posting Setup';
+        RepCapLbl: label 'Consumption Tax Report';
         PageCapLbl: label 'Page';
-        RateCapLbl: label 'Rate';
-        AccNoCapLbl: label 'No.';
-        NameCapLbl: label 'Name';
-        VBPGCapLbl: label 'B U S';
-        VPPGCapLbl: label 'P R O';
-        NetAmtLbl: label 'Net Amount';
-        TaxAmtLbl: label 'Tax Amt.';
-        NonTaxAmtLbl: label 'NonTax Amt.';
-        SaleRcvdCTaxLbl: label 'SaleRcvdCTax';
-        SusPaidCTaxLbl: label 'SuspPaidCTax';
+        OutDateLbl: Label 'Output Date';
+        PeriodLbl: Label 'Period';
+        PostTypeLbl: Label 'Gen. Posting Type';
+        VATIdfLbl: Label 'VAT Identifier';
+        AccNoLbl: label 'Account No.';
+        AccNameLbl: label 'Account Name';
+        VatGroupLbl: label 'VAT Posting Setup';
+        TotAmtLbl: Label 'Total Amount';
+        NonTaxAmtLbl: label 'Amt. Without Tax';
+        AmtIncVATLbl: Label 'Amtount Inc. VAT';
+        AmtExclVATLbl: Label 'Amount Excl. VAT';
+        VATAmountLbl: Label 'VAT Amount';
+        TotalLbl: Label 'Total';
+        TotalTaxLbl: Label 'Total Tax';
+        VATPerLbl: Label 'VAT %';
+        ActVATPerLbl: Label 'Actual VAT %';
         PercentLbl: label '%', Locked = true;
 
-    procedure CalcAmounts()
+    /* procedure CalcAmounts()
     begin
         NetAmount := 0;
         TaxAmount := 0;
@@ -151,11 +126,7 @@ report 50004 "NEBJ Consum. Tax Summary"
         NonTaxAmt := AmountRounding(NonTaxAmt);
 
         TaxAmount := NetAmount - NonTaxAmt;
-        /* if TaxAmount <> 0 then
-            TaxPer := Round((SaleTaxAmt + PurchTaxAmt) / TaxAmount * 100, 0.01, '=')
-        else
-            TaxPer := 0; */
-    end;
+    end; */
 
     procedure AmountRounding(Amount: Decimal): Decimal
     var

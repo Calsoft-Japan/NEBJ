@@ -1782,6 +1782,9 @@ End Function
         <Field Name="RepVATFilters">
           <DataField>RepVATFilters</DataField>
         </Field>
+        <Field Name="GLPostType">
+          <DataField>GLPostType</DataField>
+        </Field>
         <Field Name="GLAccNo">
           <DataField>GLAccNo</DataField>
         </Field>

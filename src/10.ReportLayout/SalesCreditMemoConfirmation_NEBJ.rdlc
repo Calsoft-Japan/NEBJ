@@ -24,160 +24,6 @@
       <rd:DataSourceID>b23244e3-9790-4712-be0f-6041ac5f0e69</rd:DataSourceID>
     </DataSource>
   </DataSources>
-  <DataSets>
-    <DataSet Name="DataSet_Result">
-      <Query>
-        <DataSourceName>DataSource</DataSourceName>
-        <CommandText />
-      </Query>
-      <Fields>
-        <Field Name="No_SalesHdr">
-          <DataField>No_SalesHdr</DataField>
-        </Field>
-        <Field Name="DocumentDate">
-          <DataField>DocumentDate</DataField>
-        </Field>
-        <Field Name="BillToName">
-          <DataField>BillToName</DataField>
-        </Field>
-        <Field Name="BillToName2">
-          <DataField>BillToName2</DataField>
-        </Field>
-        <Field Name="BillToAddress">
-          <DataField>BillToAddress</DataField>
-        </Field>
-        <Field Name="BillToAddress2">
-          <DataField>BillToAddress2</DataField>
-        </Field>
-        <Field Name="BillToPostCode">
-          <DataField>BillToPostCode</DataField>
-        </Field>
-        <Field Name="BillToCity">
-          <DataField>BillToCity</DataField>
-        </Field>
-        <Field Name="BillToCustomerNo">
-          <DataField>BillToCustomerNo</DataField>
-        </Field>
-        <Field Name="Direct_Shipping_Code">
-          <DataField>Direct_Shipping_Code</DataField>
-        </Field>
-        <Field Name="PostingDate">
-          <DataField>PostingDate</DataField>
-        </Field>
-        <Field Name="CurrencyCode">
-          <DataField>CurrencyCode</DataField>
-        </Field>
-        <Field Name="CompanyName">
-          <DataField>CompanyName</DataField>
-        </Field>
-        <Field Name="CompanyAddress">
-          <DataField>CompanyAddress</DataField>
-        </Field>
-        <Field Name="CompanyAddress2">
-          <DataField>CompanyAddress2</DataField>
-        </Field>
-        <Field Name="CompanyCity">
-          <DataField>CompanyCity</DataField>
-        </Field>
-        <Field Name="CompanyPostCode">
-          <DataField>CompanyPostCode</DataField>
-        </Field>
-        <Field Name="CompanyFaxNo">
-          <DataField>CompanyFaxNo</DataField>
-        </Field>
-        <Field Name="CompanyPhoneNo">
-          <DataField>CompanyPhoneNo</DataField>
-        </Field>
-        <Field Name="DirectShippingInfo">
-          <DataField>DirectShippingInfo</DataField>
-        </Field>
-        <Field Name="ItemNo_Line">
-          <DataField>ItemNo_Line</DataField>
-        </Field>
-        <Field Name="Document_No_">
-          <DataField>Document_No_</DataField>
-        </Field>
-        <Field Name="LineNo_Line">
-          <DataField>LineNo_Line</DataField>
-        </Field>
-        <Field Name="Description_Line">
-          <DataField>Description_Line</DataField>
-        </Field>
-        <Field Name="EU_Description">
-          <DataField>EU_Description</DataField>
-        </Field>
-        <Field Name="Bikou_Description">
-          <DataField>Bikou_Description</DataField>
-        </Field>
-        <Field Name="EU_Division_1">
-          <DataField>EU_Division_1</DataField>
-        </Field>
-        <Field Name="EU_Division_2">
-          <DataField>EU_Division_2</DataField>
-        </Field>
-        <Field Name="EU_Division_3">
-          <DataField>EU_Division_3</DataField>
-        </Field>
-        <Field Name="Quantity_Line">
-          <DataField>Quantity_Line</DataField>
-        </Field>
-        <Field Name="Quantity_LineFormat">
-          <DataField>Quantity_LineFormat</DataField>
-        </Field>
-        <Field Name="UnitPrice">
-          <DataField>UnitPrice</DataField>
-        </Field>
-        <Field Name="UnitPriceFormat">
-          <DataField>UnitPriceFormat</DataField>
-        </Field>
-        <Field Name="LineDiscountPercent_Line">
-          <DataField>LineDiscountPercent_Line</DataField>
-        </Field>
-        <Field Name="LineDiscountPercent_LineFormat">
-          <DataField>LineDiscountPercent_LineFormat</DataField>
-        </Field>
-        <Field Name="AmountIncludingVAT_Line">
-          <DataField>AmountIncludingVAT_Line</DataField>
-        </Field>
-        <Field Name="AmountIncludingVAT_LineFormat">
-          <DataField>AmountIncludingVAT_LineFormat</DataField>
-        </Field>
-        <Field Name="LineAmountExclVAT">
-          <DataField>LineAmountExclVAT</DataField>
-        </Field>
-        <Field Name="LineAmountExclVATFormat">
-          <DataField>LineAmountExclVATFormat</DataField>
-        </Field>
-        <Field Name="NetUnitPrice">
-          <DataField>NetUnitPrice</DataField>
-        </Field>
-        <Field Name="NetUnitPriceFormat">
-          <DataField>NetUnitPriceFormat</DataField>
-        </Field>
-        <Field Name="StorageTemprature">
-          <DataField>StorageTemprature</DataField>
-        </Field>
-        <Field Name="ExternalDocumentNo">
-          <DataField>ExternalDocumentNo</DataField>
-        </Field>
-        <Field Name="TotalAmountExclVAT">
-          <DataField>TotalAmountExclVAT</DataField>
-        </Field>
-        <Field Name="TotalAmountExclVATFormat">
-          <DataField>TotalAmountExclVATFormat</DataField>
-        </Field>
-        <Field Name="TypeInt">
-          <DataField>TypeInt</DataField>
-        </Field>
-        <Field Name="LineTypeTxt">
-          <DataField>LineTypeTxt</DataField>
-        </Field>
-        <Field Name="Type_Line">
-          <DataField>Type_Line</DataField>
-        </Field>
-      </Fields>
-    </DataSet>
-  </DataSets>
   <ReportSections>
     <ReportSection>
       <Body>
@@ -3636,12 +3482,6 @@ CStr(Fields!EU_Division_3.Value)</Value>
       </Page>
     </ReportSection>
   </ReportSections>
-  <ReportParametersLayout>
-    <GridLayoutDefinition>
-      <NumberOfColumns>4</NumberOfColumns>
-      <NumberOfRows>2</NumberOfRows>
-    </GridLayoutDefinition>
-  </ReportParametersLayout>
   <Code>Public Function BlankZero(ByVal Value As Decimal)
     if Value = 0 then
         Return ""
@@ -3679,4 +3519,158 @@ End Function
 </Code>
   <Language>=User!Language</Language>
   <ConsumeContainerWhitespace>true</ConsumeContainerWhitespace>
+  <DataSets>
+    <DataSet Name="DataSet_Result">
+      <Fields>
+        <Field Name="No_SalesHdr">
+          <DataField>No_SalesHdr</DataField>
+        </Field>
+        <Field Name="DocumentDate">
+          <DataField>DocumentDate</DataField>
+        </Field>
+        <Field Name="BillToName">
+          <DataField>BillToName</DataField>
+        </Field>
+        <Field Name="BillToName2">
+          <DataField>BillToName2</DataField>
+        </Field>
+        <Field Name="BillToAddress">
+          <DataField>BillToAddress</DataField>
+        </Field>
+        <Field Name="BillToAddress2">
+          <DataField>BillToAddress2</DataField>
+        </Field>
+        <Field Name="BillToPostCode">
+          <DataField>BillToPostCode</DataField>
+        </Field>
+        <Field Name="BillToCity">
+          <DataField>BillToCity</DataField>
+        </Field>
+        <Field Name="BillToCustomerNo">
+          <DataField>BillToCustomerNo</DataField>
+        </Field>
+        <Field Name="Direct_Shipping_Code">
+          <DataField>Direct_Shipping_Code</DataField>
+        </Field>
+        <Field Name="PostingDate">
+          <DataField>PostingDate</DataField>
+        </Field>
+        <Field Name="CurrencyCode">
+          <DataField>CurrencyCode</DataField>
+        </Field>
+        <Field Name="CompanyName">
+          <DataField>CompanyName</DataField>
+        </Field>
+        <Field Name="CompanyAddress">
+          <DataField>CompanyAddress</DataField>
+        </Field>
+        <Field Name="CompanyAddress2">
+          <DataField>CompanyAddress2</DataField>
+        </Field>
+        <Field Name="CompanyCity">
+          <DataField>CompanyCity</DataField>
+        </Field>
+        <Field Name="CompanyPostCode">
+          <DataField>CompanyPostCode</DataField>
+        </Field>
+        <Field Name="CompanyFaxNo">
+          <DataField>CompanyFaxNo</DataField>
+        </Field>
+        <Field Name="CompanyPhoneNo">
+          <DataField>CompanyPhoneNo</DataField>
+        </Field>
+        <Field Name="DirectShippingInfo">
+          <DataField>DirectShippingInfo</DataField>
+        </Field>
+        <Field Name="ItemNo_Line">
+          <DataField>ItemNo_Line</DataField>
+        </Field>
+        <Field Name="Document_No_">
+          <DataField>Document_No_</DataField>
+        </Field>
+        <Field Name="LineNo_Line">
+          <DataField>LineNo_Line</DataField>
+        </Field>
+        <Field Name="Description_Line">
+          <DataField>Description_Line</DataField>
+        </Field>
+        <Field Name="EU_Description">
+          <DataField>EU_Description</DataField>
+        </Field>
+        <Field Name="Bikou_Description">
+          <DataField>Bikou_Description</DataField>
+        </Field>
+        <Field Name="EU_Division_1">
+          <DataField>EU_Division_1</DataField>
+        </Field>
+        <Field Name="EU_Division_2">
+          <DataField>EU_Division_2</DataField>
+        </Field>
+        <Field Name="EU_Division_3">
+          <DataField>EU_Division_3</DataField>
+        </Field>
+        <Field Name="Quantity_Line">
+          <DataField>Quantity_Line</DataField>
+        </Field>
+        <Field Name="Quantity_LineFormat">
+          <DataField>Quantity_LineFormat</DataField>
+        </Field>
+        <Field Name="UnitPrice">
+          <DataField>UnitPrice</DataField>
+        </Field>
+        <Field Name="UnitPriceFormat">
+          <DataField>UnitPriceFormat</DataField>
+        </Field>
+        <Field Name="LineDiscountPercent_Line">
+          <DataField>LineDiscountPercent_Line</DataField>
+        </Field>
+        <Field Name="LineDiscountPercent_LineFormat">
+          <DataField>LineDiscountPercent_LineFormat</DataField>
+        </Field>
+        <Field Name="AmountIncludingVAT_Line">
+          <DataField>AmountIncludingVAT_Line</DataField>
+        </Field>
+        <Field Name="AmountIncludingVAT_LineFormat">
+          <DataField>AmountIncludingVAT_LineFormat</DataField>
+        </Field>
+        <Field Name="LineAmountExclVAT">
+          <DataField>LineAmountExclVAT</DataField>
+        </Field>
+        <Field Name="LineAmountExclVATFormat">
+          <DataField>LineAmountExclVATFormat</DataField>
+        </Field>
+        <Field Name="NetUnitPrice">
+          <DataField>NetUnitPrice</DataField>
+        </Field>
+        <Field Name="NetUnitPriceFormat">
+          <DataField>NetUnitPriceFormat</DataField>
+        </Field>
+        <Field Name="StorageTemprature">
+          <DataField>StorageTemprature</DataField>
+        </Field>
+        <Field Name="ExternalDocumentNo">
+          <DataField>ExternalDocumentNo</DataField>
+        </Field>
+        <Field Name="TotalAmountExclVAT">
+          <DataField>TotalAmountExclVAT</DataField>
+        </Field>
+        <Field Name="TotalAmountExclVATFormat">
+          <DataField>TotalAmountExclVATFormat</DataField>
+        </Field>
+        <Field Name="TypeInt">
+          <DataField>TypeInt</DataField>
+        </Field>
+        <Field Name="LineTypeTxt">
+          <DataField>LineTypeTxt</DataField>
+        </Field>
+        <Field Name="Type_Line">
+          <DataField>Type_Line</DataField>
+        </Field>
+      </Fields>
+      <Query>
+        <DataSourceName>DataSource</DataSourceName>
+        <CommandText />
+      </Query>
+    </DataSet>
+  </DataSets>
 </Report>

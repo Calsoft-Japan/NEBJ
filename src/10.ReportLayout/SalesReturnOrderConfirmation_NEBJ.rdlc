@@ -11,7 +11,7 @@
       <am:Name>MSRB</am:Name>
       <am:Version>15.1.30001.02</am:Version>
     </am:UpdatedBy>
-    <am:LastModifiedTimestamp>2025-12-11T08:50:01.2898278Z</am:LastModifiedTimestamp>
+    <am:LastModifiedTimestamp>2025-12-12T03:55:24.0779302Z</am:LastModifiedTimestamp>
   </am:AuthoringMetadata>
   <AutoRefresh>0</AutoRefresh>
   <DataSources>
@@ -1239,10 +1239,23 @@
     AND Fields!CurrencyCode.Value &lt;&gt; "JPY"
     AND Fields!LineDisc_SalesLine.Value = 0
     AND (Fields!SalesLineAmtExclVATAmount.Value - Fields!SalesLineAmtAfterLineDisc.Value) = 0,
-    FormatNumber(0, 2),
+
+    FormatNumber(
+        0,
+        IIF(
+            Fields!CurrencyCode.Value = "" OR Fields!CurrencyCode.Value = "JPY",
+            0,
+            2
+        )
+    ),
+
     FormatNumber(
         -1 * Fields!UnitPrice_SalesLine.Value,
-        IIF(Fields!CurrencyCode.Value = "JPY", 0, 2)
+        IIF(
+            Fields!CurrencyCode.Value = "" OR Fields!CurrencyCode.Value = "JPY",
+            0,
+            2
+        )
     )
 )</Value>
                                       <Style>
@@ -1316,54 +1329,10 @@
                                     <TextRun>
                                       <Value>=FormatNumber(
     -1 * Fields!NetUnitPrice.Value,
-    IIF(Fields!CurrencyCode.Value = "JPY", 0, 2)
-)</Value>
-                                      <Style>
-                                        <FontFamily>MS UI Gothic</FontFamily>
-                                        <FontSize>9pt</FontSize>
-                                        <Format>n0</Format>
-                                      </Style>
-                                    </TextRun>
-                                  </TextRuns>
-                                  <Style>
-                                    <TextAlign>Right</TextAlign>
-                                  </Style>
-                                </Paragraph>
-                              </Paragraphs>
-                              <Style>
-                                <Border>
-                                  <Style>None</Style>
-                                </Border>
-                                <PaddingLeft>2pt</PaddingLeft>
-                                <PaddingRight>2pt</PaddingRight>
-                                <PaddingTop>2pt</PaddingTop>
-                                <PaddingBottom>2pt</PaddingBottom>
-                              </Style>
-                            </Textbox>
-                          </CellContents>
-                        </TablixCell>
-                        <TablixCell>
-                          <CellContents>
-                            <rd:Selected>true</rd:Selected>
-                            <Textbox Name="Textbox51">
-                              <rd:DefaultName>Textbox22</rd:DefaultName>
-                              <CanGrow>true</CanGrow>
-                              <KeepTogether>true</KeepTogether>
-                              <Paragraphs>
-                                <Paragraph>
-                                  <TextRuns>
-                                    <TextRun>
-                                      <Value>=IIF(
-    Fields!CurrencyCode.Value &lt;&gt; "" 
-    AND Fields!CurrencyCode.Value &lt;&gt; "JPY"
-    AND Fields!LineDisc_SalesLine.Value = 0
-    AND Fields!VATAmount_Line.Value = 0,
-
-    FormatNumber(0, 2),
-
-    FormatNumber(
-        -1 * Fields!VATAmount_Line.Value,
-        IIF(Fields!CurrencyCode.Value = "JPY", 0, 2)
+    IIF(
+        Fields!CurrencyCode.Value = "" OR Fields!CurrencyCode.Value = "JPY",
+        0,
+        2
     )
 )</Value>
                                       <Style>
@@ -1392,6 +1361,65 @@
                         </TablixCell>
                         <TablixCell>
                           <CellContents>
+                            <Textbox Name="Textbox51">
+                              <rd:DefaultName>Textbox22</rd:DefaultName>
+                              <CanGrow>true</CanGrow>
+                              <KeepTogether>true</KeepTogether>
+                              <Paragraphs>
+                                <Paragraph>
+                                  <TextRuns>
+                                    <TextRun>
+                                      <Value>=IIF(
+    Fields!CurrencyCode.Value &lt;&gt; "" 
+    AND Fields!CurrencyCode.Value &lt;&gt; "JPY"
+    AND Fields!LineDisc_SalesLine.Value = 0
+    AND Fields!VATAmount_Line.Value = 0,
+
+    FormatNumber(
+        0,
+        IIF(
+            Fields!CurrencyCode.Value = "" OR Fields!CurrencyCode.Value = "JPY",
+            0,
+            2
+        )
+    ),
+
+    FormatNumber(
+        -1 * Fields!VATAmount_Line.Value,
+        IIF(
+            Fields!CurrencyCode.Value = "" OR Fields!CurrencyCode.Value = "JPY",
+            0,
+            2
+        )
+    )
+)</Value>
+                                      <Style>
+                                        <FontFamily>MS UI Gothic</FontFamily>
+                                        <FontSize>9pt</FontSize>
+                                        <Format>n0</Format>
+                                      </Style>
+                                    </TextRun>
+                                  </TextRuns>
+                                  <Style>
+                                    <TextAlign>Right</TextAlign>
+                                  </Style>
+                                </Paragraph>
+                              </Paragraphs>
+                              <Style>
+                                <Border>
+                                  <Style>None</Style>
+                                </Border>
+                                <PaddingLeft>2pt</PaddingLeft>
+                                <PaddingRight>2pt</PaddingRight>
+                                <PaddingTop>2pt</PaddingTop>
+                                <PaddingBottom>2pt</PaddingBottom>
+                              </Style>
+                            </Textbox>
+                          </CellContents>
+                        </TablixCell>
+                        <TablixCell>
+                          <CellContents>
+                            <rd:Selected>true</rd:Selected>
                             <Textbox Name="LineAmount2">
                               <rd:DefaultName>LineAmount</rd:DefaultName>
                               <CanGrow>true</CanGrow>
@@ -1406,11 +1434,22 @@
     AND Fields!LineDisc_SalesLine.Value = 0
     AND Fields!VATAmount_Line.Value = 0,
 
-    FormatNumber(0, 2),
+    FormatNumber(
+        0,
+        IIF(
+            Fields!CurrencyCode.Value = "" OR Fields!CurrencyCode.Value = "JPY",
+            0,
+            2
+        )
+    ),
 
     FormatNumber(
         -1 * Fields!SalesLineLineAmt.Value,
-        IIF(Fields!CurrencyCode.Value = "JPY", 0, 2)
+        IIF(
+            Fields!CurrencyCode.Value = "" OR Fields!CurrencyCode.Value = "JPY",
+            0,
+            2
+        )
     )
 )</Value>
                                       <Style>

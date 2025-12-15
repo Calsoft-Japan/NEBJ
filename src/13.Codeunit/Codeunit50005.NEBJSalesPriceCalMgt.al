@@ -1,4 +1,4 @@
-codeunit 50005 "Sales Price Cal. Mgt."
+codeunit 50005 "NEBJ Sales Price Cal. Mgt."
 {
     /* [EventSubscriber(ObjectType::Codeunit, Codeunit::"Sales Price Calc. Mgt.", 'OnFindSalesLineLineDiscOnBeforeCalcLineDisc', '', true, true)]
     procedure UpdateAfterUoMandQty(Qty: Decimal; QtyPerUOM: Decimal; var TempSalesLineDiscount: Record "Sales Line Discount" temporary; var IsHandled: Boolean)

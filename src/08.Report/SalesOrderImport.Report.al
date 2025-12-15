@@ -285,7 +285,7 @@ report 50000 "Sales Order Import"
 
     procedure ModifySalesLine()
     var
-        ItemTrackingMgt: Codeunit ItemTrackingMgtNEBJ;
+        ItemTrackingMgt: Codeunit NEBJItemTrackingMgt;
     begin
         SalesLine.Validate("No.", ItemCode);
         SalesLine.Validate(Quantity, LineQty);

@@ -1,4 +1,4 @@
-codeunit 50001 ItemTrackingMgtNEBJ
+codeunit 50001 NEBJItemTrackingMgt
 {
     procedure ImportProcessingFlag()
     begin

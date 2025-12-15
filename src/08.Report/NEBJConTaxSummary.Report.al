@@ -107,7 +107,6 @@ report 50004 "NEBJ Consum. Tax Summary"
         SumIncVAT: Decimal;
         SumExclVAT: Decimal;
         SumVATAmt: Decimal;
-        RepCapLbl: label 'Consumption Tax Report';
         PageCapLbl: label 'Page';
         OutDateLbl: Label 'Output Date';
         PeriodLbl: Label 'Period';
@@ -125,54 +124,6 @@ report 50004 "NEBJ Consum. Tax Summary"
         VATPerLbl: Label 'VAT %';
         ActVATPerLbl: Label 'Actual VAT %';
         PercentLbl: label '%', Locked = true;
-
-    /* procedure CalcAmounts()
-    begin
-        NetAmount := 0;
-        TaxAmount := 0;
-        NonTaxAmt := 0;
-        SaleTaxAmt := 0;
-        PurchTaxAmt := 0;
-
-        "G/L Account".SetRange("Gen. Posting Type Filter");
-        "G/L Account".CalcFields("Amt. Inc. VAT");
-        NetAmount := "G/L Account"."Amt. Inc. VAT";
-
-        "G/L Account".SetRange("Gen. Posting Type Filter", "G/L Account"."Gen. Posting Type Filter"::" ");
-        "G/L Account".CalcFields("Amt. Excl. VAT", "VAT Amount");
-        NonTaxAmt += "G/L Account"."Amt. Excl. VAT";
-
-        "G/L Account".SetRange("Gen. Posting Type Filter", "G/L Account"."Gen. Posting Type Filter"::Sale);
-        "G/L Account".CalcFields("Amt. Excl. VAT", "VAT Amount");
-        NonTaxAmt += "G/L Account"."Amt. Excl. VAT";
-        SaleTaxAmt := "G/L Account"."VAT Amount";
-
-        "G/L Account".SetRange("Gen. Posting Type Filter", "G/L Account"."Gen. Posting Type Filter"::Purchase);
-        "G/L Account".CalcFields("Amt. Excl. VAT", "VAT Amount");
-        NonTaxAmt += "G/L Account"."Amt. Excl. VAT";
-        PurchTaxAmt := "G/L Account"."VAT Amount";
-
-        PurchTaxAmt := AmountRounding(PurchTaxAmt);
-        SaleTaxAmt := AmountRounding(SaleTaxAmt);
-        NetAmount := AmountRounding(NetAmount);
-        NonTaxAmt := AmountRounding(NonTaxAmt);
-
-        TaxAmount := NetAmount - NonTaxAmt;
-    end; */
-
-    procedure AmountRounding(Amount: Decimal): Decimal
-    var
-        Direction: Text[2];
-    begin
-        case GLSetup."Inv. Rounding Type (LCY)" of
-            GLSetup."Inv. Rounding Type (LCY)"::Up:
-                Direction := '>';
-            GLSetup."Inv. Rounding Type (LCY)"::Down:
-                Direction := '<';
-            else
-                Direction := '=';
-        end;
-        exit(Round(Amount, GLSetup."Amount Rounding Precision", Direction));
-    end;
+        RepCapLbl: label 'Consumption Tax Report';
 }
 

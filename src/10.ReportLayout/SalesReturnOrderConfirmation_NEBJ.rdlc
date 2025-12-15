@@ -11,7 +11,7 @@
       <am:Name>MSRB</am:Name>
       <am:Version>15.1.30001.02</am:Version>
     </am:UpdatedBy>
-    <am:LastModifiedTimestamp>2025-12-11T06:56:03.3889034Z</am:LastModifiedTimestamp>
+    <am:LastModifiedTimestamp>2025-12-12T03:55:24.0779302Z</am:LastModifiedTimestamp>
   </am:AuthoringMetadata>
   <AutoRefresh>0</AutoRefresh>
   <DataSources>
@@ -36,7 +36,7 @@
                   <Paragraph>
                     <TextRuns>
                       <TextRun>
-                        <Value>この度は、ご注文頂きまして誠にありがとうございます。
+                        <Value EvaluationMode="Constant">この度は、ご連絡頂きまして誠にありがとうございます。
 下記の通り返品を承りました。ご確認のほどお願い申し上げます。</Value>
                         <Style>
                           <FontStyle>Normal</FontStyle>
@@ -199,7 +199,7 @@
                   <Paragraph>
                     <TextRuns>
                       <TextRun>
-                        <Value>=Fields!BillToName.Value + Fields!BillToName2.Value + "　" + "　御中"</Value>
+                        <Value>=Fields!BillToName.Value + " " + Fields!BillToName2.Value + " " + "　御中"</Value>
                         <Style>
                           <FontFamily>MS UI Gothic</FontFamily>
                           <FontSize>14pt</FontSize>
@@ -1239,10 +1239,23 @@
     AND Fields!CurrencyCode.Value &lt;&gt; "JPY"
     AND Fields!LineDisc_SalesLine.Value = 0
     AND (Fields!SalesLineAmtExclVATAmount.Value - Fields!SalesLineAmtAfterLineDisc.Value) = 0,
-    FormatNumber(0, 2),
+
+    FormatNumber(
+        0,
+        IIF(
+            Fields!CurrencyCode.Value = "" OR Fields!CurrencyCode.Value = "JPY",
+            0,
+            2
+        )
+    ),
+
     FormatNumber(
         -1 * Fields!UnitPrice_SalesLine.Value,
-        IIF(Fields!CurrencyCode.Value = "JPY", 0, 2)
+        IIF(
+            Fields!CurrencyCode.Value = "" OR Fields!CurrencyCode.Value = "JPY",
+            0,
+            2
+        )
     )
 )</Value>
                                       <Style>
@@ -1316,7 +1329,11 @@
                                     <TextRun>
                                       <Value>=FormatNumber(
     -1 * Fields!NetUnitPrice.Value,
-    IIF(Fields!CurrencyCode.Value = "JPY", 0, 2)
+    IIF(
+        Fields!CurrencyCode.Value = "" OR Fields!CurrencyCode.Value = "JPY",
+        0,
+        2
+    )
 )</Value>
                                       <Style>
                                         <FontFamily>MS UI Gothic</FontFamily>
@@ -1356,13 +1373,24 @@
     Fields!CurrencyCode.Value &lt;&gt; "" 
     AND Fields!CurrencyCode.Value &lt;&gt; "JPY"
     AND Fields!LineDisc_SalesLine.Value = 0
-    AND (Fields!SalesLineAmtExclVATAmount.Value - Fields!SalesLineAmtAfterLineDisc.Value) = 0,
-
-    FormatNumber(0, 2),
+    AND Fields!VATAmount_Line.Value = 0,
 
     FormatNumber(
-        -1 * (Fields!SalesLineAmtExclVATAmount.Value - Fields!SalesLineAmtAfterLineDisc.Value),
-        IIF(Fields!CurrencyCode.Value = "JPY", 0, 2)
+        0,
+        IIF(
+            Fields!CurrencyCode.Value = "" OR Fields!CurrencyCode.Value = "JPY",
+            0,
+            2
+        )
+    ),
+
+    FormatNumber(
+        -1 * Fields!VATAmount_Line.Value,
+        IIF(
+            Fields!CurrencyCode.Value = "" OR Fields!CurrencyCode.Value = "JPY",
+            0,
+            2
+        )
     )
 )</Value>
                                       <Style>
@@ -1391,6 +1419,7 @@
                         </TablixCell>
                         <TablixCell>
                           <CellContents>
+                            <rd:Selected>true</rd:Selected>
                             <Textbox Name="LineAmount2">
                               <rd:DefaultName>LineAmount</rd:DefaultName>
                               <CanGrow>true</CanGrow>
@@ -1405,11 +1434,22 @@
     AND Fields!LineDisc_SalesLine.Value = 0
     AND Fields!VATAmount_Line.Value = 0,
 
-    FormatNumber(0, 2),
+    FormatNumber(
+        0,
+        IIF(
+            Fields!CurrencyCode.Value = "" OR Fields!CurrencyCode.Value = "JPY",
+            0,
+            2
+        )
+    ),
 
     FormatNumber(
         -1 * Fields!SalesLineLineAmt.Value,
-        IIF(Fields!CurrencyCode.Value = "JPY", 0, 2)
+        IIF(
+            Fields!CurrencyCode.Value = "" OR Fields!CurrencyCode.Value = "JPY",
+            0,
+            2
+        )
     )
 )</Value>
                                       <Style>

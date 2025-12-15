@@ -11,7 +11,7 @@
       <am:Name>MSRB</am:Name>
       <am:Version>15.1.30001.02</am:Version>
     </am:UpdatedBy>
-    <am:LastModifiedTimestamp>2025-12-12T09:33:24.6597458Z</am:LastModifiedTimestamp>
+    <am:LastModifiedTimestamp>2025-12-15T05:30:11.9423313Z</am:LastModifiedTimestamp>
   </am:AuthoringMetadata>
   <AutoRefresh>0</AutoRefresh>
   <DataSources>
@@ -2892,7 +2892,7 @@ CStr(Fields!EU_Division_3.Value)</Value>
                 <DataSetName>DataSet_Result</DataSetName>
                 <Top>5.57268cm</Top>
                 <Left>0.24764cm</Left>
-                <Height>3.84431cm</Height>
+                <Height>3.84432cm</Height>
                 <Width>26.25335cm</Width>
                 <ZIndex>10</ZIndex>
                 <Style>
@@ -3254,7 +3254,7 @@ CStr(Fields!EU_Division_3.Value)</Value>
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value>=Format(Fields!PostingDate.Value, "yyyy年MM月dd日")</Value>
+                      <Value>=Format(Fields!DocumentDate.Value, "yyyy年MM月dd日")</Value>
                       <Style>
                         <FontFamily>MS UI Gothic</FontFamily>
                         <FontSize>9pt</FontSize>

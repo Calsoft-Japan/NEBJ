@@ -1073,7 +1073,7 @@
         </trans-unit>
         <trans-unit id="Report 411697655 - NamedType 2511815438" size-unit="char" translate="yes" xml:space="preserve">
           <source>G/L Account No.</source>
-          <target>勘定科目名称</target>
+          <target>勘定科目番号</target>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Report NEBJ Consum. Tax Summary - NamedType AccNoLbl</note>
         </trans-unit>
@@ -1163,7 +1163,7 @@
         </trans-unit>
         <trans-unit id="Report 411697655 - NamedType 3651659586" size-unit="char" translate="yes" xml:space="preserve">
           <source>VAT %</source>
-          <target></target>
+          <target>消費税率</target>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Report NEBJ Consum. Tax Summary - NamedType VATPerLbl</note>
         </trans-unit>

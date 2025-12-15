@@ -1,5 +1,48 @@
 codeunit 50005 "NEBJ Sales Price Cal. Mgt."
 {
+    /* [EventSubscriber(ObjectType::Codeunit, Codeunit::"Price Calculation - V16", 'OnFindSalesLineLineDiscOnBeforeCalcLineDisc', '', true, true)]
+    procedure UpdateAfterUoMandQty(Qty: Decimal; QtyPerUOM: Decimal; var TempSalesLineDiscount: Record "Sales Line Discount" temporary; var IsHandled: Boolean)
+    begin
+        QtyValue := Qty;
+        QtyPerUOMValue := QtyPerUOM;
+        NEBJCalcBestLineDisc(TempSalesLineDiscount);
+        IsHandled := true;
+    end;
+
+    local procedure NEBJCalcBestLineDisc(var SalesLineDisc: Record "Sales Line Discount")
+    var
+        BestSalesLineDisc: Record "Sales Line Discount";
+        BestSalesLineDisc2: Record "Sales Line Discount";
+        Cnt: Integer;
+    begin
+        Cnt := 0;
+        SalesLineDisc.SetFilter("Starting Date", '<>%1', 0D);
+        if SalesLineDisc.Count = 0 then
+            SalesLineDisc.SetRange("Starting Date");
+        if SalesLineDisc.FindSet() then
+            repeat
+                if IsInMinQty(SalesLineDisc."Unit of Measure Code", SalesLineDisc."Minimum Quantity") then
+                    case true of
+                        ((BestSalesLineDisc."Currency Code" = '') and (SalesLineDisc."Currency Code" <> '')) or
+                        ((BestSalesLineDisc."Variant Code" = '') and (SalesLineDisc."Variant Code" <> '')):
+                            BestSalesLineDisc := SalesLineDisc;
+                        ((BestSalesLineDisc."Currency Code" = '') or (SalesLineDisc."Currency Code" <> '')) and
+                        ((BestSalesLineDisc."Variant Code" = '') or (SalesLineDisc."Variant Code" <> '')):
+                            if BestSalesLineDisc."Line Discount %" < SalesLineDisc."Line Discount %" then
+                                BestSalesLineDisc := SalesLineDisc;
+                    end;
+                Cnt := Cnt + 1;
+            until SalesLineDisc.Next() = 0;
+        SalesLineDisc := BestSalesLineDisc;
+    end;
+
+    local procedure IsInMinQty(UoMCode: code[10]; MinQty: Decimal): Boolean
+    begin
+        if UoMCode = '' then
+            exit(MinQty <= QtyPerUOMValue * QtyValue);
+        exit(MinQty <= QtyValue);
+    end; */
+
     /* [EventSubscriber(ObjectType::Codeunit, Codeunit::"Sales Price Calc. Mgt.", 'OnFindSalesLineLineDiscOnBeforeCalcLineDisc', '', true, true)]
     procedure UpdateAfterUoMandQty(Qty: Decimal; QtyPerUOM: Decimal; var TempSalesLineDiscount: Record "Sales Line Discount" temporary; var IsHandled: Boolean)
     begin
@@ -143,7 +186,7 @@ codeunit 50005 "NEBJ Sales Price Cal. Mgt."
                 ToSalesLineDisc := FromSalesLineDisc;
                 ToSalesLineDisc.INSERT;
             UNTIL FromSalesLineDisc.NEXT = 0;
-    end; */
+    end;*/
 
     var
         QtyValue: Decimal;

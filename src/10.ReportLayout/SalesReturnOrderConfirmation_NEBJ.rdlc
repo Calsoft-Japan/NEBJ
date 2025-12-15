@@ -11,7 +11,7 @@
       <am:Name>MSRB</am:Name>
       <am:Version>15.1.30001.02</am:Version>
     </am:UpdatedBy>
-    <am:LastModifiedTimestamp>2025-12-12T03:55:24.0779302Z</am:LastModifiedTimestamp>
+    <am:LastModifiedTimestamp>2025-12-12T09:34:36.6734766Z</am:LastModifiedTimestamp>
   </am:AuthoringMetadata>
   <AutoRefresh>0</AutoRefresh>
   <DataSources>
@@ -199,7 +199,7 @@
                   <Paragraph>
                     <TextRuns>
                       <TextRun>
-                        <Value>=Fields!BillToName.Value + " " + Fields!BillToName2.Value + " " + "　御中"</Value>
+                        <Value>=Fields!BillToName.Value + "  " + Fields!BillToName2.Value + " " + "　御中"</Value>
                         <Style>
                           <FontFamily>MS UI Gothic</FontFamily>
                           <FontSize>14pt</FontSize>
@@ -1234,28 +1234,12 @@
                                 <Paragraph>
                                   <TextRuns>
                                     <TextRun>
-                                      <Value>=IIF(
-    Fields!CurrencyCode.Value &lt;&gt; "" 
-    AND Fields!CurrencyCode.Value &lt;&gt; "JPY"
-    AND Fields!LineDisc_SalesLine.Value = 0
-    AND (Fields!SalesLineAmtExclVATAmount.Value - Fields!SalesLineAmtAfterLineDisc.Value) = 0,
-
-    FormatNumber(
+                                      <Value>=FormatNumber(
+    -Abs(Fields!UnitPrice_SalesLine.Value),
+    IIF(
+        Fields!CurrencyCode.Value = "" OR Fields!CurrencyCode.Value = "JPY",
         0,
-        IIF(
-            Fields!CurrencyCode.Value = "" OR Fields!CurrencyCode.Value = "JPY",
-            0,
-            2
-        )
-    ),
-
-    FormatNumber(
-        -1 * Fields!UnitPrice_SalesLine.Value,
-        IIF(
-            Fields!CurrencyCode.Value = "" OR Fields!CurrencyCode.Value = "JPY",
-            0,
-            2
-        )
+        2
     )
 )</Value>
                                       <Style>
@@ -1292,7 +1276,17 @@
                                 <Paragraph>
                                   <TextRuns>
                                     <TextRun>
-                                      <Value>=IIF ( Fields!LineDisc_SalesLine.Value = 0, 0.0, 100 - Fields!LineDisc_SalesLine.Value)</Value>
+                                      <Value>=IIF(
+    Fields!LineDisc_SalesLine.Value = 0,
+    FormatNumber(
+        0,
+        IIF(Fields!CurrencyCode.Value = "JPY", 0, 2)
+    ),
+    FormatNumber(
+        100 - Fields!LineDisc_SalesLine.Value,
+        IIF(Fields!CurrencyCode.Value = "JPY", 0, 2)
+    )
+)</Value>
                                       <Style>
                                         <FontFamily>MS UI Gothic</FontFamily>
                                         <FontSize>9pt</FontSize>
@@ -1327,14 +1321,8 @@
                                 <Paragraph>
                                   <TextRuns>
                                     <TextRun>
-                                      <Value>=FormatNumber(
-    -1 * Fields!NetUnitPrice.Value,
-    IIF(
-        Fields!CurrencyCode.Value = "" OR Fields!CurrencyCode.Value = "JPY",
-        0,
-        2
-    )
-)</Value>
+                                      <Value>=FormatNumber(-Abs(Fields!NetUnitPrice.Value),
+    IIF(Fields!CurrencyCode.Value = "" OR Fields!CurrencyCode.Value = "JPY",  0, 2))</Value>
                                       <Style>
                                         <FontFamily>MS UI Gothic</FontFamily>
                                         <FontSize>9pt</FontSize>
@@ -1419,7 +1407,6 @@
                         </TablixCell>
                         <TablixCell>
                           <CellContents>
-                            <rd:Selected>true</rd:Selected>
                             <Textbox Name="LineAmount2">
                               <rd:DefaultName>LineAmount</rd:DefaultName>
                               <CanGrow>true</CanGrow>
@@ -1428,30 +1415,8 @@
                                 <Paragraph>
                                   <TextRuns>
                                     <TextRun>
-                                      <Value>=IIF(
-    Fields!CurrencyCode.Value &lt;&gt; ""
-    AND Fields!CurrencyCode.Value &lt;&gt; "JPY"
-    AND Fields!LineDisc_SalesLine.Value = 0
-    AND Fields!VATAmount_Line.Value = 0,
-
-    FormatNumber(
-        0,
-        IIF(
-            Fields!CurrencyCode.Value = "" OR Fields!CurrencyCode.Value = "JPY",
-            0,
-            2
-        )
-    ),
-
-    FormatNumber(
-        -1 * Fields!SalesLineLineAmt.Value,
-        IIF(
-            Fields!CurrencyCode.Value = "" OR Fields!CurrencyCode.Value = "JPY",
-            0,
-            2
-        )
-    )
-)</Value>
+                                      <Value>=FormatNumber(-Abs(Fields!SalesLineLineAmt.Value),
+    IIF(Fields!CurrencyCode.Value = "" OR Fields!CurrencyCode.Value = "JPY",  0,  2))</Value>
                                       <Style>
                                         <FontFamily>MS UI Gothic</FontFamily>
                                         <FontSize>9pt</FontSize>
@@ -3000,7 +2965,11 @@ CStr(Fields!EU_Division_3.Value)</Value>
                             <Hidden>=iif((Fields!TypeInt.Value=2) And (Fields!Description_Bikou.Value&lt;&gt;""),false,true)</Hidden>
                           </Visibility>
                         </TablixMember>
-                        <TablixMember />
+                        <TablixMember>
+                          <Visibility>
+                            <Hidden>=IIF(Fields!Qty_SalesLine.Value = 0, True, False)</Hidden>
+                          </Visibility>
+                        </TablixMember>
                       </TablixMembers>
                     </TablixMember>
                   </TablixMembers>

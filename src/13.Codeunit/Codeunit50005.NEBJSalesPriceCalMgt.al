@@ -1,297 +1,143 @@
 codeunit 50005 "NEBJ Sales Price Cal. Mgt."
 {
-    /* [EventSubscriber(ObjectType::Codeunit, Codeunit::"Price Calculation - V16", 'OnFindSalesLineLineDiscOnBeforeCalcLineDisc', '', true, true)]
-    procedure UpdateAfterUoMandQty(Qty: Decimal; QtyPerUOM: Decimal; var TempSalesLineDiscount: Record "Sales Line Discount" temporary; var IsHandled: Boolean)
+    [EventSubscriber(ObjectType::Codeunit, Codeunit::"Sales Line - Price", 'OnAfterFillBuffer', '', true, true)]
+    local procedure NEBJOnAfterFillBuffer(var PriceCalculationBuffer: Record "Price Calculation Buffer" temporary; SalesHeader: Record "Sales Header"; SalesLine: Record "Sales Line")
     begin
-        QtyValue := Qty;
-        QtyPerUOMValue := QtyPerUOM;
-        NEBJCalcBestLineDisc(TempSalesLineDiscount);
-        IsHandled := true;
+        PriceCalculationBuffer."NEBJ Customer No." := SalesHeader."Bill-to Customer No.";
+        PriceCalculationBuffer."NEBJ Contact No." := SalesHeader."Bill-to Contact";
+        PriceCalculationBuffer."NEBJ Cust. Disc. Grp." := SalesHeader."Customer Disc. Group";
+        PriceCalculationBuffer."NEBJ EndUser" := SalesLine.EndUser;
+        PriceCalculationBuffer."NEBJ ShowAll" := true;
     end;
 
-    local procedure NEBJCalcBestLineDisc(var SalesLineDisc: Record "Sales Line Discount")
+    [EventSubscriber(ObjectType::Codeunit, Codeunit::"Price Calculation - V16", 'OnApplyDisCountOnBeforeFillBestLine', '', true, true)]
+    procedure NEBJFindSalesLineDisc(var TempPriceListLine: Record "Price List Line" temporary; var PriceCalculationBufferMgt: Codeunit "Price Calculation Buffer Mgt.")
     var
-        BestSalesLineDisc: Record "Sales Line Discount";
-        BestSalesLineDisc2: Record "Sales Line Discount";
-        Cnt: Integer;
-    begin
-        Cnt := 0;
-        SalesLineDisc.SetFilter("Starting Date", '<>%1', 0D);
-        if SalesLineDisc.Count = 0 then
-            SalesLineDisc.SetRange("Starting Date");
-        if SalesLineDisc.FindSet() then
-            repeat
-                if IsInMinQty(SalesLineDisc."Unit of Measure Code", SalesLineDisc."Minimum Quantity") then
-                    case true of
-                        ((BestSalesLineDisc."Currency Code" = '') and (SalesLineDisc."Currency Code" <> '')) or
-                        ((BestSalesLineDisc."Variant Code" = '') and (SalesLineDisc."Variant Code" <> '')):
-                            BestSalesLineDisc := SalesLineDisc;
-                        ((BestSalesLineDisc."Currency Code" = '') or (SalesLineDisc."Currency Code" <> '')) and
-                        ((BestSalesLineDisc."Variant Code" = '') or (SalesLineDisc."Variant Code" <> '')):
-                            if BestSalesLineDisc."Line Discount %" < SalesLineDisc."Line Discount %" then
-                                BestSalesLineDisc := SalesLineDisc;
-                    end;
-                Cnt := Cnt + 1;
-            until SalesLineDisc.Next() = 0;
-        SalesLineDisc := BestSalesLineDisc;
-    end;
-
-    local procedure IsInMinQty(UoMCode: code[10]; MinQty: Decimal): Boolean
-    begin
-        if UoMCode = '' then
-            exit(MinQty <= QtyPerUOMValue * QtyValue);
-        exit(MinQty <= QtyValue);
-    end; */
-
-    /* [EventSubscriber(ObjectType::Codeunit, Codeunit::"Sales Price Calc. Mgt.", 'OnFindSalesLineLineDiscOnBeforeCalcLineDisc', '', true, true)]
-    procedure UpdateAfterUoMandQty(Qty: Decimal; QtyPerUOM: Decimal; var TempSalesLineDiscount: Record "Sales Line Discount" temporary; var IsHandled: Boolean)
-    begin
-        QtyValue := Qty;
-        QtyPerUOMValue := QtyPerUOM;
-        NEBJCalcBestLineDisc(TempSalesLineDiscount);
-        IsHandled := true;
-    end;
-
-    local procedure NEBJCalcBestLineDisc(var SalesLineDisc: Record "Sales Line Discount")
-    var
-        BestSalesLineDisc: Record "Sales Line Discount";
-        BestSalesLineDisc2: Record "Sales Line Discount";
-        Cnt: Integer;
-    begin
-        Cnt := 0;
-        SalesLineDisc.SetFilter("Starting Date", '<>%1', 0D);
-        if SalesLineDisc.Count = 0 then
-            SalesLineDisc.SetRange("Starting Date");
-        if SalesLineDisc.FindSet() then
-            repeat
-                if IsInMinQty(SalesLineDisc."Unit of Measure Code", SalesLineDisc."Minimum Quantity") then
-                    case true of
-                        ((BestSalesLineDisc."Currency Code" = '') and (SalesLineDisc."Currency Code" <> '')) or
-                        ((BestSalesLineDisc."Variant Code" = '') and (SalesLineDisc."Variant Code" <> '')):
-                            BestSalesLineDisc := SalesLineDisc;
-                        ((BestSalesLineDisc."Currency Code" = '') or (SalesLineDisc."Currency Code" <> '')) and
-                        ((BestSalesLineDisc."Variant Code" = '') or (SalesLineDisc."Variant Code" <> '')):
-                            if BestSalesLineDisc."Line Discount %" < SalesLineDisc."Line Discount %" then
-                                BestSalesLineDisc := SalesLineDisc;
-                    end;
-                Cnt := Cnt + 1;
-            until SalesLineDisc.Next() = 0;
-        SalesLineDisc := BestSalesLineDisc;
-    end;
-
-    local procedure IsInMinQty(UoMCode: code[10]; MinQty: Decimal): Boolean
-    begin
-        if UoMCode = '' then
-            exit(MinQty <= QtyPerUOMValue * QtyValue);
-        exit(MinQty <= QtyValue);
-    end; */
-
-    /* [EventSubscriber(ObjectType::Codeunit, Codeunit::"Price Calculation - V16", 'OnApplyDiscountOnBeforeFillBestLine', '', true, true)]
-    procedure NEBJFindSalesLineDisc(var TempPriceListLine: Record "Price List Line" temporary; CustNo: Code[20]; ContNo: Code[20]; CustDiscGrCode: Code[20]; CampaignNo: Code[20]; ItemNo: Code[20]; ItemDiscGrCode: Code[20]; VariantCode: Code[10]; UOM: code[10]; CurrencyCode: code[10]; StartingDate: Date; ShowAll: Boolean; p_EndUser: code[10]; P_Dealer1: code[10]; p_Dealer2: code[10]; p_Dealer3: code[10]; ItemDiscGrCode2: code[10]; ItemDiscGrCode3: code[10])
-    var
-        Item: record Item;
+        Item: Record Item;
         FromSalesLineDisc: Record "Price List Line";
+        PriceCalcBuffer: Record "Price Calculation Buffer";
         TempCampaignTargetGr: Record "Campaign Target Group" temporary;
-        //SalesPriceCalcMgt: codeunit "Sales Price Calc. Mgt.";
-        InclCampaigns: Boolean;
     begin
-        WITH ToSalesLineDisc DO BEGIN
-            SETFILTER("Ending Date", '%1|>=%2', 0D, StartingDate);
-            SETFILTER("Variant Code", '%1|%2', VariantCode, '');
-            IF NOT ShowAll THEN BEGIN
-                SETRANGE("Starting Date", 0D, StartingDate);
-                SETFILTER("Currency Code", '%1|%2', CurrencyCode, '');
-                IF UOM <> '' THEN
-                    SETFILTER("Unit of Measure Code", '%1|%2', UOM, '');
-            END;
-            ToSalesLineDisc.RESET;
-            ToSalesLineDisc.DELETEALL;
-            FOR "Sales Type" := "Sales Type"::Customer TO "Sales Type"::Campaign DO
-                IF ("Sales Type" = "Sales Type"::"All Customers") OR
-                   (("Sales Type" = "Sales Type"::Customer) AND (CustNo <> '')) OR
-                   (("Sales Type" = "Sales Type"::"Customer Disc. Group") AND (CustDiscGrCode <> '')) OR
-                   (("Sales Type" = "Sales Type"::Campaign) AND
-                    NOT ((CustNo = '') AND (ContNo = '') AND (CampaignNo = '')))
-                THEN BEGIN
-                    InclCampaigns := FALSE;
-                    SETRANGE("Sales Type", "Sales Type");
-                    CASE "Sales Type" OF
-                        "Sales Type"::"All Customers":
-                            SETRANGE("Sales Code");
-                        "Sales Type"::Customer:
-                            SETRANGE("Sales Code", CustNo);
-                        "Sales Type"::"Customer Disc. Group":
-                            SETRANGE("Sales Code", CustDiscGrCode);
-                        "Sales Type"::Campaign:
-                        BEGIN
-                            InclCampaigns := SalesPriceCalcMgt.ActivatedCampaignExists(TempCampaignTargetGr, CustNo, ContNo, CampaignNo);
-                            SETRANGE("Sales Code", TempCampaignTargetGr."Campaign No.");
-                        END;
-                    END;
-                    REPEAT
-                        SETRANGE(Type, Type::Item);
-                        SETRANGE(Code, ItemNo);
-                        IF NOT ShowAll THEN BEGIN
-                            SETFILTER("Starting Date", '>%1&<=%2', 0D, StartingDate);
-                            IF FromSalesLineDisc.COUNT = 0 THEN
-                                SETRANGE("Starting Date", 0D, StartingDate);
-                        END;
-                        CopySalesDiscToSalesDisc2(FromSalesLineDisc, ToSalesLineDisc);
-                        //Disc Group 1
-                        IF ItemDiscGrCode <> '' THEN BEGIN
-                            SETRANGE(Type, Type::"Item Discount Group 1");
-                            SETRANGE(Code, ItemDiscGrCode);
-                            //CopySalesDiscToSalesDisc    
-                            CopySalesDiscToSalesDisc2(FromSalesLineDisc, ToSalesLineDisc);
-                        END;
-                        //Disc Group 2
-                        IF ItemDiscGrCode2 <> '' THEN BEGIN
-                            SETRANGE(Type, Type::"Item Disc. Group 2");
-                            SETRANGE(Code, ItemDiscGrCode2);
-                            CopySalesDiscToSalesDisc2(FromSalesLineDisc, ToSalesLineDisc);
-                        END;
-                        //Disc Group 3
-                        IF ItemDiscGrCode3 <> '' THEN BEGIN
-                            SETRANGE(Type, Type::"Item Disc. Group 3");
-                            SETRANGE(Code, ItemDiscGrCode3);
-                            CopySalesDiscToSalesDisc2(FromSalesLineDisc, ToSalesLineDisc);
-                        END;
+        PriceCalculationBufferMgt.GetBuffer(PriceCalcBuffer);
+        FromSalesLineDisc.SetFilter("ending Date", '%1|>=%2', 0D, PriceCalcBuffer."document Date");
+        FromSalesLineDisc.SetFilter("Variant Code", '%1|%2', PriceCalcBuffer."Variant Code", '');
+        if not PriceCalcBuffer."NEBJ ShowAll" then begin
+            FromSalesLineDisc.SetRange("Starting Date", 0D, PriceCalcBuffer."document Date");
+            FromSalesLineDisc.SetFilter("Currency Code", '%1|%2', PriceCalcBuffer."Currency Code", '');
+            if PriceCalcBuffer."Unit of Measure Code" <> '' then
+                FromSalesLineDisc.SetFilter("Unit of Measure Code", '%1|%2', PriceCalcBuffer."Unit of Measure Code", '');
+        end;
+        TempPriceListLine.Reset();
+        TempPriceListLine.DeleteAll();
+        for FromSalesLineDisc."Source Type" := FromSalesLineDisc."Source Type"::Customer to FromSalesLineDisc."Source Type"::Campaign do
+            if (FromSalesLineDisc."Source Type" = FromSalesLineDisc."Source Type"::"All Customers") or
+               ((FromSalesLineDisc."Source Type" = FromSalesLineDisc."Source Type"::Customer) and (PriceCalcBuffer."NEBJ Customer No." <> '')) or
+               ((FromSalesLineDisc."Source Type" = FromSalesLineDisc."Source Type"::"Customer Disc. Group") and (PriceCalcBuffer."NEBJ Cust. Disc. Grp." <> '')) or
+               ((FromSalesLineDisc."Source Type" = FromSalesLineDisc."Source Type"::Campaign) and
+                not ((PriceCalcBuffer."NEBJ Customer No." = '') and (PriceCalcBuffer."NEBJ Contact No." = '')))
+            then begin
+                FromSalesLineDisc.SetRange("Source Type", FromSalesLineDisc."Source Type");
+                case FromSalesLineDisc."Source Type" of
+                    FromSalesLineDisc."Source Type"::"All Customers":
+                        FromSalesLineDisc.SetRange("Assign-to No.");
+                    FromSalesLineDisc."Source Type"::Customer:
+                        FromSalesLineDisc.SetRange("Assign-to No.", PriceCalcBuffer."NEBJ Customer No.");
+                    FromSalesLineDisc."Source Type"::"Customer Disc. Group":
+                        FromSalesLineDisc.SetRange("Assign-to No.", PriceCalcBuffer."NEBJ Cust. Disc. Grp.");
+                end;
+                if FromSalesLineDisc.FindSet() then
+                    repeat
+                        if Item.Get(PriceCalcBuffer."Asset No.") then;
+                        FromSalesLineDisc.SetRange("Asset Type", FromSalesLineDisc."Asset Type"::Item);
+                        FromSalesLineDisc.SetRange("Asset No.", PriceCalcBuffer."Asset No.");
+                        if not PriceCalcBuffer."NEBJ ShowAll" then begin
+                            FromSalesLineDisc.SetFilter("Starting Date", '>%1&<=%2', 0D, PriceCalcBuffer."document Date");
+                            if FromSalesLineDisc.Count = 0 then
+                                FromSalesLineDisc.SetRange("Starting Date", 0D, PriceCalcBuffer."document Date");
+                        end;
+                        CopySalesDiscToSalesLine(FromSalesLineDisc, TempPriceListLine);
+                        if PriceCalcBuffer."Asset Type" = PriceCalcBuffer."Asset Type"::"Item DisCount Group" then begin
+                            FromSalesLineDisc.SetRange("Asset Type", FromSalesLineDisc."Asset Type"::"Item DisCount Group");
+                            FromSalesLineDisc.SetRange("Asset No.", PriceCalcBuffer."Asset No.");
+                            CopySalesDiscToSalesLine(FromSalesLineDisc, TempPriceListLine);
+                        end;
+                        if PriceCalcBuffer."Asset Type" = PriceCalcBuffer."Asset Type"::"Item DisCount Group 2" then begin
+                            FromSalesLineDisc.SetRange("Asset Type", FromSalesLineDisc."Asset Type"::"Item DisCount Group 2");
+                            FromSalesLineDisc.SetRange("Asset No.", PriceCalcBuffer."Asset No.");
+                            CopySalesDiscToSalesLine(FromSalesLineDisc, TempPriceListLine);
+                        end;
+                        if PriceCalcBuffer."Asset Type" = PriceCalcBuffer."Asset Type"::"Item DisCount Group 3" then begin
+                            FromSalesLineDisc.SetRange("Asset Type", FromSalesLineDisc."Asset Type"::"Item DisCount Group 3");
+                            FromSalesLineDisc.SetRange("Asset No.", PriceCalcBuffer."Asset No.");
+                            CopySalesDiscToSalesLine(FromSalesLineDisc, TempPriceListLine);
+                        end;
+                        if not Item."Disable All Item DisCount" then begin
+                            FromSalesLineDisc.SetRange("Asset Type", FromSalesLineDisc."Asset Type"::" ");
+                            FromSalesLineDisc.SetRange("Asset No.");
+                            CopySalesDiscToSalesLine(FromSalesLineDisc, TempPriceListLine);
+                        end;
+                    until FromSalesLineDisc.Next() = 0;
+            end;
 
-                        //All Item
-                        IF NOT Item."Disable All Item Discount" THEN BEGIN
-                            SETRANGE(Type, Type::"All Item");
-                            SETRANGE(Code);
-                            CopySalesDiscToSalesDisc2(FromSalesLineDisc, ToSalesLineDisc);
-                        END;
-                        //PBCS08.01 ADD END
-
-                        IF InclCampaigns THEN BEGIN
-                            InclCampaigns := TempCampaignTargetGr.NEXT <> 0;
-                            SETRANGE("Sales Code", TempCampaignTargetGr."Campaign No.");
-                        END;
-                    UNTIL NOT InclCampaigns;
-                END;
-            ToSalesLineDisc.SETRANGE(EndUser, p_EndUser);
-            IF ToSalesLineDisc.COUNT = 0 THEN
-                IF p_EndUser = '' THEN
-                    ToSalesLineDisc.SETRANGE(EndUser)
-                ELSE
-                    ToSalesLineDisc.SETRANGE(EndUser, '');
-        END;
+        TempPriceListLine.SetRange(EndUser, PriceCalcBuffer."NEBJ EndUser");
+        if TempPriceListLine.Count = 0 then
+            if PriceCalcBuffer."NEBJ EndUser" = '' then
+                TempPriceListLine.SetRange(EndUser)
+            ELSE
+                TempPriceListLine.SetRange(EndUser, '');
     end;
 
-    local procedure CopySalesDiscToSalesDisc2(var FromSalesLineDisc: Record "Sales Line Discount"; var ToSalesLineDisc: Record "Sales Line Discount")
+    local procedure CopySalesDiscToSalesLine(var FromSalesLineDisc: Record "Price List Line"; var TempPriceListLine: Record "Price List Line")
     begin
-        IF FromSalesLineDisc.FINDSET THEN
-            REPEAT
-                ToSalesLineDisc := FromSalesLineDisc;
-                ToSalesLineDisc.INSERT;
-            UNTIL FromSalesLineDisc.NEXT = 0;
-    end; */
+        if FromSalesLineDisc.FindSet() then
+            repeat
+                TempPriceListLine := FromSalesLineDisc;
+                TempPriceListLine.Insert();
+            until FromSalesLineDisc.Next() = 0;
+    end;
 
-    /* [EventSubscriber(ObjectType::Codeunit, Codeunit::"Price Calculation - V16", 'OnApplyDiscountOnBeforeFillBestLine', '', true, true)]
-    procedure EXT_FindSalesLineDisc(VAR ToSalesLineDisc: Record "Sales Line Discount"; CustNo: Code[20]; ContNo: Code[20]; CustDiscGrCode: Code[20]; CampaignNo: Code[20]; ItemNo: Code[20]; ItemDiscGrCode: Code[20]; VariantCode: Code[10]; UOM: code[10]; CurrencyCode: code[10]; StartingDate: Date; ShowAll: Boolean; p_EndUser: code[10]; P_Dealer1: code[10]; p_Dealer2: code[10]; p_Dealer3: code[10]; ItemDiscGrCode2: code[10]; ItemDiscGrCode3: code[10])
+    /* [EventSubscriber(ObjectType::Codeunit, Codeunit::"Price Calculation - V16", 'OnFindSalesLineLineDiscOnBeforeCalcLineDisc', '', true, true)]
+    procedure UpdateAfterUoMandQty(Qty: Decimal; QtyPerUOM: Decimal; var TempSalesLineDisCount: Record "Sales Line DisCount" temporary; var IsHandled: Boolean)
+    begin
+        QtyValue := Qty;
+        QtyPerUOMValue := QtyPerUOM;
+        NEBJCalcBestLineDisc(TempSalesLineDisCount);
+        IsHandled := true;
+    end;
+
+    local procedure NEBJCalcBestLineDisc(var SalesLineDisc: Record "Sales Line DisCount")
     var
-        Item: record Item;
-        FromSalesLineDisc: Record "Sales Line Discount";
-        TempCampaignTargetGr: Record "Campaign Target Group" temporary;
-        SalesPriceCalcMgt: codeunit "Sales Price Calc. Mgt.";
-        InclCampaigns: Boolean;
+        BestSalesLineDisc: Record "Sales Line DisCount";
+        BestSalesLineDisc2: Record "Sales Line DisCount";
+        Cnt: Integer;
     begin
-        WITH FromSalesLineDisc DO BEGIN
-            SETFILTER("Ending Date", '%1|>=%2', 0D, StartingDate);
-            SETFILTER("Variant Code", '%1|%2', VariantCode, '');
-            IF NOT ShowAll THEN BEGIN
-                SETRANGE("Starting Date", 0D, StartingDate);
-                SETFILTER("Currency Code", '%1|%2', CurrencyCode, '');
-                IF UOM <> '' THEN
-                    SETFILTER("Unit of Measure Code", '%1|%2', UOM, '');
-            END;
-            ToSalesLineDisc.RESET;
-            ToSalesLineDisc.DELETEALL;
-            FOR "Sales Type" := "Sales Type"::Customer TO "Sales Type"::Campaign DO
-                IF ("Sales Type" = "Sales Type"::"All Customers") OR
-                   (("Sales Type" = "Sales Type"::Customer) AND (CustNo <> '')) OR
-                   (("Sales Type" = "Sales Type"::"Customer Disc. Group") AND (CustDiscGrCode <> '')) OR
-                   (("Sales Type" = "Sales Type"::Campaign) AND
-                    NOT ((CustNo = '') AND (ContNo = '') AND (CampaignNo = '')))
-                THEN BEGIN
-                    InclCampaigns := FALSE;
-                    SETRANGE("Sales Type", "Sales Type");
-                    CASE "Sales Type" OF
-                        "Sales Type"::"All Customers":
-                            SETRANGE("Sales Code");
-                        "Sales Type"::Customer:
-                            SETRANGE("Sales Code", CustNo);
-                        "Sales Type"::"Customer Disc. Group":
-                            SETRANGE("Sales Code", CustDiscGrCode);
-                        "Sales Type"::Campaign:
-                            BEGIN
-                                InclCampaigns := SalesPriceCalcMgt.ActivatedCampaignExists(TempCampaignTargetGr, CustNo, ContNo, CampaignNo);
-                                SETRANGE("Sales Code", TempCampaignTargetGr."Campaign No.");
-                            END;
-                    END;
-                    REPEAT
-                        SETRANGE(Type, Type::Item);
-                        SETRANGE(Code, ItemNo);
-                        IF NOT ShowAll THEN BEGIN
-                            SETFILTER("Starting Date", '>%1&<=%2', 0D, StartingDate);
-                            IF FromSalesLineDisc.COUNT = 0 THEN
-                                SETRANGE("Starting Date", 0D, StartingDate);
-                        END;
-                        CopySalesDiscToSalesDisc2(FromSalesLineDisc, ToSalesLineDisc);
-                        //Disc Group 1
-                        IF ItemDiscGrCode <> '' THEN BEGIN
-                            SETRANGE(Type, Type::"Item Discount Group 1");
-                            SETRANGE(Code, ItemDiscGrCode);
-                            //CopySalesDiscToSalesDisc    
-                            CopySalesDiscToSalesDisc2(FromSalesLineDisc, ToSalesLineDisc);
-                        END;
-                        //Disc Group 2
-                        IF ItemDiscGrCode2 <> '' THEN BEGIN
-                            SETRANGE(Type, Type::"Item Disc. Group 2");
-                            SETRANGE(Code, ItemDiscGrCode2);
-                            CopySalesDiscToSalesDisc2(FromSalesLineDisc, ToSalesLineDisc);
-                        END;
-                        //Disc Group 3
-                        IF ItemDiscGrCode3 <> '' THEN BEGIN
-                            SETRANGE(Type, Type::"Item Disc. Group 3");
-                            SETRANGE(Code, ItemDiscGrCode3);
-                            CopySalesDiscToSalesDisc2(FromSalesLineDisc, ToSalesLineDisc);
-                        END;
-
-                        //All Item
-                        IF NOT Item."Disable All Item Discount" THEN BEGIN
-                            SETRANGE(Type, Type::"All Item");
-                            SETRANGE(Code);
-                            CopySalesDiscToSalesDisc2(FromSalesLineDisc, ToSalesLineDisc);
-                        END;
-                        //PBCS08.01 ADD END
-
-                        IF InclCampaigns THEN BEGIN
-                            InclCampaigns := TempCampaignTargetGr.NEXT <> 0;
-                            SETRANGE("Sales Code", TempCampaignTargetGr."Campaign No.");
-                        END;
-                    UNTIL NOT InclCampaigns;
-                END;
-            ToSalesLineDisc.SETRANGE(EndUser, p_EndUser);
-            IF ToSalesLineDisc.COUNT = 0 THEN
-                IF p_EndUser = '' THEN
-                    ToSalesLineDisc.SETRANGE(EndUser)
-                ELSE
-                    ToSalesLineDisc.SETRANGE(EndUser, '');
-        END;
+        Cnt := 0;
+        SalesLineDisc.SetFilter("Starting Date", '<>%1', 0D);
+        if SalesLineDisc.Count = 0 then
+            SalesLineDisc.SetRange("Starting Date");
+        if SalesLineDisc.FindSet() then
+            repeat
+                if IsInMinQty(SalesLineDisc."Unit of Measure Code", SalesLineDisc."Minimum Quantity") then
+                    case true of
+                        ((BestSalesLineDisc."Currency Code" = '') and (SalesLineDisc."Currency Code" <> '')) or
+                        ((BestSalesLineDisc."Variant Code" = '') and (SalesLineDisc."Variant Code" <> '')):
+                            BestSalesLineDisc := SalesLineDisc;
+                        ((BestSalesLineDisc."Currency Code" = '') or (SalesLineDisc."Currency Code" <> '')) and
+                        ((BestSalesLineDisc."Variant Code" = '') or (SalesLineDisc."Variant Code" <> '')):
+                            if BestSalesLineDisc."Line DisCount %" < SalesLineDisc."Line DisCount %" then
+                                BestSalesLineDisc := SalesLineDisc;
+                    end;
+                Cnt := Cnt + 1;
+            until SalesLineDisc.Next()() = 0;
+        SalesLineDisc := BestSalesLineDisc;
     end;
 
-    local procedure CopySalesDiscToSalesDisc2(var FromSalesLineDisc: Record "Sales Line Discount"; var ToSalesLineDisc: Record "Sales Line Discount")
+    local procedure IsInMinQty(UoMCode: code[10]; MinQty: Decimal): Boolean
     begin
-        IF FromSalesLineDisc.FINDSET THEN
-            REPEAT
-                ToSalesLineDisc := FromSalesLineDisc;
-                ToSalesLineDisc.INSERT;
-            UNTIL FromSalesLineDisc.NEXT = 0;
+        if UoMCode = '' then
+            exit(MinQty <= QtyPerUOMValue * QtyValue);
+        exit(MinQty <= QtyValue);
     end; */
-
     var
         QtyValue: Decimal;
         QtyPerUOMValue: Decimal;

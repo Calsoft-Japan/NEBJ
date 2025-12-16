@@ -11,7 +11,7 @@
       <am:Name>MSRB</am:Name>
       <am:Version>15.1.30001.02</am:Version>
     </am:UpdatedBy>
-    <am:LastModifiedTimestamp>2025-12-15T05:30:11.9423313Z</am:LastModifiedTimestamp>
+    <am:LastModifiedTimestamp>2025-12-16T07:01:09.2464893Z</am:LastModifiedTimestamp>
   </am:AuthoringMetadata>
   <AutoRefresh>0</AutoRefresh>
   <DataSources>
@@ -3019,7 +3019,20 @@ CStr(Fields!EU_Division_3.Value)</Value>
                   <Paragraph>
                     <TextRuns>
                       <TextRun>
-                        <Value>=IIF(Fields!CurrencyCode.Value &lt;&gt; "" AND Fields!CurrencyCode.Value &lt;&gt; "JPY", FormatNumber(Abs(Sum(Fields!TotalAmountExclVAT.Value)), 2), FormatNumber(-Sum(Fields!TotalAmountExclVAT.Value), 0))</Value>
+                        <Value>=IIF(
+    Fields!CurrencyCode.Value &lt;&gt; "" 
+    AND Fields!CurrencyCode.Value &lt;&gt; "JPY",
+
+    FormatNumber(
+        -Abs(Sum(Fields!TotalAmountExclVAT.Value)),
+        2
+    ),
+
+    FormatNumber(
+        -Abs(Sum(Fields!TotalAmountExclVAT.Value)),
+        0
+    )
+)</Value>
                         <Style>
                           <FontFamily>MS UI Gothic</FontFamily>
                           <FontSize>9pt</FontSize>

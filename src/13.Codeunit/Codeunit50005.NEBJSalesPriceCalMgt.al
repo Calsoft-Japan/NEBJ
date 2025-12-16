@@ -16,7 +16,6 @@ codeunit 50005 "NEBJ Sales Price Cal. Mgt."
         Item: Record Item;
         FromSalesLineDisc: Record "Price List Line";
         PriceCalcBuffer: Record "Price Calculation Buffer";
-        TempCampaignTargetGr: Record "Campaign Target Group" temporary;
     begin
         PriceCalculationBufferMgt.GetBuffer(PriceCalcBuffer);
         FromSalesLineDisc.SetFilter("ending Date", '%1|>=%2', 0D, PriceCalcBuffer."document Date");

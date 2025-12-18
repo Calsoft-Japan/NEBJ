@@ -5433,18 +5433,18 @@
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="textbox10">
+                        <Textbox Name="Textbox36">
+                          <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Code.BlankZero(Fields!StartBalAddCurr.Value)</Value>
+                                  <Value />
                                   <Style>
                                     <FontStyle>Normal</FontStyle>
                                     <FontFamily>Segoe UI</FontFamily>
                                     <FontSize>8pt</FontSize>
-                                    <Format>="#,##0.00"</Format>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -5453,6 +5453,7 @@
                               </Style>
                             </Paragraph>
                           </Paragraphs>
+                          <rd:DefaultName>Textbox36</rd:DefaultName>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
@@ -6755,7 +6756,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Code.BlankZero(iif(Parameters!VATAmt_GLEntryCaption.Value &lt;&gt; "", Last(Fields!GLBalAddCurr.Value), Fields!StartBalAddCurr.Value))</Value>
+                                  <Value>=Code.BlankZero(iif(Parameters!VATAmt_GLEntryCaption.Value &lt;&gt; "", Last(Fields!GLBalAddCurr.Value)))</Value>
                                   <Style>
                                     <FontStyle>Normal</FontStyle>
                                     <FontFamily>Segoe UI</FontFamily>
@@ -7423,12 +7424,6 @@ End Function</Code>
         </Field>
         <Field Name="StartBalanceFormat">
           <DataField>StartBalanceFormat</DataField>
-        </Field>
-        <Field Name="StartBalAddCurr">
-          <DataField>StartBalAddCurr</DataField>
-        </Field>
-        <Field Name="StartBalAddCurrFormat">
-          <DataField>StartBalAddCurrFormat</DataField>
         </Field>
         <Field Name="VATAmt_GLEntry">
           <DataField>VATAmt_GLEntry</DataField>

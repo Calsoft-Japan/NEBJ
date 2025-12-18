@@ -46,7 +46,6 @@ report 50003 "NEBJ Detail Trial Balance"
                 DataItemTableView = sorting(Number) where(Number = const(1));
                 column(GLAccName; "G/L Account".Name) { }
                 column(StartBalance; StartBalance) { AutoFormatType = 1; }
-                column(StartBalAddCurr; StartBalAddCurr) { AutoFormatType = 1; }
                 dataitem("G/L Entry"; "G/L Entry")
                 {
                     DataItemLink = "G/L Account No." = field("No."), "Posting Date" = field("Date Filter"), "Global Dimension 1 Code" = field("Global Dimension 1 Filter"), "Global Dimension 2 Code" = field("Global Dimension 2 Filter"), "Business Unit Code" = field("Business Unit Filter"), "Dimension Set ID" = field("Dimension Set ID Filter");
@@ -116,17 +115,9 @@ report 50003 "NEBJ Detail Trial Balance"
                             "Add.-Currency Debit Amount" := 0;
                             "Add.-Currency Credit Amount" := 0;
                             "Additional-Currency Amount" := 0;
-                        end else begin
-                            if "G/L Entry"."Bal. Account Type" = "G/L Entry"."Bal. Account Type"::"G/L Account" then begin
-                                if IsBalAccMatchFound("G/L Entry"."Bal. Account No.") then begin
-                                    "Add.-Currency Debit Amount" := 0;
-                                    "Add.-Currency Credit Amount" := 0;
-                                    "Additional-Currency Amount" := 0;
-                                end else
-                                    GLBalAddCurr := GLBalAddCurr + "Additional-Currency Amount";
-                            end else
-                                GLBalAddCurr := GLBalAddCurr + "Additional-Currency Amount";
-                        end;
+                        end else
+                            GLBalAddCurr := GLBalAddCurr + "Additional-Currency Amount";
+
                         if ("Posting Date" = ClosingDate("Posting Date")) and
                            not PrintClosingEntries
                         then begin
@@ -147,11 +138,8 @@ report 50003 "NEBJ Detail Trial Balance"
                     trigger OnPreDataItem()
                     begin
                         GLBalance := StartBalance;
-                        if "G/L Account"."Show FCY Amount" = false then begin
-                            StartBalAddCurr := 0;
-                            GLBalAddCurr := 0
-                        end else
-                            GLBalAddCurr := StartBalAddCurr;
+                        if "G/L Account"."Show FCY Amount" = false then
+                            GLBalAddCurr := 0;
 
                         OnAfterOnPreDataItemGLEntry("G/L Entry");
                     end;
@@ -169,7 +157,6 @@ report 50003 "NEBJ Detail Trial Balance"
                 Date: Record Date;
             begin
                 StartBalance := 0;
-                StartBalAddCurr := 0;
                 if GLDateFilter <> '' then begin
                     Date.SetRange("Period Type", Date."Period Type"::Date);
                     Date.SetFilter("Period Start", GLDateFilter);
@@ -178,7 +165,6 @@ report 50003 "NEBJ Detail Trial Balance"
                         CalcFields("Net Change");
                         CalcFields("Additional-Currency Net Change");
                         StartBalance := "Net Change";
-                        StartBalAddCurr := "Additional-Currency Net Change";
                         SetFilter("Date Filter", GLDateFilter);
                     end;
                 end;
@@ -283,7 +269,6 @@ report 50003 "NEBJ Detail Trial Balance"
         GLBalance: Decimal;
         StartBalance: Decimal;
         GLBalAddCurr: Decimal;
-        StartBalAddCurr: Decimal;
         PrintOnlyOnePerPage: Boolean;
         ExcludeBalanceOnly: Boolean;
         PrintClosingEntries: Boolean;

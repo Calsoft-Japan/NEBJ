@@ -6756,7 +6756,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Code.BlankZero(iif(Parameters!VATAmt_GLEntryCaption.Value &lt;&gt; "", Last(Fields!GLBalAddCurr.Value)))</Value>
+                                  <Value>=Code.BlankZero(Sum(Fields!GLBalAddCurr.Value))</Value>
                                   <Style>
                                     <FontStyle>Normal</FontStyle>
                                     <FontFamily>Segoe UI</FontFamily>
@@ -6793,6 +6793,7 @@
                             <rd:FormatSymbolCulture>en-US</rd:FormatSymbolCulture>
                           </Style>
                         </Textbox>
+                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                   </TablixCells>

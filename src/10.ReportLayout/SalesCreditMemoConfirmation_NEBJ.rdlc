@@ -11,7 +11,7 @@
       <am:Name>MSRB</am:Name>
       <am:Version>15.1.30001.02</am:Version>
     </am:UpdatedBy>
-    <am:LastModifiedTimestamp>2025-12-16T07:01:09.2464893Z</am:LastModifiedTimestamp>
+    <am:LastModifiedTimestamp>2025-12-19T01:45:05.5750451Z</am:LastModifiedTimestamp>
   </am:AuthoringMetadata>
   <AutoRefresh>0</AutoRefresh>
   <DataSources>
@@ -936,9 +936,10 @@
                       <TablixCells>
                         <TablixCell>
                           <CellContents>
-                            <Textbox Name="Textbox35">
-                              <rd:DefaultName>Textbox35</rd:DefaultName>
+                            <Textbox Name="Textbox8">
+                              <rd:DefaultName>Textbox8</rd:DefaultName>
                               <CanGrow>true</CanGrow>
+                              <CanShrink>true</CanShrink>
                               <KeepTogether>true</KeepTogether>
                               <Paragraphs>
                                 <Paragraph>
@@ -952,29 +953,27 @@
                                     </TextRun>
                                   </TextRuns>
                                   <Style>
-                                    <TextAlign>Right</TextAlign>
+                                    <TextAlign>Left</TextAlign>
                                   </Style>
                                 </Paragraph>
                               </Paragraphs>
                               <Style>
                                 <Border>
-                                  <Color>LightGrey</Color>
                                   <Style>None</Style>
                                 </Border>
-                                <VerticalAlign>Middle</VerticalAlign>
+                                <VerticalAlign>Top</VerticalAlign>
                                 <PaddingLeft>2pt</PaddingLeft>
                                 <PaddingRight>2pt</PaddingRight>
-                                <PaddingTop>2pt</PaddingTop>
-                                <PaddingBottom>2pt</PaddingBottom>
                               </Style>
                             </Textbox>
                           </CellContents>
                         </TablixCell>
                         <TablixCell>
                           <CellContents>
-                            <Textbox Name="Textbox36">
-                              <rd:DefaultName>Textbox36</rd:DefaultName>
+                            <Textbox Name="Textbox9">
+                              <rd:DefaultName>Textbox9</rd:DefaultName>
                               <CanGrow>true</CanGrow>
+                              <CanShrink>true</CanShrink>
                               <KeepTogether>true</KeepTogether>
                               <Paragraphs>
                                 <Paragraph>
@@ -994,14 +993,10 @@
                               </Paragraphs>
                               <Style>
                                 <Border>
-                                  <Color>LightGrey</Color>
                                   <Style>None</Style>
                                 </Border>
-                                <VerticalAlign>Top</VerticalAlign>
                                 <PaddingLeft>2pt</PaddingLeft>
                                 <PaddingRight>2pt</PaddingRight>
-                                <PaddingTop>2pt</PaddingTop>
-                                <PaddingBottom>2pt</PaddingBottom>
                               </Style>
                             </Textbox>
                             <ColSpan>3</ColSpan>
@@ -1011,153 +1006,146 @@
                         <TablixCell />
                         <TablixCell>
                           <CellContents>
-                            <Textbox Name="Textbox8">
-                              <rd:DefaultName>Textbox8</rd:DefaultName>
-                              <CanGrow>true</CanGrow>
-                              <KeepTogether>true</KeepTogether>
-                              <Paragraphs>
-                                <Paragraph>
-                                  <TextRuns>
-                                    <TextRun>
-                                      <Value />
-                                      <Style>
-                                        <FontFamily>MS UI Gothic</FontFamily>
-                                        <FontSize>9pt</FontSize>
-                                      </Style>
-                                    </TextRun>
-                                  </TextRuns>
-                                  <Style>
-                                    <TextAlign>Left</TextAlign>
-                                  </Style>
-                                </Paragraph>
-                              </Paragraphs>
-                              <Style>
-                                <Border>
-                                  <Color>LightGrey</Color>
-                                  <Style>None</Style>
-                                </Border>
-                                <VerticalAlign>Top</VerticalAlign>
-                                <PaddingLeft>2pt</PaddingLeft>
-                                <PaddingRight>2pt</PaddingRight>
-                                <PaddingTop>2pt</PaddingTop>
-                                <PaddingBottom>2pt</PaddingBottom>
-                              </Style>
-                            </Textbox>
-                          </CellContents>
-                        </TablixCell>
-                        <TablixCell>
-                          <CellContents>
-                            <Textbox Name="Textbox9">
-                              <rd:DefaultName>Textbox9</rd:DefaultName>
-                              <CanGrow>true</CanGrow>
-                              <KeepTogether>true</KeepTogether>
-                              <Paragraphs>
-                                <Paragraph>
-                                  <TextRuns>
-                                    <TextRun>
-                                      <Value />
-                                      <Style>
-                                        <FontFamily>MS UI Gothic</FontFamily>
-                                        <FontSize>9pt</FontSize>
-                                      </Style>
-                                    </TextRun>
-                                  </TextRuns>
-                                  <Style>
-                                    <TextAlign>Left</TextAlign>
-                                  </Style>
-                                </Paragraph>
-                              </Paragraphs>
-                              <Style>
-                                <Border>
-                                  <Color>LightGrey</Color>
-                                  <Style>None</Style>
-                                </Border>
-                                <VerticalAlign>Top</VerticalAlign>
-                                <PaddingLeft>2pt</PaddingLeft>
-                                <PaddingRight>2pt</PaddingRight>
-                                <PaddingTop>2pt</PaddingTop>
-                                <PaddingBottom>2pt</PaddingBottom>
-                              </Style>
-                            </Textbox>
-                          </CellContents>
-                        </TablixCell>
-                        <TablixCell>
-                          <CellContents>
-                            <Textbox Name="Textbox10">
-                              <rd:DefaultName>Textbox10</rd:DefaultName>
-                              <CanGrow>true</CanGrow>
-                              <KeepTogether>true</KeepTogether>
-                              <Paragraphs>
-                                <Paragraph>
-                                  <TextRuns>
-                                    <TextRun>
-                                      <Value />
-                                      <Style>
-                                        <FontFamily>MS UI Gothic</FontFamily>
-                                        <FontSize>9pt</FontSize>
-                                      </Style>
-                                    </TextRun>
-                                  </TextRuns>
-                                  <Style>
-                                    <TextAlign>Left</TextAlign>
-                                  </Style>
-                                </Paragraph>
-                              </Paragraphs>
-                              <Style>
-                                <Border>
-                                  <Color>LightGrey</Color>
-                                  <Style>None</Style>
-                                </Border>
-                                <VerticalAlign>Top</VerticalAlign>
-                                <PaddingLeft>2pt</PaddingLeft>
-                                <PaddingRight>2pt</PaddingRight>
-                                <PaddingTop>2pt</PaddingTop>
-                                <PaddingBottom>2pt</PaddingBottom>
-                              </Style>
-                            </Textbox>
-                          </CellContents>
-                        </TablixCell>
-                        <TablixCell>
-                          <CellContents>
-                            <Textbox Name="Textbox11">
-                              <rd:DefaultName>Textbox11</rd:DefaultName>
-                              <CanGrow>true</CanGrow>
-                              <KeepTogether>true</KeepTogether>
-                              <Paragraphs>
-                                <Paragraph>
-                                  <TextRuns>
-                                    <TextRun>
-                                      <Value />
-                                      <Style>
-                                        <FontFamily>MS UI Gothic</FontFamily>
-                                        <FontSize>9pt</FontSize>
-                                      </Style>
-                                    </TextRun>
-                                  </TextRuns>
-                                  <Style>
-                                    <TextAlign>Left</TextAlign>
-                                  </Style>
-                                </Paragraph>
-                              </Paragraphs>
-                              <Style>
-                                <Border>
-                                  <Color>LightGrey</Color>
-                                  <Style>None</Style>
-                                </Border>
-                                <VerticalAlign>Top</VerticalAlign>
-                                <PaddingLeft>2pt</PaddingLeft>
-                                <PaddingRight>2pt</PaddingRight>
-                                <PaddingTop>2pt</PaddingTop>
-                                <PaddingBottom>2pt</PaddingBottom>
-                              </Style>
-                            </Textbox>
-                          </CellContents>
-                        </TablixCell>
-                        <TablixCell>
-                          <CellContents>
                             <Textbox Name="Textbox14">
                               <rd:DefaultName>Textbox14</rd:DefaultName>
                               <CanGrow>true</CanGrow>
+                              <CanShrink>true</CanShrink>
+                              <KeepTogether>true</KeepTogether>
+                              <Paragraphs>
+                                <Paragraph>
+                                  <TextRuns>
+                                    <TextRun>
+                                      <Value />
+                                      <Style>
+                                        <FontFamily>MS UI Gothic</FontFamily>
+                                        <FontSize>9pt</FontSize>
+                                      </Style>
+                                    </TextRun>
+                                  </TextRuns>
+                                  <Style>
+                                    <TextAlign>Right</TextAlign>
+                                  </Style>
+                                </Paragraph>
+                              </Paragraphs>
+                              <Style>
+                                <Border>
+                                  <Style>None</Style>
+                                </Border>
+                                <VerticalAlign>Top</VerticalAlign>
+                                <PaddingLeft>2pt</PaddingLeft>
+                                <PaddingRight>2pt</PaddingRight>
+                              </Style>
+                            </Textbox>
+                          </CellContents>
+                        </TablixCell>
+                        <TablixCell>
+                          <CellContents>
+                            <Textbox Name="Textbox22">
+                              <rd:DefaultName>Textbox22</rd:DefaultName>
+                              <CanGrow>true</CanGrow>
+                              <CanShrink>true</CanShrink>
+                              <KeepTogether>true</KeepTogether>
+                              <Paragraphs>
+                                <Paragraph>
+                                  <TextRuns>
+                                    <TextRun>
+                                      <Value />
+                                      <Style>
+                                        <FontFamily>MS UI Gothic</FontFamily>
+                                        <FontSize>9pt</FontSize>
+                                      </Style>
+                                    </TextRun>
+                                  </TextRuns>
+                                  <Style>
+                                    <TextAlign>Right</TextAlign>
+                                  </Style>
+                                </Paragraph>
+                              </Paragraphs>
+                              <Style>
+                                <Border>
+                                  <Style>None</Style>
+                                </Border>
+                                <VerticalAlign>Top</VerticalAlign>
+                                <PaddingLeft>2pt</PaddingLeft>
+                                <PaddingRight>2pt</PaddingRight>
+                              </Style>
+                            </Textbox>
+                          </CellContents>
+                        </TablixCell>
+                        <TablixCell>
+                          <CellContents>
+                            <Textbox Name="Textbox23">
+                              <rd:DefaultName>Textbox23</rd:DefaultName>
+                              <CanGrow>true</CanGrow>
+                              <CanShrink>true</CanShrink>
+                              <KeepTogether>true</KeepTogether>
+                              <Paragraphs>
+                                <Paragraph>
+                                  <TextRuns>
+                                    <TextRun>
+                                      <Value />
+                                      <Style>
+                                        <FontFamily>MS UI Gothic</FontFamily>
+                                        <FontSize>9pt</FontSize>
+                                      </Style>
+                                    </TextRun>
+                                  </TextRuns>
+                                  <Style>
+                                    <TextAlign>Right</TextAlign>
+                                  </Style>
+                                </Paragraph>
+                              </Paragraphs>
+                              <Style>
+                                <Border>
+                                  <Style>None</Style>
+                                </Border>
+                                <VerticalAlign>Top</VerticalAlign>
+                                <PaddingLeft>2pt</PaddingLeft>
+                                <PaddingRight>2pt</PaddingRight>
+                              </Style>
+                            </Textbox>
+                          </CellContents>
+                        </TablixCell>
+                        <TablixCell>
+                          <CellContents>
+                            <Textbox Name="Textbox24">
+                              <rd:DefaultName>Textbox24</rd:DefaultName>
+                              <CanGrow>true</CanGrow>
+                              <CanShrink>true</CanShrink>
+                              <KeepTogether>true</KeepTogether>
+                              <Paragraphs>
+                                <Paragraph>
+                                  <TextRuns>
+                                    <TextRun>
+                                      <Value />
+                                      <Style>
+                                        <FontFamily>MS UI Gothic</FontFamily>
+                                        <FontSize>9pt</FontSize>
+                                      </Style>
+                                    </TextRun>
+                                  </TextRuns>
+                                  <Style>
+                                    <TextAlign>Right</TextAlign>
+                                  </Style>
+                                </Paragraph>
+                              </Paragraphs>
+                              <Style>
+                                <Border>
+                                  <Style>None</Style>
+                                </Border>
+                                <VerticalAlign>Top</VerticalAlign>
+                                <PaddingLeft>2pt</PaddingLeft>
+                                <PaddingRight>2pt</PaddingRight>
+                              </Style>
+                            </Textbox>
+                          </CellContents>
+                        </TablixCell>
+                        <TablixCell>
+                          <CellContents>
+                            <Textbox Name="Textbox25">
+                              <rd:DefaultName>Textbox25</rd:DefaultName>
+                              <CanGrow>true</CanGrow>
+                              <CanShrink>true</CanShrink>
                               <KeepTogether>true</KeepTogether>
                               <Paragraphs>
                                 <Paragraph>
@@ -1177,14 +1165,11 @@
                               </Paragraphs>
                               <Style>
                                 <Border>
-                                  <Color>LightGrey</Color>
                                   <Style>None</Style>
                                 </Border>
                                 <VerticalAlign>Top</VerticalAlign>
                                 <PaddingLeft>2pt</PaddingLeft>
                                 <PaddingRight>2pt</PaddingRight>
-                                <PaddingTop>2pt</PaddingTop>
-                                <PaddingBottom>2pt</PaddingBottom>
                               </Style>
                             </Textbox>
                           </CellContents>
@@ -2513,10 +2498,6 @@ CStr(Fields!EU_Division_3.Value)</Value>
                                   <Style>Solid</Style>
                                   <Width>1pt</Width>
                                 </TopBorder>
-                                <PaddingLeft>2pt</PaddingLeft>
-                                <PaddingRight>2pt</PaddingRight>
-                                <PaddingTop>2pt</PaddingTop>
-                                <PaddingBottom>2pt</PaddingBottom>
                               </Style>
                             </Textbox>
                           </CellContents>
@@ -2552,10 +2533,6 @@ CStr(Fields!EU_Division_3.Value)</Value>
                                   <Style>Solid</Style>
                                   <Width>1pt</Width>
                                 </TopBorder>
-                                <PaddingLeft>2pt</PaddingLeft>
-                                <PaddingRight>2pt</PaddingRight>
-                                <PaddingTop>2pt</PaddingTop>
-                                <PaddingBottom>2pt</PaddingBottom>
                               </Style>
                             </Textbox>
                           </CellContents>
@@ -2589,10 +2566,6 @@ CStr(Fields!EU_Division_3.Value)</Value>
                                   <Style>Solid</Style>
                                   <Width>1pt</Width>
                                 </TopBorder>
-                                <PaddingLeft>2pt</PaddingLeft>
-                                <PaddingRight>2pt</PaddingRight>
-                                <PaddingTop>2pt</PaddingTop>
-                                <PaddingBottom>2pt</PaddingBottom>
                               </Style>
                             </Textbox>
                           </CellContents>
@@ -2626,10 +2599,6 @@ CStr(Fields!EU_Division_3.Value)</Value>
                                   <Style>Solid</Style>
                                   <Width>1pt</Width>
                                 </TopBorder>
-                                <PaddingLeft>2pt</PaddingLeft>
-                                <PaddingRight>2pt</PaddingRight>
-                                <PaddingTop>2pt</PaddingTop>
-                                <PaddingBottom>2pt</PaddingBottom>
                               </Style>
                             </Textbox>
                           </CellContents>
@@ -2663,10 +2632,6 @@ CStr(Fields!EU_Division_3.Value)</Value>
                                   <Style>Solid</Style>
                                   <Width>1pt</Width>
                                 </TopBorder>
-                                <PaddingLeft>2pt</PaddingLeft>
-                                <PaddingRight>2pt</PaddingRight>
-                                <PaddingTop>2pt</PaddingTop>
-                                <PaddingBottom>2pt</PaddingBottom>
                               </Style>
                             </Textbox>
                           </CellContents>
@@ -2700,10 +2665,6 @@ CStr(Fields!EU_Division_3.Value)</Value>
                                   <Style>Solid</Style>
                                   <Width>1pt</Width>
                                 </TopBorder>
-                                <PaddingLeft>2pt</PaddingLeft>
-                                <PaddingRight>2pt</PaddingRight>
-                                <PaddingTop>2pt</PaddingTop>
-                                <PaddingBottom>2pt</PaddingBottom>
                               </Style>
                             </Textbox>
                           </CellContents>
@@ -2737,10 +2698,6 @@ CStr(Fields!EU_Division_3.Value)</Value>
                                   <Style>Solid</Style>
                                   <Width>1pt</Width>
                                 </TopBorder>
-                                <PaddingLeft>2pt</PaddingLeft>
-                                <PaddingRight>2pt</PaddingRight>
-                                <PaddingTop>2pt</PaddingTop>
-                                <PaddingBottom>2pt</PaddingBottom>
                               </Style>
                             </Textbox>
                           </CellContents>
@@ -2774,10 +2731,6 @@ CStr(Fields!EU_Division_3.Value)</Value>
                                   <Style>Solid</Style>
                                   <Width>1pt</Width>
                                 </TopBorder>
-                                <PaddingLeft>2pt</PaddingLeft>
-                                <PaddingRight>2pt</PaddingRight>
-                                <PaddingTop>2pt</PaddingTop>
-                                <PaddingBottom>2pt</PaddingBottom>
                               </Style>
                             </Textbox>
                           </CellContents>
@@ -2811,10 +2764,6 @@ CStr(Fields!EU_Division_3.Value)</Value>
                                   <Style>Solid</Style>
                                   <Width>1pt</Width>
                                 </TopBorder>
-                                <PaddingLeft>2pt</PaddingLeft>
-                                <PaddingRight>2pt</PaddingRight>
-                                <PaddingTop>2pt</PaddingTop>
-                                <PaddingBottom>2pt</PaddingBottom>
                               </Style>
                             </Textbox>
                           </CellContents>
@@ -2876,7 +2825,7 @@ CStr(Fields!EU_Division_3.Value)</Value>
                         </TablixMember>
                         <TablixMember>
                           <Visibility>
-                            <Hidden>=Fields!Type_Line.Value = " " &amp; IIF(Fields!Bikou_Description.Value &lt;&gt; "", "Solid", "None")</Hidden>
+                            <Hidden>=Fields!Type_Line.Value = " "</Hidden>
                           </Visibility>
                         </TablixMember>
                         <TablixMember>

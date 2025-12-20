@@ -1,6 +1,6 @@
 codeunit 50005 "NEBJ Sales Price Cal. Mgt."
 {
-    /* [EventSubscriber(ObjectType::Codeunit, Codeunit::"Sales Line - Price", 'OnAfterFillBuffer', '', true, true)]
+    [EventSubscriber(ObjectType::Codeunit, Codeunit::"Sales Line - Price", 'OnAfterFillBuffer', '', true, true)]
     local procedure NEBJOnAfterFillBuffer(var PriceCalculationBuffer: Record "Price Calculation Buffer" temporary; SalesHeader: Record "Sales Header"; SalesLine: Record "Sales Line")
     begin
         PriceCalculationBuffer."NEBJ Customer No." := SalesHeader."Bill-to Customer No.";
@@ -16,10 +16,25 @@ codeunit 50005 "NEBJ Sales Price Cal. Mgt."
         Item: Record Item;
         FromPriceList: Record "Price List Line";
         PriceCalcBuff: Record "Price Calculation Buffer";
+        CustNo: Code[20];
+        ContNo: Code[20];
+        ItemNo: Code[20];
+        VarCode: Code[20];
+        UoMCode: Code[20];
+        EndUser: Code[20];
+        CompaignNo: Code[20];
+        CustDiscGrp: Code[20];
+        ItemDisGrp: Code[20];
+        ItemDisGrp2: Code[20];
+        ItemDisGrp3: Code[20];
+        StartDate: Date;
         ShowAll: Boolean;
     begin
-        ShowAll := true;
         PriceCalculationBufferMgt.GetBuffer(PriceCalcBuff);
+        CustNo := PriceCalcBuff."NEBJ Customer No.";
+        ContNo := PriceCalcBuff."NEBJ Contact No.";
+        ShowAll := true;
+
         FromPriceList.SetFilter("Ending Date", '%1|>=%2', 0D, PriceCalcBuff."Document Date");
         FromPriceList.SetFilter("Variant Code", '%1|%2', PriceCalcBuff."Variant Code", '');
         if not ShowAll then begin
@@ -84,7 +99,7 @@ codeunit 50005 "NEBJ Sales Price Cal. Mgt."
         if TempPriceListLine.Count = 0 then
             if PriceCalcBuff."NEBJ EndUser" = '' then
                 TempPriceListLine.SetRange(EndUser)
-            ELSE
+            else
                 TempPriceListLine.SetRange(EndUser, '');
     end;
 
@@ -95,7 +110,7 @@ codeunit 50005 "NEBJ Sales Price Cal. Mgt."
                 TempPriceListLine := FromPriceList;
                 TempPriceListLine.Insert();
             until FromPriceList.Next() = 0;
-    end; */
+    end;
 
     /* [EventSubscriber(ObjectType::Codeunit, Codeunit::"Price Calculation - V16", 'OnFindSalesLineLineDiscOnBeforeCalcLineDisc', '', true, true)]
     procedure UpdateAfterUoMandQty(Qty: Decimal; QtyPerUOM: Decimal; var TempSalesLineDisCount: Record "Sales Line DisCount" temporary; var IsHandled: Boolean)

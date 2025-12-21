@@ -7,7 +7,7 @@ codeunit 50005 "NEBJ Sales Price Cal. Mgt."
         PriceCalculationBuffer."NEBJ Contact No." := SalesHeader."Bill-to Contact";
         PriceCalculationBuffer."NEBJ Cust. Disc. Grp." := SalesHeader."Customer Disc. Group";
         PriceCalculationBuffer."NEBJ EndUser" := SalesLine.EndUser;
-        //PriceCalculationBuffer."NEBJ ShowAll" := true;
+        PriceCalculationBuffer."NEBJ Item No." := SalesLine."No.";
     end;
 
     [EventSubscriber(ObjectType::Codeunit, Codeunit::"Price Calculation - V16", 'OnApplyDisCountOnBeforeFillBestLine', '', true, true)]
@@ -28,12 +28,17 @@ codeunit 50005 "NEBJ Sales Price Cal. Mgt."
         ItemDisGrp2: Code[20];
         ItemDisGrp3: Code[20];
         StartDate: Date;
+        InclCampain: Boolean;
         ShowAll: Boolean;
     begin
         PriceCalculationBufferMgt.GetBuffer(PriceCalcBuff);
+        ItemNo := PriceCalcBuff."NEBJ Item No.";
+        EndUser := PriceCalcBuff."NEBJ EndUser";
         CustNo := PriceCalcBuff."NEBJ Customer No.";
         ContNo := PriceCalcBuff."NEBJ Contact No.";
-        ShowAll := true;
+        CustDiscGrp := PriceCalcBuff."NEBJ Cust. Disc. Grp.";
+        CompaignNo := '';
+        ShowAll := false;
 
         FromPriceList.SetFilter("Ending Date", '%1|>=%2', 0D, PriceCalcBuff."Document Date");
         FromPriceList.SetFilter("Variant Code", '%1|%2', PriceCalcBuff."Variant Code", '');
@@ -45,57 +50,75 @@ codeunit 50005 "NEBJ Sales Price Cal. Mgt."
         end;
         TempPriceListLine.Reset();
         TempPriceListLine.DeleteAll();
-        for FromPriceList."Source Type" := FromPriceList."Source Type"::Customer to FromPriceList."Source Type"::Contact do
+
+        for FromPriceList."Source Type" := FromPriceList."Source Type"::"All Customers" to FromPriceList."Source Type"::Campaign do
             if (FromPriceList."Source Type" = FromPriceList."Source Type"::"All Customers") or
-               ((FromPriceList."Source Type" = FromPriceList."Source Type"::Customer) and (PriceCalcBuff."NEBJ Customer No." <> '')) or
-               ((FromPriceList."Source Type" = FromPriceList."Source Type"::"Customer Disc. Group") and (PriceCalcBuff."NEBJ Cust. Disc. Grp." <> '')) or
-               ((FromPriceList."Source Type" = FromPriceList."Source Type"::Contact) and
-                not ((PriceCalcBuff."NEBJ Customer No." = '') and (PriceCalcBuff."NEBJ Contact No." = '')))
-            then begin
+               ((FromPriceList."Source Type" = FromPriceList."Source Type"::Customer) and (CustNo <> '')) or
+               ((FromPriceList."Source Type" = FromPriceList."Source Type"::"Customer Disc. Group") and (CustDiscGrp <> '')) or
+               ((FromPriceList."Source Type" = FromPriceList."Source Type"::Campaign) and not ((CustNo = '') and (ContNo = ''))) then begin
+                if (FromPriceList."Source Type" = FromPriceList."Source Type"::"All Customers") then
+                    continue;
+                InclCampain := false;
                 FromPriceList.SetRange("Source Type", FromPriceList."Source Type");
                 case FromPriceList."Source Type" of
                     FromPriceList."Source Type"::"All Customers":
                         FromPriceList.SetRange("Assign-to No.");
                     FromPriceList."Source Type"::Customer:
-                        FromPriceList.SetRange("Assign-to No.", PriceCalcBuff."NEBJ Customer No.");
+                        FromPriceList.SetRange("Assign-to No.", CustNo);
                     FromPriceList."Source Type"::"Customer Disc. Group":
-                        FromPriceList.SetRange("Assign-to No.", PriceCalcBuff."NEBJ Cust. Disc. Grp.");
+                        FromPriceList.SetRange("Assign-to No.", CustDiscGrp);
+                    FromPriceList."Source Type"::Campaign:
+                        FromPriceList.SetRange("Assign-to No.", CompaignNo);
                 end;
-                if FromPriceList.FindSet() then
-                    repeat
-                        if Item.Get(PriceCalcBuff."Asset No.") then;
-                        FromPriceList.SetRange("Asset Type", FromPriceList."Asset Type"::Item);
+                repeat
+                    FromPriceList.SetRange("Asset Type", FromPriceList."Asset Type"::Item);
+                    FromPriceList.SetRange("Asset No.", PriceCalcBuff."Asset No.");
+                    if not ShowAll then begin
+                        FromPriceList.SetFilter("Starting Date", '>%1&<=%2', 0D, PriceCalcBuff."Document Date");
+                        if FromPriceList.Count = 0 then
+                            FromPriceList.SetRange("Starting Date", 0D, PriceCalcBuff."Document Date");
+                    end;
+                    CopySalesDiscToSalesLine(FromPriceList, TempPriceListLine);
+
+                    if PriceCalcBuff."Asset Type" = PriceCalcBuff."Asset Type"::"Item DisCount Group" then begin
+                        FromPriceList.SetRange("Asset Type", FromPriceList."Asset Type"::"Item DisCount Group");
                         FromPriceList.SetRange("Asset No.", PriceCalcBuff."Asset No.");
-                        if not ShowAll then begin
-                            FromPriceList.SetFilter("Starting Date", '>%1&<=%2', 0D, PriceCalcBuff."Document Date");
-                            if FromPriceList.Count = 0 then
-                                FromPriceList.SetRange("Starting Date", 0D, PriceCalcBuff."Document Date");
-                        end;
                         CopySalesDiscToSalesLine(FromPriceList, TempPriceListLine);
-                        if PriceCalcBuff."Asset Type" = PriceCalcBuff."Asset Type"::"Item DisCount Group" then begin
-                            FromPriceList.SetRange("Asset Type", FromPriceList."Asset Type"::"Item DisCount Group");
-                            FromPriceList.SetRange("Asset No.", PriceCalcBuff."Asset No.");
-                            CopySalesDiscToSalesLine(FromPriceList, TempPriceListLine);
-                        end;
-                        if PriceCalcBuff."Asset Type" = PriceCalcBuff."Asset Type"::"Item DisCount Group 2" then begin
-                            FromPriceList.SetRange("Asset Type", FromPriceList."Asset Type"::"Item DisCount Group 2");
-                            FromPriceList.SetRange("Asset No.", PriceCalcBuff."Asset No.");
-                            CopySalesDiscToSalesLine(FromPriceList, TempPriceListLine);
-                        end;
-                        if PriceCalcBuff."Asset Type" = PriceCalcBuff."Asset Type"::"Item DisCount Group 3" then begin
-                            FromPriceList.SetRange("Asset Type", FromPriceList."Asset Type"::"Item DisCount Group 3");
-                            FromPriceList.SetRange("Asset No.", PriceCalcBuff."Asset No.");
-                            CopySalesDiscToSalesLine(FromPriceList, TempPriceListLine);
-                        end;
-                        if not Item."Disable All Item DisCount" then begin
-                            FromPriceList.SetRange("Asset Type", FromPriceList."Asset Type"::" ");
-                            FromPriceList.SetRange("Asset No.");
-                            CopySalesDiscToSalesLine(FromPriceList, TempPriceListLine);
-                        end;
-                    until FromPriceList.Next() = 0;
+                    end;
+
+                    if PriceCalcBuff."Asset Type" = PriceCalcBuff."Asset Type"::"Item DisCount Group 2" then begin
+                        FromPriceList.SetRange("Asset Type", FromPriceList."Asset Type"::"Item DisCount Group 2");
+                        FromPriceList.SetRange("Asset No.", PriceCalcBuff."Asset No.");
+                        CopySalesDiscToSalesLine(FromPriceList, TempPriceListLine);
+                    end;
+
+                    if PriceCalcBuff."Asset Type" = PriceCalcBuff."Asset Type"::"Item DisCount Group 3" then begin
+                        FromPriceList.SetRange("Asset Type", FromPriceList."Asset Type"::"Item DisCount Group 3");
+                        FromPriceList.SetRange("Asset No.", PriceCalcBuff."Asset No.");
+                        CopySalesDiscToSalesLine(FromPriceList, TempPriceListLine);
+                    end;
+
+                    if Item.Get(ItemNo) then;
+                    if not Item."Disable All Item DisCount" then begin
+                        FromPriceList.SetRange("Asset Type", FromPriceList."Asset Type"::" ");
+                        FromPriceList.SetRange("Asset No.");
+                        CopySalesDiscToSalesLine(FromPriceList, TempPriceListLine);
+                    end;
+                until not InclCampain;
             end;
 
-        TempPriceListLine.SetRange(EndUser, PriceCalcBuff."NEBJ EndUser");
+        FromPriceList.SetRange("Source Type", FromPriceList."Source Type"::"All Customers");
+        FromPriceList.SetRange("Assign-to No.");
+        FromPriceList.SetRange("Asset Type", FromPriceList."Asset Type"::Item);
+        FromPriceList.SetRange("Asset No.", PriceCalcBuff."Asset No.");
+        if not ShowAll then begin
+            FromPriceList.SetFilter("Starting Date", '>%1&<=%2', 0D, PriceCalcBuff."Document Date");
+            if FromPriceList.Count = 0 then
+                FromPriceList.SetRange("Starting Date", 0D, PriceCalcBuff."Document Date");
+        end;
+        CopySalesDiscToSalesLine(FromPriceList, TempPriceListLine);
+
+        TempPriceListLine.SetRange(EndUser, EndUser);
         if TempPriceListLine.Count = 0 then
             if PriceCalcBuff."NEBJ EndUser" = '' then
                 TempPriceListLine.SetRange(EndUser)

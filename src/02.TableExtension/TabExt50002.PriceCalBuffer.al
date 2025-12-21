@@ -18,5 +18,9 @@ tableextension 50002 "Price Cal. Buffer Ext" extends "Price Calculation Buffer"
         {
             Caption = 'EndUser', Locked = true;
         }
+        field(50004; "NEBJ Item No."; Code[20])
+        {
+            Caption = 'Item No.', Locked = true;
+        }
     }
 }

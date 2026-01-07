@@ -1,6 +1,6 @@
 reportextension 51305 "Sales Ord Confirmation Ext" extends "Standard Sales - Order Conf."
 {
-    //RDLCLayout = 'src\10.ReportLayout\SalesOrderConfirmation_NEBJ.rdlc';
+    RDLCLayout = 'src\10.ReportLayout\SalesOrderConfirmation_NEBJ.rdlc';
 
     dataset
     {

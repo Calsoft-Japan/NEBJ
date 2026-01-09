@@ -2810,13 +2810,13 @@
         </trans-unit>
         <trans-unit id="EnumExtension 4004915659 - EnumValue 188861471 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Enum 3543273655">
           <source>Item Discount Group 2</source>
-          <target>品目割引グループ2</target> 
+          <target>品目値引グループ2</target> 
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">EnumExtension Asset Type Ext - EnumValue Item Discount Group 2 - Property Caption</note>
         </trans-unit>
         <trans-unit id="EnumExtension 4004915659 - EnumValue 826558088 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Enum 3543273655">
           <source>Item Discount Group 3</source>
-          <target>品目割引グループ3</target> 
+          <target>品目値引グループ3</target> 
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">EnumExtension Asset Type Ext - EnumValue Item Discount Group 3 - Property Caption</note>
         </trans-unit>

@@ -84,7 +84,12 @@ pageextension 50046 "Sales Order Subform EXT" extends "Sales Order Subform"
         end;
 
         //Unassigned Lot 
-        if (Rec.Type = Rec.Type::Item) and (Rec.Quantity <> 0) then begin
+        if (Rec.Type = Rec.Type::Item)
+            and (Rec.Quantity <> 0)
+            and ItemRec.Get(Rec."No.")
+            and (ItemRec."Item Tracking Code" = 'LOT')
+        then begin
+
             AssignedQty := 0;
 
             ReservEntry.Reset();

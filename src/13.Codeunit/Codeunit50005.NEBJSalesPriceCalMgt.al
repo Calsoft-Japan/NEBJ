@@ -142,6 +142,15 @@ codeunit 50005 "NEBJ Sales Price Cal. Mgt."
                 TempPriceListLine.Insert();
             until FromPriceList.Next() = 0;
     end;
+
+    [EventSubscriber(ObjectType::Table, Database::"Sales Line", 'OnAfterValidateEvent', EndUser, true, true)]
+    local procedure SalesLineEndUserOnValidate(var Rec: Record "Sales Line")
+    var
+        PriceCalculation: Interface "Price Calculation";
+    begin
+        Rec.UpdateUnitPriceByField(0);
+        //PriceCalculation.ApplyDiscount();
+    end;
     /* [EventSubscriber(ObjectType::Codeunit, Codeunit::"Sales Line - Price", 'OnAfterFillBuffer', '', true, true)]
     local procedure NEBJOnAfterFillBuffer(var PriceCalculationBuffer: Record "Price Calculation Buffer" temporary; SalesHeader: Record "Sales Header"; SalesLine: Record "Sales Line")
     begin

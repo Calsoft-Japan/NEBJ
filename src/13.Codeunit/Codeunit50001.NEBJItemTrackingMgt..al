@@ -7,17 +7,25 @@ codeunit 50001 NEBJItemTrackingMgt
 
     [EventSubscriber(ObjectType::Codeunit, Codeunit::"Copy Document Mgt.", 'OnAfterInsertToSalesLine', '', true, true)]
     procedure InitAssistEditLotSerialNo(var ToSalesLine: Record "Sales Line")
+    var
+        Item: Record Item;
     begin
+        if Item.Get(ToSalesLine."No.") then;
         if (ToSalesLine."Document Type" = ToSalesLine."Document Type"::Order) and
-            (ToSalesLine.Type = ToSalesLine.Type::Item) and (ToSalesLine.Quantity <> 0) then
+           (ToSalesLine.Type = ToSalesLine.Type::Item) and (ToSalesLine.Quantity <> 0) and
+           (Item."Item Tracking Code" = 'LOT') then
             AssistEditLotSerialNo(ToSalesLine, ToSalesLine.Quantity);
     end;
 
     [EventSubscriber(ObjectType::Page, Page::"Sales Order Subform", 'OnAfterQuantityOnAfterValidate', '', true, true)]
-    procedure OnAfterAddItem(var SalesLine: Record "Sales Line"; xSalesLine: Record "Sales Line")
+    procedure OnAfterAddItem(var SalesLine: Record "Sales Line")
+    var
+        Item: Record Item;
     begin
+        if Item.Get(SalesLine."No.") then;
         if (SalesLine."Document Type" = SalesLine."Document Type"::Order) and
-            (SalesLine.Type = SalesLine.Type::Item) and (SalesLine.Quantity <> 0) then
+           (SalesLine.Type = SalesLine.Type::Item) and (SalesLine.Quantity <> 0) and
+           (Item."Item Tracking Code" = 'LOT') then
             AssistEditLotSerialNo(SalesLine, SalesLine.Quantity);
     end;
 

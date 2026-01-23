@@ -22,5 +22,13 @@ tableextension 50002 "Price Cal. Buffer Ext" extends "Price Calculation Buffer"
         {
             Caption = 'Item No.', Locked = true;
         }
+        field(50005; "NEBJ Item Disc. Grp2"; Code[20])
+        {
+            Caption = 'Cust. Disc. Grp2', Locked = true;
+        }
+        field(50006; "NEBJ Item Disc. Grp3"; Code[20])
+        {
+            Caption = 'Cust. Disc. Grp3', Locked = true;
+        }
     }
 }

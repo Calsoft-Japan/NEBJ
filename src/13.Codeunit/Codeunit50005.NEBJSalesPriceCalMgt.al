@@ -2,12 +2,17 @@ codeunit 50005 "NEBJ Sales Price Cal. Mgt."
 {
     [EventSubscriber(ObjectType::Codeunit, Codeunit::"Sales Line - Price", 'OnAfterFillBuffer', '', true, true)]
     local procedure NEBJOnAfterFillBuffer(var PriceCalculationBuffer: Record "Price Calculation Buffer" temporary; SalesHeader: Record "Sales Header"; SalesLine: Record "Sales Line")
+    var
+        Item: Record Item;
     begin
         PriceCalculationBuffer."NEBJ Customer No." := SalesHeader."Bill-to Customer No.";
         PriceCalculationBuffer."NEBJ Contact No." := SalesHeader."Bill-to Contact";
         PriceCalculationBuffer."NEBJ Cust. Disc. Grp." := SalesHeader."Customer Disc. Group";
         PriceCalculationBuffer."NEBJ EndUser" := SalesLine.EndUser;
         PriceCalculationBuffer."NEBJ Item No." := SalesLine."No.";
+        if Item.Get(SalesLine."No.") then;
+        PriceCalculationBuffer."NEBJ Item Disc. Grp2" := Item."Item Disc. Group 2";
+        PriceCalculationBuffer."NEBJ Item Disc. Grp3" := Item."Item Disc. Group 3";
     end;
 
     [EventSubscriber(ObjectType::Codeunit, Codeunit::"Price Calculation - V16", 'OnAfterFindLines', '', true, true)]
@@ -31,8 +36,6 @@ codeunit 50005 "NEBJ Sales Price Cal. Mgt."
         ItemDisGrp3: Code[20];
         StartDate: Date;
         InclCampain: Boolean;
-        Cnt1: Integer;
-        Cnt2: Integer;
         Cnt3: Integer;
         Cnt4: Integer;
     begin
@@ -43,6 +46,9 @@ codeunit 50005 "NEBJ Sales Price Cal. Mgt."
         CustNo := PriceCalcBuff."NEBJ Customer No.";
         ContNo := PriceCalcBuff."NEBJ Contact No.";
         CustDiscGrp := PriceCalcBuff."NEBJ Cust. Disc. Grp.";
+        ItemDisGrp := PriceCalcBuff."Item Disc. Group";
+        ItemDisGrp2 := PriceCalcBuff."NEBJ Item Disc. Grp2";
+        ItemDisGrp3 := PriceCalcBuff."NEBJ Item Disc. Grp3";
         CompaignNo := '';
 
         FromPriceList.SetFilter("Ending Date", '%1|>=%2', 0D, PriceCalcBuff."Document Date");
@@ -84,9 +90,27 @@ codeunit 50005 "NEBJ Sales Price Cal. Mgt."
                     end;
                     CopySalesDiscToSalesLine(FromPriceList, TempPriceListLine);
 
-                    if PriceCalcBuff."Asset Type" = PriceCalcBuff."Asset Type"::"Item DisCount Group" then begin
+                    if ItemDisGrp <> '' then begin
                         FromPriceList.SetRange("Asset Type", FromPriceList."Asset Type"::"Item DisCount Group");
-                        FromPriceList.SetRange("Asset No.", PriceCalcBuff."Asset No.");
+                        FromPriceList.SetRange("Asset No.", ItemDisGrp);
+                        CopySalesDiscToSalesLine(FromPriceList, TempPriceListLine);
+                    end;
+
+                    if ItemDisGrp2 <> '' then begin
+                        FromPriceList.SetRange("Asset Type", FromPriceList."Asset Type"::"Item DisCount Group 2");
+                        FromPriceList.SetRange("Asset No.", ItemDisGrp2);
+                        CopySalesDiscToSalesLine(FromPriceList, TempPriceListLine);
+                    end;
+
+                    if ItemDisGrp3 <> '' then begin
+                        FromPriceList.SetRange("Asset Type", FromPriceList."Asset Type"::"Item DisCount Group 3");
+                        FromPriceList.SetRange("Asset No.", ItemDisGrp3);
+                        CopySalesDiscToSalesLine(FromPriceList, TempPriceListLine);
+                    end;
+
+                    /* if PriceCalcBuff."Asset Type" = PriceCalcBuff."Asset Type"::"Item DisCount Group" then begin
+                        FromPriceList.SetRange("Asset Type", FromPriceList."Asset Type"::"Item DisCount Group");
+                        FromPriceList.SetRange("Asset No.", ItemDisGrp); //PriceCalcBuff."Asset No.");
                         CopySalesDiscToSalesLine(FromPriceList, TempPriceListLine);
                     end;
 
@@ -101,6 +125,7 @@ codeunit 50005 "NEBJ Sales Price Cal. Mgt."
                         FromPriceList.SetRange("Asset No.", PriceCalcBuff."Asset No.");
                         CopySalesDiscToSalesLine(FromPriceList, TempPriceListLine);
                     end;
+                    */
 
                     if Item.Get(ItemNo) then;
                     if not Item."Disable All Item DisCount" then begin
@@ -121,6 +146,39 @@ codeunit 50005 "NEBJ Sales Price Cal. Mgt."
                 FromPriceList.SetRange("Starting Date", 0D, PriceCalcBuff."Document Date");
         end;
         CopySalesDiscToSalesLine(FromPriceList, TempPriceListLine);
+        //
+        FromPriceList.SetRange("Source Type", FromPriceList."Source Type"::"All Customers");
+        FromPriceList.SetRange("Assign-to No.");
+        FromPriceList.SetRange("Asset Type", FromPriceList."Asset Type"::"Item Discount Group");
+        FromPriceList.SetRange("Asset No.", ItemDisGrp);
+        if not ShowAll then begin
+            FromPriceList.SetFilter("Starting Date", '>%1&<=%2', 0D, PriceCalcBuff."Document Date");
+            if FromPriceList.Count = 0 then
+                FromPriceList.SetRange("Starting Date", 0D, PriceCalcBuff."Document Date");
+        end;
+
+        CopySalesDiscToSalesLine(FromPriceList, TempPriceListLine);
+        FromPriceList.SetRange("Source Type", FromPriceList."Source Type"::"All Customers");
+        FromPriceList.SetRange("Assign-to No.");
+        FromPriceList.SetRange("Asset Type", FromPriceList."Asset Type"::"Item Discount Group 2");
+        FromPriceList.SetRange("Asset No.", ItemDisGrp2);
+        if not ShowAll then begin
+            FromPriceList.SetFilter("Starting Date", '>%1&<=%2', 0D, PriceCalcBuff."Document Date");
+            if FromPriceList.Count = 0 then
+                FromPriceList.SetRange("Starting Date", 0D, PriceCalcBuff."Document Date");
+        end;
+        CopySalesDiscToSalesLine(FromPriceList, TempPriceListLine);
+        FromPriceList.SetRange("Source Type", FromPriceList."Source Type"::"All Customers");
+        FromPriceList.SetRange("Assign-to No.");
+        FromPriceList.SetRange("Asset Type", FromPriceList."Asset Type"::"Item Discount Group 3");
+        FromPriceList.SetRange("Asset No.", ItemDisGrp3);
+        if not ShowAll then begin
+            FromPriceList.SetFilter("Starting Date", '>%1&<=%2', 0D, PriceCalcBuff."Document Date");
+            if FromPriceList.Count = 0 then
+                FromPriceList.SetRange("Starting Date", 0D, PriceCalcBuff."Document Date");
+        end;
+        CopySalesDiscToSalesLine(FromPriceList, TempPriceListLine);
+        //
 
         TempPriceListLine.SetRange(EndUser, EndUser);
         if TempPriceListLine.Count = 0 then

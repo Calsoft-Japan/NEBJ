@@ -125,11 +125,18 @@ codeunit 50005 "NEBJ Sales Price Cal. Mgt."
                         FromPriceList.SetRange("Asset No.", PriceCalcBuff."Asset No.");
                         CopySalesDiscToSalesLine(FromPriceList, TempPriceListLine);
                     end;
-                    */
 
                     if Item.Get(ItemNo) then;
                     if not Item."Disable All Item DisCount" then begin
                         FromPriceList.SetRange("Asset Type", FromPriceList."Asset Type"::" ");
+                        FromPriceList.SetRange("Asset No.");
+                        CopySalesDiscToSalesLine(FromPriceList, TempPriceListLine);
+                    end;
+                    */
+
+                    if Item.Get(ItemNo) then;
+                    if not Item."Disable All Item DisCount" then begin
+                        FromPriceList.SetRange("Asset Type", FromPriceList."Asset Type"::"All Items");
                         FromPriceList.SetRange("Asset No.");
                         CopySalesDiscToSalesLine(FromPriceList, TempPriceListLine);
                     end;

@@ -10,4 +10,9 @@ enumextension 50000 "Asset Type Ext" extends "Price Asset Type"
         Caption = 'Item Discount Group 3';
         Implementation = "Price Asset" = "Price Asset - Item Disc. Group";
     }
+    value(25; "All Items")
+    {
+        Caption = 'All Items';
+        Implementation = "Price Asset" = "Price Asset - Item";
+    }
 }

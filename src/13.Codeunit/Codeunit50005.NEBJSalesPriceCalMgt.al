@@ -36,6 +36,7 @@ codeunit 50005 "NEBJ Sales Price Cal. Mgt."
         ItemDisGrp3: Code[20];
         StartDate: Date;
         InclCampain: Boolean;
+        Cnt2: Integer;
         Cnt3: Integer;
         Cnt4: Integer;
     begin
@@ -50,6 +51,14 @@ codeunit 50005 "NEBJ Sales Price Cal. Mgt."
         ItemDisGrp2 := PriceCalcBuff."NEBJ Item Disc. Grp2";
         ItemDisGrp3 := PriceCalcBuff."NEBJ Item Disc. Grp3";
         CompaignNo := '';
+
+        /* Cnt2 := PriceCalcBuff.Count;
+        Cnt3 := FromPriceList.Count;
+        Cnt4 := TempPriceListLine.Count;
+        if TempPriceListLine.FindSet() then
+            repeat
+                Message('Line Discount', TempPriceListLine."Line Discount %");
+            until TempPriceListLine.Next() = 0; */
 
         FromPriceList.SetFilter("Ending Date", '%1|>=%2', 0D, PriceCalcBuff."Document Date");
         FromPriceList.SetFilter("Variant Code", '%1|%2', PriceCalcBuff."Variant Code", '');
@@ -108,32 +117,6 @@ codeunit 50005 "NEBJ Sales Price Cal. Mgt."
                         CopySalesDiscToSalesLine(FromPriceList, TempPriceListLine);
                     end;
 
-                    /* if PriceCalcBuff."Asset Type" = PriceCalcBuff."Asset Type"::"Item DisCount Group" then begin
-                        FromPriceList.SetRange("Asset Type", FromPriceList."Asset Type"::"Item DisCount Group");
-                        FromPriceList.SetRange("Asset No.", ItemDisGrp); //PriceCalcBuff."Asset No.");
-                        CopySalesDiscToSalesLine(FromPriceList, TempPriceListLine);
-                    end;
-
-                    if PriceCalcBuff."Asset Type" = PriceCalcBuff."Asset Type"::"Item DisCount Group 2" then begin
-                        FromPriceList.SetRange("Asset Type", FromPriceList."Asset Type"::"Item DisCount Group 2");
-                        FromPriceList.SetRange("Asset No.", PriceCalcBuff."Asset No.");
-                        CopySalesDiscToSalesLine(FromPriceList, TempPriceListLine);
-                    end;
-
-                    if PriceCalcBuff."Asset Type" = PriceCalcBuff."Asset Type"::"Item DisCount Group 3" then begin
-                        FromPriceList.SetRange("Asset Type", FromPriceList."Asset Type"::"Item DisCount Group 3");
-                        FromPriceList.SetRange("Asset No.", PriceCalcBuff."Asset No.");
-                        CopySalesDiscToSalesLine(FromPriceList, TempPriceListLine);
-                    end;
-
-                    if Item.Get(ItemNo) then;
-                    if not Item."Disable All Item DisCount" then begin
-                        FromPriceList.SetRange("Asset Type", FromPriceList."Asset Type"::" ");
-                        FromPriceList.SetRange("Asset No.");
-                        CopySalesDiscToSalesLine(FromPriceList, TempPriceListLine);
-                    end;
-                    */
-
                     if Item.Get(ItemNo) then;
                     if not Item."Disable All Item DisCount" then begin
                         FromPriceList.SetRange("Asset Type", FromPriceList."Asset Type"::"All Items");
@@ -187,15 +170,21 @@ codeunit 50005 "NEBJ Sales Price Cal. Mgt."
         CopySalesDiscToSalesLine(FromPriceList, TempPriceListLine);
         //
 
+        Cnt3 := FromPriceList.Count;
+        Cnt4 := TempPriceListLine.Count;
+
+        if TempPriceListLine.Count > 1 then begin
+            TempPriceListLine.SetCurrentKey("Line Discount %");
+            TempPriceListLine.SetRange("Line Discount %");
+            TempPriceListLine.FindLast();
+        end;
+
         TempPriceListLine.SetRange(EndUser, EndUser);
         if TempPriceListLine.Count = 0 then
             if PriceCalcBuff."NEBJ EndUser" = '' then
                 TempPriceListLine.SetRange(EndUser)
             else
                 TempPriceListLine.SetRange(EndUser, '');
-
-        Cnt3 := FromPriceList.Count;
-        Cnt4 := TempPriceListLine.Count;
     end;
     //end;
 

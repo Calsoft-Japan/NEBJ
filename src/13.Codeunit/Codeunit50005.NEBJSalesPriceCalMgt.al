@@ -22,7 +22,58 @@ codeunit 50005 "NEBJ Sales Price Cal. Mgt."
         PriceCalculationBuffer."NEBJ Item Disc. Grp3" := Item."Item Disc. Group 3";
     end;
 
-    [EventSubscriber(ObjectType::Codeunit, Codeunit::"Price Calculation - V16", 'OnAfterFindLines', '', true, true)]
+    //setfilter
+    [EventSubscriber(ObjectType::Codeunit, Codeunit::"Price Calculation Buffer Mgt.", 'OnAfterSetFilters', '', false, false)]
+    local procedure NEBJOnAfterSetFilters(var PriceListLine: Record "Price List Line"; var PriceCalculationBuffer: Record "Price Calculation Buffer" temporary; AmountType: Enum "Price Amount Type"; ShowAll: Boolean)
+    begin
+        if AmountType <> AmountType::Discount then
+            exit;
+
+        if not ShowAll then begin
+            PriceListLine.SetFilter("Starting Date", '>%1&<=%2', 0D, PriceCalculationBuffer."Document Date");
+            if PriceListLine.Count = 0 then
+                PriceListLine.SetRange("Starting Date", 0D, PriceCalculationBuffer."Document Date");
+        end;
+
+        if PriceCalculationBuffer."NEBJ Item Disc. Grp2" <> '' then begin
+            PriceListLine.SetRange("Asset Type", PriceListLine."Asset Type"::"Item Discount Group 2");
+            PriceListLine.SetRange("Asset No.", PriceCalculationBuffer."NEBJ Item Disc. Grp2");
+        end;
+        if PriceCalculationBuffer."NEBJ Item Disc. Grp3" <> '' then begin
+            PriceListLine.SetRange("Asset Type", PriceListLine."Asset Type"::"Item Discount Group 3");
+            PriceListLine.SetRange("Asset No.", PriceCalculationBuffer."NEBJ Item Disc. Grp3");
+        end;
+
+        PriceListLine.SetRange(EndUser, PriceCalculationBuffer."NEBJ EndUser");
+        if PriceListLine.Count = 0 then
+            PriceListLine.SetRange(EndUser)
+        else
+            PriceListLine.SetRange(EndUser, '');
+
+        /* if PriceCalculationBuffer."NEBJ Item Disc. Grp2" <> '' then begin
+            PriceListLine.SetRange("Asset Type", PriceListLine."Asset Type"::"Item Discount Group 2");
+            PriceListLine.SetFilter("Asset No.", '%1|%2', '', PriceCalculationBuffer."NEBJ Item Disc. Grp2");
+        end;
+        if PriceCalculationBuffer."NEBJ Item Disc. Grp3" <> '' then begin
+            PriceListLine.SetRange("Asset Type", PriceListLine."Asset Type"::"Item Discount Group 3");
+            PriceListLine.SetFilter("Asset No.", '%1|%2', '', PriceCalculationBuffer."NEBJ Item Disc. Grp3");
+        end;
+
+        PriceListLine.SetRange(EndUser, PriceCalculationBuffer."NEBJ EndUser");
+        if PriceListLine.Count = 0 then
+            PriceListLine.SetRange(EndUser)
+        else
+            PriceListLine.SetRange(EndUser, ''); */
+    end;
+
+    [EventSubscriber(ObjectType::Table, Database::"Sales Line", 'OnAfterValidateEvent', EndUser, true, true)]
+    local procedure SalesLineEndUserOnValidate(var Rec: Record "Sales Line")
+    var
+        PriceCalculation: Interface "Price Calculation";
+    begin
+        Rec.UpdateUnitPriceByField(0);
+    end;
+    /* [EventSubscriber(ObjectType::Codeunit, Codeunit::"Price Calculation - V16", 'OnAfterFindLines', '', true, true)]
     procedure NEBJFindSalesLineDisc(var PriceCalculationBufferMgt: Codeunit "Price Calculation Buffer Mgt.";
                                         var TempPriceListLine: Record "Price List Line" temporary;
                                         AmountType: Enum "Price Amount Type"; ShowAll: Boolean; var FoundLines: Boolean)
@@ -43,15 +94,11 @@ codeunit 50005 "NEBJ Sales Price Cal. Mgt."
         ItemDisGrp3: Code[20];
         StartDate: Date;
         InclCampain: Boolean;
+        Cnt1: Integer;
         Cnt2: Integer;
         Cnt3: Integer;
         Cnt4: Integer;
     begin
-        if TempPriceListLine.FindSet() then
-            repeat
-                Message('%1', TempPriceListLine."Line Discount %");
-            until TempPriceListLine.Next() = 0;
-
         PriceCalculationBufferMgt.GetBuffer(PriceCalcBuff);
         ItemNo := PriceCalcBuff."NEBJ Item No.";
         EndUser := PriceCalcBuff."NEBJ EndUser";
@@ -62,6 +109,10 @@ codeunit 50005 "NEBJ Sales Price Cal. Mgt."
         ItemDisGrp2 := PriceCalcBuff."NEBJ Item Disc. Grp2";
         ItemDisGrp3 := PriceCalcBuff."NEBJ Item Disc. Grp3";
         CompaignNo := '';
+
+        Cnt1 := TempPriceListLine.Count;
+        Cnt2 := PriceCalcBuff.Count;
+        Cnt3 := FromPriceList.Count;
 
         FromPriceList.SetFilter("Ending Date", '%1|>=%2', 0D, PriceCalcBuff."Document Date");
         FromPriceList.SetFilter("Variant Code", '%1|%2', PriceCalcBuff."Variant Code", '');
@@ -93,6 +144,7 @@ codeunit 50005 "NEBJ Sales Price Cal. Mgt."
                         FromPriceList.SetRange("Assign-to No.", CompaignNo);
                 end;
                 repeat
+                    Message('%1', FromPriceList."Price List Code");
                     FromPriceList.SetRange("Asset Type", FromPriceList."Asset Type"::Item);
                     FromPriceList.SetRange("Asset No.", PriceCalcBuff."Asset No.");
                     if not ShowAll then begin
@@ -176,19 +228,13 @@ codeunit 50005 "NEBJ Sales Price Cal. Mgt."
         Cnt3 := FromPriceList.Count;
         Cnt4 := TempPriceListLine.Count;
 
-        /* if TempPriceListLine.Count > 1 then begin
-            TempPriceListLine.SetCurrentKey("Line Discount %");
-            TempPriceListLine.SetRange("Line Discount %");
-            TempPriceListLine.FindLast();
-        end; */
-
         TempPriceListLine.SetRange(EndUser, EndUser);
         if TempPriceListLine.Count = 0 then
             if PriceCalcBuff."NEBJ EndUser" = '' then
                 TempPriceListLine.SetRange(EndUser)
             else
                 TempPriceListLine.SetRange(EndUser, '');
-    end;
+    end; */
 
     /* local procedure ProcessSourceType(SourceType: Enum "NEBJ Price Source Type")
     var
@@ -401,22 +447,14 @@ codeunit 50005 "NEBJ Sales Price Cal. Mgt."
                 TempPriceListLine.SetRange(EndUser, '');
     end; */
 
-    local procedure CopySalesDiscToSalesLine(var FromPriceList: Record "Price List Line"; var TempPriceListLine: Record "Price List Line")
+    /* local procedure CopySalesDiscToSalesLine(var FromPriceList: Record "Price List Line"; var TempPriceListLine: Record "Price List Line")
     begin
         if FromPriceList.FindSet() then
             repeat
                 TempPriceListLine := FromPriceList;
                 TempPriceListLine.Insert();
             until FromPriceList.Next() = 0;
-    end;
-
-    [EventSubscriber(ObjectType::Table, Database::"Sales Line", 'OnAfterValidateEvent', EndUser, true, true)]
-    local procedure SalesLineEndUserOnValidate(var Rec: Record "Sales Line")
-    var
-        PriceCalculation: Interface "Price Calculation";
-    begin
-        Rec.UpdateUnitPriceByField(0);
-    end;
+    end; */
 
     /* [EventSubscriber(ObjectType::Codeunit, Codeunit::"Sales Line - Price", 'OnAfterFillBuffer', '', true, true)]
     local procedure NEBJOnAfterFillBuffer(var PriceCalculationBuffer: Record "Price Calculation Buffer" temporary; SalesHeader: Record "Sales Header"; SalesLine: Record "Sales Line")

@@ -266,10 +266,9 @@ page 50011 "Purchase Order Import"
             if pIsRecModify then begin
                 if pPurchLine.Modify() then
                     PurchOrderMgt.PurchLineLotModify(pPurchLine, PrevPurchLine);
-            end else begin
-                if pPurchLine.Insert() then
-                    PurchOrderMgt.PurchLineLotInsert(pPurchLine);
-            end;
+            end else
+                pPurchLine.Insert();
+            //PurchOrderMgt.PurchLineLotInsert(pPurchLine);
             //DataCnt += 1;
         end else begin
             ErrCnt += 1;

@@ -13,6 +13,7 @@ tableextension 50036 "Sales Header Ext" extends "Sales Header"
         field(50033; "Picking Advice"; Text[50]) { }
         field(50034; "Delivery Note Reference"; Text[50]) { }
         field(50035; "Description"; Text[20]) { }
+
     }
 }
 

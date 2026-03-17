@@ -1,7 +1,7 @@
 report 50004 "NEBJ Consum. Tax Summary"
 {
     DefaultLayout = RDLC;
-    RDLCLayout = 'src\08.Report\NEBJConTaxSummary.rdlc';
+    RDLCLayout = 'src\10.ReportLayout\NEBJConTaxSummary.rdlc';
     Caption = 'Consumption Tax Report';
     PreviewMode = PrintLayout;
     UsageCategory = ReportsandAnalysis;

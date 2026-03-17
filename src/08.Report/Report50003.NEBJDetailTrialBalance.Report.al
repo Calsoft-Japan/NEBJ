@@ -2,7 +2,7 @@ report 50003 "NEBJ Detail Trial Balance"
 {
     // Copied from report 4: "Detail Trial Balance"
     DefaultLayout = RDLC;
-    RDLCLayout = 'src\08.Report\NEBJDetailTrialBalance.rdlc';
+    RDLCLayout = 'src\10.ReportLayout\NEBJDetailTrialBalance.rdlc';
     AdditionalSearchTerms = 'payment due,order status';
     ApplicationArea = Basic, Suite;
     Caption = 'NEBJ Detail Trial Balance';

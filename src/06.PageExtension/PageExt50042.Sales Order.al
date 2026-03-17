@@ -14,6 +14,12 @@ pageextension 50042 "Sales Order Ext" extends "Sales Order"
                 ApplicationArea = All;
                 Caption = '納品書備考';
             }
+            field("Reason Code"; Rec."Reason Code")
+            {
+                ApplicationArea = All;
+                Caption = '理由コード';
+                Editable = true;
+            }
         }
 
         addafter("Ship-to Contact")

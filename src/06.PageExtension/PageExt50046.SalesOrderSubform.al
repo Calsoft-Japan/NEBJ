@@ -12,6 +12,14 @@ pageextension 50046 "Sales Order Subform EXT" extends "Sales Order Subform"
             StyleExpr = QtyLineStyle;
         }
 
+        addafter("No.")
+        {
+            field("BOM Flag"; Rec."BOM Flag")
+            {
+                ApplicationArea = All;
+            }
+        }
+
         addafter(ShortcutDimCode8)
         {
             field(EndUser; Rec.EndUser)

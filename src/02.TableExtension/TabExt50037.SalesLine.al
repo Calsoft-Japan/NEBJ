@@ -19,6 +19,7 @@ tableextension 50037 "Sales Line Ext" extends "Sales Line"
                 end;
             end;
         }
+
         field(50007; "EU"; Code[20])
         {
             Caption = 'End User';
@@ -70,6 +71,12 @@ tableextension 50037 "Sales Line Ext" extends "Sales Line"
         field(50020; "Description(Bikou2)"; Text[200])
         {
             Caption = 'Description (Bikou 2)';
+        }
+        field(50021; "BOM Flag"; Boolean)
+        {
+            CalcFormula = Exist("BOM Component" WHERE("Parent Item No." = FIELD("No.")));
+            FieldClass = FlowField;
+            Caption = 'セット区分';
         }
     }
 }

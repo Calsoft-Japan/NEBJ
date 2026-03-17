@@ -2226,6 +2226,12 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">TableExtension Item Ext - Field WorkLaw - Property Caption</note>
         </trans-unit>
+        <trans-unit id="TableExtension 2156941243 - Field 2044676172 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Table 2545485356">
+          <source>Default Gen. Bus. Posting Group</source>
+          <target>規定一般ビジネス転記グループ</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">TableExtension Item Journal Batch Ext - Field Default Gen. Bus. Posting Grp. - Property Caption</note>
+        </trans-unit>
         <trans-unit id="TableExtension 61345188 - Field 1031163474 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Table 2964960979">
           <source>EndUser</source>
           <target>エンドユーザー</target>

@@ -27,7 +27,10 @@ tableextension 50018 "Customer Ext" extends Customer
         field(50022; "Customer"; Text[20]) { }
         field(50023; "ID2"; Text[20]) { }
         field(50024; "Password"; Text[20]) { }
-        field(50025; "Name in English"; Text[80]) { }
+        field(50025; "Name in English"; Text[80])
+        {
+            Caption = '英語名';
+        }
         field(50026; "Delivery Time"; Text[20]) { }
         field(50027; "No Delivery Slip Flag"; Boolean) { }
         field(50028; "No Delivery Slip No Add. Flag"; Boolean) { }

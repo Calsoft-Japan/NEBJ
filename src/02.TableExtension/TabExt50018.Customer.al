@@ -53,7 +53,10 @@ tableextension 50018 "Customer Ext" extends Customer
         }
         field(50037; "Payment Exception"; Text[50]) { }
         field(50038; "Order Source"; Code[20]) { }
-        field(50039; "Head Office Code"; Code[20]) { }
+        field(50039; "Head Office Code"; Code[20])
+        {
+            TableRelation = "Customer";
+        }
         field(50040; "ExternalCustomerID1"; Text[100]) { }
         field(50041; "ExternalCustomerID2"; Text[100]) { }
         field(50042; "ExternalCustomerID3"; Text[100]) { }

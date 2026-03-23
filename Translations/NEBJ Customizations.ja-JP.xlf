@@ -1672,6 +1672,18 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">PageExtension SalesReturnOrderArcSubform Ext - Control EU Division 3 - Property Caption</note>
         </trans-unit>
+        <trans-unit id="TableExtension 2074821002 - Field 2649176925 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Table 2378311977">
+          <source>End Date</source>
+          <source>終了日</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">TableExtension BOM Component Ext - Field End Date - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="TableExtension 2074821002 - Field 474480784 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Table 2378311977">
+          <source>Start Date</source>
+          <source>開始日</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">TableExtension BOM Component Ext - Field Start Date - Property Caption</note>
+        </trans-unit>
         <trans-unit id="TableExtension 156412750 - Field 404841826 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Table 3469146285">
           <source>FAX E-Mail</source>
           <note from="Developer" annotates="general" priority="2"></note>

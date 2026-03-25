@@ -2,7 +2,7 @@ pageextension 50030 "Item Card Ext" extends "Item Card"
 {
     layout
     {
-        /*
+
         addafter("No.")
         {
 
@@ -12,7 +12,7 @@ pageextension 50030 "Item Card Ext" extends "Item Card"
                 Caption = '正式名称';
             }
         }
-        */
+
 
         addafter("Description")
         {

@@ -2,7 +2,10 @@ tableextension 50027 "Item Ext" extends Item
 {
     fields
     {
-        field(50001; "FullName"; Text[100]) { }
+        field(50001; "FullName"; Text[100])
+        {
+            Caption = '正式名称';
+        }
         field(50002; "StorageTemp"; Text[20]) { }
         field(50004; "Campaigne URL"; Text[100]) { }
         field(50005; "Toxic"; Text[30]) { }

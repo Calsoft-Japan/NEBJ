@@ -2,6 +2,10 @@ pageextension 50021 "Customer Card Ext" extends "Customer Card"
 {
     layout
     {
+        modify("Payment Terms Code")
+        {
+            ShowMandatory = false;
+        }
         addafter(Name)
         {
             //field("Name 2"; "Name 2")

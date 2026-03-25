@@ -32,7 +32,6 @@ codeunit 50002 "Sales Enhancement"
         ToSalesLine."EU Division 2" := SalesLine."EU Division 2";
         ToSalesLine."EU Division 3" := SalesLine."EU Division 3";
         ToSalesLine."Description(Bikou)" := SalesLine."Description(Bikou)";
-        ToSalesLine."Description(Bikou2)" := SalesLine."Description(Bikou2)";
         ToSalesLine."ExternaDocumentNo." := SalesLine."ExternaDocumentNo.";
         ToSalesLine."Unit Price" := 0;
         ToSalesLine."Line Amount" := 0;

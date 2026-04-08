@@ -165,6 +165,111 @@ report 50002 "Import Goods Rcpt. Insp. Data"
         DirEnum: Enum "Transfer Direction";
     begin
         ItemJnlLine.LockTable();
+        ItemJnlLine.Reset();
+        ItemJnlLine.SetRange("Journal Template Name", TemplateName);
+        ItemJnlLine.SetRange("Journal Batch Name", BatchName);
+        if ItemJnlLine.FindLast() then
+            NextLineNo := ItemJnlLine."Line No." + 10000
+        else
+            NextLineNo := 10000;
+
+        if Quantity1 <> 0 then begin
+            ItemJnlLine.Init();
+            ItemJnlLine."Journal Template Name" := TemplateName;
+            ItemJnlLine."Journal Batch Name" := BatchName;
+            ItemJnlLine."Line No." := NextLineNo;
+            ItemJnlLine.Validate("Entry Type", ItemJnlLine."Entry Type"::Transfer);
+            ItemJnlLine.Validate("Posting Date", PostingDate);
+            ItemJnlLine.Validate("Document No.", DocNo);
+            ItemJnlLine.Validate("External Document No.", ExtDocNo);
+            ItemJnlLine.Validate("Item No.", ItemNo);
+            ItemJnlLine.Validate("Location Code", LocCode);
+
+            OldLotNo := '';
+            EntryNo := 0;
+            ItemLedEntry.Reset();
+            ItemLedEntry.SetCurrentKey("Item No.", "Posting Date");
+            ItemLedEntry.SetRange("Item No.", ItemNo);
+            ItemLedEntry.SetRange("Location Code", LocCode);
+            ItemLedEntry.SetFilter("Remaining Quantity", '<>%1', 0);
+            if OldLotNo <> '' then
+                ItemLedEntry.SetRange("Lot No.", OldLotNo);
+            if ItemLedEntry.FindFirst() then begin
+                OldLotNo := ItemLedEntry."Lot No.";
+                EntryNo := ItemLedEntry."Entry No.";
+            end;
+
+            NewExpDate := 0D;
+            ItemLedEntry.Reset();
+            ItemLedEntry.SetRange("Item No.", ItemNo);
+            ItemLedEntry.SetRange("Lot No.", LotNo);
+            if ItemLedEntry.FindLast() then
+                NewExpDate := ItemLedEntry."Expiration Date";
+            ItemJnlLine.Validate("New Location Code", NewLocCode);
+            ItemJnlLine.Validate(Quantity, Qty);
+            ItemJnlLine.Insert(true);
+
+            //Reservation logic
+            if OldLotNo <> '' then begin
+                Clear(ReservEntry);
+                ReservEntry."Lot No." := OldLotNo;
+                ReservEntry."Serial No." := SerialNo;
+
+                CreateRsvEntry.CreateReservEntryFor(
+                  Database::"Item Journal Line",
+                  ItemJnlLine."Entry Type".AsInteger(),
+                  ItemJnlLine."Journal Template Name",
+                  ItemJnlLine."Journal Batch Name",
+                  ItemJnlLine."Prod. Order Comp. Line No.",
+                  ItemJnlLine."Line No.",
+                  ItemJnlLine."Qty. per Unit of Measure",
+                  Abs(ItemJnlLine."Quantity (Base)"),
+                  Abs(ItemJnlLine."Quantity (Base)"),
+                  ReservEntry);
+
+                CreateRsvEntry.CreateEntry(
+                  ItemJnlLine."Item No.",
+                  ItemJnlLine."Variant Code",
+                  ItemJnlLine."Location Code",
+                  ItemJnlLine.Description,
+                  0D, 0D, 0,
+                  ReservEntry."Reservation Status"::Prospect);
+
+                ReservEntry2.Reset();
+                ReservEntry2.SetRange("Source Type", Database::"Item Journal Line");
+                ReservEntry2.SetRange("Source ID", ItemJnlLine."Journal Template Name");
+                ReservEntry2.SetRange("Source Batch Name", ItemJnlLine."Journal Batch Name");
+                ReservEntry2.SetRange("Source Ref. No.", ItemJnlLine."Line No.");
+                ReservEntry2.SetRange("Item No.", ItemJnlLine."Item No.");
+                ReservEntry2.SetRange("Reservation Status", ReservEntry2."Reservation Status"::Prospect);
+                if SerialNo <> '' then
+                    ReservEntry2.SetRange("Serial No.", SerialNo);
+                if OldLotNo <> '' then
+                    ReservEntry2.SetRange("Lot No.", OldLotNo);
+                if ReservEntry2.FindSet() then
+                    repeat
+                        ReservEntry2.Validate("New Lot No.", LotNo);
+                        ReservEntry2.Validate("Appl.-to Item Entry", EntryNo);
+                        if NewExpDate <> 0D then
+                            ReservEntry2.Validate("New Expiration Date", NewExpDate)
+                        else
+                            if ExpDate <> 0D then
+                                ReservEntry2.Validate("New Expiration Date", ExpDate);
+                        ReservEntry2.Modify();
+                        ReservEntry2.Validate("Quantity (Base)", Qty);
+
+                        if not LotNoInfo.Get(ReservEntry2."Item No.", ReservEntry2."Variant Code", ReservEntry2."New Lot No.") then begin
+                            LotNoInfo.Init();
+                            LotNoInfo."Item No." := ReservEntry2."Item No.";
+                            LotNoInfo."Lot No." := ReservEntry2."New Lot No.";
+                            LotNoInfo."First Receiving Date" := PostingDate;
+                            LotNoInfo."Inspection Passed Date" := ASEDate;
+                            LotNoInfo.Insert();
+                        end;
+                    until ReservEntry2.Next() = 0;
+            end;
+        end;
+        /* ItemJnlLine.LockTable();
         ItemJnlLine.Init();
         ItemJnlLine.SetRange("Journal Template Name", TemplateName);
         ItemJnlLine.SetRange("Journal Batch Name", BatchName);
@@ -218,8 +323,8 @@ report 50002 "Import Goods Rcpt. Insp. Data"
 
             ItemJnlLine.Validate("New Location Code", NewLocCode);
             ItemJnlLine.Validate(Quantity, Qty);
-            if EntryNo <> 0 then
-                ItemJnlLine.Validate(ItemJnlLine."Applies-to Entry", EntryNo);
+            //if EntryNo <> 0 then
+            //ItemJnlLine.Validate(ItemJnlLine."Applies-to Entry", EntryNo);
 
             ItemJnlLine.Insert(true);
 
@@ -265,6 +370,7 @@ report 50002 "Import Goods Rcpt. Insp. Data"
                         else
                             if ExpDate <> 0D then
                                 ReservEntry2.Validate("New Expiration Date", ExpDate);
+                        ReservEntry2.Validate("Appl.-to Item Entry", EntryNo);
                         ReservEntry2.Modify();
                         ReservEntry2.Validate("Quantity (Base)", Qty);
                         if not LotNoInfo.Get(ReservEntry2."Item No.", ReservEntry2."Variant Code", ReservEntry2."New Lot No.") then begin
@@ -277,7 +383,7 @@ report 50002 "Import Goods Rcpt. Insp. Data"
                         end;
                     until ReservEntry2.Next() = 0;
             end;
-        end;
+        end;*/
     end;
 
     local procedure FormatDataToDate(TextToFormat: Text[250]): Text[250];

@@ -159,6 +159,7 @@ report 50002 "Import Goods Rcpt. Insp. Data"
         ReservEntry: Record "Reservation Entry";
         ReservEntry2: Record "Reservation Entry";
         ItemLedEntry: Record "Item Ledger Entry";
+        ItemJnlBatch: Record "Item Journal Batch";
         CreateRsvEntry: Codeunit "Create Reserv. Entry";
         ReservEngineMgt: Codeunit "Reservation Engine Mgt.";
         ReservMgmt: Codeunit "Reservation Management";
@@ -184,6 +185,9 @@ report 50002 "Import Goods Rcpt. Insp. Data"
             ItemJnlLine.Validate("External Document No.", ExtDocNo);
             ItemJnlLine.Validate("Item No.", ItemNo);
             ItemJnlLine.Validate("Location Code", LocCode);
+            if ItemJnlBatch.Get(BatchName) then;
+            if ItemJnlBatch."Default Gen. Bus. Posting Grp." <> '' then
+                ItemJnlLine."Gen. Bus. Posting Group" := ItemJnlBatch."Default Gen. Bus. Posting Grp.";
 
             OldLotNo := '';
             EntryNo := 0;

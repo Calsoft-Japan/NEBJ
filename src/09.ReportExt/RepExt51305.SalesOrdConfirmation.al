@@ -50,14 +50,11 @@ reportextension 51305 "Sales Ord Confirmation Ext" extends "Standard Sales - Ord
 
             trigger OnAfterAfterGetRecord()
             begin
-                begin
-                    if Header."Direct Shipping Code" <> '' then begin
-                        if Customer2.Get(Header."Direct Shipping Code") then;
-                    end else
-                        Clear(Customer2);
-                end;
+                if Header."Direct Shipping Code" <> '' then begin
+                    if Customer2.Get(Header."Direct Shipping Code") then;
+                end else
+                    Clear(Customer2);
             end;
-
         }
 
         add(Line)
@@ -66,32 +63,43 @@ reportextension 51305 "Sales Ord Confirmation Ext" extends "Standard Sales - Ord
             {
             }
             column(EU_Description; "EU Description")
-            { }
+            {
+            }
             column(EU_Division_1; "EU Division 1")
-            { }
+            {
+            }
             column(EU_Division_2; "EU Division 2")
-            { }
+            {
+            }
             column(EU_Division_3; "EU Division 3")
-            { }
+            {
+            }
             column(Description_Bikou_; "Description(Bikou)")
-            { }
+            {
+            }
             column(Description_Bikou2_; "Description(Bikou2)")
-            { }
+            {
+            }
             column(ExternaDocumentNo_; "ExternaDocumentNo.")
-            { }
+            {
+            }
             column(Planned_Delivery_Date; "Planned Delivery Date")
-            { }
-            //2025-11-04
+            {
+            }
             column(ItemDescFromItem_Line; ItemDescFromItemTxt)
-            { }
-            column(NetUnitPrice_Line; "Line Amount" / Quantity)
-            { }
+            {
+            }
+            column(NetUnitPrice_Line; NetUnitPriceLine)
+            {
+            }
         }
+
         modify(Line)
         {
             trigger OnAfterAfterGetRecord()
             begin
-                SetItemDescFromItem(Line)
+                SetItemDescFromItem(Line);
+                SetNetUnitPrice(Line);
             end;
         }
     }
@@ -101,16 +109,28 @@ reportextension 51305 "Sales Ord Confirmation Ext" extends "Standard Sales - Ord
         Customer2: Record Customer;
         ItemRec: Record Item;
         ItemDescFromItemTxt: Text[100];
+        NetUnitPriceLine: Decimal;
 
     local procedure SetItemDescFromItem(SalesLine: Record "Sales Line")
     begin
         Clear(ItemDescFromItemTxt);
+
         if SalesLine.Type = SalesLine.Type::Item then begin
             if ItemRec.Get(SalesLine."No.") then
-                ItemDescFromItemTxt := ItemRec.Description      // ← from Item card
+                ItemDescFromItemTxt := ItemRec.Description
             else
-                ItemDescFromItemTxt := '';                       // no item found
+                ItemDescFromItemTxt := '';
         end else
-            ItemDescFromItemTxt := SalesLine.Description;        // keep text/GL lines readable
+            ItemDescFromItemTxt := SalesLine.Description;
+    end;
+
+    local procedure SetNetUnitPrice(SalesLine: Record "Sales Line")
+    begin
+        Clear(NetUnitPriceLine);
+
+        if (SalesLine.Type = SalesLine.Type::Item) and (SalesLine.Quantity <> 0) then
+            NetUnitPriceLine := SalesLine."Line Amount" / SalesLine.Quantity
+        else
+            NetUnitPriceLine := 0;
     end;
 }

@@ -11,7 +11,7 @@
       <am:Name>MSRB</am:Name>
       <am:Version>15.1.30001.02</am:Version>
     </am:UpdatedBy>
-    <am:LastModifiedTimestamp>2026-04-08T10:07:35.8270658Z</am:LastModifiedTimestamp>
+    <am:LastModifiedTimestamp>2026-04-09T07:11:43.8886213Z</am:LastModifiedTimestamp>
   </am:AuthoringMetadata>
   <AutoRefresh>0</AutoRefresh>
   <DataSources>
@@ -823,6 +823,9 @@
         <Field Name="NetUnitPrice_LineFormat">
           <DataField>NetUnitPrice_LineFormat</DataField>
         </Field>
+        <Field Name="TypeInt">
+          <Value>TypeInt</Value>
+        </Field>
       </Fields>
     </DataSet>
   </DataSets>
@@ -1409,8 +1412,8 @@
                                     <TablixCells>
                                       <TablixCell>
                                         <CellContents>
-                                          <Textbox Name="Textbox41">
-                                            <rd:DefaultName>Textbox41</rd:DefaultName>
+                                          <Textbox Name="LineNo_Line">
+                                            <rd:DefaultName>LineNo_Line</rd:DefaultName>
                                             <CanGrow>true</CanGrow>
                                             <KeepTogether>true</KeepTogether>
                                             <Paragraphs>
@@ -1458,6 +1461,9 @@
                                                 <Style />
                                               </Paragraph>
                                             </Paragraphs>
+                                            <Visibility>
+                                              <Hidden>=Fields!TypeInt.Value &lt;&gt; 0</Hidden>
+                                            </Visibility>
                                             <Style>
                                               <Border>
                                                 <Color>LightGrey</Color>
@@ -1722,6 +1728,9 @@
                                                 <Style />
                                               </Paragraph>
                                             </Paragraphs>
+                                            <Visibility>
+                                              <Hidden>=Fields!TypeInt.Value = 0</Hidden>
+                                            </Visibility>
                                             <Style>
                                               <Border>
                                                 <Color>LightGrey</Color>
@@ -1743,7 +1752,7 @@
                                               <Paragraph>
                                                 <TextRuns>
                                                   <TextRun>
-                                                    <Value />
+                                                    <Value>=Fields!Quantity_Line.Value</Value>
                                                     <Style>
                                                       <FontFamily>MS UI Gothic</FontFamily>
                                                       <FontSize>8pt</FontSize>
@@ -1776,7 +1785,7 @@
                                               <Paragraph>
                                                 <TextRuns>
                                                   <TextRun>
-                                                    <Value />
+                                                    <Value>=FormatNumber(Fields!UnitPrice.Value, 0)</Value>
                                                     <Style>
                                                       <FontFamily>MS UI Gothic</FontFamily>
                                                       <FontSize>8pt</FontSize>
@@ -1809,7 +1818,7 @@
                                               <Paragraph>
                                                 <TextRuns>
                                                   <TextRun>
-                                                    <Value />
+                                                    <Value>=IIF ( Fields!LineDiscountPercent_Line.Value = 0, 0.0, 100 - Fields!LineDiscountPercent_Line.Value)</Value>
                                                     <Style>
                                                       <FontFamily>MS UI Gothic</FontFamily>
                                                       <FontSize>8pt</FontSize>
@@ -1842,7 +1851,7 @@
                                               <Paragraph>
                                                 <TextRuns>
                                                   <TextRun>
-                                                    <Value />
+                                                    <Value>=FormatNumber(Fields!NetUnitPrice_Line.Value, 0)</Value>
                                                     <Style>
                                                       <FontFamily>MS UI Gothic</FontFamily>
                                                       <FontSize>8pt</FontSize>
@@ -1875,7 +1884,7 @@
                                               <Paragraph>
                                                 <TextRuns>
                                                   <TextRun>
-                                                    <Value />
+                                                    <Value>=FormatNumber(Fields!AmountExcludingVAT_Line.value, 0)</Value>
                                                     <Style>
                                                       <FontFamily>MS UI Gothic</FontFamily>
                                                       <FontSize>8pt</FontSize>
@@ -1908,7 +1917,7 @@
                                               <Paragraph>
                                                 <TextRuns>
                                                   <TextRun>
-                                                    <Value />
+                                                    <Value>=Fields!PlannedShipmentDate_Line.Value</Value>
                                                     <Style>
                                                       <FontFamily>MS UI Gothic</FontFamily>
                                                       <FontSize>8pt</FontSize>
@@ -1941,7 +1950,7 @@
                                               <Paragraph>
                                                 <TextRuns>
                                                   <TextRun>
-                                                    <Value />
+                                                    <Value>=Format(Fields!Planned_Delivery_Date.Value, "yy/MM/dd")</Value>
                                                     <Style>
                                                       <FontFamily>MS UI Gothic</FontFamily>
                                                       <FontSize>8pt</FontSize>
@@ -1966,6 +1975,7 @@
                                       </TablixCell>
                                       <TablixCell>
                                         <CellContents>
+                                          <rd:Selected>true</rd:Selected>
                                           <Textbox Name="Textbox61">
                                             <rd:DefaultName>Textbox61</rd:DefaultName>
                                             <CanGrow>true</CanGrow>
@@ -1974,7 +1984,7 @@
                                               <Paragraph>
                                                 <TextRuns>
                                                   <TextRun>
-                                                    <Value />
+                                                    <Value>=Fields!ExternaDocumentNo_.Value</Value>
                                                     <Style>
                                                       <FontFamily>MS UI Gothic</FontFamily>
                                                       <FontSize>8pt</FontSize>
@@ -2000,7 +2010,7 @@
                                     </TablixCells>
                                   </TablixRow>
                                   <TablixRow>
-                                    <Height>0.38833cm</Height>
+                                    <Height>0.4095cm</Height>
                                     <TablixCells>
                                       <TablixCell>
                                         <CellContents>
@@ -2074,7 +2084,7 @@
                                               <Paragraph>
                                                 <TextRuns>
                                                   <TextRun>
-                                                    <Value>=Fields!Quantity_Line.Value</Value>
+                                                    <Value EvaluationMode="Constant" />
                                                     <Style>
                                                       <FontFamily>MS UI Gothic</FontFamily>
                                                       <FontSize>8pt</FontSize>
@@ -2086,6 +2096,9 @@
                                                 </Style>
                                               </Paragraph>
                                             </Paragraphs>
+                                            <Visibility>
+                                              <Hidden>=Fields!TypeInt.Value &lt;&gt; 2</Hidden>
+                                            </Visibility>
                                             <Style>
                                               <Border>
                                                 <Color>LightGrey</Color>
@@ -2107,7 +2120,7 @@
                                               <Paragraph>
                                                 <TextRuns>
                                                   <TextRun>
-                                                    <Value>=FormatNumber(Fields!UnitPrice.Value, 0)</Value>
+                                                    <Value EvaluationMode="Constant" />
                                                     <Style>
                                                       <FontFamily>MS UI Gothic</FontFamily>
                                                       <FontSize>8pt</FontSize>
@@ -2119,6 +2132,9 @@
                                                 </Style>
                                               </Paragraph>
                                             </Paragraphs>
+                                            <Visibility>
+                                              <Hidden>=Fields!TypeInt.Value &lt;&gt; 2</Hidden>
+                                            </Visibility>
                                             <Style>
                                               <Border>
                                                 <Color>LightGrey</Color>
@@ -2140,7 +2156,7 @@
                                               <Paragraph>
                                                 <TextRuns>
                                                   <TextRun>
-                                                    <Value>=IIF ( Fields!LineDiscountPercent_Line.Value = 0, 0.0, 100 - Fields!LineDiscountPercent_Line.Value)</Value>
+                                                    <Value EvaluationMode="Constant" />
                                                     <Style>
                                                       <FontFamily>MS UI Gothic</FontFamily>
                                                       <FontSize>8pt</FontSize>
@@ -2174,7 +2190,7 @@
                                               <Paragraph>
                                                 <TextRuns>
                                                   <TextRun>
-                                                    <Value>=FormatNumber(Fields!NetUnitPrice_Line.Value, 0)</Value>
+                                                    <Value EvaluationMode="Constant" />
                                                     <Style>
                                                       <FontFamily>MS UI Gothic</FontFamily>
                                                       <FontSize>8pt</FontSize>
@@ -2207,7 +2223,7 @@
                                               <Paragraph>
                                                 <TextRuns>
                                                   <TextRun>
-                                                    <Value>= FormatNumber(Fields!AmountExcludingVAT_Line.value, 0)</Value>
+                                                    <Value EvaluationMode="Constant" />
                                                     <Style>
                                                       <FontFamily>MS UI Gothic</FontFamily>
                                                       <FontSize>8pt</FontSize>
@@ -2219,6 +2235,9 @@
                                                 </Style>
                                               </Paragraph>
                                             </Paragraphs>
+                                            <Visibility>
+                                              <Hidden>=Fields!TypeInt.Value &lt;&gt; 2</Hidden>
+                                            </Visibility>
                                             <Style>
                                               <Border>
                                                 <Color>LightGrey</Color>
@@ -2240,7 +2259,7 @@
                                               <Paragraph>
                                                 <TextRuns>
                                                   <TextRun>
-                                                    <Value>=Fields!PlannedShipmentDate_Line.Value</Value>
+                                                    <Value EvaluationMode="Constant" />
                                                     <Style>
                                                       <FontFamily>MS UI Gothic</FontFamily>
                                                       <FontSize>8pt</FontSize>
@@ -2273,7 +2292,7 @@
                                               <Paragraph>
                                                 <TextRuns>
                                                   <TextRun>
-                                                    <Value>=Format(Fields!Planned_Delivery_Date.Value, "yy/MM/dd")</Value>
+                                                    <Value EvaluationMode="Constant" />
                                                     <Style>
                                                       <FontFamily>MS UI Gothic</FontFamily>
                                                       <FontSize>8pt</FontSize>
@@ -2306,7 +2325,7 @@
                                               <Paragraph>
                                                 <TextRuns>
                                                   <TextRun>
-                                                    <Value>=Fields!ExternaDocumentNo_.Value</Value>
+                                                    <Value EvaluationMode="Constant" />
                                                     <Style>
                                                       <FontFamily>MS UI Gothic</FontFamily>
                                                       <FontSize>8pt</FontSize>
@@ -3220,18 +3239,35 @@ Fields!EU_Division_3.Value</Value>
                                         <TablixMembers>
                                           <TablixMember>
                                             <Visibility>
-                                              <Hidden>=Trim(CStr(Fields!Type_Line.Value)) &lt;&gt; ""</Hidden>
+                                              <Hidden>=Fields!TypeInt.Value &lt;&gt; 0</Hidden>
                                             </Visibility>
                                           </TablixMember>
-                                          <TablixMember />
-                                          <TablixMember />
-                                          <TablixMember />
-                                          <TablixMember />
-                                          <TablixMember />
+                                          <TablixMember>
+                                            <Visibility>
+                                              <Hidden>=Fields!TypeInt.Value = 0</Hidden>
+                                            </Visibility>
+                                          </TablixMember>
+                                          <TablixMember>
+                                            <Visibility>
+                                              <Hidden>=Fields!TypeInt.Value &lt;&gt; 2</Hidden>
+                                            </Visibility>
+                                          </TablixMember>
+                                          <TablixMember>
+                                            <Visibility>
+                                              <Hidden>=Fields!TypeInt.Value &lt;&gt; 2</Hidden>
+                                            </Visibility>
+                                          </TablixMember>
+                                          <TablixMember>
+                                            <Visibility>
+                                              <Hidden>=Fields!TypeInt.Value &lt;&gt; 2</Hidden>
+                                            </Visibility>
+                                          </TablixMember>
+                                          <TablixMember>
+                                            <Visibility>
+                                              <Hidden>=Fields!TypeInt.Value = 0</Hidden>
+                                            </Visibility>
+                                          </TablixMember>
                                         </TablixMembers>
-                                        <Visibility>
-                                          <Hidden>=IIF(Val(CStr(Fields!Quantity_Line.Value)) = 0, True, False)</Hidden>
-                                        </Visibility>
                                       </TablixMember>
                                     </TablixMembers>
                                   </TablixMember>
@@ -3241,7 +3277,7 @@ Fields!EU_Division_3.Value</Value>
                               <DataSetName>DataSet_Result</DataSetName>
                               <Top>5.80644cm</Top>
                               <Left>0.18953cm</Left>
-                              <Height>3.60475cm</Height>
+                              <Height>3.62592cm</Height>
                               <Width>26.79834cm</Width>
                               <Style>
                                 <Border>

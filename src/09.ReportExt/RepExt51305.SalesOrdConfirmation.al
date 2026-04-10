@@ -92,6 +92,9 @@ reportextension 51305 "Sales Ord Confirmation Ext" extends "Standard Sales - Ord
             column(NetUnitPrice_Line; NetUnitPriceLine)
             {
             }
+            column(TypeInt; Type.AsInteger())
+            {
+            }
         }
 
         modify(Line)

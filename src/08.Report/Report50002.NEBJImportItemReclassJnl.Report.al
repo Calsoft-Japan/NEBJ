@@ -185,7 +185,7 @@ report 50002 "Import Goods Rcpt. Insp. Data"
             ItemJnlLine.Validate("External Document No.", ExtDocNo);
             ItemJnlLine.Validate("Item No.", ItemNo);
             ItemJnlLine.Validate("Location Code", LocCode);
-            if ItemJnlBatch.Get(BatchName) then;
+            if ItemJnlBatch.Get(TemplateName, BatchName) then;
             if ItemJnlBatch."Default Gen. Bus. Posting Grp." <> '' then
                 ItemJnlLine."Gen. Bus. Posting Group" := ItemJnlBatch."Default Gen. Bus. Posting Grp.";
 

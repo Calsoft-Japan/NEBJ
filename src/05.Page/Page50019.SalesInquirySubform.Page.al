@@ -8,6 +8,7 @@ page 50019 "Sales Inquiry Subform"
     Pagetype = ListPart;
     SourceTable = "Sales Inquiry Line";
     SourceTableTemporary = true;
+    Permissions = tabledata "Customer Type" = R;
     layout
     {
         area(content)

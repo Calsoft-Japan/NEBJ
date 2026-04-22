@@ -131,7 +131,7 @@ reportextension 51305 "Sales Ord Confirmation Ext" extends "Standard Sales - Ord
     begin
         Clear(NetUnitPriceLine);
 
-        if (SalesLine.Type = SalesLine.Type::Item) and (SalesLine.Quantity <> 0) then
+        if SalesLine.Quantity <> 0 then
             NetUnitPriceLine := SalesLine."Line Amount" / SalesLine.Quantity
         else
             NetUnitPriceLine := 0;

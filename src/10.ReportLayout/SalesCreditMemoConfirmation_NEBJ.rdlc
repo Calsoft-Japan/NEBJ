@@ -11,7 +11,7 @@
       <am:Name>MSRB</am:Name>
       <am:Version>15.1.30001.02</am:Version>
     </am:UpdatedBy>
-    <am:LastModifiedTimestamp>2025-12-19T03:06:34.7078507Z</am:LastModifiedTimestamp>
+    <am:LastModifiedTimestamp>2026-04-10T06:15:07.5552840Z</am:LastModifiedTimestamp>
   </am:AuthoringMetadata>
   <AutoRefresh>0</AutoRefresh>
   <DataSources>
@@ -1640,6 +1640,9 @@
                                   </Style>
                                 </Paragraph>
                               </Paragraphs>
+                              <Visibility>
+                                <Hidden>=IsNothing(Fields!StorageTemprature.Value) OR Trim(CStr(Fields!StorageTemprature.Value)) = ""</Hidden>
+                              </Visibility>
                               <Style>
                                 <Border>
                                   <Style>None</Style>
@@ -2520,12 +2523,12 @@ CStr(Fields!EU_Division_3.Value) &amp; " " &amp; Cstr(Fields!Bikou_Description.V
                         </TablixMember>
                         <TablixMember>
                           <Visibility>
-                            <Hidden>=Fields!Type_Line.Value = " "</Hidden>
+                            <Hidden>=IsNothing(Fields!Type_Line.Value) OR Trim(Fields!Type_Line.Value) = ""</Hidden>
                           </Visibility>
                         </TablixMember>
                         <TablixMember>
                           <Visibility>
-                            <Hidden>=Fields!Type_Line.Value = " "</Hidden>
+                            <Hidden>=IsNothing(Fields!Type_Line.Value) OR Trim(Fields!Type_Line.Value) = ""</Hidden>
                           </Visibility>
                         </TablixMember>
                         <TablixMember>

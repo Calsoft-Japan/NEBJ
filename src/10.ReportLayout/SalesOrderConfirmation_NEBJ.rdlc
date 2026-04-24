@@ -11,7 +11,7 @@
       <am:Name>MSRB</am:Name>
       <am:Version>15.1.30001.02</am:Version>
     </am:UpdatedBy>
-    <am:LastModifiedTimestamp>2026-04-10T04:21:49.9894545Z</am:LastModifiedTimestamp>
+    <am:LastModifiedTimestamp>2026-04-24T00:19:54.8694099Z</am:LastModifiedTimestamp>
   </am:AuthoringMetadata>
   <AutoRefresh>0</AutoRefresh>
   <DataSources>
@@ -1140,6 +1140,9 @@
                                                 </Style>
                                               </Paragraph>
                                             </Paragraphs>
+                                            <Visibility>
+                                              <Hidden>=Fields!IsCRE.Value</Hidden>
+                                            </Visibility>
                                             <Style>
                                               <Border>
                                                 <Color>LightGrey</Color>
@@ -1174,6 +1177,9 @@
                                                 </Style>
                                               </Paragraph>
                                             </Paragraphs>
+                                            <Visibility>
+                                              <Hidden>=Fields!IsCRE.Value</Hidden>
+                                            </Visibility>
                                             <Style>
                                               <Border>
                                                 <Color>LightGrey</Color>
@@ -3198,7 +3204,7 @@ First(Fields!DirectShippingAddress.Value, "DataSet_Result")</Value>
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value>受注確認書</Value>
+                      <Value>=Fields!TitleTxt.Value</Value>
                       <Style>
                         <FontFamily>MS UI Gothic</FontFamily>
                         <FontSize>18pt</FontSize>
@@ -4041,6 +4047,12 @@ End Function
         </Field>
         <Field Name="CurrencySymbol">
           <DataField>CurrencySymbol</DataField>
+        </Field>
+        <Field Name="IsCRE">
+          <DataField>IsCRE</DataField>
+        </Field>
+        <Field Name="TitleTxt">
+          <DataField>TitleTxt</DataField>
         </Field>
         <Field Name="Currency_Code">
           <DataField>Currency_Code</DataField>

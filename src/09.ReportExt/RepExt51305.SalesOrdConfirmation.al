@@ -6,6 +6,12 @@ reportextension 51305 "Sales Ord Confirmation Ext" extends "Standard Sales - Ord
     {
         add(Header)
         {
+            column(IsCRE; Header."Shipping Agent Service Code" = 'CRE')
+            {
+            }
+            column(TitleTxt; TitleTxt)
+            {
+            }
             column(Currency_Code; "Currency Code")
             {
             }
@@ -46,6 +52,10 @@ reportextension 51305 "Sales Ord Confirmation Ext" extends "Standard Sales - Ord
             trigger OnAfterPreDataItem()
             begin
                 CompanyInfo2.Get();
+                CompanyAddr[1] := CompanyInfo.Name;
+                CompanyAddr[2] := '〒 ' + CompanyInfo."Post Code";
+                CompanyAddr[3] := CompanyInfo.Address;
+                CompanyAddr[4] := CompanyInfo."Address 2";
             end;
 
             trigger OnAfterAfterGetRecord()
@@ -54,6 +64,11 @@ reportextension 51305 "Sales Ord Confirmation Ext" extends "Standard Sales - Ord
                     if Customer2.Get(Header."Direct Shipping Code") then;
                 end else
                     Clear(Customer2);
+                // ===== CRE Logic =====
+                if Header."Shipping Agent Service Code" = 'CRE' then
+                    TitleTxt := '価格訂正書'
+                else
+                    TitleTxt := '受注確認書';
             end;
         }
 
@@ -113,6 +128,7 @@ reportextension 51305 "Sales Ord Confirmation Ext" extends "Standard Sales - Ord
         ItemRec: Record Item;
         ItemDescFromItemTxt: Text[100];
         NetUnitPriceLine: Decimal;
+        TitleTxt: Text[50];
 
     local procedure SetItemDescFromItem(SalesLine: Record "Sales Line")
     begin

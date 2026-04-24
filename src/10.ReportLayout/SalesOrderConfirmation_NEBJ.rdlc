@@ -11,7 +11,7 @@
       <am:Name>MSRB</am:Name>
       <am:Version>15.1.30001.02</am:Version>
     </am:UpdatedBy>
-    <am:LastModifiedTimestamp>2026-04-10T04:21:49.9894545Z</am:LastModifiedTimestamp>
+    <am:LastModifiedTimestamp>2026-04-24T00:19:54.8694099Z</am:LastModifiedTimestamp>
   </am:AuthoringMetadata>
   <AutoRefresh>0</AutoRefresh>
   <DataSources>
@@ -41,7 +41,6 @@
                   <TablixCells>
                     <TablixCell>
                       <CellContents>
-                        <rd:Selected>true</rd:Selected>
                         <Rectangle Name="Rectangle1">
                           <ReportItems>
                             <Tablix Name="LinesTable">
@@ -449,7 +448,7 @@
                                               <Paragraph>
                                                 <TextRuns>
                                                   <TextRun>
-                                                    <Value EvaluationMode="Constant">出荷予定日</Value>
+                                                    <Value>=IIF(Fields!IsCRE.Value, "", "出荷予定日")</Value>
                                                     <Style>
                                                       <FontFamily>MS UI Gothic</FontFamily>
                                                       <FontSize>8pt</FontSize>
@@ -466,26 +465,6 @@
                                               <Border>
                                                 <Style>Solid</Style>
                                               </Border>
-                                              <TopBorder>
-                                                <Color>Black</Color>
-                                                <Style>Solid</Style>
-                                                <Width>1pt</Width>
-                                              </TopBorder>
-                                              <BottomBorder>
-                                                <Color>Black</Color>
-                                                <Style>Solid</Style>
-                                                <Width>1pt</Width>
-                                              </BottomBorder>
-                                              <LeftBorder>
-                                                <Color>Black</Color>
-                                                <Style>Solid</Style>
-                                                <Width>1pt</Width>
-                                              </LeftBorder>
-                                              <RightBorder>
-                                                <Color>Black</Color>
-                                                <Style>Solid</Style>
-                                                <Width>1pt</Width>
-                                              </RightBorder>
                                               <VerticalAlign>Middle</VerticalAlign>
                                               <PaddingLeft>5pt</PaddingLeft>
                                               <PaddingRight>5pt</PaddingRight>
@@ -495,6 +474,7 @@
                                       </TablixCell>
                                       <TablixCell>
                                         <CellContents>
+                                          <rd:Selected>true</rd:Selected>
                                           <Textbox Name="Textbox18">
                                             <rd:DefaultName>Textbox18</rd:DefaultName>
                                             <CanGrow>true</CanGrow>
@@ -503,7 +483,7 @@
                                               <Paragraph>
                                                 <TextRuns>
                                                   <TextRun>
-                                                    <Value EvaluationMode="Constant">納品予定日</Value>
+                                                    <Value>=IIF(Fields!IsCRE.Value, "", "納品予定日")</Value>
                                                     <Style>
                                                       <FontFamily>MS UI Gothic</FontFamily>
                                                       <FontSize>8pt</FontSize>
@@ -520,26 +500,6 @@
                                               <Border>
                                                 <Style>Solid</Style>
                                               </Border>
-                                              <TopBorder>
-                                                <Color>Black</Color>
-                                                <Style>Solid</Style>
-                                                <Width>1pt</Width>
-                                              </TopBorder>
-                                              <BottomBorder>
-                                                <Color>Black</Color>
-                                                <Style>Solid</Style>
-                                                <Width>1pt</Width>
-                                              </BottomBorder>
-                                              <LeftBorder>
-                                                <Color>Black</Color>
-                                                <Style>Solid</Style>
-                                                <Width>1pt</Width>
-                                              </LeftBorder>
-                                              <RightBorder>
-                                                <Color>Black</Color>
-                                                <Style>Solid</Style>
-                                                <Width>1pt</Width>
-                                              </RightBorder>
                                               <VerticalAlign>Middle</VerticalAlign>
                                               <PaddingLeft>5pt</PaddingLeft>
                                               <PaddingRight>5pt</PaddingRight>
@@ -1140,6 +1100,9 @@
                                                 </Style>
                                               </Paragraph>
                                             </Paragraphs>
+                                            <Visibility>
+                                              <Hidden>=Fields!IsCRE.Value</Hidden>
+                                            </Visibility>
                                             <Style>
                                               <Border>
                                                 <Color>LightGrey</Color>
@@ -1174,6 +1137,9 @@
                                                 </Style>
                                               </Paragraph>
                                             </Paragraphs>
+                                            <Visibility>
+                                              <Hidden>=Fields!IsCRE.Value</Hidden>
+                                            </Visibility>
                                             <Style>
                                               <Border>
                                                 <Color>LightGrey</Color>
@@ -3198,7 +3164,7 @@ First(Fields!DirectShippingAddress.Value, "DataSet_Result")</Value>
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value>受注確認書</Value>
+                      <Value>=Fields!TitleTxt.Value</Value>
                       <Style>
                         <FontFamily>MS UI Gothic</FontFamily>
                         <FontSize>18pt</FontSize>
@@ -4041,6 +4007,12 @@ End Function
         </Field>
         <Field Name="CurrencySymbol">
           <DataField>CurrencySymbol</DataField>
+        </Field>
+        <Field Name="IsCRE">
+          <DataField>IsCRE</DataField>
+        </Field>
+        <Field Name="TitleTxt">
+          <DataField>TitleTxt</DataField>
         </Field>
         <Field Name="Currency_Code">
           <DataField>Currency_Code</DataField>

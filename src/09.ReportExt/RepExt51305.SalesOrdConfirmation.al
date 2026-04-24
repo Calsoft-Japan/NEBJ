@@ -52,6 +52,10 @@ reportextension 51305 "Sales Ord Confirmation Ext" extends "Standard Sales - Ord
             trigger OnAfterPreDataItem()
             begin
                 CompanyInfo2.Get();
+                CompanyAddr[1] := CompanyInfo.Name;
+                CompanyAddr[2] := '〒 ' + CompanyInfo."Post Code";
+                CompanyAddr[3] := CompanyInfo.Address;
+                CompanyAddr[4] := CompanyInfo."Address 2";
             end;
 
             trigger OnAfterAfterGetRecord()

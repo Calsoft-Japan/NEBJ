@@ -30,10 +30,10 @@ reportextension 51305 "Sales Ord Confirmation Ext" extends "Standard Sales - Ord
             column(SellToPostCode; Header."Sell-to Post Code")
             {
             }
-            column(CompanyName; CompanyInfo2."Name")
+            column(CompanyName; CompanyInfo."Name")
             {
             }
-            column(CompanyFaxNo; CompanyInfo2."Fax No.")
+            column(CompanyFaxNo; CompanyInfo."Fax No.")
             {
             }
             column(DirectShippingCode; Header."Direct Shipping Code")
@@ -50,12 +50,12 @@ reportextension 51305 "Sales Ord Confirmation Ext" extends "Standard Sales - Ord
         modify(Header)
         {
             trigger OnAfterPreDataItem()
+            var
+                LocalFormatAddr: Codeunit "Format Address";
             begin
-                CompanyInfo2.Get();
-                CompanyAddr[1] := CompanyInfo.Name;
-                CompanyAddr[2] := '〒 ' + CompanyInfo."Post Code";
-                CompanyAddr[3] := CompanyInfo.Address;
-                CompanyAddr[4] := CompanyInfo."Address 2";
+                CompanyInfo.Get();
+                Clear(CompanyAddr);
+                LocalFormatAddr.Company(CompanyAddr, CompanyInfo);
             end;
 
             trigger OnAfterAfterGetRecord()
@@ -123,7 +123,6 @@ reportextension 51305 "Sales Ord Confirmation Ext" extends "Standard Sales - Ord
     }
 
     var
-        CompanyInfo2: Record "Company Information";
         Customer2: Record Customer;
         ItemRec: Record Item;
         ItemDescFromItemTxt: Text[100];

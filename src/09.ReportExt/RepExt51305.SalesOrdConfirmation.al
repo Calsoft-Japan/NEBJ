@@ -6,6 +6,12 @@ reportextension 51305 "Sales Ord Confirmation Ext" extends "Standard Sales - Ord
     {
         add(Header)
         {
+            column(IsCRE; Header."Shipping Agent Service Code" = 'CRE')
+            {
+            }
+            column(TitleTxt; TitleTxt)
+            {
+            }
             column(Currency_Code; "Currency Code")
             {
             }
@@ -24,10 +30,10 @@ reportextension 51305 "Sales Ord Confirmation Ext" extends "Standard Sales - Ord
             column(SellToPostCode; Header."Sell-to Post Code")
             {
             }
-            column(CompanyName; CompanyInfo2."Name")
+            column(CompanyName; CompanyInfo."Name")
             {
             }
-            column(CompanyFaxNo; CompanyInfo2."Fax No.")
+            column(CompanyFaxNo; CompanyInfo."Fax No.")
             {
             }
             column(DirectShippingCode; Header."Direct Shipping Code")
@@ -44,8 +50,12 @@ reportextension 51305 "Sales Ord Confirmation Ext" extends "Standard Sales - Ord
         modify(Header)
         {
             trigger OnAfterPreDataItem()
+            var
+                LocalFormatAddr: Codeunit "Format Address";
             begin
-                CompanyInfo2.Get();
+                CompanyInfo.Get();
+                Clear(CompanyAddr);
+                LocalFormatAddr.Company(CompanyAddr, CompanyInfo);
             end;
 
             trigger OnAfterAfterGetRecord()
@@ -54,6 +64,11 @@ reportextension 51305 "Sales Ord Confirmation Ext" extends "Standard Sales - Ord
                     if Customer2.Get(Header."Direct Shipping Code") then;
                 end else
                     Clear(Customer2);
+                // ===== CRE Logic =====
+                if Header."Shipping Agent Service Code" = 'CRE' then
+                    TitleTxt := '価格訂正書'
+                else
+                    TitleTxt := '受注確認書';
             end;
         }
 
@@ -108,11 +123,11 @@ reportextension 51305 "Sales Ord Confirmation Ext" extends "Standard Sales - Ord
     }
 
     var
-        CompanyInfo2: Record "Company Information";
         Customer2: Record Customer;
         ItemRec: Record Item;
         ItemDescFromItemTxt: Text[100];
         NetUnitPriceLine: Decimal;
+        TitleTxt: Text[50];
 
     local procedure SetItemDescFromItem(SalesLine: Record "Sales Line")
     begin

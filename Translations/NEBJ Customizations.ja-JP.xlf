@@ -533,6 +533,24 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Table Sales Inquiry Line - Field StorageTemprature - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Table 3898327129 - Field 1028436379 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Total Amount (LCY)</source>
+          <target>合計金額 (基本通貨)</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Sales Inquiry Line - Field Total Amount (LCY) - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 3898327129 - Field 3052106040 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Total Amount Incl. VAT (LCY)</source>
+          <target>税込合計金額 (基本通貨)</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Sales Inquiry Line - Field Total Amount Incl. VAT (LCY) - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 3898327129 - Field 3012378440 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Total Qty. (Base)</source>
+          <target>合計数量 (基本単位)</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Sales Inquiry Line - Field Total Qty. (Base) - Property Caption</note>
+        </trans-unit>
         <trans-unit id="Table 3898327129 - Field 1878130204 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Type</source>
           <target>タイプ</target>

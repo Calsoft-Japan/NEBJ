@@ -56,6 +56,7 @@ tableextension 50018 "Customer Ext" extends Customer
         field(50039; "Head Office Code"; Code[20])
         {
             TableRelation = "Customer";
+            Caption = 'Head Office Code';
         }
         field(50040; "ExternalCustomerID1"; Text[100]) { }
         field(50041; "ExternalCustomerID2"; Text[100]) { }

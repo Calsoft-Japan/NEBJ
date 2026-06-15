@@ -45,6 +45,14 @@ reportextension 51305 "Sales Ord Confirmation Ext" extends "Standard Sales - Ord
             column(DirectShippingAddress; Customer2.Address)
             {
             }
+            // Added Name 2 for Direct Shipping customer
+            column(DirectShippingName2; Customer2."Name 2")
+            {
+            }
+            // Added Address 2 for Direct Shipping customer
+            column(DirectShippingAddress2; Customer2."Address 2")
+            {
+            }
         }
 
         modify(Header)

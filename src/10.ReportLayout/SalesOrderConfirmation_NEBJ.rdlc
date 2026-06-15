@@ -11,7 +11,7 @@
       <am:Name>MSRB</am:Name>
       <am:Version>15.1.30001.02</am:Version>
     </am:UpdatedBy>
-    <am:LastModifiedTimestamp>2026-04-27T00:22:27.8953428Z</am:LastModifiedTimestamp>
+    <am:LastModifiedTimestamp>2026-06-15T08:25:17.1622367Z</am:LastModifiedTimestamp>
   </am:AuthoringMetadata>
   <AutoRefresh>0</AutoRefresh>
   <DataSources>
@@ -852,7 +852,6 @@
                   <TablixCells>
                     <TablixCell>
                       <CellContents>
-                        <rd:Selected>true</rd:Selected>
                         <Rectangle Name="Rectangle1">
                           <ReportItems>
                             <Tablix Name="LinesTable">
@@ -3762,9 +3761,16 @@ Fields!EU_Division_3.Value</Value>
                                 <Paragraph>
                                   <TextRuns>
                                     <TextRun>
-                                      <Value>="直送情報: " &amp; First(Fields!DirectShippingCode.Value,"DataSet_Result") &amp; " " &amp; 
-First(Fields!DirectShippingName.Value, "DataSet_Result") &amp; " " &amp; 
-First(Fields!DirectShippingAddress.Value, "DataSet_Result")</Value>
+                                      <Value>=IIF(
+    Fields!DirectShippingCode.Value = "",
+    "",
+    "直送情報: " &amp;
+    Fields!DirectShippingCode.Value &amp; " " &amp;
+    Fields!DirectShippingName.Value &amp; " " &amp;
+    Fields!DirectShippingName2.Value &amp; " " &amp;
+    Fields!DirectShippingAddress.Value &amp; " " &amp;
+    Fields!DirectShippingAddress2.Value
+)</Value>
                                       <Style>
                                         <FontFamily>MS UI Gothic</FontFamily>
                                         <FontSize>9pt</FontSize>

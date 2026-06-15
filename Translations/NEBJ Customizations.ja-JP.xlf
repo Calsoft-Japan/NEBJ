@@ -533,6 +533,24 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Table Sales Inquiry Line - Field StorageTemprature - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Table 3898327129 - Field 1028436379 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Total Amount (LCY)</source>
+          <target>合計金額 (基本通貨)</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Sales Inquiry Line - Field Total Amount (LCY) - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 3898327129 - Field 3052106040 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Total Amount Incl. VAT (LCY)</source>
+          <target>税込合計金額 (基本通貨)</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Sales Inquiry Line - Field Total Amount Incl. VAT (LCY) - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 3898327129 - Field 3012378440 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Total Qty. (Base)</source>
+          <target>合計数量 (基本単位)</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Sales Inquiry Line - Field Total Qty. (Base) - Property Caption</note>
+        </trans-unit>
         <trans-unit id="Table 3898327129 - Field 1878130204 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Type</source>
           <target>タイプ</target>
@@ -1706,16 +1724,19 @@
         </trans-unit>
         <trans-unit id="TableExtension 156412750 - Field 2736170823 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Table 3469146285">
           <source>Web Inventory Inquiry News1</source>
+          <target>Web在庫照会用News1</target>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">TableExtension Company Information Ext - Field Web Inventory Inquiry News1 - Property Caption</note>
         </trans-unit>
         <trans-unit id="TableExtension 156412750 - Field 354293378 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Table 3469146285">
           <source>Web Inventory Inquiry News2</source>
+          <target>Web在庫照会用News2</target>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">TableExtension Company Information Ext - Field Web Inventory Inquiry News2 - Property Caption</note>
         </trans-unit>
         <trans-unit id="TableExtension 156412750 - Field 4011564057 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Table 3469146285">
           <source>Web Inventory Inquiry News3</source>
+          <target>Web在庫照会用News3</target>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">TableExtension Company Information Ext - Field Web Inventory Inquiry News3 - Property Caption</note>
         </trans-unit>
@@ -1834,6 +1855,7 @@
         </trans-unit>
         <trans-unit id="TableExtension 2204447775 - Field 3236790999 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Table 1994964448">
           <source>Head Office Code</source>
+          <target>本社コード</target>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">TableExtension Customer Ext - Field Head Office Code - Property Caption</note>
         </trans-unit>

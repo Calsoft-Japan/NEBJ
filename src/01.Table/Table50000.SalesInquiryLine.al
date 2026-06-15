@@ -411,15 +411,15 @@ table 50000 "Sales Inquiry Line"
         }
         field(400; "Total Qty. (Base)"; Decimal)//For Internal Logic
         {
-            Caption = 'Total Qty. (Base)', Locked = true;
+            Caption = 'Total Qty. (Base)';
         }
         field(401; "Total Amount (LCY)"; Decimal)//For Internal Logic
         {
-            Caption = 'Total Amount (LCY)', Locked = true;
+            Caption = 'Total Amount (LCY)';
         }
         field(402; "Total Amount Incl. VAT (LCY)"; Decimal)//For Internal Logic
         {
-            Caption = 'Total Amount Incl. VAT (LCY)', Locked = true;
+            Caption = 'Total Amount Incl. VAT (LCY)';
         }
     }
     keys

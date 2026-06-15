@@ -426,6 +426,15 @@ page 50019 "Sales Inquiry Subform"
                     Caption = 'Amount Including VAT - Amount';
                     Visible = ShowLine;
                 }
+                field("Total Amount (LCY)"; Rec."Total Amount (LCY)")
+                {
+                }
+                field("Total Qty. (Base)"; Rec."Total Qty. (Base)")
+                {
+                }
+                field("Total Amount Incl. VAT (LCY)"; Rec."Total Amount Incl. VAT (LCY)")
+                {
+                }
             }
         }
     }

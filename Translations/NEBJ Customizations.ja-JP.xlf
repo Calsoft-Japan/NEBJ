@@ -1724,16 +1724,19 @@
         </trans-unit>
         <trans-unit id="TableExtension 156412750 - Field 2736170823 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Table 3469146285">
           <source>Web Inventory Inquiry News1</source>
+          <target>Web在庫照会用News1</target>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">TableExtension Company Information Ext - Field Web Inventory Inquiry News1 - Property Caption</note>
         </trans-unit>
         <trans-unit id="TableExtension 156412750 - Field 354293378 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Table 3469146285">
           <source>Web Inventory Inquiry News2</source>
+          <target>Web在庫照会用News2</target>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">TableExtension Company Information Ext - Field Web Inventory Inquiry News2 - Property Caption</note>
         </trans-unit>
         <trans-unit id="TableExtension 156412750 - Field 4011564057 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Table 3469146285">
           <source>Web Inventory Inquiry News3</source>
+          <target>Web在庫照会用News3</target>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">TableExtension Company Information Ext - Field Web Inventory Inquiry News3 - Property Caption</note>
         </trans-unit>

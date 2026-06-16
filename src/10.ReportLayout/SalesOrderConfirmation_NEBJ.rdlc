@@ -567,6 +567,7 @@
                                     <TablixCells>
                                       <TablixCell>
                                         <CellContents>
+                                          <rd:Selected>true</rd:Selected>
                                           <Textbox Name="LineNo_Line">
                                             <rd:DefaultName>LineNo_Line</rd:DefaultName>
                                             <CanGrow>true</CanGrow>
@@ -842,6 +843,7 @@
                                     <TablixCells>
                                       <TablixCell>
                                         <CellContents>
+                                          <rd:Selected>true</rd:Selected>
                                           <Textbox Name="ItemNo_Line">
                                             <rd:DefaultName>ItemNo_Line</rd:DefaultName>
                                             <CanGrow>true</CanGrow>
@@ -1192,6 +1194,7 @@
                                     <TablixCells>
                                       <TablixCell>
                                         <CellContents>
+                                          <rd:Selected>true</rd:Selected>
                                           <Textbox Name="Textbox4">
                                             <rd:DefaultName>Textbox4</rd:DefaultName>
                                             <CanGrow>true</CanGrow>
@@ -1543,6 +1546,7 @@
                                     <TablixCells>
                                       <TablixCell>
                                         <CellContents>
+                                          <rd:Selected>true</rd:Selected>
                                           <Textbox Name="Textbox6">
                                             <rd:DefaultName>Textbox6</rd:DefaultName>
                                             <CanGrow>true</CanGrow>
@@ -1820,6 +1824,7 @@ Fields!EU_Division_3.Value</Value>
                                     <TablixCells>
                                       <TablixCell>
                                         <CellContents>
+                                          <rd:Selected>true</rd:Selected>
                                           <Textbox Name="Textbox19">
                                             <rd:DefaultName>Textbox19</rd:DefaultName>
                                             <CanGrow>true</CanGrow>
@@ -2094,6 +2099,7 @@ Fields!EU_Division_3.Value</Value>
                                     <TablixCells>
                                       <TablixCell>
                                         <CellContents>
+                                          <rd:Selected>true</rd:Selected>
                                           <Textbox Name="Textbox31">
                                             <rd:DefaultName>Textbox31</rd:DefaultName>
                                             <CanGrow>true</CanGrow>
@@ -2483,7 +2489,6 @@ Fields!EU_Division_3.Value</Value>
                                         <KeepTogether>true</KeepTogether>
                                       </TablixMember>
                                     </TablixMembers>
-                                    <KeepTogether>true</KeepTogether>
                                   </TablixMember>
                                 </TablixMembers>
                               </TablixRowHierarchy>
@@ -3595,12 +3600,6 @@ End Function
         </Field>
         <Field Name="VATRegistrationNo_Lbl">
           <DataField>VATRegistrationNo_Lbl</DataField>
-        </Field>
-        <Field Name="GlobalLocationNumber">
-          <DataField>GlobalLocationNumber</DataField>
-        </Field>
-        <Field Name="GlobalLocationNumber_Lbl">
-          <DataField>GlobalLocationNumber_Lbl</DataField>
         </Field>
         <Field Name="SellToFaxNo">
           <DataField>SellToFaxNo</DataField>

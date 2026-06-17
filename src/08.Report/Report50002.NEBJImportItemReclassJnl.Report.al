@@ -40,6 +40,8 @@ report 50002 "Import Goods Rcpt. Insp. Data"
     }
     trigger OnPreReport()
     begin
+        Clear(UsedEntryNos);
+
         TemplateName := 'TRANSFER';
 
         NextLineNo := 0;
@@ -189,19 +191,25 @@ report 50002 "Import Goods Rcpt. Insp. Data"
             if ItemJnlBatch."Default Gen. Bus. Posting Grp." <> '' then
                 ItemJnlLine."Gen. Bus. Posting Group" := ItemJnlBatch."Default Gen. Bus. Posting Grp.";
 
-            OldLotNo := '';
+            /* OldLotNo := '';
             EntryNo := 0;
             ItemLedEntry.Reset();
             ItemLedEntry.SetCurrentKey("Item No.", "Posting Date");
             ItemLedEntry.SetRange("Item No.", ItemNo);
+            ItemLedEntry.SetRange("Variant Code", '');
             ItemLedEntry.SetRange("Location Code", LocCode);
+            ItemLedEntry.SetRange("External Document No.", ExtDocNo);
             ItemLedEntry.SetFilter("Remaining Quantity", '<>%1', 0);
-            if OldLotNo <> '' then
-                ItemLedEntry.SetRange("Lot No.", OldLotNo);
-            if ItemLedEntry.FindFirst() then begin
+            if ItemLedEntry.FindLast() then begin
                 OldLotNo := ItemLedEntry."Lot No.";
                 EntryNo := ItemLedEntry."Entry No.";
-            end;
+            end else begin
+                ItemLedEntry.SetRange("External Document No.");
+                if ItemLedEntry.FindLast() then
+                    OldLotNo := ItemLedEntry."Lot No.";
+            end; */
+
+            GetNextAvailableEntryNo(ItemNo, LocCode, ExtDocNo, EntryNo, OldLotNo);
 
             NewExpDate := 0D;
             ItemLedEntry.Reset();
@@ -273,121 +281,6 @@ report 50002 "Import Goods Rcpt. Insp. Data"
                     until ReservEntry2.Next() = 0;
             end;
         end;
-        /* ItemJnlLine.LockTable();
-        ItemJnlLine.Init();
-        ItemJnlLine.SetRange("Journal Template Name", TemplateName);
-        ItemJnlLine.SetRange("Journal Batch Name", BatchName);
-        if ItemJnlLine.FindLast() then
-            NextLineNo := ItemJnlLine."Line No." + 10000
-        else
-            NextLineNo := 10000;
-
-        if Quantity1 <> 0 then begin
-            ItemJnlLine.Init();
-            ItemJnlLine."Journal Template Name" := TemplateName;
-            ItemJnlLine."Journal Batch Name" := BatchName;
-            ItemJnlLine."Line No." := NextLineNo;
-
-            ItemJnlLine.Validate("Entry Type", ItemJnlLine."Entry Type"::Transfer);
-            ItemJnlLine.Validate("Posting Date", PostingDate);
-            ItemJnlLine.Validate("Document No.", DocNo);
-            ItemJnlLine.Validate("External Document No.", ExtDocNo);
-
-            ItemJnlLine.Validate("Item No.", ItemNo);
-            ItemJnlLine.Validate("Location Code", LocCode);
-
-            OldLotNo := '';
-            EntryNo := 0;
-            ItemLedEntry.Reset();
-            ItemLedEntry.SetCurrentKey("Item No.", "Posting Date");
-            ItemLedEntry.SetRange("Item No.", ItemNo);
-            ItemLedEntry.SetRange("Variant Code", '');
-            ItemLedEntry.SetRange("Location Code", LocCode);
-            ItemLedEntry.SetRange("External Document No.", ExtDocNo);
-            ItemLedEntry.SetFilter("Remaining Quantity", '<>%1', 0);
-            if ItemLedEntry.FindLast() then begin
-                OldLotNo := ItemLedEntry."Lot No.";
-                EntryNo := ItemLedEntry."Entry No.";
-            end else begin
-                ItemLedEntry.SetRange("External Document No.");
-                if ItemLedEntry.FindLast() then
-                    OldLotNo := ItemLedEntry."Lot No."
-            end;
-
-            NewLotNo := '';
-            NewExpDate := 0D;
-            ItemLedEntry.Reset();
-            ItemLedEntry.SetCurrentKey("Item No.", "Posting Date");
-            ItemLedEntry.SetRange("Item No.", ItemNo);
-            ItemLedEntry.SetRange("Variant Code", '');
-            ItemLedEntry.SetRange("Lot No.", LotNo);
-            if ItemLedEntry.FindLast() then begin
-                NewExpDate := ItemLedEntry."Expiration Date";
-            end;
-
-            ItemJnlLine.Validate("New Location Code", NewLocCode);
-            ItemJnlLine.Validate(Quantity, Qty);
-            //if EntryNo <> 0 then
-            //ItemJnlLine.Validate(ItemJnlLine."Applies-to Entry", EntryNo);
-
-            ItemJnlLine.Insert(true);
-
-            if OldLotNo <> '' then begin
-                Clear(ReservEntry);
-                ReservEntry."Lot No." := OldLotNo;
-                ReservEntry."Serial No." := SerialNo;
-                CreateRsvEntry.CreateReservEntryFor(
-                  Database::"Item Journal Line",
-                  ItemJnlLine."Entry Type".AsInteger(),
-                  ItemJnlLine."Journal Template Name",
-                  ItemJnlLine."Journal Batch Name",
-                  ItemJnlLine."Prod. Order Comp. Line No.",
-                  ItemJnlLine."Line No.",
-                  ItemJnlLine."Qty. per Unit of Measure",
-                  Abs(ItemJnlLine."Quantity (Base)"),
-                  Abs(ItemJnlLine."Quantity (Base)"),
-                  ReservEntry);
-
-                CreateRsvEntry.CreateEntry(
-                  ItemJnlLine."Item No.",
-                  ItemJnlLine."Variant Code",
-                  ItemJnlLine."Location Code",
-                  ItemJnlLine.Description,
-                  0D, 0D, 0,
-                  ReservEntry."Reservation Status"::Prospect);
-
-                Clear(ReservEntry2);
-                ReservEngineMgt.InitFilterAndSortingLookupFor(ReservEntry2, true);
-                //ReserveItemJnlLine.FilterReservFor(ReservEntry2, ItemJnlLine);
-                ReservMgmt.FilterReservFor(RecRef, ReservEntry, DirEnum::Inbound);
-                ReservEntry2.SetRange("Reservation Status", ReservEntry2."Reservation Status"::Prospect);
-                if SerialNo <> '' then
-                    ReservEntry2.SetRange("Serial No.", SerialNo);
-                if LotNo <> '' then
-                    ReservEntry2.SetRange("Lot No.", OldLotNo);
-                if ReservEntry2.FindFirst() then
-                    repeat
-                        ReservEntry2.Validate("New Lot No.", LotNo);
-
-                        if NewExpDate <> 0D then
-                            ReservEntry2.Validate("New Expiration Date", NewExpDate)
-                        else
-                            if ExpDate <> 0D then
-                                ReservEntry2.Validate("New Expiration Date", ExpDate);
-                        ReservEntry2.Validate("Appl.-to Item Entry", EntryNo);
-                        ReservEntry2.Modify();
-                        ReservEntry2.Validate("Quantity (Base)", Qty);
-                        if not LotNoInfo.Get(ReservEntry2."Item No.", ReservEntry2."Variant Code", ReservEntry2."New Lot No.") then begin
-                            LotNoInfo.Init();
-                            LotNoInfo."Item No." := ReservEntry2."Item No.";
-                            LotNoInfo."Lot No." := ReservEntry2."New Lot No.";
-                            LotNoInfo."First Receiving Date" := PostingDate;
-                            LotNoInfo."Inspection Passed Date" := ASEDate;
-                            LotNoInfo.Insert();
-                        end;
-                    until ReservEntry2.Next() = 0;
-            end;
-        end;*/
     end;
 
     local procedure FormatDataToDate(TextToFormat: Text[250]): Text[250];
@@ -450,8 +343,33 @@ report 50002 "Import Goods Rcpt. Insp. Data"
         ExpDate: Date;
         Description: Text[80];
         Qty: Decimal;
+        UsedEntryNos: Dictionary of [Integer, Boolean];
         ImpMsg: Label 'Import Completed';
         DialogTxt: Label 'Import from excel file';
         BlankFileErr: Label 'File not found or incorrect.';
         FilterTxt: Label 'Text Files (*.txt)|*.txt|All Files (*.*)|*.*';
+
+    local procedure GetNextAvailableEntryNo(ItemNo: Code[20]; LocationCode: Code[10]; ExtDocNo: Code[35]; var EntryNo: Integer; var OldLotNo: Code[20])
+    var
+        ItemLedEntry: Record "Item Ledger Entry";
+    begin
+        EntryNo := 0;
+        OldLotNo := '';
+        ItemLedEntry.Reset();
+        ItemLedEntry.SetCurrentKey("Item No.", "Posting Date");
+        ItemLedEntry.SetRange("Item No.", ItemNo);
+        ItemLedEntry.SetRange("Variant Code", '');
+        ItemLedEntry.SetRange("Location Code", LocationCode);
+        ItemLedEntry.SetRange("External Document No.", ExtDocNo);
+        ItemLedEntry.SetFilter("Remaining Quantity", '<>%1', 0);
+        if ItemLedEntry.FindSet() then
+            repeat
+                if not UsedEntryNos.ContainsKey(ItemLedEntry."Entry No.") then begin
+                    EntryNo := ItemLedEntry."Entry No.";
+                    OldLotNo := ItemLedEntry."Lot No.";
+                    UsedEntryNos.Add(ItemLedEntry."Entry No.", true);
+                    exit;
+                end;
+            until ItemLedEntry.Next() = 0;
+    end;
 }

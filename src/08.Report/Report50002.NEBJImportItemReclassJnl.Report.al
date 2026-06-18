@@ -209,7 +209,7 @@ report 50002 "Import Goods Rcpt. Insp. Data"
                     OldLotNo := ItemLedEntry."Lot No.";
             end; */
 
-            GetNextAvailableEntryNo(ItemNo, LocCode, ExtDocNo, EntryNo, OldLotNo);
+            GetNextAvailableEntryNo(ItemNo, LocCode, ExtDocNo, Qty, EntryNo, OldLotNo);
 
             NewExpDate := 0D;
             ItemLedEntry.Reset();
@@ -344,12 +344,13 @@ report 50002 "Import Goods Rcpt. Insp. Data"
         Description: Text[80];
         Qty: Decimal;
         UsedEntryNos: Dictionary of [Integer, Boolean];
+        ConsumedQtyByEntry: Dictionary of [Integer, Decimal];
         ImpMsg: Label 'Import Completed';
         DialogTxt: Label 'Import from excel file';
         BlankFileErr: Label 'File not found or incorrect.';
         FilterTxt: Label 'Text Files (*.txt)|*.txt|All Files (*.*)|*.*';
 
-    local procedure GetNextAvailableEntryNo(ItemNo: Code[20]; LocationCode: Code[10]; ExtDocNo: Code[35]; var EntryNo: Integer; var OldLotNo: Code[20])
+    /* local procedure GetNextAvailableEntryNo(ItemNo: Code[20]; LocationCode: Code[10]; ExtDocNo: Code[35]; var EntryNo: Integer; var OldLotNo: Code[20])
     var
         ItemLedEntry: Record "Item Ledger Entry";
     begin
@@ -368,6 +369,40 @@ report 50002 "Import Goods Rcpt. Insp. Data"
                     EntryNo := ItemLedEntry."Entry No.";
                     OldLotNo := ItemLedEntry."Lot No.";
                     UsedEntryNos.Add(ItemLedEntry."Entry No.", true);
+                    exit;
+                end;
+            until ItemLedEntry.Next() = 0;
+    end; */
+
+    local procedure GetNextAvailableEntryNo(ItemNo: Code[20]; LocCode: Code[10]; ExtDocNo: Code[35]; ReqQty: Decimal; var EntryNo: Integer; var OldLotNo: Code[20])
+    var
+        ItemLedEntry: Record "Item Ledger Entry";
+        ConsumedQty: Decimal;
+        AvailableQty: Decimal;
+    begin
+        EntryNo := 0;
+        OldLotNo := '';
+        ItemLedEntry.Reset();
+        ItemLedEntry.SetCurrentKey("Item No.", "Posting Date");
+        ItemLedEntry.SetRange("Item No.", ItemNo);
+        ItemLedEntry.SetRange("Variant Code", '');
+        ItemLedEntry.SetRange("Location Code", LocCode);
+        ItemLedEntry.SetRange("External Document No.", ExtDocNo);
+        ItemLedEntry.SetFilter("Remaining Quantity", '<>%1', 0);
+        if ItemLedEntry.FindSet() then
+            repeat
+                ConsumedQty := 0;
+                if ConsumedQtyByEntry.ContainsKey(ItemLedEntry."Entry No.") then
+                    ConsumedQtyByEntry.Get(ItemLedEntry."Entry No.", ConsumedQty);
+                AvailableQty := ItemLedEntry."Remaining Quantity" - ConsumedQty;
+                if AvailableQty >= ReqQty then begin
+                    EntryNo := ItemLedEntry."Entry No.";
+                    OldLotNo := ItemLedEntry."Lot No.";
+                    ConsumedQty += ReqQty;
+                    if ConsumedQtyByEntry.ContainsKey(ItemLedEntry."Entry No.") then
+                        ConsumedQtyByEntry.Set(ItemLedEntry."Entry No.", ConsumedQty)
+                    else
+                        ConsumedQtyByEntry.Add(ItemLedEntry."Entry No.", ConsumedQty);
                     exit;
                 end;
             until ItemLedEntry.Next() = 0;

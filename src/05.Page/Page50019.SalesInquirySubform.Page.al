@@ -692,6 +692,8 @@ page 50019 "Sales Inquiry Subform"
 
                             Rec."Sell-to Customer Name" := SalesHdr."Sell-to Customer Name";
                             Rec."Customer Name 2" := SalesHdr."Sell-to Customer Name 2";
+                            Rec."Reason Code" := SalesHdr."Reason Code";
+                            Rec."Currency Code" := SalesHdr."Currency Code";
                             Rec."EndUser" := SalesLine.EndUser;
                             Rec."Posting Date" := SalesHdr."Posting Date";
                             Rec."Document Date" := SalesHdr."Document Date";
@@ -899,6 +901,8 @@ page 50019 "Sales Inquiry Subform"
 
                             Rec."Sell-to Customer Name" := SalesInvHdr."Sell-to Customer Name";
                             Rec."Customer Name 2" := SalesInvHdr."Sell-to Customer Name 2";
+                            Rec."Reason Code" := SalesInvHdr."Reason Code";
+                            Rec."Currency Code" := SalesInvHdr."Currency Code";
                             Rec."Posting Date" := SalesInvHdr."Posting Date";
                             Rec."Document Date" := SalesInvHdr."Document Date";
                             Rec."Order Date" := SalesInvHdr."Order Date";
@@ -1091,6 +1095,8 @@ page 50019 "Sales Inquiry Subform"
 
                             Rec."Sell-to Customer Name" := SalesCrMemoHdr."Sell-to Customer Name";
                             Rec."Customer Name 2" := SalesCrMemoHdr."Sell-to Customer Name 2";
+                            Rec."Reason Code" := SalesCrMemoHdr."Reason Code";
+                            Rec."Currency Code" := SalesCrMemoHdr."Currency Code";
                             Rec."Posting Date" := SalesCrMemoHdr."Posting Date";
                             Rec."Document Date" := SalesCrMemoHdr."Document Date";
                             Rec."Due Date" := SalesCrMemoHdr."Due Date";

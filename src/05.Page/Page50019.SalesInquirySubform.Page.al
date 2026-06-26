@@ -1113,6 +1113,7 @@ page 50019 "Sales Inquiry Subform"
                             Rec.StoraGetemprature := SalesCrMemoLine.StoraGetemprature;
                             Rec."External Document No." := SalesCrMemoHdr."External Document No.";
                             Rec."ExternalDocumentNo." := SalesCrMemoLine."ExternaDocumentNo.";
+                            Rec.EndUser := SalesCrMemoLine.EndUser;
                             Rec."EU Description" := SalesCrMemoLine."EU Description";
                             Rec."EU Division 1" := SalesCrMemoLine."EU Division 1";
                             Rec."EU Division 2" := SalesCrMemoLine."EU Division 2";
